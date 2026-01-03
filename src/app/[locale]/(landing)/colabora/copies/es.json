@@ -1,62 +1,62 @@
 {
   "meta": {
     "title": "Colabora con Product Beers",
-    "description": "Echa una mano a la comunidad de producto como sponsor o prestando tu espacio para las quedadas."
+    "description": "Ayuda a la comunidad de producto como sponsor o prestando tu espacio."
   },
   "hero": {
-    "label": "Echa una mano",
+    "label": "Colabora",
     "titleStart": "Ayúdanos a seguir",
     "titleHighlight": "quedando",
-    "description": "Somos un grupo de colegas que nos juntamos a hablar de producto. Si tu empresa quiere echar un cable, aquí te contamos cómo."
+    "description": "Somos un grupo de colegas que nos juntamos a hablar de producto. Si quieres echar un cable, aquí te contamos cómo."
   },
   "sponsor": {
-    "title": "Ser sponsor",
-    "description": "Ayuda a que las quedadas sigan siendo gratis. A cambio, tu logo estará por todas partes.",
+    "title": "Poner las cañas",
+    "description": "Que las quedadas sigan siendo gratis mola. Si tu empresa puede invitar a unas cañas, todos contentos.",
     "benefits": {
-      "title": "Qué ganas",
+      "title": "A cambio",
       "visibility": {
-        "title": "Tu logo visible",
-        "description": "En la web, en redes y en cada evento. No pasa desapercibido."
+        "title": "Tu logo por ahí",
+        "description": "En la web, en redes y en el evento."
       },
       "community": {
-        "title": "Llegar a la comunidad",
-        "description": "PMs, diseñadores, devs y founders. Gente que hace producto."
+        "title": "Conoces a la gente",
+        "description": "PMs, diseñadores, devs. Gente que curra en producto."
       },
       "networking": {
-        "title": "Conocer gente",
-        "description": "Ven al evento, presenta tu empresa, tómate algo con el resto."
+        "title": "Vienes al evento",
+        "description": "Puedes presentar tu empresa si quieres, o simplemente quedarte."
       },
       "content": {
         "title": "Dar una charla",
-        "description": "Comparte tu expertise con la comunidad en un talk o workshop."
+        "description": "Si te apetece contar algo, hay hueco."
       }
     }
   },
   "hoster": {
-    "title": "Ceder el espacio",
-    "description": "¿Tienes un local, cervecería, restaurante u oficina con sala? Nos encanta variar de sitio.",
+    "title": "Poner el sitio",
+    "description": "¿Tienes un bar, terraza u oficina con espacio? Nos encanta variar.",
     "benefits": {
-      "title": "Qué ganas",
+      "title": "A cambio",
       "talent": {
-        "title": "Gente nueva en tu local",
-        "description": "Profesionales de producto que probablemente no conocían tu espacio."
+        "title": "Gente nueva",
+        "description": "Vienen profesionales de producto que seguramente no conocían tu sitio."
       },
       "brand": {
-        "title": "Visibilidad",
-        "description": "Te asocias con la comunidad de producto."
+        "title": "Te conocen",
+        "description": "La comunidad sabe dónde estás."
       },
       "social": {
         "title": "Te mencionamos",
-        "description": "En cada post, story y comunicación del evento."
+        "description": "En los posts y stories del evento."
       },
       "community": {
-        "title": "Participa si quieres",
-        "description": "Tú y tu equipo podéis quedaros al evento."
+        "title": "Te quedas",
+        "description": "Tú y tu equipo podéis participar."
       }
     }
   },
   "cta": {
-    "title": "¿Te interesa?",
-    "description": "Escríbenos y hablamos. Sin compromiso, sin rollos."
+    "title": "¿Te mola?",
+    "description": "Escríbenos y hablamos."
   }
 }

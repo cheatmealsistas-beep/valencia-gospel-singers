@@ -1,62 +1,62 @@
 {
   "meta": {
     "title": "Collaborate with Product Beers",
-    "description": "Help the product community as a sponsor or by lending your space for meetups."
+    "description": "Help the product community as a sponsor or by lending your space."
   },
   "hero": {
-    "label": "Help out",
+    "label": "Collaborate",
     "titleStart": "Help us keep",
     "titleHighlight": "meeting up",
-    "description": "We're a bunch of friends who get together to talk about product. If your company wants to help out, here's how."
+    "description": "We're a bunch of friends who get together to talk about product. If you want to help out, here's how."
   },
   "sponsor": {
     "title": "Buy the beers",
-    "description": "Help keep meetups free. In return, your logo will be everywhere.",
+    "description": "Keeping meetups free is cool. If your company can buy a round, everyone's happy.",
     "benefits": {
-      "title": "What you get",
+      "title": "In return",
       "visibility": {
-        "title": "Your logo visible",
-        "description": "On the website, social media and at every event. Hard to miss."
+        "title": "Your logo around",
+        "description": "On the website, social media and at the event."
       },
       "community": {
-        "title": "Reach 200+ people",
-        "description": "PMs, designers, devs and founders. People who build product."
+        "title": "Meet people",
+        "description": "PMs, designers, devs. People who work in product."
       },
       "networking": {
-        "title": "Meet the crowd",
-        "description": "Come to the event, introduce your company, have a drink with everyone."
+        "title": "Come to the event",
+        "description": "You can introduce your company if you want, or just hang out."
       },
       "content": {
         "title": "Give a talk",
-        "description": "Share your expertise with the community in a talk or workshop."
+        "description": "If you want to share something, there's room."
       }
     }
   },
   "hoster": {
     "title": "Lend your space",
-    "description": "Got an office with a meeting room? Let us use it for an event and we'll thank you publicly.",
+    "description": "Got a bar, terrace or office with space? We like to move around.",
     "benefits": {
-      "title": "What you get",
+      "title": "In return",
       "talent": {
-        "title": "Show off your company",
-        "description": "Product folks will see where you work and what the vibe is like."
+        "title": "New faces",
+        "description": "Product people who probably didn't know your place."
       },
       "brand": {
-        "title": "Good image",
-        "description": "Your company gets associated with the product community."
+        "title": "They know you",
+        "description": "The community knows where you are."
       },
       "social": {
         "title": "We mention you",
-        "description": "In every post, story and event communication."
+        "description": "In the event posts and stories."
       },
       "community": {
-        "title": "Join the event",
-        "description": "Your team can stick around and participate like everyone else."
+        "title": "You stay",
+        "description": "You and your team can join in."
       }
     }
   },
   "cta": {
-    "title": "Like the idea?",
-    "description": "Drop us a line and we'll chat. No strings attached."
+    "title": "Sounds good?",
+    "description": "Write us and let's chat."
   }
 }
