@@ -1,62 +1,62 @@
 {
   "meta": {
     "title": "Collaborate with Product Beers",
-    "description": "Support Valencia's product community as a sponsor or by hosting our events at your space."
+    "description": "Help the product community as a sponsor or by lending your space for meetups."
   },
   "hero": {
-    "label": "Collaborate with us",
-    "titleStart": "Grow the",
-    "titleHighlight": "community",
-    "description": "Join the companies and spaces that make Product Beers possible. Together we're building Valencia's most active product ecosystem."
+    "label": "Help out",
+    "titleStart": "Help us keep",
+    "titleHighlight": "meeting up",
+    "description": "We're a bunch of friends who get together to talk about product. If your company wants to help out, here's how."
   },
   "sponsor": {
-    "title": "Become a Sponsor",
-    "description": "Support our events financially and gain visibility with Valencia's most active product community.",
+    "title": "Buy the beers",
+    "description": "Help keep meetups free. In return, your logo will be everywhere.",
     "benefits": {
-      "title": "Sponsor benefits",
+      "title": "What you get",
       "visibility": {
-        "title": "Brand visibility",
-        "description": "Your logo on our website, social media, and during all events."
+        "title": "Your logo visible",
+        "description": "On the website, social media and at every event. Hard to miss."
       },
       "community": {
-        "title": "Community access",
-        "description": "Connect with +200 product, design, and tech professionals."
+        "title": "Reach 200+ people",
+        "description": "PMs, designers, devs and founders. People who build product."
       },
       "networking": {
-        "title": "Exclusive networking",
-        "description": "Present your company and meet talent in a relaxed atmosphere."
+        "title": "Meet the crowd",
+        "description": "Come to the event, introduce your company, have a drink with everyone."
       },
       "content": {
-        "title": "Custom content",
-        "description": "Option to sponsor talks or workshops in your area of expertise."
+        "title": "Sponsor a talk",
+        "description": "If you want, you can put together a talk or workshop about your thing."
       }
     }
   },
   "hoster": {
-    "title": "Host an Event",
-    "description": "Have an office, coworking, or venue? Let us host an event there and we'll thank you publicly.",
+    "title": "Lend your space",
+    "description": "Got an office with a meeting room? Let us use it for an event and we'll thank you publicly.",
     "benefits": {
-      "title": "Host benefits",
+      "title": "What you get",
       "talent": {
-        "title": "Attract talent",
-        "description": "Product professionals will get to know your space and company."
+        "title": "Show off your company",
+        "description": "Product folks will see where you work and what the vibe is like."
       },
       "brand": {
-        "title": "Position your brand",
-        "description": "Associate your company with Valencia's product community."
+        "title": "Good image",
+        "description": "Your company gets associated with the product community."
       },
       "social": {
-        "title": "Social media mention",
-        "description": "We mention you in all event communications."
+        "title": "We mention you",
+        "description": "In every post, story and event communication."
       },
       "community": {
-        "title": "Part of the community",
-        "description": "Your team can participate in the event as attendees."
+        "title": "Join the event",
+        "description": "Your team can stick around and participate like everyone else."
       }
     }
   },
   "cta": {
-    "title": "Interested in collaborating?",
-    "description": "Fill out the form and we'll get in touch to explore collaboration options."
+    "title": "Like the idea?",
+    "description": "Drop us a line and we'll chat. No strings attached."
   }
 }

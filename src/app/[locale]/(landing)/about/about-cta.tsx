@@ -45,7 +45,7 @@ export function AboutCTA() {
                   <Send className="ml-2 size-4" />
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="px-8 rounded-xl" asChild>
+              <Button size="lg" variant="ghost" className="px-8 rounded-xl border-2 border-white/30 text-white hover:bg-white/10 hover:text-white hover:border-white/50" asChild>
                 <a href={brand.social.linkedin} target="_blank" rel="noopener noreferrer">
                   {t('secondaryButton')}
                   <LinkedinIcon className="ml-2 size-4" />

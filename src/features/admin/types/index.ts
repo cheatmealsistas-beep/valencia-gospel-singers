@@ -145,6 +145,7 @@ export interface AdminStats {
   pastEvents: number;
   totalSpeakers: number;
   totalSponsors: number;
+  totalTeamMembers: number;
 }
 
 /**
@@ -273,4 +274,115 @@ export interface Collaborator {
   updated_at: string;
   created_by: string | null;
   updated_by: string | null;
+}
+
+/**
+ * ==============================================
+ * EVENT TYPES & SCHEMAS
+ * ==============================================
+ */
+
+export const eventSchema = z.object({
+  title: z.string().min(1, 'Title is required'),
+  slug: z.string().optional(),
+  description: z.string().optional().nullable(),
+  short_description: z.string().optional().nullable(),
+  date: z.string().min(1, 'Date is required'),
+  end_date: z.string().optional().nullable(),
+  location_name: z.string().optional().nullable(),
+  location_address: z.string().optional().nullable(),
+  location_city: z.string().default('Valencia'),
+  location_maps_url: z.string().url('Invalid maps URL').optional().nullable().or(z.literal('')),
+  image_url: z.string().url('Invalid image URL').optional().nullable().or(z.literal('')),
+  registration_url: z.string().url('Invalid registration URL').optional().nullable().or(z.literal('')),
+  max_attendees: z.number().int().positive().optional().nullable(),
+  status: z.enum(['draft', 'published', 'cancelled']).default('draft'),
+  featured: z.boolean().default(false),
+});
+
+export type EventInput = z.infer<typeof eventSchema>;
+
+export interface Event {
+  id: string;
+  title: string;
+  slug: string;
+  description: string | null;
+  short_description: string | null;
+  date: string;
+  end_date: string | null;
+  location_name: string | null;
+  location_address: string | null;
+  location_city: string | null;
+  location_maps_url: string | null;
+  image_url: string | null;
+  registration_url: string | null;
+  max_attendees: number | null;
+  fourvenues_id: string | null;
+  fourvenues_slug: string | null;
+  last_synced_at: string | null;
+  status: 'draft' | 'published' | 'cancelled';
+  source: 'manual' | 'fourvenues';
+  featured: boolean;
+  created_at: string;
+  updated_at: string;
+  created_by: string | null;
+}
+
+export interface EventWithRelations extends Event {
+  speakers?: EventSpeaker[];
+  sponsors?: EventSponsor[];
+}
+
+export interface EventSpeaker {
+  id: string;
+  event_id: string;
+  speaker_id: string;
+  role_in_event: 'speaker' | 'host' | 'panelist' | 'moderator';
+  talk_title: string | null;
+  talk_description: string | null;
+  order_index: number;
+  speaker?: Speaker;
+}
+
+export interface EventSponsor {
+  id: string;
+  event_id: string;
+  sponsor_id: string;
+  tier_override: string | null;
+  sponsor?: {
+    id: string;
+    name: string;
+    logo_url: string | null;
+  };
+}
+
+/**
+ * ==============================================
+ * TEAM MEMBER TYPES & SCHEMAS
+ * ==============================================
+ */
+
+export const teamMemberSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  role: z.string().min(1, 'Role is required'),
+  company: z.string().optional().nullable(),
+  linkedin_url: z.string().url('Invalid LinkedIn URL').optional().nullable().or(z.literal('')),
+  photo_url: z.string().url('Invalid photo URL').optional().nullable().or(z.literal('')),
+  display_order: z.number().int().default(0),
+  is_active: z.boolean().default(true),
+});
+
+export type TeamMemberInput = z.infer<typeof teamMemberSchema>;
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  company: string | null;
+  linkedin_url: string | null;
+  photo_url: string | null;
+  display_order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }

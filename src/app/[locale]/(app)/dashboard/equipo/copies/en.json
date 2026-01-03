@@ -1,0 +1,80 @@
+{
+  "title": "Team",
+  "description": "Manage the organizing team members",
+  "addNew": "Add member",
+  "empty": {
+    "title": "No team members yet",
+    "description": "Add the organizing team members."
+  },
+  "filters": {
+    "all": "All",
+    "active": "Active",
+    "inactive": "Inactive",
+    "searchPlaceholder": "Search by name or company..."
+  },
+  "table": {
+    "photo": "Photo",
+    "name": "Name",
+    "role": "Role",
+    "company": "Company",
+    "order": "Order",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "form": {
+    "title": {
+      "create": "Add member",
+      "edit": "Edit member"
+    },
+    "name": {
+      "label": "Name",
+      "placeholder": "Full name"
+    },
+    "role": {
+      "label": "Role",
+      "placeholder": "Founder, Organizer..."
+    },
+    "company": {
+      "label": "Company",
+      "placeholder": "Company name (optional)"
+    },
+    "photoUrl": {
+      "label": "Photo URL",
+      "placeholder": "https://example.com/photo.jpg",
+      "help": "Direct link to photo (JPG or PNG)"
+    },
+    "linkedinUrl": {
+      "label": "LinkedIn",
+      "placeholder": "https://linkedin.com/in/user"
+    },
+    "displayOrder": {
+      "label": "Display order",
+      "help": "Lower number = appears first"
+    },
+    "isActive": {
+      "label": "Active",
+      "description": "Visible on the website"
+    },
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "messages": {
+    "created": "Member created successfully",
+    "updated": "Member updated successfully",
+    "deleted": "Member deleted successfully",
+    "activated": "Member activated",
+    "deactivated": "Member deactivated",
+    "error": "Something went wrong. Please try again."
+  },
+  "confirmDelete": {
+    "title": "Delete member?",
+    "description": "This action cannot be undone. The member will be permanently deleted.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  }
+}

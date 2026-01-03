@@ -14,7 +14,7 @@ import {
   handleMakeUserAdmin,
   handleRemoveUserAdmin,
 } from './admin.handler';
-import type { ActionResult, InfoBarSettings, EmailJourneysSettings, FeatureFlags, CrossSellProductsSettings, AffiliateProgramSettings, CollaboratorInput, Collaborator, SpeakerInput, Speaker } from './types';
+import type { ActionResult, InfoBarSettings, EmailJourneysSettings, FeatureFlags, CrossSellProductsSettings, AffiliateProgramSettings, CollaboratorInput, SpeakerInput, TeamMemberInput } from './types';
 import {
   createCollaborator,
   updateCollaborator,
@@ -24,8 +24,12 @@ import {
   updateSpeaker,
   toggleSpeakerActive,
   deleteSpeaker,
+  createTeamMember,
+  updateTeamMember,
+  toggleTeamMemberActive,
+  deleteTeamMember,
 } from './admin.command';
-import { collaboratorSchema, speakerSchema } from './types';
+import { collaboratorSchema, speakerSchema, teamMemberSchema } from './types';
 
 /**
  * ==============================================
@@ -480,4 +484,106 @@ export async function deleteSpeakerAction(
   }
 
   return { success: false, data: null, error: result.error || 'Failed to delete speaker' };
+}
+
+/**
+ * ==============================================
+ * TEAM MEMBER ACTIONS
+ * ==============================================
+ */
+
+/**
+ * Create a new team member
+ */
+export async function createTeamMemberAction(
+  input: TeamMemberInput
+): Promise<ActionResult<{ id: string }>> {
+  await requireAdmin();
+
+  // Validate input
+  const validation = teamMemberSchema.safeParse(input);
+  if (!validation.success) {
+    return {
+      success: false,
+      data: null,
+      error: validation.error.issues[0].message,
+    };
+  }
+
+  const result = await createTeamMember(validation.data);
+
+  if (result.success && result.id) {
+    revalidatePath('/[locale]/dashboard/equipo');
+    revalidatePath('/[locale]/about'); // Revalidate about page
+    return {
+      success: true,
+      data: { id: result.id },
+      error: null,
+    };
+  }
+
+  return {
+    success: false,
+    data: null,
+    error: result.error || 'Failed to create team member',
+  };
+}
+
+/**
+ * Update an existing team member
+ */
+export async function updateTeamMemberAction(
+  id: string,
+  input: Partial<TeamMemberInput>
+): Promise<ActionResult> {
+  await requireAdmin();
+
+  const result = await updateTeamMember(id, input);
+
+  if (result.success) {
+    revalidatePath('/[locale]/dashboard/equipo');
+    revalidatePath('/[locale]/about');
+    return { success: true, data: undefined, error: null };
+  }
+
+  return { success: false, data: null, error: result.error || 'Failed to update team member' };
+}
+
+/**
+ * Toggle team member active status
+ */
+export async function toggleTeamMemberAction(
+  id: string,
+  isActive: boolean
+): Promise<ActionResult> {
+  await requireAdmin();
+
+  const result = await toggleTeamMemberActive(id, isActive);
+
+  if (result.success) {
+    revalidatePath('/[locale]/dashboard/equipo');
+    revalidatePath('/[locale]/about');
+    return { success: true, data: undefined, error: null };
+  }
+
+  return { success: false, data: null, error: result.error || 'Failed to toggle team member' };
+}
+
+/**
+ * Delete a team member
+ */
+export async function deleteTeamMemberAction(
+  id: string
+): Promise<ActionResult> {
+  await requireAdmin();
+
+  const result = await deleteTeamMember(id);
+
+  if (result.success) {
+    revalidatePath('/[locale]/dashboard/equipo');
+    revalidatePath('/[locale]/about');
+    return { success: true, data: undefined, error: null };
+  }
+
+  return { success: false, data: null, error: result.error || 'Failed to delete team member' };
 }

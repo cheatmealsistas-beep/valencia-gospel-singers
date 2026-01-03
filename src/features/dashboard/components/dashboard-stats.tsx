@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { Card, CardContent } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
-import { Users, Calendar, CalendarClock, CalendarCheck, Mic2, Building2, Plus } from 'lucide-react';
+import { Calendar, CalendarClock, CalendarCheck, Mic2, Building2, Users, Plus } from 'lucide-react';
 import type { DashboardStats } from '../types';
 
 interface DashboardStatsProps {
@@ -15,12 +15,6 @@ export function DashboardStatsCards({ stats }: DashboardStatsProps) {
   const locale = useLocale();
 
   const statCards = [
-    {
-      label: 'Miembros',
-      value: stats.totalUsers?.toLocaleString() || '0',
-      icon: Users,
-      description: 'Usuarios registrados',
-    },
     {
       label: 'Eventos totales',
       value: stats.totalEvents?.toLocaleString() || '0',
@@ -49,11 +43,18 @@ export function DashboardStatsCards({ stats }: DashboardStatsProps) {
       href: `/${locale}/dashboard/ponentes`,
     },
     {
-      label: 'Sponsors',
+      label: 'Colaboradores',
       value: stats.totalSponsors?.toLocaleString() || '0',
       icon: Building2,
-      description: 'Sponsors activos',
+      description: 'Sponsors y hosters',
       href: `/${locale}/dashboard/sponsors`,
+    },
+    {
+      label: 'Equipo',
+      value: stats.totalTeamMembers?.toLocaleString() || '0',
+      icon: Users,
+      description: 'Organizadores',
+      href: `/${locale}/dashboard/equipo`,
     },
   ];
 

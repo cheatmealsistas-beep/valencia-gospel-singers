@@ -11,6 +11,7 @@ import type {
   AffiliateProgramSettings,
   Collaborator,
   Speaker,
+  TeamMember,
 } from './types';
 
 /**
@@ -181,6 +182,12 @@ export async function getAdminStats(): Promise<AdminStats> {
     .select('*', { count: 'exact', head: true })
     .eq('is_active', true);
 
+  // Total active team members
+  const { count: totalTeamMembers } = await supabase
+    .from('team_members')
+    .select('*', { count: 'exact', head: true })
+    .eq('is_active', true);
+
   return {
     totalUsers: totalUsers || 0,
     newUsersThisMonth: newUsersThisMonth || 0,
@@ -189,6 +196,7 @@ export async function getAdminStats(): Promise<AdminStats> {
     pastEvents: pastEvents || 0,
     totalSpeakers: totalSpeakers || 0,
     totalSponsors: totalSponsors || 0,
+    totalTeamMembers: totalTeamMembers || 0,
   };
 }
 
@@ -719,4 +727,69 @@ export async function getSpeakerById(id: string): Promise<Speaker | null> {
   }
 
   return data as Speaker;
+}
+
+/**
+ * ==============================================
+ * TEAM MEMBER QUERIES
+ * ==============================================
+ */
+
+/**
+ * Get all team members (admin view)
+ */
+export async function getAllTeamMembers(): Promise<TeamMember[]> {
+  const supabase = await createClientServer();
+
+  const { data, error } = await supabase
+    .from('team_members')
+    .select('*')
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching team members:', error);
+    return [];
+  }
+
+  return data as TeamMember[];
+}
+
+/**
+ * Get active team members (public view for landing)
+ */
+export async function getActiveTeamMembers(): Promise<TeamMember[]> {
+  const supabase = await createClientServer();
+
+  const { data, error } = await supabase
+    .from('team_members')
+    .select('*')
+    .eq('is_active', true)
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching active team members:', error);
+    return [];
+  }
+
+  return data as TeamMember[];
+}
+
+/**
+ * Get a specific team member by ID
+ */
+export async function getTeamMemberById(id: string): Promise<TeamMember | null> {
+  const supabase = await createClientServer();
+
+  const { data, error } = await supabase
+    .from('team_members')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error || !data) {
+    console.error(`Error fetching team member ${id}:`, error);
+    return null;
+  }
+
+  return data as TeamMember;
 }

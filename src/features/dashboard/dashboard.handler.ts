@@ -22,6 +22,7 @@ export async function handleGetDashboardData(): Promise<{
         pastEvents: 0,
         totalSpeakers: 0,
         totalSponsors: 0,
+        totalTeamMembers: 0,
       },
       error: message,
     };

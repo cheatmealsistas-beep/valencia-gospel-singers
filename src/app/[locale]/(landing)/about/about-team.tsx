@@ -2,44 +2,13 @@
 
 import { useTranslations } from 'next-intl';
 import { FadeIn, BorderBeam } from '@/shared/components/magic-ui';
+import type { TeamMember } from '@/features/admin/types';
 
-// Team data with LinkedIn profile photos
-const team = [
-  {
-    name: 'Carlos Miguel Corada',
-    role: 'Founder & Organizador',
-    linkedin: 'https://www.linkedin.com/in/cmiguelcorada/',
-    company: 'Fourvenues',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQHyyaeT-6Yl9w/profile-displayphoto-scale_200_200/B4DZhCbA0tGkAY-/0/1753461034971?e=1768435200&v=beta&t=kbh2qr4dz8x--OFWKO-NHI5_oQ5gZ7ecvi6KVUyJ9NM',
-  },
-  {
-    name: 'Carlos Moya Ortiz',
-    role: 'Organizador',
-    linkedin: 'https://www.linkedin.com/in/csmoya/',
-    company: 'Citibox',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQFlA0E9MMqpMg/profile-displayphoto-scale_200_200/B4DZh6lhgiGsAY-/0/1754403314146?e=1768435200&v=beta&t=wzdmPHPfdN77N48oaOKhRaw9O-1fe_pJ70MfomkVRsY',
-  },
-  {
-    name: 'Marta Cano',
-    role: 'Organizadora',
-    linkedin: 'https://www.linkedin.com/in/marta-cano-product/',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQGtQnOD7QAGyA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1729705858366?e=1768435200&v=beta&t=pWhk2zoMJxRkxSy4lJIYilcovOaM_VEM-8G6447C6ss',
-  },
-  {
-    name: 'Guille Songel',
-    role: 'Organizador',
-    linkedin: 'https://www.linkedin.com/in/guillesongel/',
-    image: 'https://media.licdn.com/dms/image/v2/C4D03AQHFMFuUDbgkVA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1594752621754?e=1768435200&v=beta&t=Qlq52X3Pjpf-ERFD0dfhYgho3cNc5AVuistKt509o2o',
-  },
-  {
-    name: 'Maribel Fernández',
-    role: 'Organizadora & Vibe Coder',
-    linkedin: 'https://www.linkedin.com/in/maribel-fernandez/',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQG2Oe8vekO7kg/profile-displayphoto-scale_200_200/B4DZkFuTgiIEAY-/0/1756737650372?e=1768435200&v=beta&t=q8WOlex1ycccrIZTjCon2Cmp9gXYGqa8ploAPnYv8Ck',
-  },
-];
+interface AboutTeamProps {
+  teamMembers: TeamMember[];
+}
 
-export function AboutTeam() {
+export function AboutTeam({ teamMembers }: AboutTeamProps) {
   const t = useTranslations('about.team');
 
   return (
@@ -64,10 +33,10 @@ export function AboutTeam() {
         </FadeIn>
 
         <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 max-w-4xl mx-auto">
-          {team.map((member, index) => (
-            <FadeIn key={member.name} delay={index * 0.08}>
+          {teamMembers.map((member, index) => (
+            <FadeIn key={member.id} delay={index * 0.08}>
               <a
-                href={member.linkedin}
+                href={member.linkedin_url || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col items-center text-center"
@@ -80,7 +49,7 @@ export function AboutTeam() {
                   <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-primary/40 group-hover:ring-primary/70 transition-all duration-300">
                     <BorderBeam size={120} duration={6 + index * 1.5} colorFrom="#eab308" colorTo="#fbbf24" />
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover relative z-10" />
+                    <img src={member.photo_url || ''} alt={member.name} className="w-full h-full object-cover relative z-10" />
                   </div>
                 </div>
                 <h3 className="font-semibold text-sm text-white group-hover:text-primary transition-colors">

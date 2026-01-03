@@ -2,87 +2,87 @@
   "features": {
     "title": "Qué encontrarás en",
     "titleHighlight": "Product Beers",
-    "subtitle": "Más que eventos, un ecosistema para profesionales del producto",
+    "subtitle": "Quedadas para gente apasionada por producto",
     "talks": {
-      "title": "Charlas Inspiradoras",
-      "description": "Aprende de líderes de producto compartiendo experiencias reales"
+      "title": "Charlas sin humo",
+      "description": "Gente real contando cómo lo hace, sin el bla bla de siempre"
     },
     "networking": {
-      "title": "Networking de Calidad",
-      "description": "Conecta con PMs, diseñadores, developers y founders en Valencia"
+      "title": "Colegas nuevos",
+      "description": "PMs, diseñadores, devs y founders. Aquí todo el mundo habla con todo el mundo"
     },
     "learning": {
-      "title": "Aprendizaje Continuo",
-      "description": "Mantente al día con tendencias y mejores prácticas del sector"
+      "title": "Aprender sin darte cuenta",
+      "description": "Te vas a casa con ideas nuevas y sin haber aguantado un webinar"
     },
     "fun": {
-      "title": "Diversión Asegurada",
-      "description": "Porque las mejores ideas surgen con una cerveza en la mano"
+      "title": "Birras, obviamente",
+      "description": "Porque las mejores conversaciones salen con una caña en la mano"
     }
   },
   "hero": {
     "location": "Valencia, España",
     "tagline": "Donde los",
     "taglineEnd": "conectan",
-    "roles": ["Product Managers", "Product Designers", "Developers", "Founders", "Entusiastas"],
-    "description": "La comunidad de producto de Valencia donde el conocimiento se comparte mejor",
-    "descriptionHighlight": "con una cerveza en la mano",
+    "roles": ["Product Managers", "Diseñadores", "Developers", "Founders", "curiosos"],
+    "description": "Compartimos conocimiento, creamos conexiones y disfrutamos de nuestra pasión por producto. Con",
+    "descriptionHighlight": "cervezas",
     "ctaTelegram": "Únete en Telegram",
     "ctaLinkedin": "Síguenos"
   },
   "nextEvent": {
-    "badge": "Próximamente",
-    "title": "Nuestro próximo evento está en camino",
-    "description": "Únete a la comunidad para ser el primero en enterarte.",
-    "cta": "No te lo pierdas"
+    "badge": "Próximo evento",
+    "title": "Charlas y networking",
+    "description": "Organizamos eventos presenciales con charlas de producto y tiempo para conocer gente. Únete al grupo para enterarte.",
+    "cta": "Ver eventos"
   },
   "mission": {
-    "badge": "Nuestra Misión",
-    "title": "Conectar, Enriquecer y",
-    "titleHighlight": "Cultivar",
-    "subtitle": "el talento de producto en Valencia",
+    "badge": "Por qué hacemos esto",
+    "title": "Juntarnos, aprender y",
+    "titleHighlight": "pasarlo bien",
+    "subtitle": "así de simple",
     "connect": {
-      "title": "Conectar",
-      "description": "Construir puentes entre profesionales y entusiastas, creando una red sólida que impulse la industria del producto."
+      "title": "Conocer gente",
+      "description": "Hay mucha gente haciendo producto y faltaba un sitio para coincidir."
     },
     "enrich": {
-      "title": "Enriquecer",
-      "description": "A través de eventos y charlas, inspirar a nuestra comunidad a alcanzar nuevos niveles de conocimiento."
+      "title": "Compartir lo que sabes",
+      "description": "Aquí nadie viene a venderse. Se cuenta lo que funciona y lo que no."
     },
     "cultivate": {
-      "title": "Cultivar",
-      "description": "Nutrir una cultura donde el respeto, la colaboración y la innovación florezcan."
+      "title": "Buen rollo",
+      "description": "Sin postureo, sin humos. Ven como eres."
     }
   },
   "values": {
-    "title": "Lo que nos une",
-    "subtitle": "Los mejores momentos ocurren cuando el conocimiento se mezcla con diversión y autenticidad",
+    "title": "El rollo que nos va",
+    "subtitle": "Lo mejor pasa cuando mezclas curro, birras y gente maja",
     "community": {
-      "title": "Comunidad",
-      "description": "Un espacio inclusivo donde cada voz cuenta y cada historia inspira."
+      "title": "Buen ambiente",
+      "description": "Aquí no hay jerarquías. Da igual si llevas 10 años o 10 meses."
     },
     "learning": {
-      "title": "Aprendizaje",
-      "description": "Cada evento es una oportunidad de crecer juntos como profesionales."
+      "title": "Curiosidad",
+      "description": "Siempre hay algo nuevo que aprender. Y alguien dispuesto a contarlo."
     },
     "fun": {
-      "title": "Diversión",
-      "description": "Las mejores conversaciones nacen con una cerveza en la mano."
+      "title": "Ambiente relajado",
+      "description": "Sin formalidades. Conversaciones que fluyen en un entorno distendido."
     },
     "authenticity": {
-      "title": "Autenticidad",
-      "description": "Sin pretensiones. Sé tú mismo. Eso es lo que nos hace únicos."
+      "title": "Naturalidad",
+      "description": "Ven como eres. Aquí no hace falta impresionar a nadie."
     }
   },
   "team": {
-    "title": "El equipo",
-    "subtitle": "Todo empezó con una tarde de cervezas entre dos desconocidos con algo en común: el producto y Valencia.",
+    "title": "Quiénes somos",
+    "subtitle": "Personas apasionadas por producto con ganas de seguir conociendo gente como tú.",
     "members": {
       "carlos_corada": {
-        "role": "Founder & Organizador"
+        "role": "Founder"
       },
       "maribel": {
-        "role": "Organizadora & Vibe Coder"
+        "role": "Organizadora"
       },
       "carlos_moya": {
         "role": "Organizador"
@@ -96,19 +96,19 @@
     }
   },
   "collaborators": {
-    "title": "Han confiado en nosotros",
-    "subtitle": "Gracias a quienes hacen posible Product Beers",
+    "title": "Nos apoyan",
+    "subtitle": "Gracias a quienes hacen que esto sea posible",
     "cta": "¿Quieres colaborar?"
   },
   "cta": {
-    "title": "¿Listo para unirte a la",
-    "titleHighlight": "comunidad",
-    "subtitle": "Conecta con profesionales del producto en Valencia. Eventos, networking y mucho más.",
-    "button": "Únete a Product Beers",
+    "title": "¿Te apuntas a la",
+    "titleHighlight": "próxima",
+    "subtitle": "Únete al grupo de Telegram y entérate de cuándo quedamos.",
+    "button": "Unirme a Product Beers",
     "footer": "Hecho con",
     "footerBeer": "cerveza",
     "footerAnd": "y",
-    "footerPassion": "pasión",
+    "footerPassion": "cariño",
     "footerLocation": "en Valencia"
   }
 }

@@ -1,37 +1,37 @@
 {
   "meta": {
     "title": "Sobre Nosotros - Product Beers",
-    "description": "Conoce la comunidad de producto de Valencia. Conectamos, enriquecemos y cultivamos el talento de producto."
+    "description": "Conoce al equipo detrás de Product Beers. Quedadas de producto para gente apasionada."
   },
   "hero": {
-    "label": "Nuestra Historia",
-    "titleStart": "Donde el producto se comparte con una",
+    "label": "La historia",
+    "titleStart": "Charlas de producto con",
     "titleHighlight": "cerveza",
-    "description": "Todo empezó con una tarde de cervezas entre dos desconocidos con algo en común: el mundo del producto y Valencia. Desde entonces, Product Beers ha crecido hasta convertirse en la comunidad de referencia para profesionales del producto en la ciudad."
+    "description": "Todo empezó con una conversación entre desconocidos hablando de producto. Ahora somos una comunidad que crece cada día."
   },
   "mission": {
     "mission": {
-      "title": "Conectar",
-      "description": "Construir puentes entre profesionales y aficionados, creando un tejido fuerte que potencie la industria del producto en Valencia."
+      "title": "Conocer gente",
+      "description": "Hay mucha gente trabajando en producto pero no había un sitio para coincidir. Ahora sí."
     },
     "vision": {
-      "title": "Enriquecer",
-      "description": "A través de eventos y sesiones, inspirar a nuestra comunidad a alcanzar niveles más altos de conocimiento y excelencia profesional."
+      "title": "Compartir",
+      "description": "Cada evento alguien cuenta algo interesante. Sin PowerPoints aburridos, sin vender humo."
     },
     "values": {
-      "title": "Cultivar",
-      "description": "Nutrir una cultura donde el respeto, la colaboración y la innovación florezcan. Porque el producto se hace mejor en comunidad."
+      "title": "Buen rollo",
+      "description": "Sin egos ni jerarquías. Da igual tu cargo o tu empresa. Aquí somos todos iguales."
     }
   },
   "team": {
-    "label": "El Equipo",
-    "title": "Conoce a los organizadores",
-    "description": "Un grupo de apasionados del producto que decidieron crear el espacio que ellos mismos querían encontrar."
+    "label": "El equipo",
+    "title": "Los que organizamos esto",
+    "description": "Unos cuantos colegas que querían un sitio así y decidieron montarlo."
   },
   "cta": {
-    "title": "¿Listo para unirte?",
-    "description": "Únete a más de 130 product lovers en nuestro grupo de Telegram y entérate de los próximos eventos.",
-    "primaryButton": "Únete en Telegram",
-    "secondaryButton": "Síguenos en LinkedIn"
+    "title": "¿Te apuntas?",
+    "description": "Únete al grupo de Telegram. Ahí avisamos de las quedadas.",
+    "primaryButton": "Unirme al Telegram",
+    "secondaryButton": "Seguir en LinkedIn"
   }
 }

@@ -3,6 +3,7 @@ import { AboutHero } from './about-hero';
 import { AboutMission } from './about-mission';
 import { AboutTeam } from './about-team';
 import { AboutCTA } from './about-cta';
+import { getActiveTeamMembers } from '@/features/admin/admin.query';
 
 export async function generateMetadata({
   params,
@@ -18,12 +19,14 @@ export async function generateMetadata({
   };
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const teamMembers = await getActiveTeamMembers();
+
   return (
     <>
       <AboutHero />
       <AboutMission />
-      <AboutTeam />
+      <AboutTeam teamMembers={teamMembers} />
       <AboutCTA />
     </>
   );

@@ -1,62 +1,62 @@
 {
   "meta": {
     "title": "Colabora con Product Beers",
-    "description": "Apoya a la comunidad de producto de Valencia como sponsor o cediendo tu espacio para nuestros eventos."
+    "description": "Echa una mano a la comunidad de producto como sponsor o prestando tu espacio para las quedadas."
   },
   "hero": {
-    "label": "Colabora con nosotros",
-    "titleStart": "Haz crecer la",
-    "titleHighlight": "comunidad",
-    "description": "Únete a las empresas y espacios que hacen posible Product Beers. Juntos creamos el ecosistema de producto más activo de Valencia."
+    "label": "Echa una mano",
+    "titleStart": "Ayúdanos a seguir",
+    "titleHighlight": "quedando",
+    "description": "Somos un grupo de colegas que nos juntamos a hablar de producto. Si tu empresa quiere echar un cable, aquí te contamos cómo."
   },
   "sponsor": {
-    "title": "Ser Sponsor",
-    "description": "Apoya económicamente nuestros eventos y gana visibilidad ante la comunidad de producto más activa de Valencia.",
+    "title": "Ser sponsor",
+    "description": "Ayuda a que las quedadas sigan siendo gratis. A cambio, tu logo estará por todas partes.",
     "benefits": {
-      "title": "Beneficios para sponsors",
+      "title": "Qué ganas",
       "visibility": {
-        "title": "Visibilidad de marca",
-        "description": "Tu logo en nuestra web, redes sociales y durante todos los eventos."
+        "title": "Tu logo visible",
+        "description": "En la web, en redes y en cada evento. No pasa desapercibido."
       },
       "community": {
-        "title": "Acceso a la comunidad",
-        "description": "Conecta con +200 profesionales de producto, diseño y tecnología."
+        "title": "Llegar a la comunidad",
+        "description": "PMs, diseñadores, devs y founders. Gente que hace producto."
       },
       "networking": {
-        "title": "Networking exclusivo",
-        "description": "Presenta tu empresa y conoce talento en un ambiente distendido."
+        "title": "Conocer gente",
+        "description": "Ven al evento, presenta tu empresa, tómate algo con el resto."
       },
       "content": {
-        "title": "Contenido personalizado",
-        "description": "Opción de patrocinar charlas o workshops sobre tu área de expertise."
+        "title": "Patrocinar una charla",
+        "description": "Si quieres, puedes currar una charla o workshop sobre lo tuyo."
       }
     }
   },
   "hoster": {
-    "title": "Ceder Espacio",
-    "description": "¿Tienes una oficina, coworking o local? Cédenos el espacio para un evento y te lo agradeceremos públicamente.",
+    "title": "Ceder el espacio",
+    "description": "¿Tienes un local, cervecería, restaurante u oficina con sala? Nos encanta variar de sitio.",
     "benefits": {
-      "title": "Beneficios para hosters",
+      "title": "Qué ganas",
       "talent": {
-        "title": "Atrae talento",
-        "description": "Profesionales de producto conocerán tu espacio y tu empresa."
+        "title": "Gente nueva en tu local",
+        "description": "Profesionales de producto que probablemente no conocían tu espacio."
       },
       "brand": {
-        "title": "Posiciona tu marca",
-        "description": "Asocia tu empresa con la comunidad de producto de Valencia."
+        "title": "Visibilidad",
+        "description": "Te asocias con la comunidad de producto."
       },
       "social": {
-        "title": "Mención en redes",
-        "description": "Te mencionamos en todas las comunicaciones del evento."
+        "title": "Te mencionamos",
+        "description": "En cada post, story y comunicación del evento."
       },
       "community": {
-        "title": "Parte de la comunidad",
-        "description": "Tu equipo puede participar en el evento como asistentes."
+        "title": "Participa si quieres",
+        "description": "Tú y tu equipo podéis quedaros al evento."
       }
     }
   },
   "cta": {
-    "title": "¿Te interesa colaborar?",
-    "description": "Rellena el formulario y nos pondremos en contacto contigo para explorar las opciones de colaboración."
+    "title": "¿Te interesa?",
+    "description": "Escríbenos y hablamos. Sin compromiso, sin rollos."
   }
 }

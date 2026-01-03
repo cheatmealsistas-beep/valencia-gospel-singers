@@ -1,0 +1,80 @@
+{
+  "title": "Equipo",
+  "description": "Gestiona los miembros del equipo organizador",
+  "addNew": "Añadir miembro",
+  "empty": {
+    "title": "No hay miembros todavía",
+    "description": "Añade los miembros del equipo organizador."
+  },
+  "filters": {
+    "all": "Todos",
+    "active": "Activos",
+    "inactive": "Inactivos",
+    "searchPlaceholder": "Buscar por nombre o empresa..."
+  },
+  "table": {
+    "photo": "Foto",
+    "name": "Nombre",
+    "role": "Rol",
+    "company": "Empresa",
+    "order": "Orden",
+    "status": "Estado",
+    "actions": "Acciones"
+  },
+  "status": {
+    "active": "Activo",
+    "inactive": "Inactivo"
+  },
+  "form": {
+    "title": {
+      "create": "Añadir miembro",
+      "edit": "Editar miembro"
+    },
+    "name": {
+      "label": "Nombre",
+      "placeholder": "Nombre completo"
+    },
+    "role": {
+      "label": "Rol",
+      "placeholder": "Founder, Organizador..."
+    },
+    "company": {
+      "label": "Empresa",
+      "placeholder": "Nombre de la empresa (opcional)"
+    },
+    "photoUrl": {
+      "label": "URL de la foto",
+      "placeholder": "https://ejemplo.com/foto.jpg",
+      "help": "Enlace directo a la foto (JPG o PNG)"
+    },
+    "linkedinUrl": {
+      "label": "LinkedIn",
+      "placeholder": "https://linkedin.com/in/usuario"
+    },
+    "displayOrder": {
+      "label": "Orden de visualización",
+      "help": "Menor número = aparece primero"
+    },
+    "isActive": {
+      "label": "Activo",
+      "description": "Visible en la web"
+    },
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "messages": {
+    "created": "Miembro creado correctamente",
+    "updated": "Miembro actualizado correctamente",
+    "deleted": "Miembro eliminado correctamente",
+    "activated": "Miembro activado",
+    "deactivated": "Miembro desactivado",
+    "error": "Algo salió mal. Por favor, inténtalo de nuevo."
+  },
+  "confirmDelete": {
+    "title": "¿Eliminar miembro?",
+    "description": "Esta acción no se puede deshacer. El miembro se eliminará permanentemente.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar"
+  }
+}

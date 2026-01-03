@@ -2,87 +2,87 @@
   "features": {
     "title": "What you'll find at",
     "titleHighlight": "Product Beers",
-    "subtitle": "More than events, an ecosystem for product professionals",
+    "subtitle": "Meetups for cool product people",
     "talks": {
-      "title": "Inspiring Talks",
-      "description": "Learn from product leaders sharing real experiences and insights"
+      "title": "No-BS talks",
+      "description": "Real people sharing how they do things, without the usual fluff"
     },
     "networking": {
-      "title": "Quality Networking",
-      "description": "Connect with PMs, designers, developers and founders in Valencia"
+      "title": "New friends",
+      "description": "PMs, designers, devs and founders. Everyone talks to everyone here"
     },
     "learning": {
-      "title": "Continuous Learning",
-      "description": "Stay updated with industry trends and best practices"
+      "title": "Learn without trying",
+      "description": "You go home with fresh ideas and without having to sit through a webinar"
     },
     "fun": {
-      "title": "Fun Guaranteed",
-      "description": "Because the best ideas emerge with a beer in hand"
+      "title": "Beers, obviously",
+      "description": "Because the best conversations happen with a drink in hand"
     }
   },
   "hero": {
     "location": "Valencia, Spain",
     "tagline": "Where",
-    "taglineEnd": "connect",
-    "roles": ["Product Managers", "Product Designers", "Developers", "Founders", "Enthusiasts"],
-    "description": "Valencia's product community where knowledge is best shared",
-    "descriptionHighlight": "with a beer in hand",
+    "taglineEnd": "hang out",
+    "roles": ["Product Managers", "Designers", "Developers", "Founders", "curious folks"],
+    "description": "The product meetup. Talks, networking and",
+    "descriptionHighlight": "beers",
     "ctaTelegram": "Join on Telegram",
     "ctaLinkedin": "Follow us"
   },
   "nextEvent": {
     "badge": "Coming soon",
-    "title": "Our next event is on the way",
-    "description": "Join the community to be the first to know.",
+    "title": "We're cooking something up",
+    "description": "Join the group and you'll be the first to know.",
     "cta": "Don't miss it"
   },
   "mission": {
-    "badge": "Our Mission",
-    "title": "Connect, Enrich and",
-    "titleHighlight": "Cultivate",
-    "subtitle": "product talent in Valencia",
+    "badge": "Why we do this",
+    "title": "Meet up, learn and",
+    "titleHighlight": "have fun",
+    "subtitle": "it's that simple",
     "connect": {
-      "title": "Connect",
-      "description": "Build bridges between professionals and enthusiasts, creating a solid network that drives the product industry."
+      "title": "Meet people",
+      "description": "There's lots of people working in product and there was no place to hang out."
     },
     "enrich": {
-      "title": "Enrich",
-      "description": "Through events and talks, inspire our community to reach new levels of knowledge."
+      "title": "Share what you know",
+      "description": "Nobody comes here to show off. We share what works and what doesn't."
     },
     "cultivate": {
-      "title": "Cultivate",
-      "description": "Nurture a culture where respect, collaboration and innovation flourish."
+      "title": "Good vibes",
+      "description": "No egos, no posturing. Come as you are."
     }
   },
   "values": {
-    "title": "What unites us",
-    "subtitle": "The best moments happen when knowledge mixes with fun and authenticity",
+    "title": "Our vibe",
+    "subtitle": "Good things happen when you mix work, beers and nice people",
     "community": {
-      "title": "Community",
-      "description": "An inclusive space where every voice counts and every story inspires."
+      "title": "Good crowd",
+      "description": "No hierarchies here. Doesn't matter if you have 10 years or 10 months of experience."
     },
     "learning": {
-      "title": "Learning",
-      "description": "Every event is an opportunity to grow together as professionals."
+      "title": "Curiosity",
+      "description": "There's always something new to learn. And someone willing to share it."
     },
     "fun": {
-      "title": "Fun",
-      "description": "The best conversations are born with a beer in hand."
+      "title": "Beers",
+      "description": "Drinking something together helps conversations flow."
     },
     "authenticity": {
-      "title": "Authenticity",
-      "description": "No pretense. Be yourself. That's what makes us unique."
+      "title": "Be yourself",
+      "description": "Come as you are. No need to impress anyone here."
     }
   },
   "team": {
-    "title": "The team",
-    "subtitle": "It all started with an afternoon of beers between two strangers with something in common: product and Valencia.",
+    "title": "Who we are",
+    "subtitle": "A bunch of friends who met having beers and talking about product.",
     "members": {
       "carlos_corada": {
-        "role": "Founder & Organizer"
+        "role": "Founder"
       },
       "maribel": {
-        "role": "Organizer & Vibe Coder"
+        "role": "Organizer"
       },
       "carlos_moya": {
         "role": "Organizer"
@@ -96,19 +96,19 @@
     }
   },
   "collaborators": {
-    "title": "They trusted us",
-    "subtitle": "Thanks to those who make Product Beers possible",
+    "title": "They support us",
+    "subtitle": "Thanks to those who make this possible",
     "cta": "Want to collaborate?"
   },
   "cta": {
-    "title": "Ready to join the",
-    "titleHighlight": "community",
-    "subtitle": "Connect with product professionals in Valencia. Events, networking and much more.",
+    "title": "Coming to the",
+    "titleHighlight": "next one",
+    "subtitle": "Join our Telegram group and find out when we meet up.",
     "button": "Join Product Beers",
     "footer": "Made with",
     "footerBeer": "beer",
     "footerAnd": "and",
-    "footerPassion": "passion",
+    "footerPassion": "love",
     "footerLocation": "in Valencia"
   }
 }

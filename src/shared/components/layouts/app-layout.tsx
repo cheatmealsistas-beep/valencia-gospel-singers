@@ -6,7 +6,7 @@ import { Button } from '@/shared/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
 import { MobileMenu } from '@/shared/components/ui/mobile-menu';
 import { SkipLink } from '@/shared/components/ui/skip-link';
-import { LayoutDashboard, User, LogOut, Calendar, Mic2, Handshake, MessageSquare } from 'lucide-react';
+import { LayoutDashboard, User, LogOut, Calendar, Mic2, Handshake, MessageSquare, Users } from 'lucide-react';
 import { brand } from '@/shared/config';
 import { useConsent } from '@/features/consent/hooks/use-consent';
 import { logoutAction } from '@/features/auth/auth.actions';
@@ -72,6 +72,13 @@ export function AppLayout({ children, user, unreadMessagesCount = 0 }: AppLayout
           >
             <Handshake className="h-4 w-4" />
             <span>Colaboradores</span>
+          </Link>
+          <Link
+            href={`/${locale}/dashboard/equipo`}
+            className="flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+          >
+            <Users className="h-4 w-4" />
+            <span>Equipo</span>
           </Link>
           <Link
             href={`/${locale}/dashboard/mensajes`}

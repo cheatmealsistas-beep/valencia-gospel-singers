@@ -8,6 +8,7 @@ import type {
   AffiliateProgramSettings,
   CollaboratorInput,
   SpeakerInput,
+  TeamMemberInput,
 } from './types';
 
 /**
@@ -492,4 +493,107 @@ export async function deleteSpeaker(
   }
 
   return { success: true, error: null };
+}
+
+/**
+ * ==============================================
+ * TEAM MEMBER COMMANDS
+ * ==============================================
+ */
+
+/**
+ * Create a new team member
+ */
+export async function createTeamMember(
+  input: TeamMemberInput
+): Promise<{ success: boolean; error: string | null; id?: string }> {
+  const supabase = await createClientServer();
+
+  const { data, error } = await supabase
+    .from('team_members')
+    .insert(input)
+    .select('id')
+    .single();
+
+  if (error) {
+    console.error('Error creating team member:', error);
+    return {
+      success: false,
+      error: error.message || 'Failed to create team member',
+    };
+  }
+
+  return { success: true, error: null, id: data.id };
+}
+
+/**
+ * Update an existing team member
+ */
+export async function updateTeamMember(
+  id: string,
+  input: Partial<TeamMemberInput>
+): Promise<{ success: boolean; error: string | null }> {
+  const supabase = await createClientServer();
+
+  const { error } = await supabase
+    .from('team_members')
+    .update({
+      ...input,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', id);
+
+  if (error) {
+    console.error(`Error updating team member ${id}:`, error);
+    return {
+      success: false,
+      error: error.message || 'Failed to update team member',
+    };
+  }
+
+  return { success: true, error: null };
+}
+
+/**
+ * Toggle team member active status
+ */
+export async function toggleTeamMemberActive(
+  id: string,
+  isActive: boolean
+): Promise<{ success: boolean; error: string | null }> {
+  return updateTeamMember(id, { is_active: isActive });
+}
+
+/**
+ * Delete a team member
+ */
+export async function deleteTeamMember(
+  id: string
+): Promise<{ success: boolean; error: string | null }> {
+  const supabase = await createClientServer();
+
+  const { error } = await supabase
+    .from('team_members')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error(`Error deleting team member ${id}:`, error);
+    return {
+      success: false,
+      error: error.message || 'Failed to delete team member',
+    };
+  }
+
+  return { success: true, error: null };
+}
+
+/**
+ * Update team member display order
+ */
+export async function updateTeamMemberOrder(
+  id: string,
+  displayOrder: number
+): Promise<{ success: boolean; error: string | null }> {
+  return updateTeamMember(id, { display_order: displayOrder });
 }
