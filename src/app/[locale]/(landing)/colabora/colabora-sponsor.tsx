@@ -54,25 +54,29 @@ export function ColaboraSponsor() {
 
           {/* Right: Benefits grid */}
           <FadeIn delay={0.1}>
-            <div className="relative p-8 rounded-3xl bg-[#141414] border border-[#2a2a2a]">
+            <div className="group relative p-8 rounded-3xl bg-[#141414] border border-[#2a2a2a] hover:border-primary/50 transition-all duration-500 overflow-hidden hover:shadow-xl hover:shadow-primary/10">
               <BorderBeam size={400} duration={15} colorFrom="#eab308" colorTo="#f59e0b" />
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <h3 className="text-xl font-semibold text-white mb-6">
-                {t('sponsor.benefits.title')}
-              </h3>
+              <div className="relative">
+                <h3 className="text-xl font-semibold text-white mb-6">
+                  {t('sponsor.benefits.title')}
+                </h3>
 
-              <div className="grid sm:grid-cols-2 gap-6">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <benefit.icon className="w-5 h-5 text-primary" />
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {benefits.map((benefit, index) => (
+                    <div key={index} className="flex gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <benefit.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-white mb-1">{benefit.title}</h4>
+                        <p className="text-sm text-gray-400">{benefit.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-medium text-white mb-1">{benefit.title}</h4>
-                      <p className="text-sm text-gray-400">{benefit.description}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </FadeIn>
