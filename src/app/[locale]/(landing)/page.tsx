@@ -7,6 +7,7 @@ import { Music } from 'lucide-react';
 import { FadeIn, Marquee } from '@/shared/components/magic-ui';
 import { getActiveCollaborators, getActiveTeamMembers } from '@/features/admin/admin.query';
 import { HeroTagline } from './hero-tagline';
+import { MiniVinyl } from './mini-vinyl';
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -314,59 +315,10 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="grid md:grid-cols-3 gap-12">
             {['connect', 'enrich', 'cultivate'].map((key, index) => (
               <FadeIn key={key} delay={0.1 + index * 0.15}>
-                <div className="text-center group">
-                  {/* Mini vinilo decorativo - gira en hover */}
+                <div className="text-center">
                   <div className="flex justify-center mb-6">
-                    <div
-                      className="relative w-20 h-20 transition-transform duration-1000 group-hover:rotate-[360deg]"
-                      style={{
-                        background: '#111',
-                        borderRadius: '50%',
-                        boxShadow: `
-                          inset 0 0 20px rgba(0,0,0,0.8),
-                          0 0 15px rgba(168,85,247,0.15)
-                        `,
-                      }}
-                    >
-                      {/* Surcos concéntricos del vinilo */}
-                      {[50, 65, 80, 92].map((size) => (
-                        <div
-                          key={`mission-groove-${index}-${size}`}
-                          className="absolute rounded-full"
-                          style={{
-                            inset: `${(100 - size) / 2}%`,
-                            border: '1px solid rgba(255,255,255,0.06)',
-                          }}
-                        />
-                      ))}
-                      {/* Brillo iridiscente - aparece en hover */}
-                      <div
-                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{
-                          background: `conic-gradient(from 0deg,
-                            transparent 0deg,
-                            rgba(168,85,247,0.25) 40deg,
-                            rgba(236,72,153,0.15) 80deg,
-                            transparent 120deg,
-                            transparent 360deg
-                          )`,
-                        }}
-                      />
-                      {/* Centro del vinilo - etiqueta colorida */}
-                      <div
-                        className="absolute rounded-full"
-                        style={{
-                          inset: '30%',
-                          background: `radial-gradient(circle at 30% 30%, #fff 0%, #e879f9 15%, #a855f7 50%, #7c3aed 100%)`,
-                          boxShadow: '0 0 12px rgba(168,85,247,0.5)',
-                        }}
-                      >
-                        {/* Agujero central */}
-                        <div className="absolute inset-[38%] rounded-full bg-[#0a0a0a]" />
-                      </div>
-                    </div>
+                    <MiniVinyl size="md" index={index} />
                   </div>
-
                   <h3 className="text-2xl font-bold mb-4 text-white">
                     {t(`mission.${key}.title`)}
                   </h3>
@@ -394,56 +346,9 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="grid sm:grid-cols-2 gap-6">
             {['community', 'learning', 'fun', 'authenticity'].map((key, index) => (
               <FadeIn key={key} delay={0.1 + index * 0.1}>
-                <div className="group p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-purple-500/20 transition-all">
+                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-purple-500/20 transition-all">
                   <div className="flex items-start gap-4">
-                    {/* Mini vinilo - gira en hover */}
-                    <div
-                      className="relative w-12 h-12 flex-shrink-0 transition-transform duration-1000 group-hover:rotate-[360deg]"
-                      style={{
-                        background: '#111',
-                        borderRadius: '50%',
-                        boxShadow: `
-                          inset 0 0 15px rgba(0,0,0,0.8),
-                          0 0 10px rgba(168,85,247,0.1)
-                        `,
-                      }}
-                    >
-                      {/* Surcos */}
-                      {[55, 75, 90].map((size) => (
-                        <div
-                          key={`value-groove-${index}-${size}`}
-                          className="absolute rounded-full"
-                          style={{
-                            inset: `${(100 - size) / 2}%`,
-                            border: '1px solid rgba(255,255,255,0.06)',
-                          }}
-                        />
-                      ))}
-                      {/* Brillo iridiscente - aparece en hover */}
-                      <div
-                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{
-                          background: `conic-gradient(from 0deg,
-                            transparent 0deg,
-                            rgba(168,85,247,0.25) 40deg,
-                            rgba(236,72,153,0.15) 80deg,
-                            transparent 120deg,
-                            transparent 360deg
-                          )`,
-                        }}
-                      />
-                      {/* Centro */}
-                      <div
-                        className="absolute rounded-full"
-                        style={{
-                          inset: '28%',
-                          background: `radial-gradient(circle at 30% 30%, #fff 0%, #e879f9 20%, #a855f7 60%, #7c3aed 100%)`,
-                          boxShadow: '0 0 8px rgba(168,85,247,0.4)',
-                        }}
-                      >
-                        <div className="absolute inset-[35%] rounded-full bg-[#0a0a0a]" />
-                      </div>
-                    </div>
+                    <MiniVinyl size="sm" index={index} />
                     <div>
                       <h3 className="text-lg font-semibold mb-2 text-white">
                         {t(`values.${key}.title`)}
@@ -672,48 +577,8 @@ export default async function HomePage({ params }: HomePageProps) {
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="relative">
-                    {/* Mini vinilo con efecto pulsante */}
-                    <div className="relative w-12 h-12 mb-6">
-                      <div className="absolute inset-0 rounded-full bg-purple-500/20 animate-ping" style={{ animationDuration: '2s' }} />
-                      <div
-                        className="relative w-full h-full group-hover:scale-110 transition-transform duration-500"
-                        style={{
-                          background: 'rgba(17,17,17,0.9)',
-                          borderRadius: '50%',
-                          boxShadow: '0 0 20px rgba(168,85,247,0.2)',
-                          animation: 'vinyl-spin 12s linear infinite',
-                        }}
-                      >
-                        {/* Surcos */}
-                        {[25, 45, 65, 85].map((size) => (
-                          <div
-                            key={`service-groove-${index}-${size}`}
-                            className="absolute rounded-full"
-                            style={{
-                              inset: `${(100 - size) / 2}%`,
-                              border: '1px solid rgba(168,85,247,0.2)',
-                            }}
-                          />
-                        ))}
-                        {/* Brillo iridiscente */}
-                        <div
-                          className="absolute inset-0 rounded-full opacity-50 group-hover:opacity-100 transition-opacity"
-                          style={{
-                            background: `conic-gradient(from 0deg, transparent 0deg, rgba(168,85,247,0.4) 50deg, rgba(236,72,153,0.3) 100deg, transparent 150deg, transparent 360deg)`,
-                          }}
-                        />
-                        {/* Centro colorido */}
-                        <div
-                          className="absolute rounded-full"
-                          style={{
-                            inset: '32%',
-                            background: `radial-gradient(circle at 30% 30%, #fff 0%, #e879f9 15%, #a855f7 50%, #7c3aed 100%)`,
-                            boxShadow: '0 0 12px rgba(168,85,247,0.6)',
-                          }}
-                        >
-                          <div className="absolute inset-[38%] rounded-full bg-[#0a0a0a]" />
-                        </div>
-                      </div>
+                    <div className="mb-6">
+                      <MiniVinyl size="sm" index={index} />
                     </div>
 
                     <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
