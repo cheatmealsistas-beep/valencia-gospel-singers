@@ -259,8 +259,8 @@ export type CollaboratorInput = z.infer<typeof collaboratorSchema>;
 export interface Collaborator {
   id: string;
   name: string;
-  logo_url: string;
-  website_url: string;
+  logo_url: string | null;
+  website_url: string | null;
   type: 'sponsor' | 'hoster';
   is_active: boolean;
   display_order: number;
