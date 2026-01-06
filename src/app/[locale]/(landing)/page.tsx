@@ -88,23 +88,42 @@ export default async function HomePage({ params }: HomePageProps) {
                 />
               ))}
 
-              {/* Brillo iridiscente base (sutil) */}
+              {/* Brillo iridiscente animado - gira en sentido contrario al vinilo */}
               <div
-                className="absolute inset-0 rounded-full transition-opacity duration-500"
+                className="absolute inset-0 rounded-full"
                 style={{
                   background: `
                     conic-gradient(from 0deg,
                       transparent 0deg,
-                      rgba(168,85,247,0.1) 30deg,
-                      rgba(236,72,153,0.08) 60deg,
-                      transparent 90deg,
+                      rgba(168,85,247,0.35) 15deg,
+                      rgba(236,72,153,0.25) 40deg,
+                      rgba(139,92,246,0.2) 65deg,
+                      transparent 100deg,
                       transparent 180deg,
-                      rgba(139,92,246,0.08) 210deg,
-                      rgba(168,85,247,0.06) 240deg,
-                      transparent 270deg,
+                      rgba(168,85,247,0.25) 195deg,
+                      rgba(236,72,153,0.18) 220deg,
+                      rgba(139,92,246,0.12) 250deg,
+                      transparent 290deg,
                       transparent 360deg
                     )
                   `,
+                  animation: 'iridescent-sweep 12s linear infinite',
+                }}
+              />
+              {/* Segunda capa de brillo - más sutil, gira más lento */}
+              <div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: `
+                    conic-gradient(from 120deg,
+                      transparent 0deg,
+                      rgba(236,72,153,0.15) 30deg,
+                      rgba(168,85,247,0.1) 60deg,
+                      transparent 90deg,
+                      transparent 360deg
+                    )
+                  `,
+                  animation: 'iridescent-sweep 18s linear infinite reverse',
                 }}
               />
               {/* Brillo de barrido intenso - aparece en hover */}
@@ -114,17 +133,18 @@ export default async function HomePage({ params }: HomePageProps) {
                   background: `
                     conic-gradient(from 0deg,
                       transparent 0deg,
-                      rgba(168,85,247,0.4) 20deg,
-                      rgba(236,72,153,0.3) 50deg,
-                      rgba(139,92,246,0.25) 80deg,
-                      transparent 120deg,
+                      rgba(168,85,247,0.5) 15deg,
+                      rgba(236,72,153,0.4) 40deg,
+                      rgba(139,92,246,0.35) 70deg,
+                      transparent 110deg,
                       transparent 180deg,
-                      rgba(168,85,247,0.3) 200deg,
-                      rgba(236,72,153,0.2) 230deg,
+                      rgba(168,85,247,0.4) 195deg,
+                      rgba(236,72,153,0.3) 225deg,
                       transparent 270deg,
                       transparent 360deg
                     )
                   `,
+                  animation: 'iridescent-sweep 6s linear infinite',
                 }}
               />
 
@@ -193,10 +213,30 @@ export default async function HomePage({ params }: HomePageProps) {
               opacity: 0;
             }
           }
+          @keyframes iridescent-sweep {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            @keyframes vinyl-spin {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(0deg); }
+            }
+            @keyframes vinyl-wave {
+              0%, 100% { transform: scale(1); opacity: 0.3; }
+            }
+            @keyframes iridescent-sweep {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(0deg); }
+            }
+          }
         `}} />
 
         {/* Glow ambiental desde la derecha */}
         <div className="absolute top-1/2 right-0 translate-x-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-purple-600/20 via-fuchsia-900/10 to-transparent blur-[100px]" />
+
+        {/* Overlay para contraste del texto en móvil */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/95 to-transparent md:via-[#0a0a0a]/80 md:to-transparent pointer-events-none" />
 
         {/* Contenido - Alineado a la izquierda */}
         <div className="container relative z-10 py-24 md:py-32 lg:py-40">
