@@ -305,6 +305,12 @@ function mapEvent(data: any): Event {
     updatedAt: new Date(data.updated_at),
     speakers: data.event_speakers?.map(mapEventSpeaker),
     sponsors: data.event_sponsors?.map(mapEventSponsor),
+    // English translations
+    titleEn: data.title_en,
+    descriptionEn: data.description_en,
+    shortDescriptionEn: data.short_description_en,
+    locationNameEn: data.location_name_en,
+    locationAddressEn: data.location_address_en,
   };
 }
 
