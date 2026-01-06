@@ -4,7 +4,7 @@ import { useState, useTransition } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { toast } from 'sonner';
-import { Plus, Pencil, Trash2, ExternalLink, Check, X } from 'lucide-react';
+import { Plus, Pencil, Trash2, ExternalLink } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
 import { Switch } from '@/shared/components/ui/switch';
@@ -147,16 +147,21 @@ export function CollaboratorsAdmin({ initialCollaborators }: CollaboratorsAdminP
             setCollaborators((prev) => [
               ...prev,
               {
-                ...formData,
                 id: result.data.id,
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString(),
-                created_by: null,
-                updated_by: null,
+                name: formData.name,
+                logo_url: formData.logo_url || null,
+                website_url: formData.website_url || null,
+                type: formData.type,
+                is_active: formData.is_active,
+                display_order: formData.display_order,
                 contact_name: formData.contact_name || null,
                 contact_email: formData.contact_email || null,
                 contact_phone: formData.contact_phone || null,
                 notes: formData.notes || null,
+                created_at: new Date().toISOString(),
+                updated_at: new Date().toISOString(),
+                created_by: null,
+                updated_by: null,
               },
             ]);
             toast.success(t('messages.created'));
@@ -280,15 +285,19 @@ export function CollaboratorsAdmin({ initialCollaborators }: CollaboratorsAdminP
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <a
-                      href={collaborator.website_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline inline-flex items-center gap-1"
-                    >
-                      {new URL(collaborator.website_url).hostname}
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
+                    {collaborator.website_url ? (
+                      <a
+                        href={collaborator.website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline inline-flex items-center gap-1"
+                      >
+                        {new URL(collaborator.website_url).hostname}
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    ) : (
+                      <span className="text-muted-foreground">—</span>
+                    )}
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
@@ -357,7 +366,7 @@ export function CollaboratorsAdmin({ initialCollaborators }: CollaboratorsAdminP
               <Label htmlFor="logo_url">{t('form.logoUrl.label')}</Label>
               <Input
                 id="logo_url"
-                value={formData.logo_url}
+                value={formData.logo_url ?? ''}
                 onChange={(e) => setFormData({ ...formData, logo_url: e.target.value })}
                 placeholder={t('form.logoUrl.placeholder')}
               />
@@ -368,7 +377,7 @@ export function CollaboratorsAdmin({ initialCollaborators }: CollaboratorsAdminP
               <Label htmlFor="website_url">{t('form.websiteUrl.label')}</Label>
               <Input
                 id="website_url"
-                value={formData.website_url}
+                value={formData.website_url ?? ''}
                 onChange={(e) => setFormData({ ...formData, website_url: e.target.value })}
                 placeholder={t('form.websiteUrl.placeholder')}
               />
