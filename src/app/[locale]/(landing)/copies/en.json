@@ -1,114 +1,100 @@
 {
   "features": {
-    "title": "What you'll find at",
-    "titleHighlight": "Product Beers",
-    "subtitle": "Meetups for cool product people",
-    "talks": {
-      "title": "No-BS talks",
-      "description": "Real people sharing how they do things, without the usual fluff"
+    "title": "What we offer at",
+    "titleHighlight": "Valencia Gospel Singers",
+    "subtitle": "The emotion of gospel at your special event",
+    "weddings": {
+      "title": "Weddings",
+      "description": "We make your ceremony a unique moment with the energy and emotion of gospel"
     },
-    "networking": {
-      "title": "New friends",
-      "description": "PMs, designers, devs and founders. Everyone talks to everyone here"
+    "events": {
+      "title": "Corporate events",
+      "description": "We liven up your company events with music that connects and moves"
     },
-    "learning": {
-      "title": "Learn without trying",
-      "description": "You go home with fresh ideas and without having to sit through a webinar"
+    "concerts": {
+      "title": "Concerts",
+      "description": "Gospel shows that fill any stage with joy"
     },
-    "fun": {
-      "title": "Beers, obviously",
-      "description": "Because the best conversations happen with a drink in hand"
+    "celebrations": {
+      "title": "Celebrations",
+      "description": "Communions, baptisms, anniversaries... We provide the perfect soundtrack"
     }
   },
   "hero": {
     "location": "Valencia, Spain",
-    "tagline": "Where",
-    "taglineEnd": "hang out",
-    "roles": ["Product Managers", "Designers", "Developers", "Founders", "curious folks"],
-    "description": "The product meetup. Talks, networking and",
-    "descriptionHighlight": "beers",
-    "ctaTelegram": "Join on Telegram",
-    "ctaLinkedin": "Follow us"
+    "tagline": "The emotion of",
+    "taglineEnd": "Gospel",
+    "rolesPrefix": "at",
+    "roles": ["Weddings", "Events", "Concerts", "Celebrations", "Parties"],
+    "description": "We provide the perfect soundtrack for your special moments.",
+    "descriptionHighlight": "passion and professionalism",
+    "ctaContact": "Contact us",
+    "ctaEvents": "View events"
   },
   "nextEvent": {
-    "badge": "Coming soon",
-    "title": "We're cooking something up",
-    "description": "Join the group and you'll be the first to know.",
-    "cta": "Don't miss it"
+    "badge": "Next concert",
+    "titleStart": "Come see us",
+    "titleHighlight": "live",
+    "description": "We organize concerts and participate in events throughout Valencia. Check our calendar.",
+    "cta": "View events"
   },
   "mission": {
-    "badge": "Why we do this",
-    "title": "Meet up, learn and",
-    "titleHighlight": "have fun",
-    "subtitle": "it's that simple",
+    "badge": "Our essence",
+    "title": "Music that",
+    "titleHighlight": "moves",
+    "subtitle": "and connects",
     "connect": {
-      "title": "Meet people",
-      "description": "There's lots of people working in product and there was no place to hang out."
+      "title": "Connection",
+      "description": "Gospel brings people together through its rhythm and message"
     },
     "enrich": {
-      "title": "Share what you know",
-      "description": "Nobody comes here to show off. We share what works and what doesn't."
+      "title": "Emotion",
+      "description": "Every performance is an experience that touches the heart"
     },
     "cultivate": {
-      "title": "Good vibes",
-      "description": "No egos, no posturing. Come as you are."
+      "title": "Joy",
+      "description": "We transmit positive energy and good vibes in every note"
     }
   },
   "values": {
-    "title": "Our vibe",
-    "subtitle": "Good things happen when you mix work, beers and nice people",
+    "title": "What defines us",
+    "subtitle": "Passion for music and commitment to excellence",
     "community": {
-      "title": "Good crowd",
-      "description": "No hierarchies here. Doesn't matter if you have 10 years or 10 months of experience."
+      "title": "Professionalism",
+      "description": "Years of experience back us up. Every detail counts."
     },
     "learning": {
-      "title": "Curiosity",
-      "description": "There's always something new to learn. And someone willing to share it."
+      "title": "Versatility",
+      "description": "We adapt to every type of event and venue."
     },
     "fun": {
-      "title": "Beers",
-      "description": "Drinking something together helps conversations flow."
+      "title": "Energy",
+      "description": "Gospel is joy and that's what we transmit."
     },
     "authenticity": {
-      "title": "Be yourself",
-      "description": "Come as you are. No need to impress anyone here."
+      "title": "Authenticity",
+      "description": "Real gospel, with soul and heart."
     }
   },
   "team": {
-    "title": "Who we are",
-    "subtitle": "A bunch of friends who met having beers and talking about product.",
-    "members": {
-      "carlos_corada": {
-        "role": "Founder"
-      },
-      "maribel": {
-        "role": "Organizer"
-      },
-      "carlos_moya": {
-        "role": "Organizer"
-      },
-      "marta": {
-        "role": "Organizer"
-      },
-      "guille": {
-        "role": "Organizer"
-      }
-    }
+    "title": "The choir",
+    "subtitle": "Passionate voices who love gospel",
+    "members": {}
   },
   "collaborators": {
-    "title": "They support us",
-    "subtitle": "Thanks to those who make this possible",
-    "cta": "Want to collaborate?"
+    "title": "Clients",
+    "subtitle": "Companies and venues that trust us",
+    "cta": "Want to be a client?"
   },
   "cta": {
-    "title": "Coming to the",
-    "titleHighlight": "next one",
-    "subtitle": "Join our Telegram group and find out when we meet up.",
-    "button": "Join Product Beers",
+    "title": "Planning an",
+    "titleHighlight": "event",
+    "subtitle": "Tell us what you have in mind and we'll prepare a custom proposal.",
+    "button": "Request information",
     "footer": "Made with",
-    "footerBeer": "beer",
+    "footerBeer": "music",
     "footerAnd": "and",
-    "footerPassion": "love",
+    "footerPassion": "passion",
     "footerLocation": "in Valencia"
   }
 }

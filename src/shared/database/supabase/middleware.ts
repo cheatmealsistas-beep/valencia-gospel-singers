@@ -38,7 +38,7 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // Protected routes check
-  const isProtectedRoute = request.nextUrl.pathname.includes('/dashboard') ||
+  const isProtectedRoute = request.nextUrl.pathname.includes('/admin') ||
                            request.nextUrl.pathname.includes('/my-account');
 
   if (!user && isProtectedRoute) {

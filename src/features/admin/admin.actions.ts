@@ -14,7 +14,7 @@ import {
   handleMakeUserAdmin,
   handleRemoveUserAdmin,
 } from './admin.handler';
-import type { ActionResult, InfoBarSettings, EmailJourneysSettings, FeatureFlags, CrossSellProductsSettings, AffiliateProgramSettings, CollaboratorInput, SpeakerInput, TeamMemberInput } from './types';
+import type { ActionResult, InfoBarSettings, EmailJourneysSettings, FeatureFlags, CrossSellProductsSettings, AffiliateProgramSettings, CollaboratorInput, SpeakerInput, TeamMemberInput, GalleryImageInput } from './types';
 import {
   createCollaborator,
   updateCollaborator,
@@ -28,8 +28,13 @@ import {
   updateTeamMember,
   toggleTeamMemberActive,
   deleteTeamMember,
+  createGalleryImage,
+  updateGalleryImage,
+  toggleGalleryImageActive,
+  toggleGalleryImageFeatured,
+  deleteGalleryImage,
 } from './admin.command';
-import { collaboratorSchema, speakerSchema, teamMemberSchema } from './types';
+import { collaboratorSchema, speakerSchema, teamMemberSchema, galleryImageSchema } from './types';
 
 /**
  * ==============================================
@@ -514,7 +519,7 @@ export async function createTeamMemberAction(
 
   if (result.success && result.id) {
     revalidatePath('/[locale]/dashboard/equipo');
-    revalidatePath('/[locale]/about'); // Revalidate about page
+    revalidatePath('/[locale]/nosotros'); // Revalidate about page
     return {
       success: true,
       data: { id: result.id },
@@ -542,7 +547,7 @@ export async function updateTeamMemberAction(
 
   if (result.success) {
     revalidatePath('/[locale]/dashboard/equipo');
-    revalidatePath('/[locale]/about');
+    revalidatePath('/[locale]/nosotros');
     return { success: true, data: undefined, error: null };
   }
 
@@ -562,7 +567,7 @@ export async function toggleTeamMemberAction(
 
   if (result.success) {
     revalidatePath('/[locale]/dashboard/equipo');
-    revalidatePath('/[locale]/about');
+    revalidatePath('/[locale]/nosotros');
     return { success: true, data: undefined, error: null };
   }
 
@@ -581,9 +586,131 @@ export async function deleteTeamMemberAction(
 
   if (result.success) {
     revalidatePath('/[locale]/dashboard/equipo');
-    revalidatePath('/[locale]/about');
+    revalidatePath('/[locale]/nosotros');
     return { success: true, data: undefined, error: null };
   }
 
   return { success: false, data: null, error: result.error || 'Failed to delete team member' };
+}
+
+/**
+ * ==============================================
+ * GALLERY ACTIONS
+ * ==============================================
+ */
+
+/**
+ * Create a new gallery image
+ */
+export async function createGalleryImageAction(
+  input: GalleryImageInput
+): Promise<ActionResult<{ id: string }>> {
+  await requireAdmin();
+
+  // Validate input
+  const validation = galleryImageSchema.safeParse(input);
+  if (!validation.success) {
+    return {
+      success: false,
+      data: null,
+      error: validation.error.issues[0].message,
+    };
+  }
+
+  const result = await createGalleryImage(validation.data);
+
+  if (result.success && result.id) {
+    revalidatePath('/[locale]/admin/galeria');
+    revalidatePath('/[locale]/galeria');
+    return {
+      success: true,
+      data: { id: result.id },
+      error: null,
+    };
+  }
+
+  return {
+    success: false,
+    data: null,
+    error: result.error || 'Failed to create gallery image',
+  };
+}
+
+/**
+ * Update an existing gallery image
+ */
+export async function updateGalleryImageAction(
+  id: string,
+  input: Partial<GalleryImageInput>
+): Promise<ActionResult> {
+  await requireAdmin();
+
+  const result = await updateGalleryImage(id, input);
+
+  if (result.success) {
+    revalidatePath('/[locale]/admin/galeria');
+    revalidatePath('/[locale]/galeria');
+    return { success: true, data: undefined, error: null };
+  }
+
+  return { success: false, data: null, error: result.error || 'Failed to update gallery image' };
+}
+
+/**
+ * Toggle gallery image active status
+ */
+export async function toggleGalleryImageAction(
+  id: string,
+  isActive: boolean
+): Promise<ActionResult> {
+  await requireAdmin();
+
+  const result = await toggleGalleryImageActive(id, isActive);
+
+  if (result.success) {
+    revalidatePath('/[locale]/admin/galeria');
+    revalidatePath('/[locale]/galeria');
+    return { success: true, data: undefined, error: null };
+  }
+
+  return { success: false, data: null, error: result.error || 'Failed to toggle gallery image' };
+}
+
+/**
+ * Toggle gallery image featured status
+ */
+export async function toggleGalleryImageFeaturedAction(
+  id: string,
+  isFeatured: boolean
+): Promise<ActionResult> {
+  await requireAdmin();
+
+  const result = await toggleGalleryImageFeatured(id, isFeatured);
+
+  if (result.success) {
+    revalidatePath('/[locale]/admin/galeria');
+    revalidatePath('/[locale]/galeria');
+    return { success: true, data: undefined, error: null };
+  }
+
+  return { success: false, data: null, error: result.error || 'Failed to toggle gallery image featured' };
+}
+
+/**
+ * Delete a gallery image
+ */
+export async function deleteGalleryImageAction(
+  id: string
+): Promise<ActionResult> {
+  await requireAdmin();
+
+  const result = await deleteGalleryImage(id);
+
+  if (result.success) {
+    revalidatePath('/[locale]/admin/galeria');
+    revalidatePath('/[locale]/galeria');
+    return { success: true, data: undefined, error: null };
+  }
+
+  return { success: false, data: null, error: result.error || 'Failed to delete gallery image' };
 }

@@ -1,62 +1,62 @@
 {
   "meta": {
-    "title": "Colabora con Product Beers",
-    "description": "Ayuda a la comunidad de producto como sponsor o prestando tu espacio."
+    "title": "Colabora con Valencia Gospel Singers",
+    "description": "Colabora con el coro Valencia Gospel Singers como patrocinador o cediendo tu espacio."
   },
   "hero": {
     "label": "Colabora",
-    "titleStart": "Ayúdanos a seguir",
-    "titleHighlight": "quedando",
-    "description": "Somos un grupo de colegas que nos juntamos a hablar de producto. Si quieres echar un cable, aquí te contamos cómo."
+    "titleStart": "Forma parte de nuestra",
+    "titleHighlight": "música",
+    "description": "Buscamos colaboradores que compartan nuestra pasión por la música y quieran apoyar nuestros eventos y conciertos."
   },
   "sponsor": {
-    "title": "Poner las cañas",
-    "description": "Que las quedadas sigan siendo gratis mola. Si tu empresa puede invitar a unas cañas, todos contentos.",
+    "title": "Patrocinador",
+    "description": "Apoya nuestros conciertos y eventos. Tu marca junto a la emoción del gospel.",
     "benefits": {
-      "title": "A cambio",
+      "title": "Beneficios",
       "visibility": {
-        "title": "Tu logo por ahí",
-        "description": "En la web, en redes y en el evento."
+        "title": "Visibilidad",
+        "description": "Tu logo en nuestra web, redes sociales y materiales del evento."
       },
       "community": {
-        "title": "Conoces a la gente",
-        "description": "PMs, diseñadores, devs. Gente que curra en producto."
+        "title": "Público",
+        "description": "Acceso a una audiencia que valora la música y la cultura."
       },
       "networking": {
-        "title": "Vienes al evento",
-        "description": "Puedes presentar tu empresa si quieres, o simplemente quedarte."
+        "title": "Presencia",
+        "description": "Espacio para tu marca en nuestros conciertos y actuaciones."
       },
       "content": {
-        "title": "Dar una charla",
-        "description": "Si te apetece contar algo, hay hueco."
+        "title": "Contenido",
+        "description": "Mención en nuestras comunicaciones y redes sociales."
       }
     }
   },
   "hoster": {
-    "title": "Poner el sitio",
-    "description": "¿Tienes un bar, terraza u oficina con espacio? Nos encanta variar.",
+    "title": "Espacio colaborador",
+    "description": "¿Tienes un espacio donde podríamos actuar? Nos encanta descubrir nuevos escenarios.",
     "benefits": {
-      "title": "A cambio",
+      "title": "Beneficios",
       "talent": {
-        "title": "Gente nueva",
-        "description": "Vienen profesionales de producto que seguramente no conocían tu sitio."
+        "title": "Evento único",
+        "description": "Una actuación de gospel en vivo que sorprenderá a tu público."
       },
       "brand": {
-        "title": "Te conocen",
-        "description": "La comunidad sabe dónde estás."
+        "title": "Diferenciación",
+        "description": "Ofrece algo diferente y memorable a tus clientes."
       },
       "social": {
-        "title": "Te mencionamos",
-        "description": "En los posts y stories del evento."
+        "title": "Difusión",
+        "description": "Te mencionamos en nuestras redes y comunicaciones."
       },
       "community": {
-        "title": "Te quedas",
-        "description": "Tú y tu equipo podéis participar."
+        "title": "Comunidad",
+        "description": "Formas parte de nuestra red de espacios colaboradores."
       }
     }
   },
   "cta": {
-    "title": "¿Te mola?",
-    "description": "Escríbenos y hablamos."
+    "title": "¿Te interesa?",
+    "description": "Escríbenos y hablamos de cómo colaborar."
   }
 }

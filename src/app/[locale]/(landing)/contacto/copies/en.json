@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "Contact - Valencia Gospel Singers",
+    "description": "Tell us about your event and we'll prepare a personalized proposal. Weddings, corporate events, concerts and more."
+  },
+  "hero": {
+    "badge": "Let's talk",
+    "title": "Do you have a",
+    "titleHighlight": "special event",
+    "titleEnd": "?",
+    "description": "Tell us what you have in mind and we'll prepare a custom proposal. We respond within 24 hours."
+  },
+  "form": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Your name"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "your@email.com"
+    },
+    "phone": {
+      "label": "Phone (optional)",
+      "placeholder": "+34 600 000 000"
+    },
+    "eventType": {
+      "label": "Event type",
+      "placeholder": "Select event type",
+      "options": {
+        "boda": "Wedding",
+        "corporativo": "Corporate event",
+        "concierto": "Concert",
+        "privado": "Private party",
+        "otro": "Other"
+      }
+    },
+    "eventDate": {
+      "label": "Event date (optional)",
+      "placeholder": "Select a date"
+    },
+    "message": {
+      "label": "Tell us about your event",
+      "placeholder": "Describe your event: venue, number of guests, special moments, favorite songs..."
+    },
+    "submit": "Send message",
+    "submitting": "Sending..."
+  },
+  "success": {
+    "title": "Message sent!",
+    "description": "We've received your message. We'll get back to you as soon as possible.",
+    "cta": "Send another message"
+  },
+  "info": {
+    "title": "You can also contact us via",
+    "whatsapp": {
+      "title": "WhatsApp",
+      "description": "Quick and direct response",
+      "cta": "Write on WhatsApp"
+    },
+    "email": {
+      "title": "Email",
+      "description": "For detailed proposals"
+    },
+    "social": {
+      "title": "Social media",
+      "description": "Follow us and write to us"
+    }
+  }
+}

@@ -1,41 +1,41 @@
 {
   "meta": {
-    "title": "Eventos - Product Beers Valencia",
-    "description": "Descubre los próximos eventos de la comunidad de producto en Valencia. Charlas, networking y cervezas."
+    "title": "Eventos - Valencia Gospel Singers",
+    "description": "Descubre los próximos conciertos y actuaciones de Valencia Gospel Singers. Gospel en vivo en Valencia."
   },
   "hero": {
     "label": "Eventos",
     "titleStart": "Próximos",
-    "titleHighlight": "encuentros",
-    "description": "Donde el producto se discute, se aprende y se celebra. Descubre nuestros próximos eventos y únete a la conversación."
+    "titleHighlight": "conciertos",
+    "description": "Ven a vernos en directo y disfruta de la energía del gospel. Consulta nuestra agenda y no te pierdas ninguna actuación."
   },
   "upcoming": {
     "title": "Próximos eventos",
     "empty": {
       "title": "No hay eventos programados",
-      "description": "Estamos preparando el próximo encuentro. Únete a nuestro Telegram para ser el primero en enterarte.",
-      "cta": "Únete en Telegram"
+      "description": "Estamos preparando nuevas actuaciones. Síguenos en redes para enterarte de los próximos conciertos.",
+      "cta": "Síguenos en Instagram"
     }
   },
   "past": {
     "title": "Eventos pasados",
     "showMore": "Ver más eventos pasados",
     "empty": {
-      "title": "Aún no hemos celebrado eventos",
-      "description": "¡Pero estamos trabajando en ello! Síguenos para enterarte del primero."
+      "title": "Próximamente",
+      "description": "Estamos preparando nuestra agenda de conciertos. Síguenos para enterarte del primero."
     }
   },
   "card": {
-    "speakers": "ponentes",
-    "speaker": "ponente",
+    "speakers": "artistas",
+    "speaker": "artista",
     "viewDetails": "Ver detalles",
-    "register": "Reservar plaza",
+    "register": "Reservar entrada",
     "spotsLeft": "plazas disponibles",
     "full": "Completo"
   },
   "cta": {
-    "title": "¿No te quieres perder nada?",
-    "description": "Únete a nuestro Telegram y entérate de los próximos eventos antes que nadie.",
-    "button": "Únete en Telegram"
+    "title": "¿Quieres que actuemos en tu evento?",
+    "description": "Bodas, celebraciones, eventos corporativos... Cuéntanos qué tienes en mente.",
+    "button": "Contactar"
   }
 }

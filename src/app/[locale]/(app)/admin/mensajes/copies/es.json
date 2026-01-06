@@ -1,0 +1,58 @@
+{
+  "title": "Mensajes de contacto",
+  "description": "Gestiona las solicitudes de información que recibes desde el formulario de contacto.",
+  "filters": {
+    "all": "Todos",
+    "pending": "Pendientes",
+    "read": "Leídos",
+    "replied": "Respondidos",
+    "archived": "Archivados"
+  },
+  "empty": {
+    "title": "Sin mensajes",
+    "description": "No hay mensajes en esta categoría."
+  },
+  "card": {
+    "eventType": "Tipo de evento",
+    "eventDate": "Fecha del evento",
+    "received": "Recibido",
+    "phone": "Teléfono",
+    "message": "Mensaje",
+    "notes": "Notas internas",
+    "notesPlaceholder": "Añade notas sobre este contacto..."
+  },
+  "actions": {
+    "markRead": "Marcar como leído",
+    "markReplied": "Marcar como respondido",
+    "archive": "Archivar",
+    "delete": "Eliminar",
+    "reply": "Responder por email",
+    "whatsapp": "WhatsApp",
+    "saveNotes": "Guardar notas"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "read": "Leído",
+    "replied": "Respondido",
+    "archived": "Archivado"
+  },
+  "eventTypes": {
+    "boda": "Boda",
+    "corporativo": "Corporativo",
+    "concierto": "Concierto",
+    "privado": "Privado",
+    "otro": "Otro"
+  },
+  "toast": {
+    "statusUpdated": "Estado actualizado",
+    "notesSaved": "Notas guardadas",
+    "deleted": "Mensaje eliminado",
+    "error": "Error al actualizar"
+  },
+  "confirmDelete": {
+    "title": "¿Eliminar mensaje?",
+    "description": "Esta acción no se puede deshacer.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar"
+  }
+}

@@ -31,17 +31,25 @@ export async function createEventAction(
   _prevState: unknown,
   formData: FormData
 ): Promise<{ success: boolean; data?: { id: string }; error?: string }> {
-  const user = await requireAdmin();
+  await requireAdmin();
 
   const input: EventInput = {
+    // Spanish (default)
     title: formData.get('title') as string,
-    slug: (formData.get('slug') as string) || undefined,
     description: (formData.get('description') as string) || undefined,
     shortDescription: (formData.get('shortDescription') as string) || undefined,
-    date: new Date(formData.get('date') as string),
-    endDate: formData.get('endDate') ? new Date(formData.get('endDate') as string) : undefined,
     locationName: (formData.get('locationName') as string) || undefined,
     locationAddress: (formData.get('locationAddress') as string) || undefined,
+    // English translations
+    titleEn: (formData.get('titleEn') as string) || undefined,
+    descriptionEn: (formData.get('descriptionEn') as string) || undefined,
+    shortDescriptionEn: (formData.get('shortDescriptionEn') as string) || undefined,
+    locationNameEn: (formData.get('locationNameEn') as string) || undefined,
+    locationAddressEn: (formData.get('locationAddressEn') as string) || undefined,
+    // Common fields
+    slug: (formData.get('slug') as string) || undefined,
+    date: new Date(formData.get('date') as string),
+    endDate: formData.get('endDate') ? new Date(formData.get('endDate') as string) : undefined,
     locationCity: (formData.get('locationCity') as string) || 'Valencia',
     locationMapsUrl: (formData.get('locationMapsUrl') as string) || undefined,
     imageUrl: (formData.get('imageUrl') as string) || undefined,
@@ -53,7 +61,7 @@ export async function createEventAction(
     featured: formData.get('featured') === 'true',
   };
 
-  const result = await handleCreateEvent(user.id, input);
+  const result = await handleCreateEvent(input);
 
   if (result.success) {
     revalidatePath('/eventos');
@@ -83,6 +91,22 @@ export async function updateEventAction(
 
   const shortDescription = formData.get('shortDescription');
   if (shortDescription !== null) input.shortDescription = shortDescription as string;
+
+  // English fields
+  const titleEn = formData.get('titleEn');
+  if (titleEn !== null) input.titleEn = titleEn as string;
+
+  const descriptionEn = formData.get('descriptionEn');
+  if (descriptionEn !== null) input.descriptionEn = descriptionEn as string;
+
+  const shortDescriptionEn = formData.get('shortDescriptionEn');
+  if (shortDescriptionEn !== null) input.shortDescriptionEn = shortDescriptionEn as string;
+
+  const locationNameEn = formData.get('locationNameEn');
+  if (locationNameEn !== null) input.locationNameEn = locationNameEn as string;
+
+  const locationAddressEn = formData.get('locationAddressEn');
+  if (locationAddressEn !== null) input.locationAddressEn = locationAddressEn as string;
 
   const date = formData.get('date');
   if (date) input.date = new Date(date as string);

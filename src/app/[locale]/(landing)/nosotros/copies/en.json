@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "About Us - Valencia Gospel Singers",
+    "description": "Meet Valencia Gospel Singers choir. Professional gospel for weddings, events and celebrations in Valencia."
+  },
+  "hero": {
+    "label": "Our story",
+    "titleStart": "The emotion of",
+    "titleHighlight": "gospel",
+    "description": "We're a gospel choir formed by passionate voices who love music and enjoy sharing their energy in every performance."
+  },
+  "mission": {
+    "mission": {
+      "title": "Our mission",
+      "description": "Bring the joy and emotion of gospel to every event, creating unforgettable moments."
+    },
+    "vision": {
+      "title": "What we do",
+      "description": "Weddings, corporate events, concerts, celebrations... Where there's gospel music, we're there."
+    },
+    "values": {
+      "title": "How we work",
+      "description": "With professionalism, passion and deep respect for the gospel tradition."
+    }
+  },
+  "team": {
+    "label": "The choir",
+    "title": "Who we are",
+    "description": "A group of voices united by the passion for gospel and the desire to move people."
+  },
+  "cta": {
+    "title": "Have an event?",
+    "description": "Tell us what you need and we'll prepare a custom proposal.",
+    "primaryButton": "Contact",
+    "secondaryButton": "View events"
+  }
+}

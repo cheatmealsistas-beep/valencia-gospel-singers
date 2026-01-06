@@ -11,8 +11,3 @@ export { Particles } from './particles';
 export { WordRotate } from './word-rotate';
 export { SparklesText } from './sparkles-text';
 export { RetroGrid } from './retro-grid';
-export { BeerBubbles } from './beer-bubbles';
-export { SparkleMascot } from './sparkle-mascot';
-export { ParallaxMascot } from './parallax-mascot';
-export { ScrollMascot } from './scroll-mascot';
-export { ScrollRevealMascot } from './scroll-reveal-mascot';

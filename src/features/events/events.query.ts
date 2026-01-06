@@ -16,19 +16,7 @@ export async function getPublishedEvents(): Promise<{
 
   const { data, error } = await supabase
     .from('events')
-    .select(
-      `
-      *,
-      event_speakers(
-        *,
-        speaker:speakers(*)
-      ),
-      event_sponsors(
-        *,
-        sponsor:sponsors(*)
-      )
-    `
-    )
+    .select('*')
     .eq('status', 'published')
     .order('date', { ascending: true });
 
@@ -50,19 +38,7 @@ export async function getUpcomingEvents(limit?: number): Promise<{
 
   let query = supabase
     .from('events')
-    .select(
-      `
-      *,
-      event_speakers(
-        *,
-        speaker:speakers(*)
-      ),
-      event_sponsors(
-        *,
-        sponsor:sponsors(*)
-      )
-    `
-    )
+    .select('*')
     .eq('status', 'published')
     .gte('date', new Date().toISOString())
     .order('date', { ascending: true });
@@ -91,19 +67,7 @@ export async function getPastEvents(limit?: number): Promise<{
 
   let query = supabase
     .from('events')
-    .select(
-      `
-      *,
-      event_speakers(
-        *,
-        speaker:speakers(*)
-      ),
-      event_sponsors(
-        *,
-        sponsor:sponsors(*)
-      )
-    `
-    )
+    .select('*')
     .eq('status', 'published')
     .lt('date', new Date().toISOString())
     .order('date', { ascending: false });
@@ -132,19 +96,7 @@ export async function getEventBySlug(slug: string): Promise<{
 
   const { data, error } = await supabase
     .from('events')
-    .select(
-      `
-      *,
-      event_speakers(
-        *,
-        speaker:speakers(*)
-      ),
-      event_sponsors(
-        *,
-        sponsor:sponsors(*)
-      )
-    `
-    )
+    .select('*')
     .eq('slug', slug)
     .eq('status', 'published')
     .single();
@@ -167,19 +119,7 @@ export async function getNextFeaturedEvent(): Promise<{
 
   const { data, error } = await supabase
     .from('events')
-    .select(
-      `
-      *,
-      event_speakers(
-        *,
-        speaker:speakers(*)
-      ),
-      event_sponsors(
-        *,
-        sponsor:sponsors(*)
-      )
-    `
-    )
+    .select('*')
     .eq('status', 'published')
     .eq('featured', true)
     .gte('date', new Date().toISOString())
@@ -209,13 +149,7 @@ export async function getAllEvents(): Promise<{
 
   const { data, error } = await supabase
     .from('events')
-    .select(
-      `
-      *,
-      event_speakers(count),
-      event_sponsors(count)
-    `
-    )
+    .select('*')
     .order('date', { ascending: false });
 
   if (error) {
@@ -236,19 +170,7 @@ export async function getEventById(id: string): Promise<{
 
   const { data, error } = await supabase
     .from('events')
-    .select(
-      `
-      *,
-      event_speakers(
-        *,
-        speaker:speakers(*)
-      ),
-      event_sponsors(
-        *,
-        sponsor:sponsors(*)
-      )
-    `
-    )
+    .select('*')
     .eq('id', id)
     .single();
 
@@ -381,7 +303,6 @@ function mapEvent(data: any): Event {
     featured: data.featured,
     createdAt: new Date(data.created_at),
     updatedAt: new Date(data.updated_at),
-    createdBy: data.created_by,
     speakers: data.event_speakers?.map(mapEventSpeaker),
     sponsors: data.event_sponsors?.map(mapEventSponsor),
   };

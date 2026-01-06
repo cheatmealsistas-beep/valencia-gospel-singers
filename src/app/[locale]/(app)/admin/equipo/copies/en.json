@@ -1,0 +1,67 @@
+{
+  "title": "Choir members",
+  "description": "Manage Valencia Gospel Singers members displayed on the website.",
+  "add": "Add member",
+  "empty": {
+    "title": "No members",
+    "description": "You haven't added any choir members yet."
+  },
+  "form": {
+    "title": {
+      "create": "New member",
+      "edit": "Edit member"
+    },
+    "name": {
+      "label": "Name",
+      "placeholder": "Full name"
+    },
+    "role": {
+      "label": "Role / Voice part",
+      "placeholder": "E.g.: Soprano, Alto, Tenor, Bass, Director..."
+    },
+    "photoUrl": {
+      "label": "Photo URL",
+      "placeholder": "https://..."
+    },
+    "displayOrder": {
+      "label": "Display order",
+      "placeholder": "0"
+    },
+    "isActive": {
+      "label": "Active",
+      "description": "Show on public page"
+    },
+    "submit": {
+      "create": "Create member",
+      "edit": "Save changes"
+    },
+    "cancel": "Cancel"
+  },
+  "card": {
+    "role": "Role",
+    "order": "Order"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "activate": "Activate",
+    "deactivate": "Deactivate"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "toast": {
+    "created": "Member created",
+    "updated": "Member updated",
+    "deleted": "Member deleted",
+    "toggled": "Status updated",
+    "error": "Error saving"
+  },
+  "confirmDelete": {
+    "title": "Delete member?",
+    "description": "This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  }
+}

@@ -36,10 +36,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       | 'never';
   }> = [
     { path: '', priority: 1.0, changeFrequency: 'weekly' },
-    { path: '/pricing', priority: 0.9, changeFrequency: 'weekly' },
-    { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
-    { path: '/terms', priority: 0.3, changeFrequency: 'yearly' },
-    { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/nosotros', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/eventos', priority: 0.8, changeFrequency: 'weekly' },
+    { path: '/galeria', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/contacto', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/colabora', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/terminos', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/privacidad', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/cookies', priority: 0.3, changeFrequency: 'yearly' },
   ];
 

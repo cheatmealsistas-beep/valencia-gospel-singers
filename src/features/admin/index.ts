@@ -2,7 +2,7 @@
  * Admin Feature
  *
  * Panel de administración para gestionar la plataforma.
- * Incluye gestión de usuarios, settings, colaboradores y mensajes.
+ * Incluye gestión de usuarios, settings, clientes y mensajes.
  */
 
 // Components
@@ -31,6 +31,15 @@ export {
   getAllCollaborators,
   getActiveCollaborators,
   getCollaboratorById,
+  getAllTeamMembers,
+  getActiveTeamMembers,
+  getTeamMemberById,
+  // Gallery
+  getAllGalleryImages,
+  getActiveGalleryImages,
+  getFeaturedGalleryImages,
+  getGalleryImageById,
+  getGalleryImagesByEvent,
 } from './admin.query';
 
 // Commands (write operations)
@@ -67,4 +76,14 @@ export {
   updateCollaboratorAction,
   toggleCollaboratorAction,
   deleteCollaboratorAction,
+  createTeamMemberAction,
+  updateTeamMemberAction,
+  toggleTeamMemberAction,
+  deleteTeamMemberAction,
+  // Gallery
+  createGalleryImageAction,
+  updateGalleryImageAction,
+  toggleGalleryImageAction,
+  toggleGalleryImageFeaturedAction,
+  deleteGalleryImageAction,
 } from './admin.actions';

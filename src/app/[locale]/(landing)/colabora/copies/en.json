@@ -1,62 +1,62 @@
 {
   "meta": {
-    "title": "Collaborate with Product Beers",
-    "description": "Help the product community as a sponsor or by lending your space."
+    "title": "Collaborate with Valencia Gospel Singers",
+    "description": "Collaborate with Valencia Gospel Singers choir as a sponsor or by lending your venue."
   },
   "hero": {
     "label": "Collaborate",
-    "titleStart": "Help us keep",
-    "titleHighlight": "meeting up",
-    "description": "We're a bunch of friends who get together to talk about product. If you want to help out, here's how."
+    "titleStart": "Be part of our",
+    "titleHighlight": "music",
+    "description": "We're looking for collaborators who share our passion for music and want to support our events and concerts."
   },
   "sponsor": {
-    "title": "Buy the beers",
-    "description": "Keeping meetups free is cool. If your company can buy a round, everyone's happy.",
+    "title": "Sponsor",
+    "description": "Support our concerts and events. Your brand alongside the emotion of gospel.",
     "benefits": {
-      "title": "In return",
+      "title": "Benefits",
       "visibility": {
-        "title": "Your logo around",
-        "description": "On the website, social media and at the event."
+        "title": "Visibility",
+        "description": "Your logo on our website, social media and event materials."
       },
       "community": {
-        "title": "Meet people",
-        "description": "PMs, designers, devs. People who work in product."
+        "title": "Audience",
+        "description": "Access to an audience that values music and culture."
       },
       "networking": {
-        "title": "Come to the event",
-        "description": "You can introduce your company if you want, or just hang out."
+        "title": "Presence",
+        "description": "Space for your brand at our concerts and performances."
       },
       "content": {
-        "title": "Give a talk",
-        "description": "If you want to share something, there's room."
+        "title": "Content",
+        "description": "Mention in our communications and social media."
       }
     }
   },
   "hoster": {
-    "title": "Lend your space",
-    "description": "Got a bar, terrace or office with space? We like to move around.",
+    "title": "Venue partner",
+    "description": "Have a space where we could perform? We love discovering new stages.",
     "benefits": {
-      "title": "In return",
+      "title": "Benefits",
       "talent": {
-        "title": "New faces",
-        "description": "Product people who probably didn't know your place."
+        "title": "Unique event",
+        "description": "A live gospel performance that will surprise your audience."
       },
       "brand": {
-        "title": "They know you",
-        "description": "The community knows where you are."
+        "title": "Differentiation",
+        "description": "Offer something different and memorable to your customers."
       },
       "social": {
-        "title": "We mention you",
-        "description": "In the event posts and stories."
+        "title": "Exposure",
+        "description": "We mention you in our social media and communications."
       },
       "community": {
-        "title": "You stay",
-        "description": "You and your team can join in."
+        "title": "Community",
+        "description": "You become part of our partner venues network."
       }
     }
   },
   "cta": {
-    "title": "Sounds good?",
-    "description": "Write us and let's chat."
+    "title": "Interested?",
+    "description": "Write to us and let's talk about how to collaborate."
   }
 }

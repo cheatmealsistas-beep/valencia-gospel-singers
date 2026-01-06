@@ -16,6 +16,12 @@ export type NamespaceMapping = {
 export const namespaceMappings: NamespaceMapping[] = [
   // ===== NEW: App Router Route-Level Copies (Highest Priority) =====
 
+  // App Router Nested Routes with meta-copies: /src/app/[locale]/(group)/path/to/page/meta-copies/ → metadata
+  {
+    pattern: /src\/app\/\[locale\]\/\([^\/]+\)\/(.+)\/meta-copies\//,
+    extractor: () => 'metadata',
+  },
+
   // App Router Nested Routes: /src/app/[locale]/(group)/path/to/page/copies/ → full path as namespace
   // Ex: admin/users, admin/emails, etc.
   {

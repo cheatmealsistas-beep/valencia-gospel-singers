@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "title": "Galería - Admin",
+    "description": "Gestiona las fotos de la galería"
+  },
+  "title": "Galería",
+  "description": "Gestiona las fotos que aparecen en la galería pública",
+  "tabs": {
+    "all": "Todas",
+    "conciertos": "Conciertos",
+    "bodas": "Bodas",
+    "eventos": "Eventos",
+    "ensayos": "Ensayos",
+    "otros": "Otros"
+  },
+  "addNew": "Añadir foto",
+  "empty": {
+    "title": "No hay fotos",
+    "description": "Añade tu primera foto para mostrarla en la galería pública."
+  },
+  "card": {
+    "featured": "Destacada",
+    "category": "Categoría",
+    "order": "Orden"
+  },
+  "status": {
+    "active": "Activa",
+    "inactive": "Inactiva"
+  },
+  "form": {
+    "title": {
+      "create": "Añadir foto",
+      "edit": "Editar foto"
+    },
+    "imageUrl": {
+      "label": "URL de la imagen",
+      "placeholder": "https://ejemplo.com/foto.jpg",
+      "help": "Enlace directo a la imagen (JPG, PNG o WebP)"
+    },
+    "thumbnailUrl": {
+      "label": "URL del thumbnail (opcional)",
+      "placeholder": "https://ejemplo.com/foto-thumb.jpg",
+      "help": "Versión pequeña para carga rápida"
+    },
+    "imageTitle": {
+      "label": "Título (opcional)",
+      "placeholder": "Concierto de Navidad 2024"
+    },
+    "description": {
+      "label": "Descripción (opcional)",
+      "placeholder": "Breve descripción de la foto..."
+    },
+    "altText": {
+      "label": "Texto alternativo (para accesibilidad)",
+      "placeholder": "Descripción de la imagen para lectores de pantalla"
+    },
+    "category": {
+      "label": "Categoría",
+      "placeholder": "Selecciona una categoría"
+    },
+    "displayOrder": {
+      "label": "Orden",
+      "help": "Números menores aparecen primero"
+    },
+    "isFeatured": {
+      "label": "Destacada",
+      "description": "Mostrar en la página principal"
+    },
+    "isActive": {
+      "label": "Activa",
+      "description": "Mostrar en la galería pública"
+    },
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "activate": "Activar",
+    "deactivate": "Desactivar",
+    "feature": "Destacar",
+    "unfeature": "Quitar destacado"
+  },
+  "toast": {
+    "created": "Foto añadida correctamente",
+    "updated": "Foto actualizada correctamente",
+    "deleted": "Foto eliminada correctamente",
+    "toggled": "Estado actualizado",
+    "featured": "Destacado actualizado",
+    "error": "Algo salió mal. Por favor, inténtalo de nuevo."
+  },
+  "confirmDelete": {
+    "title": "¿Eliminar foto?",
+    "description": "Esta acción no se puede deshacer. La foto se eliminará permanentemente.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar"
+  }
+}

@@ -1,41 +1,25 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import {
-  Beer,
-  Users,
-  Lightbulb,
-  Shield,
-  ArrowRight,
-  Send,
-  Calendar,
-  Sparkles,
-  Zap,
-  Heart,
-} from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
-import { brand } from '@/shared/config';
 import Image from 'next/image';
-import { FadeIn, BorderBeam, WordRotate, BeerBubbles, AnimatedGradientText, ParallaxMascot, Marquee } from '@/shared/components/magic-ui';
+import { Music } from 'lucide-react';
+import { FadeIn, Marquee } from '@/shared/components/magic-ui';
 import { getActiveCollaborators, getActiveTeamMembers } from '@/features/admin/admin.query';
-
-// LinkedIn icon component
-function LinkedInIcon({ className }: { className?: string }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-  );
-}
-
-export const metadata: Metadata = {
-  title: 'Product Beers - La comunidad de producto de Valencia',
-  description:
-    'Comunidad de Product Managers, Product Designers y entusiastas del producto en Valencia. Eventos, networking y aprendizaje compartido.',
-};
+import { HeroTagline } from './hero-tagline';
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
+}
+
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'metadata' });
+
+  return {
+    title: t('home.title'),
+    description: t('home.description'),
+  };
 }
 
 export default async function HomePage({ params }: HomePageProps) {
@@ -46,264 +30,602 @@ export default async function HomePage({ params }: HomePageProps) {
     getActiveTeamMembers(),
   ]);
 
-  const roles = t.raw('hero.roles') as string[];
-
-  const values = [
-    { icon: Users, titleKey: 'values.community.title', descKey: 'values.community.description' },
-    { icon: Lightbulb, titleKey: 'values.learning.title', descKey: 'values.learning.description' },
-    { icon: Beer, titleKey: 'values.fun.title', descKey: 'values.fun.description' },
-    { icon: Shield, titleKey: 'values.authenticity.title', descKey: 'values.authenticity.description' },
-  ];
-
   return (
-    <main className="min-h-screen bg-[#0a0a0a] overflow-x-hidden relative">
-      {/* Burbujas globales en toda la página */}
-      <div className="fixed inset-0 z-10 pointer-events-none">
-        <BeerBubbles quantity={50} minSize={6} maxSize={20} className="opacity-40" />
-      </div>
+    <main className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
       {/* ═══════════════════════════════════════════════════════════════════
-          HERO - Estilo impactante con JK mascota
+          ESTILO "VIBRANTE MODERNO" - Púrpura + Ondas de sonido + Dinámico
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a0a0a] via-[#0d0d0d] to-[#0a0a0a]">
-        {/* Fondo con gradientes animados - más dramáticos */}
-        <div className="absolute inset-0">
-          {/* Gradiente radial principal - más intenso */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-primary/25 rounded-full blur-[150px] animate-pulse" />
-          {/* Gradientes secundarios */}
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-yellow-600/10 rounded-full blur-[100px]" />
-          {/* Overlay oscuro para más contraste */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/50" />
+
+      {/* HERO - Layout asimétrico con vinilo a la derecha */}
+      <section className="relative min-h-[100vh] flex items-center">
+        {/* Fondo base oscuro */}
+        <div className="absolute inset-0 bg-[#0a0a0a]" />
+
+        {/* VINILO - Posicionado a la derecha, parcialmente visible */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Vinilo grande en el lado derecho - grupo para hover */}
+          <div
+            className="group/vinyl absolute top-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] lg:w-[900px] lg:h-[900px] xl:w-[1000px] xl:h-[1000px] cursor-default"
+            style={{ right: '-15%' }}
+          >
+
+            {/* Ondas de sonido emanando del vinilo */}
+            {[1, 2, 3, 4].map((i) => (
+              <div
+                key={`wave-${i}`}
+                className="absolute inset-0 rounded-full border border-purple-500/30"
+                style={{
+                  animation: `vinyl-wave 5s ease-out infinite`,
+                  animationDelay: `${i * 1}s`,
+                }}
+              />
+            ))}
+
+            {/* Vinilo principal - Base negra sólida como un disco real */}
+            <div
+              className="absolute inset-[5%] rounded-full transition-shadow duration-700 group-hover/vinyl:shadow-[inset_0_0_100px_rgba(0,0,0,0.8),0_0_100px_rgba(168,85,247,0.5),0_0_180px_rgba(147,51,234,0.4)]"
+              style={{
+                background: '#111',
+                boxShadow: `
+                  inset 0 0 100px rgba(0,0,0,0.8),
+                  0 0 60px rgba(168,85,247,0.25),
+                  0 0 120px rgba(147,51,234,0.15)
+                `,
+                animation: 'vinyl-spin 20s linear infinite',
+              }}
+            >
+              {/* Surcos del vinilo - círculos concéntricos visibles */}
+              {[20, 28, 36, 44, 52, 60, 68, 76, 84, 90].map((size) => (
+                <div
+                  key={`groove-${size}`}
+                  className="absolute rounded-full"
+                  style={{
+                    inset: `${(100 - size) / 2}%`,
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    boxShadow: 'inset 0 0 2px rgba(168,85,247,0.15)',
+                  }}
+                />
+              ))}
+
+              {/* Brillo iridiscente base (sutil) */}
+              <div
+                className="absolute inset-0 rounded-full transition-opacity duration-500"
+                style={{
+                  background: `
+                    conic-gradient(from 0deg,
+                      transparent 0deg,
+                      rgba(168,85,247,0.1) 30deg,
+                      rgba(236,72,153,0.08) 60deg,
+                      transparent 90deg,
+                      transparent 180deg,
+                      rgba(139,92,246,0.08) 210deg,
+                      rgba(168,85,247,0.06) 240deg,
+                      transparent 270deg,
+                      transparent 360deg
+                    )
+                  `,
+                }}
+              />
+              {/* Brillo de barrido intenso - aparece en hover */}
+              <div
+                className="absolute inset-0 rounded-full opacity-0 group-hover/vinyl:opacity-100 transition-opacity duration-700"
+                style={{
+                  background: `
+                    conic-gradient(from 0deg,
+                      transparent 0deg,
+                      rgba(168,85,247,0.4) 20deg,
+                      rgba(236,72,153,0.3) 50deg,
+                      rgba(139,92,246,0.25) 80deg,
+                      transparent 120deg,
+                      transparent 180deg,
+                      rgba(168,85,247,0.3) 200deg,
+                      rgba(236,72,153,0.2) 230deg,
+                      transparent 270deg,
+                      transparent 360deg
+                    )
+                  `,
+                }}
+              />
+
+              {/* Centro del vinilo - etiqueta colorida */}
+              <div
+                className="absolute rounded-full"
+                style={{
+                  inset: '38%',
+                  background: `
+                    radial-gradient(circle at 30% 30%,
+                      #fff 0%,
+                      #e879f9 10%,
+                      #a855f7 40%,
+                      #7c3aed 70%,
+                      #6d28d9 100%
+                    )
+                  `,
+                  boxShadow: `
+                    inset 0 0 20px rgba(0,0,0,0.3),
+                    0 0 30px rgba(168,85,247,0.6),
+                    0 0 60px rgba(236,72,153,0.4)
+                  `,
+                }}
+              >
+                {/* Agujero central del vinilo */}
+                <div
+                  className="absolute rounded-full bg-[#0a0a0a]"
+                  style={{
+                    inset: '42%',
+                    boxShadow: 'inset 0 0 10px rgba(0,0,0,0.9)',
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Reflejo de luz estático (no gira) */}
+            <div
+              className="absolute inset-[5%] rounded-full overflow-hidden pointer-events-none"
+              style={{
+                background: `
+                  linear-gradient(135deg,
+                    rgba(255,255,255,0.2) 0%,
+                    rgba(255,255,255,0.08) 15%,
+                    transparent 40%,
+                    transparent 100%
+                  )
+                `,
+              }}
+            />
+          </div>
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 pt-28 pb-12">
-          <div className="max-w-5xl mx-auto text-center">
-            {/* Título principal gigante */}
-            <FadeIn delay={0.1}>
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-6">
-                <span className="text-white">Product</span>
-                <br />
-                <AnimatedGradientText className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black" colorFrom="#eab308" colorTo="#f59e0b">
-                  Beers
-                </AnimatedGradientText>
-              </h1>
-            </FadeIn>
+        {/* Estilos para animaciones del vinilo */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes vinyl-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          @keyframes vinyl-wave {
+            0% {
+              transform: scale(0.9);
+              opacity: 0.5;
+            }
+            100% {
+              transform: scale(1.4);
+              opacity: 0;
+            }
+          }
+        `}} />
 
-            {/* Subtítulo con roles rotativos */}
-            <FadeIn delay={0.2}>
-              <div className="flex flex-wrap items-center justify-center gap-x-3 text-xl md:text-2xl lg:text-3xl text-gray-300 mb-8">
-                <span>{t('hero.tagline')}</span>
-                <WordRotate
-                  className="text-primary font-bold"
-                  words={roles}
-                  duration={2000}
-                />
-                <span>{t('hero.taglineEnd')}</span>
+        {/* Glow ambiental desde la derecha */}
+        <div className="absolute top-1/2 right-0 translate-x-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-purple-600/20 via-fuchsia-900/10 to-transparent blur-[100px]" />
+
+        {/* Contenido - Alineado a la izquierda */}
+        <div className="container relative z-10 py-20">
+          <div className="max-w-2xl">
+            <FadeIn delay={0.1}>
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 mb-8">
+                {/* Mini ecualizador en el badge */}
+                <div className="flex items-end gap-0.5 h-4">
+                  {[0.4, 0.7, 1, 0.6, 0.8].map((h, i) => (
+                    <div
+                      key={i}
+                      className="w-0.5 bg-purple-400 rounded-full animate-pulse"
+                      style={{
+                        height: `${h * 100}%`,
+                        animationDelay: `${i * 0.1}s`,
+                      }}
+                    />
+                  ))}
+                </div>
+                <span className="text-purple-300 text-sm font-medium">{t('hero.location')}</span>
               </div>
             </FadeIn>
 
-            {/* Descripción */}
+            <FadeIn delay={0.2}>
+              <HeroTagline />
+            </FadeIn>
+
             <FadeIn delay={0.3}>
-              <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-white/50 mb-14 leading-relaxed">
                 {t('hero.description')}
-                <span className="text-primary font-semibold"> {t('hero.descriptionHighlight')}</span>.
               </p>
             </FadeIn>
 
-            {/* CTAs grandes */}
             <FadeIn delay={0.4}>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <Button size="lg" className="text-lg px-10 py-7 rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transition-all group" asChild>
-                  <a href={brand.social.telegram} target="_blank" rel="noopener noreferrer">
-                    <Send className="mr-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    {t('hero.ctaTelegram')}
-                  </a>
-                </Button>
-                <Button size="lg" variant="ghost" className="text-lg px-10 py-7 rounded-2xl border-2 border-white/30 text-white hover:bg-white/10 hover:text-white hover:border-white/50 transition-all" asChild>
-                  <a href={brand.social.linkedin} target="_blank" rel="noopener noreferrer">
-                    <LinkedInIcon className="mr-2 w-5 h-5" />
-                    {t('hero.ctaLinkedin')}
-                  </a>
-                </Button>
-              </div>
-            </FadeIn>
-
-            {/* JK Mascota con Parallax - Solo visible en desktop */}
-            <FadeIn delay={0.5}>
-              <div className="hidden md:block">
-                <ParallaxMascot
-                  src="/jk.svg"
-                  alt="JK - Product Beers mascota"
-                  width={380}
-                  height={380}
-                  className="animate-float"
-                />
-              </div>
-            </FadeIn>
-
+              <div className="flex flex-col sm:flex-row items-start gap-5">
+              <Button
+                size="lg"
+                className="group text-lg px-10 py-7 rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-600 to-purple-600 bg-[length:200%_auto] text-white font-semibold hover:bg-right shadow-2xl shadow-purple-600/30 transition-all duration-500"
+                asChild
+              >
+                <Link href={`/${locale}/contacto`}>
+                  {t('hero.ctaContact')}
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="ghost"
+                className="text-lg px-10 py-7 rounded-full text-white/70 hover:text-white hover:bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all"
+                asChild
+              >
+                <Link href={`/${locale}/eventos`}>
+                  {t('hero.ctaEvents')}
+                </Link>
+              </Button>
+            </div>
+          </FadeIn>
           </div>
+        </div>
+
+      </section>
+
+      {/* PRÓXIMO EVENTO */}
+      <section className="py-32 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-950/30 via-[#0a0a0a] to-purple-950/30" />
+
+        <div className="container relative">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center">
+              {/* Indicador de "en vivo" */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-fuchsia-500 animate-pulse" />
+                <span className="text-purple-300 text-sm font-medium tracking-wider uppercase">
+                  {t('nextEvent.badge')}
+                </span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
+                {t('nextEvent.titleStart')}{' '}
+                <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
+                  {t('nextEvent.titleHighlight')}
+                </span>
+              </h2>
+              <p className="text-xl text-white/40 mb-12 max-w-xl mx-auto">
+                {t('nextEvent.description')}
+              </p>
+
+              <Button
+                size="lg"
+                className="rounded-full px-12 py-7 text-lg bg-white text-black font-semibold hover:bg-purple-100 transition-all shadow-2xl shadow-white/10"
+                asChild
+              >
+                <Link href={`/${locale}/eventos`}>
+                  {t('nextEvent.cta')}
+                </Link>
+              </Button>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          PRÓXIMO EVENTO - Card destacada
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 relative bg-[#080808]">
-        <div className="container mx-auto px-4">
+      {/* NUESTRA ESENCIA - Minimalista con acentos */}
+      <section className="py-32 bg-[#0a0a0a] relative overflow-hidden">
+        <div className="container max-w-5xl relative">
           <FadeIn>
-            <div className="relative max-w-4xl mx-auto">
-              {/* Card con border beam */}
-              <div className="relative rounded-3xl border border-[#2a2a2a] bg-[#141414] p-8 md:p-12 overflow-hidden">
-                <BorderBeam size={400} duration={15} colorFrom="#eab308" colorTo="#f59e0b" />
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold">
+                {t('mission.title')}{' '}
+                <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
+                  {t('mission.titleHighlight')}
+                </span>
+              </h2>
+            </div>
+          </FadeIn>
 
-                {/* Decoración de fondo */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-
-                <div className="relative flex flex-col md:flex-row items-center gap-8">
-                  {/* Icono animado */}
-                  <div className="flex-shrink-0">
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-xl animate-pulse" />
-                      <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/30 flex items-center justify-center">
-                        <Calendar className="w-12 h-12 md:w-14 md:h-14 text-primary" />
+          <div className="grid md:grid-cols-3 gap-12">
+            {['connect', 'enrich', 'cultivate'].map((key, index) => (
+              <FadeIn key={key} delay={0.1 + index * 0.15}>
+                <div className="text-center group">
+                  {/* Mini vinilo decorativo - gira en hover */}
+                  <div className="flex justify-center mb-6">
+                    <div
+                      className="relative w-20 h-20 transition-transform duration-1000 group-hover:rotate-[360deg]"
+                      style={{
+                        background: '#111',
+                        borderRadius: '50%',
+                        boxShadow: `
+                          inset 0 0 20px rgba(0,0,0,0.8),
+                          0 0 15px rgba(168,85,247,0.15)
+                        `,
+                      }}
+                    >
+                      {/* Surcos concéntricos del vinilo */}
+                      {[50, 65, 80, 92].map((size) => (
+                        <div
+                          key={`mission-groove-${index}-${size}`}
+                          className="absolute rounded-full"
+                          style={{
+                            inset: `${(100 - size) / 2}%`,
+                            border: '1px solid rgba(255,255,255,0.06)',
+                          }}
+                        />
+                      ))}
+                      {/* Brillo iridiscente - aparece en hover */}
+                      <div
+                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{
+                          background: `conic-gradient(from 0deg,
+                            transparent 0deg,
+                            rgba(168,85,247,0.25) 40deg,
+                            rgba(236,72,153,0.15) 80deg,
+                            transparent 120deg,
+                            transparent 360deg
+                          )`,
+                        }}
+                      />
+                      {/* Centro del vinilo - etiqueta colorida */}
+                      <div
+                        className="absolute rounded-full"
+                        style={{
+                          inset: '30%',
+                          background: `radial-gradient(circle at 30% 30%, #fff 0%, #e879f9 15%, #a855f7 50%, #7c3aed 100%)`,
+                          boxShadow: '0 0 12px rgba(168,85,247,0.5)',
+                        }}
+                      >
+                        {/* Agujero central */}
+                        <div className="absolute inset-[38%] rounded-full bg-[#0a0a0a]" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex-1 text-center md:text-left">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/15 text-primary text-sm font-semibold mb-3">
-                      <Sparkles className="w-4 h-4" />
-                      {t('nextEvent.badge')}
-                    </div>
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 text-white">{t('nextEvent.title')}</h2>
-                    <p className="text-gray-400 text-lg">
-                      {t('nextEvent.description')}
-                    </p>
-                  </div>
-
-                  <div className="flex-shrink-0">
-                    <Button size="lg" className="rounded-2xl shadow-xl shadow-primary/20 px-8 py-6 text-lg group" asChild>
-                      <a href={brand.social.telegram} target="_blank" rel="noopener noreferrer">
-                        <Zap className="mr-2 w-5 h-5 group-hover:animate-pulse" />
-                        {t('nextEvent.cta')}
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          VALORES - Cards con hover effects
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#0a0a0a] relative overflow-hidden">
-        {/* Decoración de fondo */}
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2" />
-        <div className="absolute top-1/2 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl translate-x-1/2" />
-
-        <div className="container mx-auto px-4 relative">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">{t('values.title')}</h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                {t('values.subtitle')}
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {values.map((value, index) => (
-              <FadeIn key={value.titleKey} delay={index * 0.1}>
-                <div className="group relative p-8 rounded-3xl bg-[#141414] border border-[#2a2a2a] hover:border-primary/50 transition-all duration-500 text-center overflow-hidden hover:shadow-xl hover:shadow-primary/10">
-                  {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  <div className="relative">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/15 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                      <value.icon className="w-8 h-8 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold mb-3 text-white">{t(value.titleKey)}</h3>
-                    <p className="text-gray-400 text-sm">{t(value.descKey)}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          EQUIPO - Grid moderno
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-24 relative bg-[#0a0a0a]">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">{t('team.title')}</h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                {t('team.subtitle')}
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 max-w-4xl mx-auto">
-            {teamMembers.map((member, index) => (
-              <FadeIn key={member.id} delay={index * 0.08}>
-                <a
-                  href={member.linkedin_url || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col items-center text-center"
-                >
-                  {/* Foto circular con glow y border beam */}
-                  <div className="relative w-32 h-32 mx-auto mb-4">
-                    {/* Glow ámbar detrás - más intenso */}
-                    <div className="absolute inset-[-4px] rounded-full bg-primary/30 blur-lg group-hover:bg-primary/50 transition-all duration-500" />
-                    {/* Container con border beam */}
-                    <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-primary/40 group-hover:ring-primary/70 transition-all duration-300">
-                      <BorderBeam size={120} duration={6 + index * 1.5} colorFrom="#eab308" colorTo="#fbbf24" />
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={member.photo_url || ''} alt={member.name} className="w-full h-full object-cover relative z-10" />
-                    </div>
-                  </div>
-                  <h3 className="font-semibold text-sm text-white group-hover:text-primary transition-colors">
-                    {member.name.split(' ').slice(0, 2).join(' ')}
+                  <h3 className="text-2xl font-bold mb-4 text-white">
+                    {t(`mission.${key}.title`)}
                   </h3>
-                  <p className="text-xs text-gray-500 mt-1">{member.role}</p>
-                  {member.company && <p className="text-xs text-primary/60 mt-0.5">{member.company}</p>}
-                </a>
+                  <p className="text-white/40 leading-relaxed">
+                    {t(`mission.${key}.description`)}
+                  </p>
+                </div>
               </FadeIn>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          COLABORADORES - Marquee de logos de sponsors y hosters
-      ═══════════════════════════════════════════════════════════════════ */}
-      {collaborators.length > 0 && (
-        <section className="py-16 relative bg-[#080808] border-y border-[#1a1a1a]">
-          <div className="container mx-auto px-4 mb-8">
+      {/* VALORES */}
+      <section className="py-32 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-950/10 via-transparent to-fuchsia-950/10" />
+
+        <div className="container relative max-w-4xl">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold">{t('values.title')}</h2>
+            </div>
+          </FadeIn>
+
+          <div className="grid sm:grid-cols-2 gap-6">
+            {['community', 'learning', 'fun', 'authenticity'].map((key, index) => (
+              <FadeIn key={key} delay={0.1 + index * 0.1}>
+                <div className="group p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-purple-500/20 transition-all">
+                  <div className="flex items-start gap-4">
+                    {/* Mini vinilo - gira en hover */}
+                    <div
+                      className="relative w-12 h-12 flex-shrink-0 transition-transform duration-1000 group-hover:rotate-[360deg]"
+                      style={{
+                        background: '#111',
+                        borderRadius: '50%',
+                        boxShadow: `
+                          inset 0 0 15px rgba(0,0,0,0.8),
+                          0 0 10px rgba(168,85,247,0.1)
+                        `,
+                      }}
+                    >
+                      {/* Surcos */}
+                      {[55, 75, 90].map((size) => (
+                        <div
+                          key={`value-groove-${index}-${size}`}
+                          className="absolute rounded-full"
+                          style={{
+                            inset: `${(100 - size) / 2}%`,
+                            border: '1px solid rgba(255,255,255,0.06)',
+                          }}
+                        />
+                      ))}
+                      {/* Brillo iridiscente - aparece en hover */}
+                      <div
+                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{
+                          background: `conic-gradient(from 0deg,
+                            transparent 0deg,
+                            rgba(168,85,247,0.25) 40deg,
+                            rgba(236,72,153,0.15) 80deg,
+                            transparent 120deg,
+                            transparent 360deg
+                          )`,
+                        }}
+                      />
+                      {/* Centro */}
+                      <div
+                        className="absolute rounded-full"
+                        style={{
+                          inset: '28%',
+                          background: `radial-gradient(circle at 30% 30%, #fff 0%, #e879f9 20%, #a855f7 60%, #7c3aed 100%)`,
+                          boxShadow: '0 0 8px rgba(168,85,247,0.4)',
+                        }}
+                      >
+                        <div className="absolute inset-[35%] rounded-full bg-[#0a0a0a]" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-2 text-white">
+                        {t(`values.${key}.title`)}
+                      </h3>
+                      <p className="text-white/40 text-sm leading-relaxed">
+                        {t(`values.${key}.description`)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EL CORO */}
+      {teamMembers.length > 0 && (
+        <section className="py-32 bg-[#0a0a0a] relative overflow-hidden">
+          {/* Surcos de vinilo como fondo decorativo */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] opacity-[0.02] pointer-events-none">
+            {[15, 25, 35, 45, 55, 65, 75, 85, 95].map((size) => (
+              <div
+                key={`team-groove-${size}`}
+                className="absolute rounded-full border border-white"
+                style={{ inset: `${(100 - size) / 2}%` }}
+              />
+            ))}
+          </div>
+
+          <div className="container relative">
             <FadeIn>
-              <p className="text-center text-sm text-gray-500 uppercase tracking-wider mb-2">
-                {t('collaborators.title')}
-              </p>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('team.title')}</h2>
+                <p className="text-xl text-white/40 max-w-2xl mx-auto">
+                  {t('team.subtitle')}
+                </p>
+              </div>
+            </FadeIn>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
+              {teamMembers.map((member, index) => (
+                <FadeIn key={member.id} delay={index * 0.05}>
+                  <div className="group flex flex-col items-center text-center">
+                    {/* Contenedor del vinilo */}
+                    <div className="relative w-36 h-36 md:w-44 md:h-44 mx-auto mb-4">
+                      {/* Vinilo giratorio en hover */}
+                      <div
+                        className="absolute inset-0 rounded-full transition-transform duration-1000 group-hover:rotate-[360deg]"
+                        style={{
+                          background: '#111',
+                          boxShadow: `
+                            inset 0 0 30px rgba(0,0,0,0.8),
+                            0 0 20px rgba(168,85,247,0.2),
+                            0 0 40px rgba(147,51,234,0.15)
+                          `,
+                        }}
+                      >
+                        {/* Surcos del vinilo - círculos concéntricos */}
+                        {[60, 70, 80, 90].map((size) => (
+                          <div
+                            key={`groove-${size}`}
+                            className="absolute rounded-full"
+                            style={{
+                              inset: `${(100 - size) / 2}%`,
+                              border: '1px solid rgba(255,255,255,0.06)',
+                              boxShadow: 'inset 0 0 1px rgba(168,85,247,0.1)',
+                            }}
+                          />
+                        ))}
+
+                        {/* Brillo iridiscente */}
+                        <div
+                          className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                          style={{
+                            background: `
+                              conic-gradient(from 0deg,
+                                transparent 0deg,
+                                rgba(168,85,247,0.2) 30deg,
+                                rgba(236,72,153,0.15) 60deg,
+                                transparent 90deg,
+                                transparent 180deg,
+                                rgba(139,92,246,0.15) 210deg,
+                                rgba(168,85,247,0.12) 240deg,
+                                transparent 270deg,
+                                transparent 360deg
+                              )
+                            `,
+                          }}
+                        />
+                      </div>
+
+                      {/* Centro del vinilo - Foto en B/W */}
+                      <div
+                        className="absolute rounded-full overflow-hidden"
+                        style={{
+                          inset: '22%',
+                          boxShadow: `
+                            inset 0 0 10px rgba(0,0,0,0.5),
+                            0 0 15px rgba(168,85,247,0.4),
+                            0 0 30px rgba(236,72,153,0.2)
+                          `,
+                        }}
+                      >
+                        {member.photo_url ? (
+                          <div className="relative w-full h-full">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={member.photo_url}
+                              alt={member.name}
+                              className="w-full h-full object-cover grayscale group-hover:scale-110 transition-all duration-500"
+                            />
+                            {/* Overlay púrpura en hover */}
+                            <div className="absolute inset-0 bg-purple-500/30 opacity-0 group-hover:opacity-100 mix-blend-color transition-opacity duration-500" />
+                          </div>
+                        ) : (
+                          <div
+                            className="w-full h-full flex items-center justify-center"
+                            style={{
+                              background: `
+                                radial-gradient(circle at 30% 30%,
+                                  #e879f9 0%,
+                                  #a855f7 40%,
+                                  #7c3aed 70%,
+                                  #6d28d9 100%
+                                )
+                              `,
+                            }}
+                          >
+                            <Music className="w-6 h-6 text-white/70" />
+                          </div>
+                        )}
+
+                        {/* Borde con degradado */}
+                        <div
+                          className="absolute inset-0 rounded-full pointer-events-none"
+                          style={{
+                            border: '2px solid transparent',
+                            background: 'linear-gradient(135deg, rgba(168,85,247,0.3), rgba(236,72,153,0.3)) border-box',
+                            WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
+                            WebkitMaskComposite: 'xor',
+                            maskComposite: 'exclude',
+                          }}
+                        />
+                      </div>
+
+                    </div>
+
+                    <h3 className="font-semibold text-sm text-white group-hover:text-purple-300 transition-colors">
+                      {member.name.split(' ').slice(0, 2).join(' ')}
+                    </h3>
+                    <p className="text-xs text-white/40 mt-1">{member.role}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* COLABORADORES */}
+      {collaborators.length > 0 && (
+        <section className="py-20 border-y border-white/5 bg-[#0a0a0a]">
+          <div className="container mb-12">
+            <FadeIn>
+              <div className="text-center">
+                <p className="text-sm text-white/30 uppercase tracking-widest font-medium">
+                  {t('collaborators.title')}
+                </p>
+              </div>
             </FadeIn>
           </div>
 
           <FadeIn delay={0.1}>
-            <Marquee pauseOnHover className="[--duration:25s] [--gap:4rem]">
+            <Marquee pauseOnHover className="[--duration:40s] [--gap:6rem]">
               {collaborators.map((collaborator) => (
                 <a
                   key={collaborator.id}
                   href={collaborator.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center px-6 opacity-70 hover:opacity-100 transition-all duration-300"
+                  className="flex items-center justify-center px-8 opacity-30 hover:opacity-80 transition-opacity duration-300"
                 >
                   <Image
                     src={collaborator.logo_url}
@@ -316,62 +638,157 @@ export default async function HomePage({ params }: HomePageProps) {
               ))}
             </Marquee>
           </FadeIn>
-
-          <div className="container mx-auto px-4 mt-8">
-            <FadeIn delay={0.2}>
-              <div className="text-center">
-                <Link
-                  href={`/${locale}/colabora`}
-                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors group"
-                >
-                  <Heart className="w-4 h-4" />
-                  {t('collaborators.cta')}
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </FadeIn>
-          </div>
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          CTA FINAL - Impactante
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="py-32 relative overflow-hidden bg-gradient-to-t from-[#0a0a0a] via-[#0d0d0d] to-[#0a0a0a]">
-        {/* Fondo dramático */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/25 rounded-full blur-[180px]" />
+      {/* SERVICIOS - Qué ofrecemos (antes del CTA) */}
+      <section className="py-32 relative bg-[#0a0a0a]">
+        <div className="container relative max-w-5xl">
+          <FadeIn>
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
+                {t('features.title')}{' '}
+                <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
+                  {t('features.titleHighlight')}
+                </span>
+              </h2>
+              <p className="text-xl text-white/40 max-w-2xl mx-auto">
+                {t('features.subtitle')}
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* Cards con efecto de onda */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {['concerts', 'weddings', 'events', 'celebrations'].map((key, index) => (
+              <FadeIn key={key} delay={0.1 + index * 0.1}>
+                <div className="group relative p-8 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/5 hover:border-purple-500/30 transition-all duration-500 overflow-hidden">
+                  {/* Onda en hover */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+                  {/* Glow sutil */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className="relative">
+                    {/* Mini vinilo con efecto pulsante */}
+                    <div className="relative w-12 h-12 mb-6">
+                      <div className="absolute inset-0 rounded-full bg-purple-500/20 animate-ping" style={{ animationDuration: '2s' }} />
+                      <div
+                        className="relative w-full h-full group-hover:scale-110 transition-transform duration-500"
+                        style={{
+                          background: 'rgba(17,17,17,0.9)',
+                          borderRadius: '50%',
+                          boxShadow: '0 0 20px rgba(168,85,247,0.2)',
+                          animation: 'vinyl-spin 12s linear infinite',
+                        }}
+                      >
+                        {/* Surcos */}
+                        {[25, 45, 65, 85].map((size) => (
+                          <div
+                            key={`service-groove-${index}-${size}`}
+                            className="absolute rounded-full"
+                            style={{
+                              inset: `${(100 - size) / 2}%`,
+                              border: '1px solid rgba(168,85,247,0.2)',
+                            }}
+                          />
+                        ))}
+                        {/* Brillo iridiscente */}
+                        <div
+                          className="absolute inset-0 rounded-full opacity-50 group-hover:opacity-100 transition-opacity"
+                          style={{
+                            background: `conic-gradient(from 0deg, transparent 0deg, rgba(168,85,247,0.4) 50deg, rgba(236,72,153,0.3) 100deg, transparent 150deg, transparent 360deg)`,
+                          }}
+                        />
+                        {/* Centro colorido */}
+                        <div
+                          className="absolute rounded-full"
+                          style={{
+                            inset: '32%',
+                            background: `radial-gradient(circle at 30% 30%, #fff 0%, #e879f9 15%, #a855f7 50%, #7c3aed 100%)`,
+                            boxShadow: '0 0 12px rgba(168,85,247,0.6)',
+                          }}
+                        >
+                          <div className="absolute inset-[38%] rounded-full bg-[#0a0a0a]" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                      {t(`features.${key}.title`)}
+                    </h3>
+                    <p className="text-white/40 leading-relaxed">
+                      {t(`features.${key}.description`)}
+                    </p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="py-32 bg-[#0a0a0a] relative overflow-hidden">
+        {/* Glow de fondo sutil */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-purple-600/15 to-transparent rounded-full blur-3xl" />
+
+        {/* Partículas musicales sutiles - eco del hero */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[
+            { x: 10, y: 30, size: 5, delay: 0 },
+            { x: 90, y: 25, size: 6, delay: 4 },
+            { x: 20, y: 70, size: 4, delay: 8 },
+            { x: 80, y: 65, size: 5, delay: 12 },
+            { x: 50, y: 20, size: 7, delay: 2 },
+            { x: 30, y: 80, size: 4, delay: 6 },
+            { x: 70, y: 75, size: 5, delay: 10 },
+            { x: 15, y: 50, size: 4, delay: 14 },
+          ].map((particle, i) => (
+            <div
+              key={`cta-particle-${i}`}
+              className="absolute rounded-full"
+              style={{
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
+                width: `${particle.size}px`,
+                height: `${particle.size}px`,
+                background: `radial-gradient(circle, rgba(168,85,247,0.8) 0%, rgba(168,85,247,0.3) 40%, transparent 70%)`,
+                boxShadow: `0 0 ${particle.size * 3}px rgba(168,85,247,0.5)`,
+                animation: `particle-beat-ambient 16s ease-in-out infinite`,
+                animationDelay: `${particle.delay}s`,
+              }}
+            />
+          ))}
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container relative">
           <FadeIn>
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-white">
-                {t('cta.title')} <span className="text-primary">{t('cta.titleHighlight')}</span>?
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
+                {t('cta.title')}{' '}
+                <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
+                  {t('cta.titleHighlight')}
+                </span>?
               </h2>
-              <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto">
+              <p className="text-xl text-white/40 mb-14 max-w-xl mx-auto">
                 {t('cta.subtitle')}
               </p>
 
               <Button
                 size="lg"
-                className="text-xl px-12 py-8 rounded-2xl shadow-2xl shadow-primary/30 hover:shadow-primary/50 transition-all group"
+                className="text-lg px-14 py-8 rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-600 to-purple-600 bg-[length:200%_auto] text-white font-semibold hover:bg-right shadow-2xl shadow-purple-600/30 transition-all duration-500"
                 asChild
               >
-                <a href={brand.social.telegram} target="_blank" rel="noopener noreferrer">
+                <Link href={`/${locale}/contacto`}>
                   {t('cta.button')}
-                  <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform" />
-                </a>
+                </Link>
               </Button>
-
-              <p className="mt-12 text-gray-500">
-                {t('cta.footer')} <span className="text-primary font-semibold">{t('cta.footerBeer')}</span> {t('cta.footerAnd')} <span className="text-primary font-semibold">{t('cta.footerPassion')}</span>{' '}
-                {t('cta.footerLocation')}
-              </p>
             </div>
           </FadeIn>
         </div>
       </section>
+
     </main>
   );
 }

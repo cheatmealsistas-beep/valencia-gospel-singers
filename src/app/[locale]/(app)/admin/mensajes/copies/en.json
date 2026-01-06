@@ -1,0 +1,58 @@
+{
+  "title": "Contact messages",
+  "description": "Manage information requests you receive from the contact form.",
+  "filters": {
+    "all": "All",
+    "pending": "Pending",
+    "read": "Read",
+    "replied": "Replied",
+    "archived": "Archived"
+  },
+  "empty": {
+    "title": "No messages",
+    "description": "There are no messages in this category."
+  },
+  "card": {
+    "eventType": "Event type",
+    "eventDate": "Event date",
+    "received": "Received",
+    "phone": "Phone",
+    "message": "Message",
+    "notes": "Internal notes",
+    "notesPlaceholder": "Add notes about this contact..."
+  },
+  "actions": {
+    "markRead": "Mark as read",
+    "markReplied": "Mark as replied",
+    "archive": "Archive",
+    "delete": "Delete",
+    "reply": "Reply by email",
+    "whatsapp": "WhatsApp",
+    "saveNotes": "Save notes"
+  },
+  "status": {
+    "pending": "Pending",
+    "read": "Read",
+    "replied": "Replied",
+    "archived": "Archived"
+  },
+  "eventTypes": {
+    "boda": "Wedding",
+    "corporativo": "Corporate",
+    "concierto": "Concert",
+    "privado": "Private",
+    "otro": "Other"
+  },
+  "toast": {
+    "statusUpdated": "Status updated",
+    "notesSaved": "Notes saved",
+    "deleted": "Message deleted",
+    "error": "Error updating"
+  },
+  "confirmDelete": {
+    "title": "Delete message?",
+    "description": "This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  }
+}

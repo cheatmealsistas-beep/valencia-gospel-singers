@@ -139,7 +139,7 @@ export interface AppSetting {
 export interface AdminStats {
   totalUsers: number;
   newUsersThisMonth: number;
-  // Product Beers specific
+  // Valencia Gospel Singers specific
   totalEvents: number;
   upcomingEvents: number;
   pastEvents: number;
@@ -386,3 +386,42 @@ export interface TeamMember {
   created_at: string;
   updated_at: string;
 }
+
+/**
+ * ==============================================
+ * GALLERY TYPES & SCHEMAS
+ * ==============================================
+ */
+
+export const galleryImageSchema = z.object({
+  title: z.string().max(200).optional().nullable(),
+  description: z.string().max(500).optional().nullable(),
+  image_url: z.string().min(1, 'Image URL is required'),
+  thumbnail_url: z.string().optional().nullable(),
+  alt_text: z.string().max(200).optional().nullable(),
+  category: z.enum(['conciertos', 'bodas', 'eventos', 'ensayos', 'otros']).default('otros'),
+  event_id: z.string().uuid().optional().nullable(),
+  display_order: z.number().int().default(0),
+  is_featured: z.boolean().default(false),
+  is_active: z.boolean().default(true),
+});
+
+export type GalleryImageInput = z.infer<typeof galleryImageSchema>;
+
+export interface GalleryImage {
+  id: string;
+  title: string | null;
+  description: string | null;
+  image_url: string;
+  thumbnail_url: string | null;
+  alt_text: string | null;
+  category: 'conciertos' | 'bodas' | 'eventos' | 'ensayos' | 'otros';
+  event_id: string | null;
+  display_order: number;
+  is_featured: boolean;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export type GalleryCategory = GalleryImage['category'];

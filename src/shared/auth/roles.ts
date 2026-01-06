@@ -153,9 +153,9 @@ export async function requireAdmin(locale: string = 'en'): Promise<AuthUser> {
   // Check if user is admin or super admin
   const admin = await isAdmin();
 
-  // Not admin -> redirect to dashboard
+  // Not admin -> redirect to home
   if (!admin) {
-    redirect(`/${locale}/dashboard`);
+    redirect(`/${locale}`);
   }
 
   return user;
@@ -182,9 +182,9 @@ export async function requireSuperAdmin(
   // Check if user is super admin specifically
   const superAdmin = await isSuperAdmin();
 
-  // Not super admin -> redirect to dashboard
+  // Not super admin -> redirect to home
   if (!superAdmin) {
-    redirect(`/${locale}/dashboard`);
+    redirect(`/${locale}`);
   }
 
   return user;

@@ -1,114 +1,100 @@
 {
   "features": {
-    "title": "Qué encontrarás en",
-    "titleHighlight": "Product Beers",
-    "subtitle": "Quedadas para gente apasionada por producto",
-    "talks": {
-      "title": "Charlas sin humo",
-      "description": "Gente real contando cómo lo hace, sin el bla bla de siempre"
+    "title": "Qué ofrecemos en",
+    "titleHighlight": "Valencia Gospel Singers",
+    "subtitle": "La emoción del gospel en tu evento especial",
+    "weddings": {
+      "title": "Bodas",
+      "description": "Hacemos de tu ceremonia un momento único con la energía y emoción del gospel"
     },
-    "networking": {
-      "title": "Colegas nuevos",
-      "description": "PMs, diseñadores, devs y founders. Aquí todo el mundo habla con todo el mundo"
+    "events": {
+      "title": "Eventos corporativos",
+      "description": "Animamos tus eventos de empresa con música que conecta y emociona"
     },
-    "learning": {
-      "title": "Aprender sin darte cuenta",
-      "description": "Te vas a casa con ideas nuevas y sin haber aguantado un webinar"
+    "concerts": {
+      "title": "Conciertos",
+      "description": "Espectáculos de gospel que llenan de alegría cualquier escenario"
     },
-    "fun": {
-      "title": "Birras, obviamente",
-      "description": "Porque las mejores conversaciones salen con una caña en la mano"
+    "celebrations": {
+      "title": "Celebraciones",
+      "description": "Comuniones, bautizos, aniversarios... Ponemos la banda sonora perfecta"
     }
   },
   "hero": {
     "location": "Valencia, España",
-    "tagline": "Donde los",
-    "taglineEnd": "conectan",
-    "roles": ["Product Managers", "Diseñadores", "Developers", "Founders", "curiosos"],
-    "description": "Compartimos conocimiento, creamos conexiones y disfrutamos de nuestra pasión por producto. Con",
-    "descriptionHighlight": "cervezas",
-    "ctaTelegram": "Únete en Telegram",
-    "ctaLinkedin": "Síguenos"
+    "tagline": "La emoción del",
+    "taglineEnd": "Gospel",
+    "rolesPrefix": "en",
+    "roles": ["Bodas", "Eventos", "Conciertos", "Celebraciones", "Fiestas"],
+    "description": "Ponemos la banda sonora perfecta a tus momentos especiales.",
+    "descriptionHighlight": "pasión y profesionalidad",
+    "ctaContact": "Contáctanos",
+    "ctaEvents": "Ver eventos"
   },
   "nextEvent": {
-    "badge": "Próximo evento",
-    "title": "Charlas y networking",
-    "description": "Organizamos eventos presenciales con charlas de producto y tiempo para conocer gente. Únete al grupo para enterarte.",
+    "badge": "Próximo concierto",
+    "titleStart": "Ven a vernos",
+    "titleHighlight": "en directo",
+    "description": "Organizamos conciertos y participamos en eventos por toda Valencia. Consulta nuestra agenda.",
     "cta": "Ver eventos"
   },
   "mission": {
-    "badge": "Por qué hacemos esto",
-    "title": "Juntarnos, aprender y",
-    "titleHighlight": "pasarlo bien",
-    "subtitle": "así de simple",
+    "badge": "Nuestra esencia",
+    "title": "Música que",
+    "titleHighlight": "emociona",
+    "subtitle": "y conecta",
     "connect": {
-      "title": "Conocer gente",
-      "description": "Hay mucha gente haciendo producto y faltaba un sitio para coincidir."
+      "title": "Conexión",
+      "description": "El gospel une a las personas a través de su ritmo y mensaje"
     },
     "enrich": {
-      "title": "Compartir lo que sabes",
-      "description": "Aquí nadie viene a venderse. Se cuenta lo que funciona y lo que no."
+      "title": "Emoción",
+      "description": "Cada actuación es una experiencia que toca el corazón"
     },
     "cultivate": {
-      "title": "Buen rollo",
-      "description": "Sin postureo, sin humos. Ven como eres."
+      "title": "Alegría",
+      "description": "Transmitimos energía positiva y buen rollo en cada nota"
     }
   },
   "values": {
-    "title": "El rollo que nos va",
-    "subtitle": "Lo mejor pasa cuando mezclas curro, birras y gente maja",
+    "title": "Lo que nos define",
+    "subtitle": "Pasión por la música y compromiso con la excelencia",
     "community": {
-      "title": "Buen ambiente",
-      "description": "Aquí no hay jerarquías. Da igual si llevas 10 años o 10 meses."
+      "title": "Profesionalidad",
+      "description": "Años de experiencia nos avalan. Cada detalle cuenta."
     },
     "learning": {
-      "title": "Curiosidad",
-      "description": "Siempre hay algo nuevo que aprender. Y alguien dispuesto a contarlo."
+      "title": "Versatilidad",
+      "description": "Nos adaptamos a cada tipo de evento y espacio."
     },
     "fun": {
-      "title": "Ambiente relajado",
-      "description": "Sin formalidades. Conversaciones que fluyen en un entorno distendido."
+      "title": "Energía",
+      "description": "El gospel es alegría y eso es lo que transmitimos."
     },
     "authenticity": {
-      "title": "Naturalidad",
-      "description": "Ven como eres. Aquí no hace falta impresionar a nadie."
+      "title": "Autenticidad",
+      "description": "Gospel de verdad, con el alma y el corazón."
     }
   },
   "team": {
-    "title": "Quiénes somos",
-    "subtitle": "Personas apasionadas por producto con ganas de seguir conociendo gente como tú.",
-    "members": {
-      "carlos_corada": {
-        "role": "Founder"
-      },
-      "maribel": {
-        "role": "Organizadora"
-      },
-      "carlos_moya": {
-        "role": "Organizador"
-      },
-      "marta": {
-        "role": "Organizadora"
-      },
-      "guille": {
-        "role": "Organizador"
-      }
-    }
+    "title": "El coro",
+    "subtitle": "Voces apasionadas que aman el gospel",
+    "members": {}
   },
   "collaborators": {
-    "title": "Nos apoyan",
-    "subtitle": "Gracias a quienes hacen que esto sea posible",
-    "cta": "¿Quieres colaborar?"
+    "title": "Clientes",
+    "subtitle": "Empresas y espacios que confían en nosotros",
+    "cta": "¿Quieres ser cliente?"
   },
   "cta": {
-    "title": "¿Te apuntas a la",
-    "titleHighlight": "próxima",
-    "subtitle": "Únete al grupo de Telegram y entérate de cuándo quedamos.",
-    "button": "Unirme a Product Beers",
+    "title": "¿Organizas un",
+    "titleHighlight": "evento",
+    "subtitle": "Cuéntanos qué tienes en mente y te preparamos una propuesta a medida.",
+    "button": "Solicitar información",
     "footer": "Hecho con",
-    "footerBeer": "cerveza",
+    "footerBeer": "música",
     "footerAnd": "y",
-    "footerPassion": "cariño",
+    "footerPassion": "pasión",
     "footerLocation": "en Valencia"
   }
 }

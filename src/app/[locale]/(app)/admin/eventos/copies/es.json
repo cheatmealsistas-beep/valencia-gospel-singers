@@ -1,0 +1,138 @@
+{
+  "title": "Eventos",
+  "description": "Gestiona los conciertos y eventos de Valencia Gospel Singers.",
+  "add": "Nuevo evento",
+  "filters": {
+    "all": "Todos",
+    "published": "Publicados",
+    "draft": "Borradores",
+    "cancelled": "Cancelados"
+  },
+  "empty": {
+    "title": "Sin eventos",
+    "description": "Aún no has creado ningún evento."
+  },
+  "form": {
+    "title": {
+      "create": "Nuevo evento",
+      "edit": "Editar evento"
+    },
+    "eventTitle": {
+      "label": "Título",
+      "placeholder": "Nombre del evento"
+    },
+    "description": {
+      "label": "Descripción",
+      "placeholder": "Descripción completa del evento..."
+    },
+    "shortDescription": {
+      "label": "Descripción corta",
+      "placeholder": "Resumen breve (máx 300 caracteres)"
+    },
+    "englishSection": "Textos en inglés",
+    "titleEn": {
+      "label": "Título (EN)",
+      "placeholder": "Event name in English"
+    },
+    "descriptionEn": {
+      "label": "Descripción (EN)",
+      "placeholder": "Full description in English..."
+    },
+    "shortDescriptionEn": {
+      "label": "Descripción corta (EN)",
+      "placeholder": "Short summary in English"
+    },
+    "locationNameEn": {
+      "label": "Lugar (EN)",
+      "placeholder": "Venue name in English"
+    },
+    "locationAddressEn": {
+      "label": "Dirección (EN)",
+      "placeholder": "Address in English"
+    },
+    "date": {
+      "label": "Fecha y hora",
+      "placeholder": "Selecciona fecha y hora"
+    },
+    "endDate": {
+      "label": "Fecha de fin (opcional)",
+      "placeholder": "Selecciona fecha y hora"
+    },
+    "locationName": {
+      "label": "Lugar",
+      "placeholder": "Nombre del venue"
+    },
+    "locationAddress": {
+      "label": "Dirección",
+      "placeholder": "Calle, número..."
+    },
+    "locationCity": {
+      "label": "Ciudad",
+      "placeholder": "Valencia"
+    },
+    "locationMapsUrl": {
+      "label": "URL de Google Maps",
+      "placeholder": "https://maps.google.com/..."
+    },
+    "imageUrl": {
+      "label": "Imagen del evento",
+      "placeholder": "https://..."
+    },
+    "registrationUrl": {
+      "label": "URL de registro/entradas",
+      "placeholder": "https://..."
+    },
+    "maxAttendees": {
+      "label": "Aforo máximo",
+      "placeholder": "Número de plazas"
+    },
+    "featured": {
+      "label": "Evento destacado",
+      "description": "Mostrar en la página principal"
+    },
+    "status": {
+      "label": "Estado",
+      "options": {
+        "draft": "Borrador",
+        "published": "Publicado",
+        "cancelled": "Cancelado"
+      }
+    },
+    "submit": {
+      "create": "Crear evento",
+      "edit": "Guardar cambios"
+    },
+    "cancel": "Cancelar"
+  },
+  "card": {
+    "date": "Fecha",
+    "location": "Lugar",
+    "attendees": "Aforo"
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "publish": "Publicar",
+    "unpublish": "Despublicar",
+    "viewPublic": "Ver en web"
+  },
+  "status": {
+    "draft": "Borrador",
+    "published": "Publicado",
+    "cancelled": "Cancelado"
+  },
+  "toast": {
+    "created": "Evento creado",
+    "updated": "Evento actualizado",
+    "deleted": "Evento eliminado",
+    "published": "Evento publicado",
+    "unpublished": "Evento despublicado",
+    "error": "Error al guardar"
+  },
+  "confirmDelete": {
+    "title": "¿Eliminar evento?",
+    "description": "Esta acción no se puede deshacer.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar"
+  }
+}

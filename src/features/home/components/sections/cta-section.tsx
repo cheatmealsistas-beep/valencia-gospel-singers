@@ -5,7 +5,7 @@ import { Button } from '@/shared/components/ui/button';
 import { SectionWrapper } from '@/shared/components/layout';
 import type { CTAContent } from '../../types/sections';
 import * as Icons from 'lucide-react';
-import { FadeIn, BorderBeam } from '@/shared/components/magic-ui';
+import { FadeIn } from '@/shared/components/magic-ui';
 import { cn } from '@/shared/lib/utils';
 
 interface CTASectionProps {
@@ -221,20 +221,17 @@ export function CTASection({
 
         <FadeIn delay={0.2}>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <div className="relative">
-              <Button
-                size="lg"
-                className="text-lg px-10 py-6"
-                asChild
-                data-editable-field="ctaPrimary"
-              >
-                <Link href={content.ctaPrimary.href}>
-                  {primaryText}
-                  <Icons.ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-              </Button>
-              <BorderBeam size={80} duration={10} delay={0} />
-            </div>
+            <Button
+              size="lg"
+              className="text-lg px-10 py-6 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold hover:from-amber-400 hover:to-amber-500"
+              asChild
+              data-editable-field="ctaPrimary"
+            >
+              <Link href={content.ctaPrimary.href}>
+                {primaryText}
+                <Icons.ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </Button>
 
             {secondaryText && (
               <Button

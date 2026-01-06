@@ -1,11 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useActionState, useEffect, useState } from 'react';
+import { useActionState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
 import { getErrorMessage } from '@/shared/errors';
-import { getCurrentAttribution, captureAndPersist } from '@/features/attribution';
 import { Button } from '@/shared/components/ui/button';
 import {
   Card,
@@ -31,14 +30,6 @@ export function RegisterForm() {
     },
     null
   );
-  const [attributionJson, setAttributionJson] = useState('');
-
-  // Capture attribution on mount
-  useEffect(() => {
-    captureAndPersist();
-    const attribution = getCurrentAttribution();
-    setAttributionJson(JSON.stringify(attribution));
-  }, []);
 
   return (
     <Card className="w-full max-w-md">
@@ -52,12 +43,6 @@ export function RegisterForm() {
         </CardDescription>
       </CardHeader>
       <form action={formAction}>
-        {/* Hidden field for attribution data */}
-        <input
-          type="hidden"
-          name="attribution_data"
-          value={attributionJson}
-        />
         <CardContent className="space-y-4">
           {state?.error && (
             <div className="text-sm text-destructive bg-destructive/10 p-3 rounded-md">

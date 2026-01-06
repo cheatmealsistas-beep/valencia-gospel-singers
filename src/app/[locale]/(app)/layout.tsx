@@ -1,8 +1,6 @@
 import { AppLayout } from '@/shared/components/layouts';
 import { AppProvider } from '@/shared/providers';
-import { getUser, isAdmin } from '@/shared/auth';
-import { PageTracker } from '@/features/analytics/page-tracker';
-import { getUnreadRequestsCount } from '@/features/collaboration';
+import { getUser } from '@/shared/auth';
 
 export default async function AppRouteLayout({
   children,
@@ -10,15 +8,6 @@ export default async function AppRouteLayout({
   children: React.ReactNode;
 }) {
   const user = await getUser();
-
-  // Get unread messages count (only for admins)
-  let unreadMessagesCount = 0;
-  if (user) {
-    const userIsAdmin = await isAdmin();
-    if (userIsAdmin) {
-      unreadMessagesCount = await getUnreadRequestsCount();
-    }
-  }
 
   return (
     <AppProvider
@@ -39,9 +28,7 @@ export default async function AppRouteLayout({
           email: user?.email,
           avatar_url: user?.avatar,
         }}
-        unreadMessagesCount={unreadMessagesCount}
       >
-        <PageTracker userId={user?.id} />
         {children}
       </AppLayout>
     </AppProvider>

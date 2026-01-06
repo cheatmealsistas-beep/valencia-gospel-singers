@@ -9,6 +9,7 @@ import type {
   CollaboratorInput,
   SpeakerInput,
   TeamMemberInput,
+  GalleryImageInput,
 } from './types';
 
 /**
@@ -497,12 +498,12 @@ export async function deleteSpeaker(
 
 /**
  * ==============================================
- * TEAM MEMBER COMMANDS
+ * MEMBER COMMANDS (Choir Members)
  * ==============================================
  */
 
 /**
- * Create a new team member
+ * Create a new member
  */
 export async function createTeamMember(
   input: TeamMemberInput
@@ -510,16 +511,16 @@ export async function createTeamMember(
   const supabase = await createClientServer();
 
   const { data, error } = await supabase
-    .from('team_members')
+    .from('members')
     .insert(input)
     .select('id')
     .single();
 
   if (error) {
-    console.error('Error creating team member:', error);
+    console.error('Error creating member:', error);
     return {
       success: false,
-      error: error.message || 'Failed to create team member',
+      error: error.message || 'Failed to create member',
     };
   }
 
@@ -527,7 +528,7 @@ export async function createTeamMember(
 }
 
 /**
- * Update an existing team member
+ * Update an existing member
  */
 export async function updateTeamMember(
   id: string,
@@ -536,7 +537,7 @@ export async function updateTeamMember(
   const supabase = await createClientServer();
 
   const { error } = await supabase
-    .from('team_members')
+    .from('members')
     .update({
       ...input,
       updated_at: new Date().toISOString(),
@@ -544,10 +545,10 @@ export async function updateTeamMember(
     .eq('id', id);
 
   if (error) {
-    console.error(`Error updating team member ${id}:`, error);
+    console.error(`Error updating member ${id}:`, error);
     return {
       success: false,
-      error: error.message || 'Failed to update team member',
+      error: error.message || 'Failed to update member',
     };
   }
 
@@ -555,7 +556,7 @@ export async function updateTeamMember(
 }
 
 /**
- * Toggle team member active status
+ * Toggle member active status
  */
 export async function toggleTeamMemberActive(
   id: string,
@@ -565,7 +566,7 @@ export async function toggleTeamMemberActive(
 }
 
 /**
- * Delete a team member
+ * Delete a member
  */
 export async function deleteTeamMember(
   id: string
@@ -573,15 +574,15 @@ export async function deleteTeamMember(
   const supabase = await createClientServer();
 
   const { error } = await supabase
-    .from('team_members')
+    .from('members')
     .delete()
     .eq('id', id);
 
   if (error) {
-    console.error(`Error deleting team member ${id}:`, error);
+    console.error(`Error deleting member ${id}:`, error);
     return {
       success: false,
-      error: error.message || 'Failed to delete team member',
+      error: error.message || 'Failed to delete member',
     };
   }
 
@@ -589,11 +590,124 @@ export async function deleteTeamMember(
 }
 
 /**
- * Update team member display order
+ * Update member display order
  */
 export async function updateTeamMemberOrder(
   id: string,
   displayOrder: number
 ): Promise<{ success: boolean; error: string | null }> {
   return updateTeamMember(id, { display_order: displayOrder });
+}
+
+/**
+ * ==============================================
+ * GALLERY COMMANDS
+ * ==============================================
+ */
+
+/**
+ * Create a new gallery image
+ */
+export async function createGalleryImage(
+  input: GalleryImageInput
+): Promise<{ success: boolean; error: string | null; id?: string }> {
+  const supabase = await createClientServer();
+
+  const { data, error } = await supabase
+    .from('gallery_images')
+    .insert(input)
+    .select('id')
+    .single();
+
+  if (error) {
+    console.error('Error creating gallery image:', error);
+    return {
+      success: false,
+      error: error.message || 'Failed to create gallery image',
+    };
+  }
+
+  return { success: true, error: null, id: data.id };
+}
+
+/**
+ * Update an existing gallery image
+ */
+export async function updateGalleryImage(
+  id: string,
+  input: Partial<GalleryImageInput>
+): Promise<{ success: boolean; error: string | null }> {
+  const supabase = await createClientServer();
+
+  const { error } = await supabase
+    .from('gallery_images')
+    .update({
+      ...input,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', id);
+
+  if (error) {
+    console.error(`Error updating gallery image ${id}:`, error);
+    return {
+      success: false,
+      error: error.message || 'Failed to update gallery image',
+    };
+  }
+
+  return { success: true, error: null };
+}
+
+/**
+ * Toggle gallery image active status
+ */
+export async function toggleGalleryImageActive(
+  id: string,
+  isActive: boolean
+): Promise<{ success: boolean; error: string | null }> {
+  return updateGalleryImage(id, { is_active: isActive });
+}
+
+/**
+ * Toggle gallery image featured status
+ */
+export async function toggleGalleryImageFeatured(
+  id: string,
+  isFeatured: boolean
+): Promise<{ success: boolean; error: string | null }> {
+  return updateGalleryImage(id, { is_featured: isFeatured });
+}
+
+/**
+ * Delete a gallery image
+ */
+export async function deleteGalleryImage(
+  id: string
+): Promise<{ success: boolean; error: string | null }> {
+  const supabase = await createClientServer();
+
+  const { error } = await supabase
+    .from('gallery_images')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error(`Error deleting gallery image ${id}:`, error);
+    return {
+      success: false,
+      error: error.message || 'Failed to delete gallery image',
+    };
+  }
+
+  return { success: true, error: null };
+}
+
+/**
+ * Update gallery image display order
+ */
+export async function updateGalleryImageOrder(
+  id: string,
+  displayOrder: number
+): Promise<{ success: boolean; error: string | null }> {
+  return updateGalleryImage(id, { display_order: displayOrder });
 }

@@ -49,32 +49,32 @@ export interface ProjectConfig {
   };
 }
 
-// Product Beers - Comunidad de Producto de Valencia
+// Valencia Gospel Singers - Coro Gospel de Valencia
 export const projectConfig: ProjectConfig = {
   business: {
-    name: 'Product Beers',
-    domain: 'productbeers.com',
-    type: 'other', // Community platform
-    industry: 'product management',
+    name: 'Valencia Gospel Singers',
+    domain: 'valenciagospelsingers.com',
+    type: 'other', // Service / Entertainment
+    industry: 'music entertainment',
 
-    tagline: 'La comunidad de producto',
-    elevator_pitch: 'Conectamos, enriquecemos y cultivamos el talento de producto en Valencia a través de eventos únicos y networking auténtico.',
+    tagline: 'La emoción del gospel',
+    elevator_pitch: 'Somos un coro de gospel que lleva la alegría y la emoción a tu evento especial con pasión y profesionalidad.',
 
     core_features: [
-      'Eventos de producto de alto nivel',
-      'Networking con profesionales',
-      'Recursos y aprendizaje compartido',
-      'Comunidad inclusiva y cercana',
-      'Oportunidades laborales'
+      'Bodas con gospel en vivo',
+      'Eventos corporativos',
+      'Conciertos y actuaciones',
+      'Celebraciones especiales',
+      'Repertorio personalizado'
     ],
 
-    target_personas: ['product managers', 'product designers', 'product owners', 'entusiastas del producto'],
-    ideal_customer: 'Profesionales y entusiastas del producto en Valencia que buscan aprender, conectar y crecer',
+    target_personas: ['novios', 'organizadores de eventos', 'empresas', 'espacios culturales'],
+    ideal_customer: 'Personas que quieren hacer de su evento un momento inolvidable con la energía y emoción del gospel',
 
     main_competitor: undefined,
-    unique_value: 'La única comunidad de producto en Valencia que combina conocimiento de alto nivel con el ambiente cercano de unas cervezas',
+    unique_value: 'Coro gospel profesional en Valencia que combina la tradición del gospel con pasión y cercanía',
 
-    pricing_model: 'freemium', // Free community, events may have tickets
+    pricing_model: 'paid-only', // Custom quotes for events
     starting_price: undefined
   },
 

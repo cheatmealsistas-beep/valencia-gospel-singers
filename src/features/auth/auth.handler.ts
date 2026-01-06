@@ -1,5 +1,4 @@
 import { createError, fromZodError } from '@/shared/errors';
-import type { AttributionData } from '@/features/attribution';
 import { syncAdminRoleFromWhitelist } from '@/shared/auth/roles';
 import { isEmailWhitelisted } from '@/shared/lib/admin-whitelist';
 
@@ -80,7 +79,6 @@ export async function handleLogin(
 export async function handleRegister(
   email: string,
   password: string,
-  attributionData?: AttributionData,
   locale?: string
 ): Promise<AuthState> {
   const validationResult = registerSchema.safeParse({
@@ -95,7 +93,7 @@ export async function handleRegister(
     };
   }
 
-  const { user, error } = await signUp(validationResult.data, attributionData, locale);
+  const { user, error } = await signUp(validationResult.data, locale);
 
   if (error) {
     // Check if it's a duplicate email error
@@ -125,7 +123,6 @@ export async function handleRegister(
  */
 export async function handleMagicLink(
   email: string,
-  attributionData?: AttributionData,
   locale?: string
 ): Promise<AuthState> {
   const validationResult = magicLinkSchema.safeParse({ email });
@@ -147,7 +144,6 @@ export async function handleMagicLink(
 
   const { success, error } = await signInWithMagicLink(
     validationResult.data,
-    attributionData,
     locale
   );
 

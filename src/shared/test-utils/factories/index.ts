@@ -5,4 +5,4 @@
  * the actual types used in the application.
  */
 
-// TODO: Add factories for Product Beers entities (events, posts, etc.)
+// TODO: Add factories for Valencia Gospel Singers entities (events, members, etc.)

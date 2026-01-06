@@ -2,7 +2,6 @@
 
 import { redirect } from 'next/navigation';
 
-import type { AttributionData } from '@/features/attribution';
 import {
   handleLogin,
   handleLogout,
@@ -16,20 +15,6 @@ import { signInWithOAuth } from './auth.command';
 import type { AuthState } from './types';
 import type { OAuthProvider } from '@/shared/auth';
 
-/**
- * Parse attribution data from form data
- */
-function parseAttributionFromForm(formData: FormData): AttributionData | undefined {
-  const attributionJson = formData.get('attribution_data') as string;
-  if (!attributionJson) return undefined;
-
-  try {
-    return JSON.parse(attributionJson) as AttributionData;
-  } catch {
-    return undefined;
-  }
-}
-
 export async function loginAction(
   _prevState: AuthState | null,
   formData: FormData
@@ -41,7 +26,7 @@ export async function loginAction(
   const result = await handleLogin(email, password);
 
   if (result.success) {
-    redirect(`/${locale}/dashboard`);
+    redirect(`/${locale}/admin`);
   }
 
   return { ...result, email };
@@ -54,9 +39,8 @@ export async function registerAction(
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
   const locale = (formData.get('locale') as string) || 'en';
-  const attributionData = parseAttributionFromForm(formData);
 
-  const result = await handleRegister(email, password, attributionData, locale);
+  const result = await handleRegister(email, password, locale);
 
   return { ...result, email };
 }
@@ -67,9 +51,8 @@ export async function magicLinkAction(
 ): Promise<AuthState> {
   const email = formData.get('email') as string;
   const locale = (formData.get('locale') as string) || 'en';
-  const attributionData = parseAttributionFromForm(formData);
 
-  const result = await handleMagicLink(email, attributionData, locale);
+  const result = await handleMagicLink(email, locale);
 
   return { ...result, email };
 }

@@ -36,7 +36,6 @@ import { getEventById, getEventBySlug } from './events.query';
  * Handler para crear evento
  */
 export async function handleCreateEvent(
-  userId: string,
   input: EventInput
 ): Promise<{ success: boolean; data?: { id: string }; error?: string }> {
   // Validar input
@@ -62,7 +61,7 @@ export async function handleCreateEvent(
   }
 
   // Crear evento
-  const result = await createEvent(userId, data);
+  const result = await createEvent(data);
 
   if (result.error) {
     return { success: false, error: result.error };

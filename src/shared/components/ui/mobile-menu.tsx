@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { Menu, X, LayoutDashboard, User, LogOut } from 'lucide-react';
+import { Menu, X, LayoutDashboard, LogOut, Calendar, Users, Handshake, MessageSquare } from 'lucide-react';
 import { Button } from './button';
 import { brand } from '@/shared/config';
 import { logoutAction } from '@/features/auth/auth.actions';
@@ -46,7 +46,7 @@ export function MobileMenu() {
         <div className={`absolute left-0 right-0 top-14 z-50 border-b p-4 shadow-lg ${glassClasses}`}>
           <nav className="flex flex-col space-y-2">
             <Link
-              href={`/${locale}/dashboard`}
+              href={`/${locale}/admin`}
               onClick={() => setIsOpen(false)}
               className="flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
             >
@@ -54,12 +54,36 @@ export function MobileMenu() {
               <span>{t('dashboard')}</span>
             </Link>
             <Link
-              href={`/${locale}/my-account`}
+              href={`/${locale}/admin/eventos`}
               onClick={() => setIsOpen(false)}
               className="flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
             >
-              <User className="h-4 w-4" />
-              <span>{t('myAccount')}</span>
+              <Calendar className="h-4 w-4" />
+              <span>Eventos</span>
+            </Link>
+            <Link
+              href={`/${locale}/admin/equipo`}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+            >
+              <Users className="h-4 w-4" />
+              <span>Equipo</span>
+            </Link>
+            <Link
+              href={`/${locale}/admin/collaborators`}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+            >
+              <Handshake className="h-4 w-4" />
+              <span>Clientes</span>
+            </Link>
+            <Link
+              href={`/${locale}/admin/mensajes`}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+            >
+              <MessageSquare className="h-4 w-4" />
+              <span>Mensajes</span>
             </Link>
             <div className="border-t pt-2">
               <form action={logoutAction}>

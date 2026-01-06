@@ -20,19 +20,27 @@ export type SponsorTier = z.infer<typeof sponsorTierEnum>;
 
 // Schema para crear/editar evento
 export const eventSchema = z.object({
+  // Spanish (default)
   title: z.string().min(1, 'El título es requerido').max(200),
+  description: z.string().max(5000).optional(),
+  shortDescription: z.string().max(300).optional(),
+  locationName: z.string().max(200).optional(),
+  locationAddress: z.string().max(500).optional(),
+  // English translations
+  titleEn: z.string().max(200).optional(),
+  descriptionEn: z.string().max(5000).optional(),
+  shortDescriptionEn: z.string().max(300).optional(),
+  locationNameEn: z.string().max(200).optional(),
+  locationAddressEn: z.string().max(500).optional(),
+  // Common fields
   slug: z
     .string()
     .min(1)
     .max(200)
     .regex(/^[a-z0-9-]+$/, 'Solo letras minúsculas, números y guiones')
     .optional(),
-  description: z.string().max(5000).optional(),
-  shortDescription: z.string().max(300).optional(),
   date: z.coerce.date(),
   endDate: z.coerce.date().optional(),
-  locationName: z.string().max(200).optional(),
-  locationAddress: z.string().max(500).optional(),
   locationCity: z.string().max(100).default('Valencia'),
   locationMapsUrl: z.string().url().optional().or(z.literal('')),
   imageUrl: z.string().url().optional().or(z.literal('')),
@@ -97,14 +105,22 @@ export type EventSponsorInput = z.infer<typeof eventSponsorSchema>;
 
 export interface Event {
   id: string;
+  // Spanish (default)
   title: string;
-  slug: string;
   description: string | null;
   shortDescription: string | null;
-  date: Date;
-  endDate: Date | null;
   locationName: string | null;
   locationAddress: string | null;
+  // English translations
+  titleEn: string | null;
+  descriptionEn: string | null;
+  shortDescriptionEn: string | null;
+  locationNameEn: string | null;
+  locationAddressEn: string | null;
+  // Common fields
+  slug: string;
+  date: Date;
+  endDate: Date | null;
   locationCity: string;
   locationMapsUrl: string | null;
   imageUrl: string | null;
@@ -118,7 +134,6 @@ export interface Event {
   featured: boolean;
   createdAt: Date;
   updatedAt: Date;
-  createdBy: string | null;
   // Relaciones (opcionales, se cargan con joins)
   speakers?: EventSpeaker[];
   sponsors?: EventSponsor[];

@@ -2,14 +2,24 @@
   "home": "Inicio",
   "events": "Eventos",
   "collaborate": "Colabora",
-  "pricing": "Precios",
-  "about": "Acerca de",
+  "services": "Servicios",
+  "about": "Nosotros",
+  "gallery": "Galería",
+  "contact": "Contacto",
+  "blog": "Blog",
+  "privacy": "Privacidad",
+  "terms": "Términos",
   "dashboard": "Panel",
   "myAccount": "Mi Cuenta",
   "settings": "Configuración",
   "logout": "Cerrar Sesión",
   "login": "Iniciar Sesión",
   "register": "Registrarse",
+  "navigation": "Navegación",
+  "contactCta": "Contactar",
+  "closeMenu": "Cerrar menú",
+  "openMenu": "Abrir menú",
+  "whatsappMessage": "Hola, me interesa información sobre vuestros servicios",
   "admin": {
     "title": "Panel Admin",
     "backToApp": "Volver a la App",
@@ -18,13 +28,13 @@
       "events": "Eventos",
       "content": "Contenido",
       "gallery": "Galería",
-      "speakers": "Ponentes",
+      "speakers": "Artistas",
       "sponsors": "Sponsors",
-      "team": "Equipo",
+      "team": "Miembros",
       "communities": "Comunidades",
       "messages": "Mensajes",
       "infoBar": "Info-Bar",
-      "collaborators": "Colaboradores"
+      "collaborators": "Clientes"
     }
   }
 }

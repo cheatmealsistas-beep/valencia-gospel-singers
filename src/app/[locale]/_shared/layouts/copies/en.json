@@ -2,14 +2,24 @@
   "home": "Home",
   "events": "Events",
   "collaborate": "Collaborate",
-  "pricing": "Pricing",
-  "about": "About",
+  "services": "Services",
+  "about": "About Us",
+  "gallery": "Gallery",
+  "contact": "Contact",
+  "blog": "Blog",
+  "privacy": "Privacy",
+  "terms": "Terms",
   "dashboard": "Dashboard",
   "myAccount": "My Account",
   "settings": "Settings",
   "logout": "Logout",
   "login": "Log In",
   "register": "Sign Up",
+  "navigation": "Navigation",
+  "contactCta": "Contact",
+  "closeMenu": "Close menu",
+  "openMenu": "Open menu",
+  "whatsappMessage": "Hi, I'm interested in information about your services",
   "admin": {
     "title": "Admin Panel",
     "backToApp": "Back to App",
@@ -18,13 +28,13 @@
       "events": "Events",
       "content": "Content",
       "gallery": "Gallery",
-      "speakers": "Speakers",
+      "speakers": "Artists",
       "sponsors": "Sponsors",
-      "team": "Team",
+      "team": "Members",
       "communities": "Communities",
       "messages": "Messages",
       "infoBar": "Info-Bar",
-      "collaborators": "Collaborators"
+      "collaborators": "Clients"
     }
   }
 }

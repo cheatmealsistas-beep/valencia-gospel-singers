@@ -6,10 +6,6 @@ import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 import { getErrorMessage } from '@/shared/errors';
-import {
-  getCurrentAttribution,
-  captureAndPersist,
-} from '@/features/attribution';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
@@ -39,7 +35,6 @@ export function AuthTabs({ defaultTab = 'login' }: AuthTabsProps) {
   const { getLastMethod, setLastMethod } = useLastLoginMethod();
   const [lastMethod, setLastMethodState] = useState<LoginMethod | null>(null);
   const [activeTab, setActiveTab] = useState(defaultTab);
-  const [attributionJson, setAttributionJson] = useState('');
 
   // Auto magic link state
   const [failedAttempts, setFailedAttempts] = useState(0);
@@ -95,13 +90,8 @@ export function AuthTabs({ defaultTab = 'login' }: AuthTabsProps) {
     null
   );
 
-  // Capture attribution and load last login method on mount
+  // Load last login method on mount
   useEffect(() => {
-    captureAndPersist();
-    const attribution = getCurrentAttribution();
-    setAttributionJson(JSON.stringify(attribution));
-
-    // Load last used login method
     const method = getLastMethod();
     setLastMethodState(method);
   }, [getLastMethod]);
@@ -269,12 +259,6 @@ export function AuthTabs({ defaultTab = 'login' }: AuthTabsProps) {
           {/* Register Tab */}
           <TabsContent value="register" className="space-y-4 mt-4">
             <form action={registerFormAction} className="space-y-4">
-              <input
-                type="hidden"
-                name="attribution_data"
-                value={attributionJson}
-              />
-
               {registerState?.error && (
                 <div
                   className="text-sm text-destructive bg-destructive/10 p-3 rounded-md"
@@ -324,7 +308,7 @@ export function AuthTabs({ defaultTab = 'login' }: AuthTabsProps) {
                 >
                   {t('agreeToTerms')}<span className="text-destructive ml-0.5">*</span>{' '}
                   <Link
-                    href="/terms"
+                    href="/terminos"
                     className="text-primary hover:underline"
                     target="_blank"
                   >
@@ -332,7 +316,7 @@ export function AuthTabs({ defaultTab = 'login' }: AuthTabsProps) {
                   </Link>{' '}
                   {t('and')}{' '}
                   <Link
-                    href="/privacy"
+                    href="/privacidad"
                     className="text-primary hover:underline"
                     target="_blank"
                   >

@@ -1,0 +1,67 @@
+{
+  "title": "Miembros del coro",
+  "description": "Gestiona los integrantes de Valencia Gospel Singers que se muestran en la web.",
+  "add": "Añadir miembro",
+  "empty": {
+    "title": "Sin miembros",
+    "description": "Aún no has añadido ningún miembro del coro."
+  },
+  "form": {
+    "title": {
+      "create": "Nuevo miembro",
+      "edit": "Editar miembro"
+    },
+    "name": {
+      "label": "Nombre",
+      "placeholder": "Nombre completo"
+    },
+    "role": {
+      "label": "Rol / Cuerda",
+      "placeholder": "Ej: Soprano, Alto, Tenor, Bajo, Director..."
+    },
+    "photoUrl": {
+      "label": "URL de la foto",
+      "placeholder": "https://..."
+    },
+    "displayOrder": {
+      "label": "Orden de visualización",
+      "placeholder": "0"
+    },
+    "isActive": {
+      "label": "Activo",
+      "description": "Mostrar en la página pública"
+    },
+    "submit": {
+      "create": "Crear miembro",
+      "edit": "Guardar cambios"
+    },
+    "cancel": "Cancelar"
+  },
+  "card": {
+    "role": "Rol",
+    "order": "Orden"
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "activate": "Activar",
+    "deactivate": "Desactivar"
+  },
+  "status": {
+    "active": "Activo",
+    "inactive": "Inactivo"
+  },
+  "toast": {
+    "created": "Miembro creado",
+    "updated": "Miembro actualizado",
+    "deleted": "Miembro eliminado",
+    "toggled": "Estado actualizado",
+    "error": "Error al guardar"
+  },
+  "confirmDelete": {
+    "title": "¿Eliminar miembro?",
+    "description": "Esta acción no se puede deshacer.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar"
+  }
+}

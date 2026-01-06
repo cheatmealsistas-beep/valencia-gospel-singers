@@ -1,65 +1,91 @@
+import Link from 'next/link';
+import { Calendar, Users, MessageSquare, Handshake, Plus } from 'lucide-react';
 import { requireAdmin } from '@/shared/auth';
-import { AdminLayout } from '@/features/admin';
 import { getAdminStats } from '@/features/admin';
+import { getUnreadContactRequestsCount } from '@/features/contact';
 
 export default async function AdminDashboardPage() {
-  const user = await requireAdmin();
+  await requireAdmin();
   const stats = await getAdminStats();
+  const unreadMessages = await getUnreadContactRequestsCount();
 
   return (
-    <AdminLayout user={{ id: user.id, email: user.email }}>
-      <div className="space-y-6">
+    <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground mt-1">
-            Panel de administración de Product Beers
+            Panel de administración de Valencia Gospel Singers
           </p>
         </div>
 
         {/* Stats Grid */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <StatCard
-            title="Miembros"
-            value={stats.totalUsers}
-            description="Usuarios registrados"
-          />
-          <StatCard
             title="Eventos"
             value={stats.totalEvents}
-            description="Eventos totales"
+            description={`${stats.upcomingEvents} próximos`}
+            icon={<Calendar className="w-5 h-5" />}
+            href="/admin/eventos"
           />
           <StatCard
-            title="Próximos"
-            value={stats.upcomingEvents}
-            description="Eventos programados"
+            title="Miembros del coro"
+            value={stats.totalTeamMembers}
+            description="Integrantes activos"
+            icon={<Users className="w-5 h-5" />}
+            href="/admin/equipo"
           />
           <StatCard
-            title="Sponsors"
+            title="Mensajes"
+            value={unreadMessages}
+            description="Pendientes de leer"
+            icon={<MessageSquare className="w-5 h-5" />}
+            href="/admin/mensajes"
+            highlight={unreadMessages > 0}
+          />
+          <StatCard
+            title="Clientes"
             value={stats.totalSponsors}
-            description="Colaboradores activos"
+            description="Clientes activos"
+            icon={<Handshake className="w-5 h-5" />}
+            href="/admin/collaborators"
           />
         </div>
 
         {/* Quick Actions */}
         <div className="rounded-lg border bg-card p-6">
           <h2 className="text-lg font-semibold mb-4">Acciones rápidas</h2>
-          <div className="flex flex-wrap gap-2">
-            <a
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/admin/eventos"
+              className="inline-flex items-center rounded-md bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-400 hover:bg-purple-500/20 transition-colors border border-purple-500/20"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Nuevo evento
+            </Link>
+            <Link
+              href="/admin/equipo"
+              className="inline-flex items-center rounded-md bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-400 hover:bg-purple-500/20 transition-colors border border-purple-500/20"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Añadir miembro
+            </Link>
+            <Link
+              href="/admin/mensajes"
+              className="inline-flex items-center rounded-md bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-400 hover:bg-purple-500/20 transition-colors border border-purple-500/20"
+            >
+              <MessageSquare className="w-4 h-4 mr-2" />
+              Ver mensajes {unreadMessages > 0 && `(${unreadMessages})`}
+            </Link>
+            <Link
               href="/admin/collaborators"
-              className="inline-flex items-center rounded-md bg-primary/10 px-3 py-2 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
+              className="inline-flex items-center rounded-md bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-400 hover:bg-purple-500/20 transition-colors border border-purple-500/20"
             >
-              Gestionar colaboradores
-            </a>
-            <a
-              href="/dashboard/mensajes"
-              className="inline-flex items-center rounded-md bg-primary/10 px-3 py-2 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
-            >
-              Ver mensajes
-            </a>
+              <Handshake className="w-4 h-4 mr-2" />
+              Gestionar clientes
+            </Link>
           </div>
         </div>
-      </div>
-    </AdminLayout>
+    </div>
   );
 }
 
@@ -67,16 +93,31 @@ function StatCard({
   title,
   value,
   description,
+  icon,
+  href,
+  highlight,
 }: {
   title: string;
   value: number;
   description: string;
+  icon?: React.ReactNode;
+  href?: string;
+  highlight?: boolean;
 }) {
-  return (
-    <div className="rounded-lg border bg-card p-6">
-      <p className="text-sm font-medium text-muted-foreground">{title}</p>
-      <p className="text-3xl font-bold mt-1">{value}</p>
+  const content = (
+    <div className={`rounded-lg border bg-card p-6 transition-all ${href ? 'hover:border-purple-500/50 cursor-pointer' : ''} ${highlight ? 'border-purple-500/50 bg-purple-500/5' : ''}`}>
+      <div className="flex items-center justify-between mb-2">
+        <p className="text-sm font-medium text-muted-foreground">{title}</p>
+        {icon && <span className="text-purple-400">{icon}</span>}
+      </div>
+      <p className="text-3xl font-bold">{value}</p>
       <p className="text-xs text-muted-foreground mt-1">{description}</p>
     </div>
   );
+
+  if (href) {
+    return <Link href={href}>{content}</Link>;
+  }
+
+  return content;
 }

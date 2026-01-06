@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "Contacto - Valencia Gospel Singers",
+    "description": "Cuéntanos sobre tu evento y te preparamos una propuesta personalizada. Bodas, eventos corporativos, conciertos y más."
+  },
+  "hero": {
+    "badge": "Hablemos",
+    "title": "¿Tienes un",
+    "titleHighlight": "evento especial",
+    "titleEnd": "?",
+    "description": "Cuéntanos qué tienes en mente y te preparamos una propuesta a medida. Respondemos en menos de 24h."
+  },
+  "form": {
+    "name": {
+      "label": "Nombre",
+      "placeholder": "Tu nombre"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "tu@email.com"
+    },
+    "phone": {
+      "label": "Teléfono (opcional)",
+      "placeholder": "+34 600 000 000"
+    },
+    "eventType": {
+      "label": "Tipo de evento",
+      "placeholder": "Selecciona el tipo de evento",
+      "options": {
+        "boda": "Boda",
+        "corporativo": "Evento corporativo",
+        "concierto": "Concierto",
+        "privado": "Fiesta privada",
+        "otro": "Otro"
+      }
+    },
+    "eventDate": {
+      "label": "Fecha del evento (opcional)",
+      "placeholder": "Selecciona una fecha"
+    },
+    "message": {
+      "label": "Cuéntanos sobre tu evento",
+      "placeholder": "Describe tu evento: lugar, número de invitados, momentos especiales, canciones favoritas..."
+    },
+    "submit": "Enviar mensaje",
+    "submitting": "Enviando..."
+  },
+  "success": {
+    "title": "¡Mensaje enviado!",
+    "description": "Hemos recibido tu mensaje. Te responderemos lo antes posible.",
+    "cta": "Enviar otro mensaje"
+  },
+  "info": {
+    "title": "También puedes contactarnos por",
+    "whatsapp": {
+      "title": "WhatsApp",
+      "description": "Respuesta rápida y directa",
+      "cta": "Escribir por WhatsApp"
+    },
+    "email": {
+      "title": "Email",
+      "description": "Para propuestas detalladas"
+    },
+    "social": {
+      "title": "Redes sociales",
+      "description": "Síguenos y escríbenos"
+    }
+  }
+}

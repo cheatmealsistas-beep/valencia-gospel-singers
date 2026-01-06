@@ -6,8 +6,11 @@ export const APP_DESCRIPTION = 'Production-ready AI SaaS boilerplate';
 export const ROUTES = {
   // Public routes
   HOME: '/',
-  PRICING: '/pricing',
-  ABOUT: '/about',
+  NOSOTROS: '/nosotros',
+  EVENTOS: '/eventos',
+  GALERIA: '/galeria',
+  CONTACTO: '/contacto',
+  COLABORA: '/colabora',
 
   // Auth routes
   LOGIN: '/login',
@@ -15,9 +18,15 @@ export const ROUTES = {
   RESET_PASSWORD: '/reset-password',
 
   // Protected routes
-  DASHBOARD: '/dashboard',
+  DASHBOARD: '/admin',
+  ADMIN: '/admin',
   MY_ACCOUNT: '/my-account',
   SETTINGS: '/settings',
+
+  // Legal
+  TERMINOS: '/terminos',
+  PRIVACIDAD: '/privacidad',
+  COOKIES: '/cookies',
 } as const;
 
 export const SUPPORTED_LANGUAGES = ['en', 'es'] as const;

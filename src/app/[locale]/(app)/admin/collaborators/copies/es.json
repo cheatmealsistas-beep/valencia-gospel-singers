@@ -1,19 +1,19 @@
 {
   "meta": {
-    "title": "Colaboradores - Admin",
+    "title": "Clientes - Admin",
     "description": "Gestiona sponsors y hosters"
   },
-  "title": "Colaboradores",
-  "description": "Gestiona sponsors y hosters que aparecen en la web pública",
+  "title": "Clientes",
+  "description": "Gestiona sponsors y hosters: empresas y espacios que confían en nosotros",
   "tabs": {
     "all": "Todos",
     "sponsors": "Sponsors",
     "hosters": "Hosters"
   },
-  "addNew": "Añadir colaborador",
+  "addNew": "Añadir cliente",
   "empty": {
-    "title": "No hay colaboradores",
-    "description": "Añade tu primer sponsor o hoster para mostrarlos en la web pública."
+    "title": "No hay clientes",
+    "description": "Añade tu primer sponsor o hoster para llevar un registro."
   },
   "table": {
     "logo": "Logo",
@@ -33,8 +33,8 @@
   },
   "form": {
     "title": {
-      "create": "Añadir colaborador",
-      "edit": "Editar colaborador"
+      "create": "Añadir cliente",
+      "edit": "Editar cliente"
     },
     "name": {
       "label": "Nombre",
@@ -76,7 +76,7 @@
     },
     "notes": {
       "label": "Notas",
-      "placeholder": "Notas internas sobre este colaborador..."
+      "placeholder": "Notas internas sobre este cliente..."
     },
     "cancel": "Cancelar",
     "save": "Guardar",
@@ -89,16 +89,16 @@
     "deactivate": "Desactivar"
   },
   "messages": {
-    "created": "Colaborador creado correctamente",
-    "updated": "Colaborador actualizado correctamente",
-    "deleted": "Colaborador eliminado correctamente",
-    "activated": "Colaborador activado",
-    "deactivated": "Colaborador desactivado",
+    "created": "Cliente creado correctamente",
+    "updated": "Cliente actualizado correctamente",
+    "deleted": "Cliente eliminado correctamente",
+    "activated": "Cliente activado",
+    "deactivated": "Cliente desactivado",
     "error": "Algo salió mal. Por favor, inténtalo de nuevo."
   },
   "confirmDelete": {
-    "title": "¿Eliminar colaborador?",
-    "description": "Esta acción no se puede deshacer. El colaborador se eliminará permanentemente.",
+    "title": "¿Eliminar cliente?",
+    "description": "Esta acción no se puede deshacer. El cliente se eliminará permanentemente.",
     "cancel": "Cancelar",
     "confirm": "Eliminar"
   }

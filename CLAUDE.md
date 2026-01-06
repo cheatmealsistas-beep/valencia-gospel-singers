@@ -1,4 +1,495 @@
-# SaaS Boilerplate - Claude Code Context
+# Valencia Gospel Singers - Claude Code Context
+
+## Sobre el Proyecto
+
+**Valencia Gospel Singers** es la web oficial de un coro de gospel valenciano que ofrece servicios musicales para eventos, bodas, celebraciones corporativas y conciertos propios.
+
+### Propuesta de Valor
+- Coro profesional de gospel en Valencia
+- Servicios para bodas, eventos corporativos, fiestas privadas
+- Conciertos y actuaciones propias
+- Experiencia musical emotiva y vibrante
+
+### Audiencia
+- Parejas que buscan coro para su boda
+- Empresas organizando eventos corporativos
+- Público general interesado en conciertos de gospel
+- Turistas internacionales en Valencia (EN/ES)
+
+---
+
+## Identidad Visual y Branding
+
+### Estilo: Moderno y Vibrante
+
+**Paleta de Colores**:
+```css
+/* Colores principales */
+--gospel-purple: #7C3AED;      /* Púrpura vibrante - principal */
+--gospel-purple-dark: #5B21B6; /* Púrpura oscuro - hover/accent */
+--gospel-orange: #F97316;      /* Naranja energético - CTAs secundarios */
+--gospel-gold: #FBBF24;        /* Dorado - acentos, iconos */
+
+/* Neutros */
+--gospel-dark: #1F2937;        /* Textos principales */
+--gospel-gray: #6B7280;        /* Textos secundarios */
+--gospel-light: #F9FAFB;       /* Fondos claros */
+--gospel-white: #FFFFFF;       /* Fondos puros */
+
+/* Estados */
+--gospel-success: #10B981;     /* Confirmaciones */
+--gospel-error: #EF4444;       /* Errores */
+```
+
+**Tipografía**:
+- Headlines: Font bold/extrabold, tracking tight
+- Body: Font regular, buena legibilidad
+- Accent: Puede usarse una display font para títulos hero
+
+**Estética general**:
+- Energía y movimiento (animaciones sutiles)
+- Fotos del grupo en acción (conciertos, bodas)
+- Gradientes púrpura-naranja para fondos hero
+- Iconografía relacionada con música (notas, micrófonos, ondas de sonido)
+- Sensación de comunidad y alegría
+
+### Tono de Comunicación
+
+**Voz de marca**:
+- Cercano pero profesional
+- Entusiasta sin ser exagerado
+- Emotivo (la música gospel es emoción)
+- Inclusivo (todos son bienvenidos)
+
+**Ejemplos de copy**:
+```
+❌ "Servicios de coro gospel"
+✅ "Ponemos la banda sonora a tus momentos más especiales"
+
+❌ "Contactar"
+✅ "Hablemos de tu evento"
+
+❌ "Ver eventos"
+✅ "Descubre dónde cantamos"
+```
+
+---
+
+## Estructura de la Web
+
+### Secciones Públicas
+
+| Ruta | Propósito | Estado |
+|------|-----------|--------|
+| `/` | Home - Hero + servicios destacados + próximos eventos | ✅ |
+| `/servicios` | Catálogo de servicios (bodas, eventos, corporativos) | 🚧 |
+| `/eventos` | Calendario de conciertos y actuaciones | ✅ |
+| `/sobre-nosotros` | Historia del coro, valores, trayectoria | ✅ |
+| `/galeria` | Galería de fotos con filtros y lightbox | ✅ |
+| `/blog` | Noticias, artículos sobre gospel | Por crear |
+| `/colabora` | Para nuevos miembros o patrocinadores | ✅ |
+| `/contacto` | Formulario de contacto para contrataciones | ✅ |
+
+### Panel de Administración
+
+| Ruta | Propósito | Estado |
+|------|-----------|--------|
+| `/admin` | Dashboard con métricas y accesos rápidos | ✅ |
+| `/admin/eventos` | CRUD de eventos y conciertos | ✅ |
+| `/admin/galeria` | Gestión de fotos con categorías | ✅ |
+| `/admin/equipo` | Gestión de integrantes del coro | ✅ |
+| `/admin/mensajes` | Mensajes de contacto recibidos | ✅ |
+| `/admin/collaborators` | Gestión de clientes (sponsors/hosters) | ✅ |
+| `/admin/contenido` | CMS: editar textos, imágenes | Por crear |
+| `/admin/blog` | Gestión de artículos | Por crear |
+| `/admin/suscriptores` | Lista de suscriptores | Por crear |
+| `/admin/configuracion` | Info-bar, redes sociales | Por crear |
+
+---
+
+## Features del Proyecto
+
+### Features Core
+
+| Feature | Descripción | Estado |
+|---------|-------------|--------|
+| `home` | Landing page con hero, servicios, próximos eventos | ✅ Implementado |
+| `services` | Páginas de servicios (bodas, eventos, corporativos) | 🚧 Parcial |
+| `events` | Gestión y visualización de eventos/conciertos | ✅ Implementado |
+| `members` | Gestión de integrantes del coro (admin only) | ✅ Implementado (como "equipo") |
+| `contact` | Formulario de contacto/contratación | ✅ Implementado |
+| `gallery` | Galería de fotos con admin y página pública | ✅ Implementado |
+| `collaborators` | Gestión de clientes (sponsors/hosters) | ✅ Implementado (renombrado a "Clientes") |
+| `about` | Sobre nosotros | ✅ Implementado |
+| `collaborate` | Página para nuevos miembros y patrocinadores | ✅ Implementado |
+| `blog` | Sistema de noticias/artículos | Por crear |
+| `cms` | Contenido editable desde admin | 🚧 Parcial (via copies) |
+| `subscribers` | Lista de suscriptores para notificaciones | Por crear |
+| `emails` | Sistema de emails con Resend | 🚧 Parcial |
+
+### Features Heredadas (del boilerplate)
+
+| Feature | Descripción | Estado |
+|---------|-------------|--------|
+| `auth` | Login para admin (solo email/password) | Adaptar |
+| `admin` | Panel de administración completo (CMS + CRUD + emails) | Adaptar |
+
+### Features a Eliminar
+
+| Feature | Razón |
+|---------|-------|
+| `billing` | No hay suscripciones/pagos online |
+| `dashboard` | Reemplazado por admin específico |
+| `my-account` | No hay cuentas de usuario público |
+| `organizations` | No aplica |
+| `affiliates` | No aplica |
+
+---
+
+## Modelo de Datos
+
+### Tabla: `members` (Integrantes)
+
+```sql
+CREATE TABLE members (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  photo_url TEXT,
+  voice_type TEXT NOT NULL CHECK (
+    voice_type IN ('soprano', 'alto', 'tenor', 'bajo')
+  ),
+  is_active BOOLEAN DEFAULT true,
+  sort_order INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+**Campos**:
+- `name`: Nombre del integrante
+- `photo_url`: URL de foto (opcional, Supabase Storage)
+- `voice_type`: Tipo de voz (soprano, alto, tenor, bajo)
+- `is_active`: Si está activo en el coro
+- `sort_order`: Para ordenar en la web
+
+### Tabla: `events` (Eventos)
+
+```sql
+CREATE TABLE events (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT NOT NULL,
+  description TEXT,
+  event_date TIMESTAMPTZ NOT NULL,
+  location TEXT NOT NULL,
+  address TEXT,
+  image_url TEXT,
+  is_free BOOLEAN DEFAULT true,
+  ticket_url TEXT,                    -- URL externa o WhatsApp
+  ticket_price DECIMAL(10,2),
+  is_published BOOLEAN DEFAULT false,
+  is_featured BOOLEAN DEFAULT false,  -- Para mostrar en home
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+**Campos**:
+- `title`: Nombre del evento
+- `description`: Descripción del evento
+- `event_date`: Fecha y hora
+- `location`: Nombre del lugar (ej: "Palau de la Música")
+- `address`: Dirección completa
+- `image_url`: Imagen del evento
+- `is_free`: Si es gratuito
+- `ticket_url`: Enlace externo para compra de entradas o WhatsApp
+- `ticket_price`: Precio (si aplica)
+- `is_published`: Si se muestra públicamente
+- `is_featured`: Si aparece destacado en home
+
+### Tabla: `contact_requests` (Solicitudes de Contacto)
+
+```sql
+CREATE TABLE contact_requests (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  event_type TEXT NOT NULL CHECK (
+    event_type IN ('boda', 'corporativo', 'privado', 'otro')
+  ),
+  event_date DATE,
+  message TEXT NOT NULL,
+  status TEXT DEFAULT 'pending' CHECK (
+    status IN ('pending', 'contacted', 'confirmed', 'rejected')
+  ),
+  admin_notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+**Campos**:
+- `name`, `email`, `phone`: Datos de contacto
+- `event_type`: Tipo de evento (boda, corporativo, privado, otro)
+- `event_date`: Fecha aproximada del evento
+- `message`: Descripción de lo que necesitan
+- `status`: Estado de la solicitud
+- `admin_notes`: Notas internas del admin
+
+### Tabla: `gallery_images` (Galería)
+
+```sql
+CREATE TABLE gallery_images (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT,
+  description TEXT,
+  image_url TEXT NOT NULL,
+  thumbnail_url TEXT,
+  alt_text TEXT,
+  category TEXT NOT NULL DEFAULT 'otros' CHECK (
+    category IN ('conciertos', 'bodas', 'eventos', 'ensayos', 'otros')
+  ),
+  event_id UUID REFERENCES events(id) ON DELETE SET NULL,
+  display_order INTEGER DEFAULT 0,
+  is_featured BOOLEAN DEFAULT false,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+**Campos**:
+- `title`, `description`: Info opcional de la imagen
+- `image_url`: URL de la imagen (Supabase Storage)
+- `thumbnail_url`: Miniatura (opcional)
+- `alt_text`: Texto alternativo para accesibilidad
+- `category`: Categoría (conciertos, bodas, eventos, ensayos, otros)
+- `event_id`: Relación opcional con un evento
+- `display_order`: Orden de visualización
+- `is_featured`: Si aparece destacada
+- `is_active`: Si está visible públicamente
+
+### Tabla: `blog_posts` (Blog)
+
+```sql
+CREATE TABLE blog_posts (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  slug TEXT UNIQUE NOT NULL,
+  title TEXT NOT NULL,
+  excerpt TEXT,
+  content TEXT NOT NULL,
+  cover_image_url TEXT,
+  is_published BOOLEAN DEFAULT false,
+  published_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+### Tabla: `cms_content` (Contenido Editable)
+
+```sql
+CREATE TABLE cms_content (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  key TEXT UNIQUE NOT NULL,           -- Ej: 'home.hero.title', 'about.history'
+  section TEXT NOT NULL,              -- Ej: 'home', 'about', 'services'
+  content_type TEXT NOT NULL CHECK (
+    content_type IN ('text', 'rich_text', 'image', 'video', 'testimonial', 'list')
+  ),
+  value_es TEXT,                      -- Contenido en español
+  value_en TEXT,                      -- Contenido en inglés
+  metadata JSONB,                     -- Datos extra (alt text, link, autor testimonial, etc.)
+  sort_order INTEGER DEFAULT 0,
+  is_visible BOOLEAN DEFAULT true,
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+**Ejemplos de keys**:
+- `home.hero.title` - Título principal del hero
+- `home.hero.subtitle` - Subtítulo del hero
+- `home.hero.cta` - Texto del botón CTA
+- `home.testimonials.1` - Primer testimonial (metadata: {author, role, image})
+- `services.wedding.title` - Título sección bodas
+- `about.history` - Texto de historia (rich_text)
+
+### Tabla: `subscribers` (Suscriptores)
+
+```sql
+CREATE TABLE subscribers (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  name TEXT,
+  is_active BOOLEAN DEFAULT true,
+  subscribed_at TIMESTAMPTZ DEFAULT now(),
+  unsubscribed_at TIMESTAMPTZ
+);
+```
+
+### Tabla: `email_logs` (Historial de Emails)
+
+```sql
+CREATE TABLE email_logs (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  email_type TEXT NOT NULL CHECK (
+    email_type IN ('contact_confirmation', 'contact_notification', 'event_announcement')
+  ),
+  recipient_email TEXT NOT NULL,
+  subject TEXT NOT NULL,
+  status TEXT DEFAULT 'sent' CHECK (
+    status IN ('sent', 'failed', 'bounced')
+  ),
+  event_id UUID REFERENCES events(id) ON DELETE SET NULL,
+  contact_request_id UUID REFERENCES contact_requests(id) ON DELETE SET NULL,
+  error_message TEXT,
+  sent_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+### Tabla: `app_settings` (Configuración Global)
+
+```sql
+CREATE TABLE app_settings (
+  key TEXT PRIMARY KEY,
+  value JSONB NOT NULL,
+  category TEXT NOT NULL CHECK (
+    category IN ('info_bar', 'general', 'email', 'social')
+  ),
+  updated_at TIMESTAMPTZ DEFAULT now()
+);
+```
+
+**Settings disponibles**:
+- `info_bar`: { enabled, message_es, message_en, type: 'info'|'warning', link_url, link_text }
+- `contact_email`: Email del admin para notificaciones
+- `social_links`: { instagram, facebook, youtube, spotify }
+
+---
+
+## Sistema de Emails (Resend)
+
+### Emails Automáticos
+
+| Trigger | Email | Destinatario |
+|---------|-------|--------------|
+| Nueva solicitud de contacto | Confirmación de recepción | Usuario que envió formulario |
+| Nueva solicitud de contacto | Notificación de nueva solicitud | Admin (ADMIN_EMAIL) |
+| Evento publicado | Anuncio de nuevo evento | Lista de suscriptores |
+
+### Plantillas de Email
+
+**1. Confirmación al usuario** (`contact_confirmation`):
+```
+Asunto: ¡Hemos recibido tu mensaje! - Valencia Gospel Singers
+
+Hola {nombre},
+
+Gracias por contactar con Valencia Gospel Singers. Hemos recibido tu
+solicitud para {tipo_evento} y te responderemos lo antes posible.
+
+Si tienes alguna pregunta urgente, puedes contactarnos por WhatsApp: {whatsapp}
+
+¡Nos encantará ser parte de tu evento!
+
+Valencia Gospel Singers
+```
+
+**2. Notificación al admin** (`contact_notification`):
+```
+Asunto: Nueva solicitud de contacto - {tipo_evento}
+
+Nueva solicitud recibida:
+
+Nombre: {nombre}
+Email: {email}
+Teléfono: {telefono}
+Tipo de evento: {tipo_evento}
+Fecha aproximada: {fecha}
+
+Mensaje:
+{mensaje}
+
+---
+Gestionar en: {admin_url}/solicitudes
+```
+
+**3. Anuncio de evento** (`event_announcement`):
+```
+Asunto: ¡Nuevo concierto! {titulo} - Valencia Gospel Singers
+
+¡Hola!
+
+Tenemos un nuevo evento que no te puedes perder:
+
+{titulo}
+📅 {fecha}
+📍 {lugar}
+
+{descripcion}
+
+{cta_button: "Consigue tu entrada" → ticket_url}
+
+¡Te esperamos!
+
+Valencia Gospel Singers
+
+---
+[Darse de baja de estos emails]
+```
+
+### Flujo de Envío
+
+```
+Usuario envía formulario
+        ↓
+    Server Action
+        ↓
+┌───────┴───────┐
+↓               ↓
+Guardar en BD   Enviar emails (Resend)
+                ├→ Confirmación al usuario
+                └→ Notificación al admin
+        ↓
+  Registrar en email_logs
+```
+
+---
+
+## Flujos Principales
+
+### 1. Usuario quiere contratar al coro
+
+```
+Home → Servicios → Selecciona tipo → Contacto (formulario)
+                                   ↓
+                        Admin recibe notificación
+                                   ↓
+                        Admin gestiona solicitud
+```
+
+### 2. Usuario quiere asistir a concierto
+
+```
+Home (próximos eventos) → Eventos → Detalle evento → CTA "Consigue tu entrada"
+                                                           ↓
+                                              Link externo o WhatsApp
+```
+
+### 3. Admin gestiona evento
+
+```
+Admin → Eventos → Crear/Editar evento → Publicar
+                                           ↓
+                              Aparece en web pública
+```
+
+### 4. Alguien quiere unirse al coro
+
+```
+Colabora → Info sobre unirse → Formulario de contacto (event_type: 'otro')
+```
+
+---
 
 ## Meta-instrucciones (Eficiencia)
 
@@ -63,7 +554,7 @@
 
 **Velocidad de iteración**:
 - Minimizar pasos para probar cambios localmente
-- Todo debe ser testeable sin deploy (Stripe CLI, Supabase local)
+- Todo debe ser testeable sin deploy (Supabase local)
 - Despliegues rápidos y sin fricción
 - Si requiere muchos pasos manuales, automatizarlo
 
@@ -74,7 +565,7 @@
 **Prioridad absoluta**:
 1. Carga < 200ms
 2. Clicks tienden a cero
-3. Conversiones
+3. Conversiones (contrataciones + asistencia a eventos)
 4. Perfección visual
 
 **"Un mono debe poder hacerlo"**:
@@ -89,7 +580,6 @@
 - Prefetch en hover/focus
 - NO skeleton loaders si añaden delay - transición instantánea
 - Evitar spinners - si algo tarda, el diseño está mal
-- Evitar caché y datos mockeados en desarrollo - usar datos reales
 
 **Mobile WOW**:
 - Desktop importante, pero mobile debe ser experiencia WOW
@@ -98,22 +588,23 @@
 - Gestos naturales donde aplique
 
 **Storytelling > Features**:
-- Guiar al usuario con narrativa
+- Guiar al usuario con narrativa emocional
 - Beneficios antes que funcionalidades
 - CTAs orientados a resultado, no acción
+- La música gospel es emoción - transmitirlo
 
 **Maximizar conversiones**:
 - Un CTA principal por pantalla
 - Reducir campos en formularios al mínimo
-- Social proof donde sea relevante
-- Urgencia/escasez cuando aplique
+- Social proof donde sea relevante (testimonios, fotos)
+- Urgencia en eventos próximos
 
 **Lo que NO hacer**:
-- Cosas que no domino y puedan dar problemas
 - Animaciones complejas sin propósito
 - Modales innecesarios
 - Confirmaciones excesivas
 - Tooltips como muleta de mal diseño
+- Auto-reproducción de audio/vídeo
 
 **Checklist antes de entregar UI**:
 - [ ] ¿Puede completarse en menos clicks?
@@ -121,6 +612,7 @@
 - [ ] ¿Hay feedback inmediato en cada acción?
 - [ ] ¿Los estados de error son útiles?
 - [ ] ¿Funciona en mobile?
+- [ ] ¿Transmite la energía del gospel?
 
 ---
 
@@ -135,398 +627,46 @@
 1. **Meta-copies** (Prompts para LLM) → En `features/X/meta-copies/`
 2. **Copies finales** (Textos reales) → En `app/[locale]/[ruta]/copies/`
 
-**Estructura**:
-```
-src/
-├── features/auth/
-│   ├── meta-copies/
-│   │   └── texts.json          # PROMPTS: Qué texto se necesita y por qué
-│   └── components/
-│
-├── app/[locale]/(auth)/login/
-│   ├── page.tsx
-│   └── copies/
-│       ├── en.json              # TEXTOS FINALES
-│       └── es.json
-│
-└── app/[locale]/_shared/ui/
-    └── copies/
-        ├── en.json              # UI compartida (save, cancel, etc.)
-        └── es.json
-```
+**Idiomas**: Español (es) + Inglés (en)
 
-### Meta-copies: Prompts para LLM
-
-Los meta-copies **NO son textos finales**. Son **instrucciones** para que un LLM (Claude) genere los textos.
-
-**Ejemplo** (`features/auth/meta-copies/texts.json`):
-```json
-{
-  "login": {
-    "title": "Page title for login. Keep it welcoming. Ex: 'Welcome back'",
-    "email": "Email input label. Keep it simple and clear.",
-    "password": "Password input label. Standard form label.",
-    "submit": "Login button text. Be action-oriented. Ex: 'Sign in', 'Log in'"
-  }
-}
-```
-
-**Claude lee esto + `shared/config/brand.ts`** y genera:
-
-```json
-// app/[locale]/(auth)/login/copies/en.json (GENERADO)
-{
-  "title": "Welcome back!",
-  "email": "Email",
-  "password": "Password",
-  "submit": "Sign in"
-}
-```
-
-### Copies Finales: Route-Level
-
-Los copies finales viven en **app router**, no en features.
-
-**Por qué**:
-- Copies dependen de **dónde se usan** (contexto de la ruta)
-- Mismo componente puede tener diferentes textos en diferentes rutas
-- User puede editarlos sin tocar `core/`
-
-**Auto-namespace por Ruta**:
-- `app/(auth)/login/copies/` → namespace `"login"`
-- `app/(app)/dashboard/copies/` → namespace `"dashboard"`
-- `app/(admin)/admin/users/copies/` → namespace `"admin-users"`
-- `app/_shared/ui/copies/` → namespace `"ui"`
-
-**Uso en componentes**:
-```typescript
-// En login page
-const t = useTranslations('login'); // Lee de app/(auth)/login/copies/
-t('title') // "Welcome back!"
-
-// En componente compartido
-const t = useTranslations('ui'); // Lee de app/_shared/ui/copies/
-t('save') // "Save"
-```
-
-### Flujo: Generar Copies
-
-**1. Claude lee meta-copies**:
-```bash
-# User: "Generate copies for login page"
-# Claude lee:
-# - features/auth/meta-copies/texts.json (prompts)
-# - shared/config/brand.ts (contexto del negocio)
-```
-
-**2. Claude genera copies**:
-```json
-// app/(auth)/login/copies/en.json (GENERADO por Claude)
-{
-  "title": "Welcome to TaskMaster!",  // Usa brand.name
-  "email": "Your email",
-  "password": "Password",
-  "submit": "Sign in to your account"
-}
-```
-
-**3. User edita si quiere**:
-```json
-// User puede editar manualmente
-{
-  "title": "Hey there! 👋",  // ← Personalizado
-  ...
-}
-```
-
-**4. Traducir a otros idiomas**:
-```bash
-# Claude lee en.json como source + meta-copies para contexto
-# Genera es.json, fr.json, etc.
-```
-
-### Principios de Copy
+### Principios de Copy para Valencia Gospel Singers
 
 **Beneficio > Función**:
 ```json
 // ❌ MAL
-"submit": "Submit"
+"cta": "Contactar"
 
 // ✅ BIEN
-"submit": "Create my project"
+"cta": "Hablemos de tu evento"
 ```
 
-**Acción clara y específica**:
+**Emocional y cercano**:
 ```json
 // ❌ MAL
-"created": "Item created successfully"
+"hero.subtitle": "Coro de gospel profesional"
 
 // ✅ BIEN
-"created": "Your project is ready! Start adding tasks now."
+"hero.subtitle": "La música que hace latir tu corazón"
 ```
 
-**Tono conversacional**:
-- Usa "tu/tus" en lugar de "el/la"
-- Evita jerga técnica innecesaria
-- Sé directo pero amable
-
-### Añadir Traducciones a Nueva Ruta
-
-**Caso 1: Ruta usa componentes de core directamente**
-
-```typescript
-// app/(app)/settings/page.tsx
-import { SettingsForm } from '@/features/my-account';
-
-export default function SettingsPage() {
-  return <SettingsForm />;
-}
-```
-
-```bash
-# 1. Claude lee meta-copies de my-account
-# 2. Genera copies en app/(app)/settings/copies/en.json
-# 3. Componente usa useTranslations('settings')
-```
-
-**Caso 2: Ruta con componentes custom**
-
-```typescript
-// features/onboarding/page.tsx + custom components
-```
-
-```bash
-# 1. Crear meta-copies (opcional, solo si componentes complejos):
-mkdir -p src/features/onboarding/meta-copies
-
-# 2. Claude genera copies:
-# app/(app)/onboarding/copies/en.json
-```
-
-### Traducciones Compartidas
-
-**UI Components** (`app/_shared/ui/copies/`):
+**Orientado a la acción**:
 ```json
-{
-  "save": "Save",
-  "cancel": "Cancel",
-  "loading": "Loading...",
-  "delete": "Delete"
-}
+// ❌ MAL
+"events.empty": "No hay eventos"
+
+// ✅ BIEN
+"events.empty": "Estamos preparando nuevas sorpresas. ¡Vuelve pronto!"
 ```
 
-**Layouts/Nav** (`app/_shared/layouts/copies/`):
-```json
-{
-  "home": "Home",
-  "pricing": "Pricing",
-  "dashboard": "Dashboard",
-  "logout": "Logout"
-}
-```
+### Ejemplos de Copy por Sección
 
-### Ejemplos Buenos vs Malos
-
-| Contexto | ❌ Malo | ✅ Bueno |
-|----------|---------|----------|
-| Empty state | "No hay datos" | "No tienes proyectos aún. Crea tu primero y empieza a organizar ideas" |
-| Error | "Error 500" | "Algo salió mal de nuestro lado. Estamos en ello. Intenta en unos minutos" |
-| Loading | "Loading..." | "Preparando tu dashboard..." |
-| Success | "Saved" | "Cambios guardados. Tu equipo ya puede verlos" |
-| CTA | "Submit" | "Crear proyecto" / "Guardar cambios" / "Enviar invitación" |
-
----
-
-## i18n Automation Scripts
-
-### Propósito
-
-Sistema completo de scripts para automatizar la creación, generación y validación de traducciones. Vive en `/scripts/i18n/` siguiendo VSA (vertical slice architecture).
-
-### Documentación Completa
-
-📖 **Punto de entrada**: `scripts/i18n/00-START-HERE.md`
-
-### Scripts Disponibles
-
-| Script | Propósito | Cuándo Usar |
-|--------|-----------|-------------|
-| `i18n:create-structure` | Crear archivos vacíos en.json/es.json | Siempre (paso 1) |
-| `i18n:generate-ai` | Generar contenido con Claude API desde meta-copies | Si tienes meta-copies |
-| `i18n:sync-keys` | Sincronizar keys faltantes EN↔ES | Mantenimiento, después de añadir keys |
-| `i18n:validate` | Validar todas las traducciones | Antes de commit, en CI/CD |
-| `i18n:generate-static` | **Generar archivos estáticos** (build-time) | **Automático** en dev/build |
-
-### Comandos de Claude (Recomendado)
-
-Para uso interactivo, usa los comandos de Claude que ejecutan estos scripts:
-
-- `/generate-copies --path=<ruta>` - Crear estructura + generar con AI
-- `/validate-i18n` - Validar todo el proyecto
-- `/sync-i18n` - Sincronizar keys faltantes
-
-**Nota**: Los comandos de Claude aún están por crear (TO CREATE).
-
-### Performance: Build-Time Static Generation
-
-El sistema genera archivos estáticos **automáticamente** antes de dev/build para máximo performance:
-
-**Antes** (legacy):
-- 32 archivos JSON leídos del disco en **cada request**
-- ~50-100ms de overhead por página ❌
-
-**Ahora** (optimizado):
-- Archivos consolidados pre-generados en build
-- Import estático: **<1ms** por request ✅
-- Mismo comportamiento en dev y prod
-- Serverless-friendly (bundled en deployment)
-
-**Regenerar manualmente**:
-```bash
-npm run i18n:generate-static
-```
-
-### Workflow Típico
-
-**Crear nueva página con traducciones**:
-
-```bash
-# 1. Crear estructura vacía
-npm run i18n:create-structure -- --path=app/[locale]/(landing)/pricing
-
-# 2. Opción A: Generar con AI (si tienes meta-copies)
-npm run i18n:generate-ai -- \
-  --source=src/features/home/meta-copies \
-  --target=src/app/[locale]/(landing)/pricing
-
-# 2. Opción B: Editar manualmente
-# Edita: app/[locale]/(landing)/pricing/copies/en.json
-# Edita: app/[locale]/(landing)/pricing/copies/es.json
-
-# 3. Regenerar archivos estáticos
-npm run i18n:generate-static
-
-# 4. Validar
-npm run i18n:validate
-```
-
-**Editar traducciones existentes**:
-```bash
-# 1. Editar archivos en copies/
-vim app/[locale]/(landing)/pricing/copies/en.json
-
-# 2. Regenerar estáticos
-npm run i18n:generate-static
-
-# 3. El dev server recarga automáticamente
-```
-
-**Sincronizar traducciones**:
-
-```bash
-# Ver qué falta sin cambiar archivos
-npm run i18n:sync-keys -- --dry-run
-
-# Sincronizar con placeholders
-npm run i18n:sync-keys
-
-# Sincronizar con traducción AI
-npm run i18n:sync-keys -- --ai
-```
-
-### Estructura del Sistema
-
-```
-scripts/i18n/
-├── 00-START-HERE.md              # Documentación de entrada
-├── agent/                         # Referencias a comandos de Claude
-│   ├── README.md
-│   ├── 01-generate-copies.txt
-│   ├── 02-validate-translations.txt
-│   └── 03-sync-translation-keys.txt
-├── generators/
-│   ├── step-1-create-translation-structure.mjs
-│   ├── step-2-generate-content-with-ai.mjs
-│   └── step-3-sync-missing-keys.mjs
-├── validation/
-│   └── validate-all-translations.mjs
-└── lib/
-    ├── error-handler.mjs
-    ├── anthropic-client.mjs
-    ├── namespace-detector.mjs
-    └── brand-loader.mjs
-```
-
-### Exit Codes (para CI/CD)
-
-Los scripts usan exit codes estándar para integración en pipelines:
-
-- `0` - Success
-- `1` - Validation error / Invalid arguments
-- `2` - Source files not found
-- `3` - Filesystem error
-- `4` - API error (Anthropic)
-- `5` - Target validation failed
-
-### Requisitos
-
-**Para crear estructura (step-1)**:
-- Node.js >= 20.9.0
-
-**Para generar con AI (step-2)**:
-- Variable de entorno: `ANTHROPIC_API_KEY`
-- Meta-copies en `features/*/meta-copies/texts.json`
-
-**Para sincronizar con AI (step-3 --ai)**:
-- Variable de entorno: `ANTHROPIC_API_KEY`
-
-### Pre-commit Hook
-
-El proyecto tiene configurado un pre-commit hook con Husky que valida automáticamente:
-
-1. ✅ Type check (`npm run type-check`)
-2. ✅ Lint (`npm run lint`)
-3. ✅ **Translations (`npm run i18n:validate`)** ← Añadido
-
-**Ubicación**: `.husky/pre-commit`
-
-**Comportamiento**:
-- Se ejecuta automáticamente antes de cada commit
-- Si alguna validación falla, el commit se bloquea
-- Muestra claramente qué está fallando
-- Bypass con `git commit --no-verify` (solo si es absolutamente necesario)
-
-**Ejemplo de output cuando falla i18n**:
-```
-🌐 Validating translations...
-
-❌ Errors found:
-1. app/[locale]/(landing)/pricing/copies
-   Missing translation files: es
-
-❌ Translation validation failed!
-💡 Fix the errors above or use 'git commit --no-verify' to skip
-```
-
-### Ejemplos Avanzados
-
-**Generar para múltiples páginas**:
-```bash
-# Crear estructura para varias páginas
-for page in about contact blog; do
-  npm run i18n:create-structure -- --path=app/[locale]/(landing)/$page
-done
-
-# Validar todo
-npm run i18n:validate
-```
-
-**CI/CD Integration**:
-```yaml
-# .github/workflows/validate.yml
-- name: Validate translations
-  run: npm run i18n:validate
-```
+| Sección | ❌ Malo | ✅ Bueno |
+|---------|---------|----------|
+| Hero CTA | "Ver servicios" | "Descubre lo que podemos hacer por ti" |
+| Servicios bodas | "Coro para bodas" | "Haz de tu boda un momento inolvidable" |
+| Eventos vacío | "No hay eventos" | "Pronto anunciaremos nuevas fechas" |
+| Contacto submit | "Enviar" | "Cuéntanos tu idea" |
+| Sobre nosotros | "Historia" | "Nuestra historia, nuestra pasión" |
 
 ---
 
@@ -553,9 +693,6 @@ npm run i18n:validate
     aria-invalid={!!error}
     aria-required="true"
   />
-  <p id="email-help" className="text-sm text-muted-foreground">
-    {t('form.email.help')}
-  </p>
   {error && (
     <p id="email-error" role="alert" className="text-sm text-destructive">
       {error}
@@ -564,23 +701,10 @@ npm run i18n:validate
 </div>
 ```
 
-**Feedback Dinámico con ARIA Live**:
-```typescript
-// Para toasts, notificaciones, errores que aparecen
-<div aria-live="polite" aria-atomic="true">
-  {message}
-</div>
-
-// Para errores críticos
-<div role="alert" aria-live="assertive">
-  {criticalError}
-</div>
-```
-
 **Navegación por Teclado**:
 - Todo interactivo debe ser focusable (Tab)
-- Orden de tab lógico (no usar tabindex > 0)
-- Focus visible claro (no solo outline por defecto)
+- Orden de tab lógico
+- Focus visible claro
 - Escape cierra modals/dropdowns
 - Enter/Space activan buttons
 
@@ -595,179 +719,29 @@ npm run i18n:validate
 }
 ```
 
-### Checklist A11y por Componente
-
-**Buttons**:
-- [ ] Texto descriptivo (no solo "Click here")
-- [ ] `aria-label` si solo tiene icono
-- [ ] Estado disabled visible y anunciado
-- [ ] Focus ring visible
-
-**Forms**:
-- [ ] Labels asociados con `htmlFor`
-- [ ] Help text con `aria-describedby`
-- [ ] Errores con `role="alert"`
-- [ ] Required marcado con `aria-required`
-- [ ] Invalid marcado con `aria-invalid`
-
-**Modals/Dialogs**:
-- [ ] Focus trap activo
-- [ ] Escape para cerrar
-- [ ] `role="dialog"` y `aria-modal="true"`
-- [ ] `aria-labelledby` apunta al título
-- [ ] Focus vuelve al trigger al cerrar
-
-**Images**:
-- [ ] `alt` descriptivo (no "imagen de...")
-- [ ] `alt=""` para decorativas
-- [ ] No texto importante solo en imagen
-
----
-
-## Empty States & Touchpoints
-
-### Empty States = Oportunidades
-
-Los empty states NO son errores. Son momentos de onboarding y conversión.
-
-**Estructura obligatoria**:
-```typescript
-<EmptyState
-  icon={<FolderIcon />}
-  title={t('empty.title')}           // "Aún no tienes proyectos"
-  description={t('empty.description')} // "Los proyectos te ayudan a..."
-  action={{
-    label: t('empty.action'),        // "Crear mi primer proyecto"
-    onClick: handleCreate
-  }}
-/>
-```
-
-**Principios**:
-- Nunca culpar al usuario ("No has creado nada")
-- Explicar el beneficio de tomar acción
-- CTA claro y específico
-- Icono/ilustración amigable (no warning/error)
-
-### Cada Touchpoint = Feedback
-
-**Regla**: Toda acción del usuario debe tener respuesta inmediata.
-
-| Acción | Feedback Esperado |
-|--------|-------------------|
-| Click en button | Estado visual inmediato (pressed) |
-| Submit form | Button disabled + texto "Guardando..." |
-| Acción exitosa | Toast de confirmación + siguiente paso |
-| Error | Mensaje específico + cómo resolver |
-| Hover en interactivo | Cambio visual sutil |
-| Focus | Outline claro y consistente |
-
-**Patrón de Toast**:
-```typescript
-// Usar toast de sonner con aria-live
-toast.success(t('success.created'), {
-  description: t('success.createdDescription')
-});
-
-toast.error(t('errors.generic'), {
-  description: t('errors.tryAgain'),
-  action: {
-    label: t('actions.retry'),
-    onClick: handleRetry
-  }
-});
-```
-
-### Loading States
-
-**NO usar**:
-- Spinners genéricos sin contexto
-- Skeleton loaders que añaden delay percibido
-- "Loading..." sin más info
-
-**SÍ usar**:
-- Texto específico: "Guardando proyecto..."
-- Optimistic UI cuando sea posible
-- Progress indicators para operaciones largas
-
----
-
-## Checklist Pre-Entrega (Completo)
-
-### Funcionalidad
-- [ ] ¿Funciona el happy path completo?
-- [ ] ¿Los errores muestran mensajes útiles?
-- [ ] ¿Hay validación client-side y server-side?
-
-### UX/UI
-- [ ] ¿Puede completarse en menos clicks?
-- [ ] ¿Está claro qué hacer sin leer instrucciones?
-- [ ] ¿Hay feedback inmediato en cada acción?
-- [ ] ¿Empty states invitan a tomar acción?
-- [ ] ¿Funciona en mobile (touch targets, responsive)?
-
-### i18n & Copy
-- [ ] ¿TODOS los textos están en `copies/` co-localizadas?
-- [ ] ¿Creaste `/copies/en.json` y `/copies/es.json` en la feature?
-- [ ] ¿Copy orientado a beneficio, no función?
-- [ ] ¿Help text en campos que lo necesiten?
-- [ ] ¿Errores específicos y accionables?
-
-### Accesibilidad
-- [ ] ¿Labels asociados a inputs?
-- [ ] ¿Errores tienen role="alert" o aria-live?
-- [ ] ¿Navegable solo con teclado?
-- [ ] ¿Focus visible en elementos interactivos?
-- [ ] ¿Animaciones respetan prefers-reduced-motion?
-
-### Performance
-- [ ] ¿Carga inicial < 200ms?
-- [ ] ¿No hay layout shifts (CLS)?
-- [ ] ¿Imágenes optimizadas?
-
 ---
 
 ## Quick Start
 
 ### Comandos de Desarrollo
 
-**Scripts optimizados (para Claude y CI)**:
 ```bash
 npm run dev          # Development server
-npm run build        # Production build (output mínimo)
-npm run type-check   # TypeScript (sin colores, solo errores)
-npm run lint         # ESLint (quiet mode, formato compacto)
-npm run test         # Vitest (reporter básico, solo resumen)
+npm run build        # Production build
+npm run type-check   # TypeScript
+npm run lint         # ESLint
+npm run test         # Vitest
 ```
-
-**Scripts verbose (para debugging manual)**:
-```bash
-npm run build:verbose      # Build con output completo
-npm run type-check:verbose # TypeScript con colores y detalles
-npm run lint:verbose       # ESLint con warnings completos
-npm run test:verbose       # Vitest con output detallado
-```
-
-**Otros comandos útiles**:
-```bash
-npm run lint:fix     # Auto-fix de ESLint
-npm run check        # Pre-commit checks (type-check + lint + test)
-npm run pre-push     # Validación completa antes de push
-```
-
-**Nota sobre optimización**:
-Los comandos por defecto están optimizados para reducir output y consumo de tokens en Claude Code. Usan flags como `--quiet`, `--pretty false`, `--reporter=dot`. Para debugging manual donde necesites ver detalles completos, usa las versiones `:verbose`.
 
 ### Claude Code Commands
 - `/new-feature [name]` - Crear feature completa
-- `/add-page [name]` - Crear página con SEO completo (sitemap, metadata, traducciones)
+- `/add-page [name]` - Crear página con SEO completo
 - `/add-action [name]` - Añadir Server Action
 - `/fix-types` - Corregir errores TypeScript
 - `/add-translation [keys]` - Añadir traducciones
 - `/review-feature [name]` - Revisar feature
 - `/audit` - Auto-auditoría completa
 - `/security-audit` - Auditoría de seguridad
-- `/update-feature-context [name]` - Actualizar CLAUDE.md de feature
 
 ---
 
@@ -802,16 +776,10 @@ src/
 import { Button } from '@/shared/components/ui';
 import { getUser } from '@/shared/auth';
 import { createClientServer } from '@/shared/database/supabase';
-import { LoginForm } from '@/features/auth';
+import { EventCard } from '@/features/events';
 
 // ❌ NUNCA - imports cross-feature
 import { something } from '@/features/other-feature';
-```
-
-### Validación de Arquitectura
-```bash
-# ESLint detecta violaciones de arquitectura
-npm run lint
 ```
 
 ---
@@ -822,16 +790,16 @@ npm run lint
 |----------|------------|
 | Framework | Next.js 16 (App Router, RSC) |
 | Database | Supabase (PostgreSQL + RLS) |
-| Auth | Supabase Auth (email, magic-link, OAuth) |
-| Payments | Stripe (Pricing Table + Webhooks) |
+| Auth | Supabase Auth (solo admin, email/password) |
 | UI | shadcn/ui + Tailwind + Radix + Magic UI |
 | Forms | React Hook Form + Zod |
 | i18n | next-intl (en/es) |
+| Media | Supabase Storage (fotos, vídeos) |
 
 ### MCP Tools Disponibles
 
 - **Magic UI** (`mcp__magicui__*`): Componentes animados - textos, efectos, decorativos
-- **Context7** (`mcp__context7__*`): Documentación actualizada de librerías (Next.js, React, etc.)
+- **Context7** (`mcp__context7__*`): Documentación actualizada de librerías
 
 ---
 
@@ -841,146 +809,56 @@ npm run lint
 ```typescript
 'use server';
 import { revalidatePath } from 'next/cache';
-import { getUser } from '@/shared/auth';
-import { handleCreateX } from './x.handler';
+import { requireAdmin } from '@/shared/auth';
+import { handleCreateEvent } from './events.handler';
 
-export async function createXAction(prevState: any, formData: FormData) {
-  const user = await getUser();
-  if (!user) return { success: false, error: 'Not authenticated' };
+export async function createEventAction(prevState: any, formData: FormData) {
+  await requireAdmin();
 
   const input = {
-    name: formData.get('name') as string
+    title: formData.get('title') as string,
+    event_date: formData.get('event_date') as string,
+    location: formData.get('location') as string,
   };
 
-  const result = await handleCreateX(user.id, input);
+  const result = await handleCreateEvent(input);
 
-  if (result.success) revalidatePath('/x');
+  if (result.success) revalidatePath('/eventos');
   return result;
 }
 ```
 
 ### Handler con Validación
 ```typescript
-import { xSchema, XInput } from './types';
-import { createX } from './x.command';
+import { eventSchema, EventInput } from './types';
+import { createEvent } from './events.command';
 
-export async function handleCreateX(userId: string, input: XInput) {
-  const validation = xSchema.safeParse(input);
+export async function handleCreateEvent(input: EventInput) {
+  const validation = eventSchema.safeParse(input);
   if (!validation.success) {
     return {
       success: false,
       error: validation.error.issues[0].message
     };
   }
-  return createX(userId, validation.data);
+  return createEvent(validation.data);
 }
 ```
 
-### Query con RLS
+### Query Pública (sin auth)
 ```typescript
 import { createClientServer } from '@/shared/database/supabase';
 
-export async function getX(userId: string) {
+export async function getPublishedEvents() {
   const supabase = await createClientServer();
   const { data, error } = await supabase
-    .from('x')
+    .from('events')
     .select('*')
-    .eq('user_id', userId)
-    .single();
+    .eq('is_published', true)
+    .gte('event_date', new Date().toISOString())
+    .order('event_date', { ascending: true });
 
-  return {
-    data,
-    error: error?.message || null
-  };
-}
-```
-
-### Command (Write Operation)
-```typescript
-import { createClientServer } from '@/shared/database/supabase';
-import { XInput } from './types';
-
-export async function createX(userId: string, input: XInput) {
-  const supabase = await createClientServer();
-  const { error } = await supabase
-    .from('x')
-    .insert({
-      user_id: userId,
-      ...input
-    });
-
-  return {
-    success: !error,
-    error: error?.message || null
-  };
-}
-```
-
-### Migración SQL
-```sql
--- Crear tabla
-CREATE TABLE x (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
-  name TEXT NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT now(),
-  updated_at TIMESTAMPTZ DEFAULT now()
-);
-
--- Habilitar RLS
-ALTER TABLE x ENABLE ROW LEVEL SECURITY;
-
--- Política para usuarios
-CREATE POLICY "Users can manage own x"
-  ON x FOR ALL
-  USING (auth.uid() = user_id);
-
--- Política para service role (webhooks)
-CREATE POLICY "Service role has full access"
-  ON x FOR ALL
-  TO service_role
-  USING (true);
-
--- Trigger para updated_at
-CREATE TRIGGER update_x_updated_at
-  BEFORE UPDATE ON x
-  FOR EACH ROW
-  EXECUTE FUNCTION update_updated_at_column();
-```
-
-### Componente Form
-```typescript
-'use client';
-
-import { useEffect } from 'react';
-import { useActionState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
-import { createXAction } from '../x.actions';
-
-export function XForm() {
-  const t = useTranslations('x');
-  const [state, action, pending] = useActionState(createXAction, null);
-
-  useEffect(() => {
-    if (state?.success) toast.success(t('created'));
-    if (state?.error) toast.error(state.error);
-  }, [state, t]);
-
-  return (
-    <form action={action} className="space-y-4">
-      <div>
-        <Label htmlFor="name">{t('name')}</Label>
-        <Input id="name" name="name" required />
-      </div>
-      <Button type="submit" disabled={pending}>
-        {pending ? t('creating') : t('create')}
-      </Button>
-    </form>
-  );
+  return { data, error: error?.message || null };
 }
 ```
 
@@ -990,77 +868,46 @@ export function XForm() {
 
 | Tipo | Convención | Ejemplo |
 |------|------------|---------|
-| Schemas | camelCase + Schema | `xSchema` |
-| Types | PascalCase | `XInput`, `X` |
-| Actions | verb + X + Action | `createXAction` |
-| Handlers | handle + Verb + X | `handleCreateX` |
-| Queries | get/list + X | `getX`, `listXs` |
-| Commands | verb + X | `createX`, `updateX`, `deleteX` |
+| Schemas | camelCase + Schema | `eventSchema` |
+| Types | PascalCase | `EventInput`, `Event` |
+| Actions | verb + X + Action | `createEventAction` |
+| Handlers | handle + Verb + X | `handleCreateEvent` |
+| Queries | get/list + X | `getEvent`, `listEvents` |
+| Commands | verb + X | `createEvent`, `updateEvent` |
 
 ---
 
-## Features Actuales
-
-| Feature | Descripción | Estado |
-|---------|-------------|--------|
-| `auth` | Login, register, magic-link, OAuth | ✅ |
-| `billing` | Stripe subscriptions | ✅ |
-| `dashboard` | Stats del usuario | ✅ |
-| `my-account` | Perfil y preferencias | ✅ |
-| `admin` | Panel de administración con gestión de usuarios, settings, email journeys | ✅ |
-| `home` | Home page admin-ready con arquitectura para A/B testing | ✅ |
-| `organizations` | Multi-org support | 🚧 WIP |
-
----
-
-## Estructura de Directorios
+## Estructura de Directorios (Objetivo)
 
 ```
 /src
-├── features/               # Features (VSA + CQRS)
-│   ├── auth/               # Autenticación
-│   ├── billing/            # Stripe subscriptions
-│   ├── dashboard/          # Dashboard de usuario
+├── features/
+│   ├── auth/               # Login admin
 │   ├── admin/              # Panel de administración
 │   ├── home/               # Landing page
-│   ├── my-account/         # Perfil de usuario
-│   ├── analytics/          # Analytics tracking
-│   ├── attribution/        # Attribution tracking
-│   └── affiliates/         # Affiliate program
+│   ├── services/           # Servicios (bodas, eventos, etc.)
+│   ├── events/             # Eventos y conciertos
+│   ├── members/            # Gestión de integrantes
+│   ├── contact/            # Formulario de contacto
+│   ├── gallery/            # Galería multimedia
+│   ├── blog/               # Noticias y artículos
+│   ├── about/              # Sobre nosotros
+│   └── collaborate/        # Colabora con nosotros
 ├── shared/
-│   ├── auth/               # getUser, requireUser
+│   ├── auth/               # getUser, requireAdmin
 │   ├── components/ui/      # shadcn/ui
 │   ├── config/             # brand.ts
 │   ├── database/supabase/  # Supabase clients
-│   ├── payments/stripe/    # Stripe integration
 │   └── types/              # Tipos compartidos
-├── app/                    # Next.js App Router
+├── app/
 │   ├── [locale]/
-│   │   ├── (app)/          # Rutas protegidas
-│   │   ├── (auth)/         # Rutas de auth
-│   │   ├── (admin)/        # Rutas de admin
-│   │   └── (landing)/      # Rutas públicas
-│   └── api/                # API routes
-├── i18n/                   # Configuración i18n
-└── test/                   # Test utilities
+│   │   ├── (public)/       # Rutas públicas (home, eventos, servicios...)
+│   │   ├── (auth)/         # Login admin
+│   │   └── (admin)/        # Panel de administración
+│   └── api/                # API routes (si necesario)
+├── i18n/
+└── test/
 ```
-
----
-
-## Base de Datos
-
-### Tablas Principales
-- `profiles` - Datos de usuario (auto-creado via trigger)
-- `subscriptions` - Suscripciones Stripe
-- `customers` - Clientes Stripe
-- `organizations` - Organizaciones
-- `attribution_events` - Tracking de conversión
-
-### Reglas
-- **Siempre** habilitar RLS
-- Foreign key a `auth.users` con `ON DELETE CASCADE`
-- Triggers para `updated_at`
-- Políticas para `user` y `service_role`
 
 ---
 
@@ -1073,416 +920,161 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 
-# Stripe
-STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
-NEXT_PUBLIC_STRIPE_PRICING_TABLE_ID=
-
 # App
 NEXT_PUBLIC_APP_URL=
 ```
 
 ### Opcionales
 ```bash
-NEXT_PUBLIC_OAUTH_PROVIDERS=google,github
+# Admin emails (whitelist)
+ADMIN_EMAILS=director@valenciagospelsingers.com
+
+# Email (para notificaciones y anuncios)
 RESEND_API_KEY=
-SENTRY_DSN=
+RESEND_FROM_EMAIL=hola@valenciagospelsingers.com
+
+# WhatsApp (para CTAs de eventos)
+NEXT_PUBLIC_WHATSAPP_NUMBER=+34600000000
 ```
 
 ---
 
-## Testing
+## Panel de Administración
 
-```bash
-npm run test        # Unit tests (Vitest)
-npm run test:e2e    # E2E tests (Playwright)
+### Acceso
+- Solo usuarios con email en `ADMIN_EMAILS`
+- Login simple email/password
+- No hay registro público
+
+### Funcionalidades
+
+**Dashboard** (`/admin`) - ✅ Implementado:
+- Estadísticas: eventos totales, próximos eventos, miembros del equipo, mensajes sin leer
+- Lista de próximos eventos
+- Accesos rápidos a las secciones
+
+**Contenido / CMS** (`/admin/contenido`) - Por crear:
+- Editor visual para textos de la web
+- Gestión de testimonios
+- Subida de imágenes
+
+**Equipo** (`/admin/equipo`) - ✅ Implementado:
+- Lista de integrantes del coro en grid de cards
+- CRUD completo con formulario modal
+- Foto de perfil (URL externa)
+- Rol/cargo en el coro
+- Toggle activar/desactivar visibilidad
+- Ordenamiento por display_order
+
+**Eventos** (`/admin/eventos`) - ✅ Implementado:
+- Lista de eventos con estado (published/draft)
+- Crear evento con formulario completo
+- Editar eventos existentes
+- Campos: título, slug, descripción, fecha, ubicación, imagen, etc.
+- Soporte para speakers y sponsors por evento
+- Publicar/despublicar eventos
+- Marcar como destacado (featured)
+
+**Mensajes** (`/admin/mensajes`) - ✅ Implementado:
+- Lista de mensajes de contacto recibidos
+- Vista detalle con toda la información
+- Estados: pending, read, replied, archived
+- Marcar como leído/respondido
+
+**Galería** (`/admin/galeria`) - ✅ Implementado:
+- CRUD completo de imágenes con formulario modal
+- Categorías: conciertos, bodas, eventos, ensayos, otros
+- Filtros por categoría en vista pública
+- Asociar imágenes a eventos existentes
+- Toggle activar/desactivar visibilidad
+- Toggle destacado para mostrar en home
+- Lightbox en página pública con navegación
+- Ordenamiento por display_order
+
+**Clientes** (`/admin/collaborators`) - ✅ Implementado:
+- Lista de clientes (sponsors/hosters) en grid
+- CRUD completo con formulario modal
+- Logo, nombre, descripción, website
+- Tipo: sponsor o hoster
+- Toggle activar/desactivar visibilidad
+- Ordenamiento por display_order
+
+**Blog** (`/admin/blog`) - Por crear:
+- Lista de artículos (borradores y publicados)
+- Editor de contenido enriquecido (rich text)
+- Subir imagen de portada
+- SEO: editar slug, excerpt
+
+**Suscriptores** (`/admin/suscriptores`) - Por crear:
+- Lista de suscriptores activos
+- Exportar lista (CSV)
+- Dar de baja manualmente
+
+**Configuración** (`/admin/configuracion`) - Por crear:
+- Info-bar: Activar/desactivar, mensaje ES/EN
+- Redes sociales: Links a Instagram, Facebook, YouTube
+- Email de contacto
+
+### Estructura de Rutas Admin (Implementada)
+
+```
+/admin
+├── page.tsx                    # Dashboard (✅)
+├── eventos/
+│   ├── page.tsx               # Lista de eventos (✅)
+│   └── nuevo/page.tsx         # Crear evento (✅)
+├── galeria/
+│   └── page.tsx               # Grid con CRUD inline (✅)
+├── equipo/
+│   └── page.tsx               # Lista con CRUD inline (✅)
+├── mensajes/
+│   └── page.tsx               # Mensajes de contacto (✅)
+├── collaborators/
+│   └── page.tsx               # Gestión de clientes (✅)
+├── contenido/                  # Por crear
+├── blog/                       # Por crear
+├── suscriptores/              # Por crear
+└── configuracion/             # Por crear
 ```
 
 ---
 
-## Admin Panel
-
-### Descripción
-Panel de administración completo para gestionar la plataforma SaaS. Permite al owner/admins:
-- Ver métricas del negocio (usuarios, suscripciones, MRR)
-- Gestionar usuarios y roles de administrador
-- Configurar info-bar global (banner de información)
-- Controlar email journeys (activar/desactivar)
-- Ver productos de cross-sell
-
-### Acceso y Seguridad
-
-**Sistema de Roles**:
-- Roles almacenados en `profiles.user_flags` (array de strings)
-- Roles disponibles: `'admin'`, `'super_admin'`
-- Super admins son también admins para efectos de permisos
-
-**Whitelist de Emails**:
-- Variable de entorno: `ADMIN_EMAILS` (emails separados por comas)
-- Ejemplo: `ADMIN_EMAILS=admin@example.com,owner@company.com`
-- Auto-asignación: usuarios con email en whitelist reciben rol 'admin' automáticamente
-- Helper en `/src/shared/lib/admin-whitelist.ts`
-
-**Gestión de Admins desde UI**:
-- Ruta: `/admin/users`
-- Solo admins pueden promover/degradar otros usuarios
-- Seguridad: Un admin NO puede remover sus propios privilegios
-- Super admins NO pueden ser degradados desde UI
-
-**Protección de Rutas**:
-```typescript
-// En server components/actions
-import { requireAdmin } from '@/shared/auth';
-
-export default async function AdminPage() {
-  const user = await requireAdmin(); // Redirige a /login o /dashboard si no es admin
-  // ... código de admin
-}
-```
-
-### Estructura de Files
-
-```
-/src/features/admin/
-├── CLAUDE.md                           # Contexto de la feature
-├── types/index.ts                      # Zod schemas + TS types
-├── admin.query.ts                      # Queries (SELECT)
-│   ├── getAllSettings()
-│   ├── getSetting<T>()
-│   ├── getAdminStats()
-│   ├── getAllUsers()
-│   └── getUsersWithFilters()
-├── admin.command.ts                    # Commands (INSERT/UPDATE/DELETE)
-│   ├── updateSetting()
-│   ├── toggleEmailJourney()
-│   ├── addUserFlag()
-│   └── removeUserFlag()
-├── admin.handler.ts                    # Business logic + validation
-├── admin.actions.ts                    # Server Actions
-│   ├── makeUserAdminAction()
-│   └── removeUserAdminAction()
-└── components/
-    ├── admin-layout.tsx                # Layout con sidebar
-    ├── stats-dashboard.tsx             # Métricas del negocio
-    ├── info-bar-settings.tsx           # Config de info-bar
-    ├── email-journeys-control.tsx      # Control de email journeys
-    ├── cross-sell-panel.tsx            # Panel de cross-sell
-    ├── user-list.tsx                   # Lista de usuarios con filtros
-    └── user-role-badge.tsx             # Badge de rol (Admin/User)
-
-/src/app/[locale]/(admin)/admin/
-├── layout.tsx                          # requireAdmin() + AdminLayout
-├── page.tsx                            # Dashboard (stats + cross-sell)
-├── users/page.tsx                      # Gestión de usuarios
-├── emails/page.tsx                     # Email journeys
-└── settings/page.tsx                   # Info-bar settings
-
-/src/shared/
-├── auth/roles.ts                       # hasRole, isAdmin, requireAdmin, syncAdminRoleFromWhitelist
-├── lib/admin-whitelist.ts              # isEmailWhitelisted, getWhitelistedEmails
-└── components/
-    ├── info-bar.tsx                    # Server component (fetch settings)
-    └── info-bar-client.tsx             # Client component (dismiss logic)
-```
-
-### Base de Datos
-
-**Tabla: app_settings**
-```sql
-CREATE TABLE app_settings (
-  key TEXT PRIMARY KEY,
-  value JSONB NOT NULL,
-  category TEXT NOT NULL CHECK (
-    category IN ('info_bar', 'email', 'features', 'cross_sell', 'general')
-  ),
-  description TEXT,
-  updated_by UUID REFERENCES auth.users(id),
-  updated_at TIMESTAMPTZ DEFAULT now()
-);
-```
-
-**RLS Policies**:
-- Admins: acceso completo (SELECT, INSERT, UPDATE, DELETE)
-- Public: solo lectura de `info_bar` (necesario para mostrar en páginas no autenticadas)
-
-**Settings Disponibles**:
-- `info_bar`: InfoBarSettings (enabled, mode, scope, messages, dismissible)
-- `email_journeys`: EmailJourneysSettings (objeto con journeys y sus estados)
-- `feature_flags`: FeatureFlags (flags de features experimentales)
-- `cross_sell_products`: CrossSellProductsSettings (productos para cross-sell)
-
-### Flujos Principales
-
-**1. Auto-asignación de Admin al Registro**:
-```typescript
-// En callback de Supabase Auth
-const user = await getUser();
-if (user?.email) {
-  await syncAdminRoleFromWhitelist(user.id, user.email);
-}
-```
-
-**2. Promover Usuario a Admin**:
-```typescript
-// Desde /admin/users
-await makeUserAdminAction(userId);
-// → Valida permisos → addUserFlag('admin') → Revalidate path
-```
-
-**3. Configurar Info-Bar**:
-```typescript
-// Desde /admin/settings
-await updateInfoBarAction({
-  enabled: true,
-  mode: 'info',
-  scope: 'all',
-  messages: { en: '...', es: '...' },
-  dismissible: true
-});
-// → Valida con Zod → updateInfoBarSettings() → Revalidate all pages
-```
-
-### Testing Checklist
-
-- [ ] Email en whitelist recibe admin al registrarse
-- [ ] Email NO en whitelist NO recibe admin
-- [ ] Admin puede promover otros usuarios
-- [ ] Admin NO puede remover sus propios privilegios
-- [ ] Super admin NO puede ser degradado
-- [ ] Info-bar se muestra según scope (all/authenticated/unauthenticated)
-- [ ] Info-bar puede ser dismissed (localStorage)
-- [ ] Email journey toggle actualiza correctamente
-- [ ] Stats dashboard muestra métricas correctas
-
-### Troubleshooting
-
-**"No puedo acceder a /admin"**:
-1. Verifica que tu email está en `ADMIN_EMAILS`
-2. Logout y login de nuevo (para ejecutar syncAdminRoleFromWhitelist)
-3. Verifica en Supabase que `profiles.user_flags` contiene `['admin']`
-
-**"Auto-asignación no funciona"**:
-- Verifica que `ADMIN_EMAILS` está definida correctamente (sin espacios extra)
-- Verifica que el callback de auth está llamando a `syncAdminRoleFromWhitelist()`
-
-**"No puedo promover usuarios"**:
-- Solo admins pueden promover
-- Verifica que el usuario a promover existe
-- Check browser console para errores de Server Action
-
----
-
-## Scripts Directory
-
-⚠️ **Estado Actual**: Estructura legacy con deuda técnica documentada.
-
-### Documentación
-
-📖 **Análisis Completo**: Ver `scripts/ARCHITECTURE.md` para:
-- Análisis de escalabilidad
-- Problemas identificados
-- Plan de refactorización (3 fases)
-- Decision record
-
-📖 **Guía Rápida**: Ver `scripts/README.md` para:
-- Uso de cada script
-- Convenciones de naming
-- Cómo añadir nuevos scripts
-
-### Reglas Mientras Tanto
-
-Para **evitar empeorar** la situación actual:
-
-**DO** ✅:
-- Añadir pasos de setup a `scripts/setup-script/categories/`
-- Usar naming `verb-noun.mjs` (ej: `generate-feature.mjs`)
-- Poner generators en `scripts/generators/` organizados
-- Documentar scripts complejos
-
-**DON'T** ❌:
-- Añadir más archivos en `scripts/` root
-- Modificar `setup.mjs` legacy (usar `setup-script/` en su lugar)
-- Crear patterns de naming inconsistentes
-- Mezclar responsabilidades en un solo archivo
-
-### Sistema de Setup
-
-**Usar el nuevo sistema modular**:
-```bash
-npm run setup          # Setup interactivo con menús
-npm run setup:verify   # Verificar progreso
-npm run setup:resume   # Resumir setup pausado
-```
-
-**NO usar**:
-- `setup.mjs` legacy (deprecated)
-- Scripts granulares directos (`setup-db.mjs`, `setup-seo.mjs`, etc.)
-
-### Estado: Grade C+ (60/100)
-
-**Próximo review**: Q1 2026 o cuando se añadan 5+ scripts nuevos
-
-**Criterios para refactor**:
-- [ ] Setup system estable
-- [ ] Paths corregidos
-- [ ] Sin bugs críticos
-- [ ] Tiempo dedicado disponible (1-2 semanas)
-
----
-
-## Testing Strategy
-
-### Filosofía: Tests Pragmáticos
-
-**NO testear por testear**. Solo añade tests donde aporten valor real.
-
-### Estructura de Tests
-
-```
-/src/features/[name]/
-├── __tests__/
-│   ├── README.md                    # 📖 Guía de testing + templates
-│   ├── [name].handler.test.ts.example  # Template listo para usar
-│   └── [name].handler.test.ts       # Tests reales (cuando aplique)
-```
-
-**Cada feature incluye**:
-- `__tests__/README.md` - Guía específica con templates copy-paste
-- `.test.ts.example` - Ejemplo funcional listo para renombrar
-- Checklist en `CLAUDE.md` de la feature
-
-### ¿Cuándo Añadir Tests Unitarios?
-
-**SÍ testear** ✅:
-- Lógica de negocio compleja (cálculos, algoritmos, reglas)
-- Validaciones más allá de `required` (patrones, rangos, dependencias)
-- Transformaciones de datos no triviales
-- Edge cases críticos (división por cero, overflow, formatos)
-- Utils compartidos en `/shared/lib/` (usados por múltiples features)
-- Código crítico (pagos, permisos, operaciones financieras)
-
-**NO testear** ❌:
-- CRUD simple que solo usa schema.safeParse() + DB call
-- Handlers que solo delegan a commands sin lógica adicional
-- Queries/Commands básicos (SELECT/INSERT sin transformaciones)
-- Componentes que solo renderizan UI estándar
-- Código ya cubierto por RLS en DB + E2E
-
-### ¿Cuándo Añadir Tests E2E?
-
-**Obligatorio para flujos críticos**:
-- Registro y autenticación
-- Pago y suscripciones
-- Onboarding de usuario
-- Operaciones que afectan datos de otros usuarios
-- Flujos multi-step importantes
-
-**Opcional para features secundarias**:
-- CRUD simple bien cubierto por RLS
-- Features internas solo para admins
-- Páginas estáticas o de contenido
-
-### Tipos de Tests
-
-| Tipo | Ubicación | Cuándo |
-|------|-----------|--------|
-| **Unit** | `features/[name]/__tests__/` | Lógica compleja, cálculos, validaciones custom |
-| **Integration** | `features/[name]/__tests__/` | Flujos que tocan múltiples layers (handler → command → DB) |
-| **Component** | `features/[name]/__tests__/components/` | Componentes con lógica (no solo UI) |
-| **E2E** | `/tests/e2e/` | Flujos críticos de usuario completos |
-
-### Meta-Tests (Shared Code)
-
-Tests para código compartido en `/shared/`:
-
-```
-/src/shared/
-├── auth/
-│   ├── __tests__/
-│   │   └── roles.test.ts         # Testear isAdmin, hasRole, etc.
-├── lib/
-│   ├── __tests__/
-│   │   └── validation.test.ts    # Utils de validación compartidos
-└── database/
-    └── __tests__/
-        └── supabase.test.ts      # Setup de clientes Supabase
-```
-
-**Obligatorio testear**:
-- Funciones usadas por 3+ features
-- Lógica de autorización/permisos
-- Helpers de validación custom
-- Transformaciones de datos compartidas
-
-### Ejecutar Tests
-
-```bash
-# Todos los tests
-npm run test
-
-# Feature específica
-npm run test -- features/auth
-
-# Watch mode (desarrollo)
-npm run test -- features/billing --watch
-
-# Coverage
-npm run test -- --coverage
-
-# E2E
-npm run test:e2e
-npm run test:e2e -- auth  # Solo tests de auth
-```
-
-### Configuración Vitest
-
-Ver `vitest.config.ts` para:
-- Setup de testing library
-- Mocks de next-intl, Supabase
-- Coverage config
-- Path aliases (@/*)
-
-### Workflow Recomendado
-
-1. **Al crear feature nueva**:
-   - Revisa `__tests__/README.md` generado
-   - Marca en `CLAUDE.md` si necesita "Solo E2E" o "Unit + E2E"
-   - Si no estás seguro → marca "TBD" y decide después de implementar
-
-2. **Durante desarrollo**:
-   - Si encuentras lógica compleja → renombra `.example` y añade tests
-   - Si es CRUD simple → skip unit tests, añade E2E básico
-
-3. **Antes de merge/deploy**:
-   - Verifica E2E de flujos críticos pasan
-   - Si hay tests unitarios, que pasen
-   - Coverage NO es objetivo (calidad > cantidad)
-
-### Ejemplo: Decisión de Testing
-
-**Feature: User Settings** (CRUD simple)
-```markdown
-## Testing
-- [x] Solo E2E - Feature simple CRUD sin lógica compleja
-- [ ] Unit + E2E
-```
-👉 Solo crear `/tests/e2e/user-settings.spec.ts`
-
-**Feature: Billing Proration** (cálculos complejos)
-```markdown
-## Testing
-- [ ] Solo E2E
-- [x] Unit + E2E - Hay lógica de negocio/cálculos que testear
-```
-👉 Crear tests en `features/billing/__tests__/proration.test.ts` + E2E
+## Checklist Pre-Entrega
+
+### Funcionalidad
+- [ ] ¿Funciona el happy path completo?
+- [ ] ¿Los errores muestran mensajes útiles?
+- [ ] ¿Hay validación client-side y server-side?
+
+### UX/UI
+- [ ] ¿Puede completarse en menos clicks?
+- [ ] ¿Está claro qué hacer sin leer instrucciones?
+- [ ] ¿Hay feedback inmediato en cada acción?
+- [ ] ¿Funciona en mobile?
+- [ ] ¿Transmite la energía del gospel?
+
+### i18n & Copy
+- [ ] ¿TODOS los textos están en `copies/` co-localizadas?
+- [ ] ¿Copy orientado a beneficio/emoción?
+- [ ] ¿Existe versión EN y ES?
+
+### Accesibilidad
+- [ ] ¿Labels asociados a inputs?
+- [ ] ¿Errores tienen role="alert"?
+- [ ] ¿Navegable solo con teclado?
+- [ ] ¿Focus visible en elementos interactivos?
+
+### Performance
+- [ ] ¿Carga inicial < 200ms?
+- [ ] ¿Imágenes optimizadas (Next Image)?
+- [ ] ¿Vídeos lazy loaded?
 
 ---
 
 ## Comandos Útiles
 
 ```bash
-# Generar nueva feature (completa con CRUD, migración, component, traducciones)
+# Generar nueva feature
 npm run generate:slice
 
 # Aplicar migraciones
@@ -1494,22 +1086,37 @@ npm run gen:types
 # Añadir componente shadcn
 npx shadcn@latest add [componente]
 
-# Type check manual (se ejecuta automáticamente post-edit)
+# Type check
 npm run type-check
 ```
 
 ---
 
-## Workflow Optimizado
+## Decisiones de Arquitectura
 
-### Crear nueva feature
-```bash
-npm run generate:slice    # Genera todo: código, migración, CLAUDE.md, traducciones
-npx supabase db push      # Aplica migración
-npm run gen:types         # Actualiza tipos de Supabase
-```
+### Por qué no hay pagos online
+- El coro prefiere gestionar pagos offline
+- Los eventos usan links externos (Eventbrite, etc.) o WhatsApp
+- Simplifica enormemente el sistema
 
-### Validación automática
-- Hook post-edit ejecuta `type-check` automáticamente en archivos .ts/.tsx
-- Errores de tipos se muestran inmediatamente después de cada edición
-- No necesitas ejecutar type-check manualmente
+### Por qué solo admin login
+- Los usuarios públicos no necesitan cuenta
+- Solo el director/encargados necesitan acceso al panel
+- Reduce complejidad y superficie de ataque
+
+### Por qué formulario web vs solo WhatsApp
+- El formulario permite recoger información estructurada
+- Se puede hacer seguimiento en el panel
+- WhatsApp se usa como complemento para contacto rápido
+
+### Qué se elimina del admin del boilerplate
+El boilerplate venía con funcionalidades SaaS que no aplican:
+- **Stats de suscripciones/MRR/trials**: No hay pagos → Eliminar
+- **Email Journeys automáticos**: Reemplazado por emails puntuales (contacto + anuncios)
+- **Cross-sell panel**: No hay productos adicionales → Eliminar
+- **Gestión de usuarios/roles**: Solo 1-2 admins fijos, no necesita UI compleja
+
+### Qué se mantiene y adapta
+- **Info-bar**: Se mantiene, útil para anunciar conciertos
+- **Sistema de roles**: Simplificado a verificar `ADMIN_EMAILS`
+- **app_settings**: Se usa para info-bar, redes sociales, config general

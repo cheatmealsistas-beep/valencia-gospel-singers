@@ -1,6 +1,6 @@
 {
   "meta": {
-    "titleSuffix": " - Product Beers Valencia"
+    "titleSuffix": " - Valencia Gospel Singers"
   },
   "back": "Back to events",
   "status": {
@@ -16,18 +16,18 @@
     "viewMap": "View on Google Maps"
   },
   "registration": {
-    "label": "Registration",
-    "register": "Reserve your spot",
+    "label": "Tickets",
+    "register": "Book tickets",
     "spotsLeft": "spots available",
-    "full": "Event full",
-    "closed": "Registration closed"
+    "full": "Sold out",
+    "closed": "Tickets sold out"
   },
   "description": {
     "label": "About the event"
   },
   "speakers": {
-    "label": "Speakers",
-    "talkTitle": "Talk"
+    "label": "Artists",
+    "talkTitle": "Repertoire"
   },
   "sponsors": {
     "label": "Sponsors"

@@ -2,11 +2,10 @@
 
 ## Descripción
 
-Sistema de gestión de eventos para Product Beers Valencia. Permite:
+Sistema de gestión de eventos para Valencia Gospel Singers. Permite:
 - Mostrar eventos públicamente (próximos y pasados)
 - Gestionar eventos desde el panel de admin
-- Sincronizar con Fourvenues API (futuro)
-- Gestionar ponentes (speakers) y sponsors por evento
+- Gestionar artistas invitados y sponsors por evento
 
 ## Estado
 
@@ -20,8 +19,6 @@ Sistema de gestión de eventos para Product Beers Valencia. Permite:
 - [ ] Página pública `/eventos/[slug]`
 - [ ] Panel admin `/admin/eventos`
 - [ ] Panel admin `/admin/eventos/[id]`
-- [ ] Cliente Fourvenues API
-- [ ] Sincronización automática
 
 ## Arquitectura
 
@@ -34,8 +31,6 @@ src/features/events/
 ├── events.command.ts         # INSERT/UPDATE/DELETE
 ├── events.handler.ts         # Validación + lógica de negocio
 ├── events.actions.ts         # Server Actions (entry points)
-├── lib/                      # (futuro)
-│   └── fourvenues.client.ts  # Cliente API Fourvenues
 └── components/               # (futuro)
     ├── event-card.tsx
     ├── event-list.tsx
@@ -61,23 +56,19 @@ src/features/events/
 | image_url | TEXT | Imagen del evento |
 | registration_url | TEXT | Link de registro externo |
 | max_attendees | INT | Aforo máximo |
-| fourvenues_id | TEXT | ID en Fourvenues (para sync) |
-| fourvenues_slug | TEXT | Slug en Fourvenues |
-| last_synced_at | TIMESTAMPTZ | Última sincronización |
 | status | TEXT | draft/published/cancelled |
-| source | TEXT | manual/fourvenues |
 | featured | BOOLEAN | Evento destacado |
 | created_at | TIMESTAMPTZ | Fecha creación |
 | updated_at | TIMESTAMPTZ | Fecha actualización |
 | created_by | UUID | Usuario que lo creó |
 
-### speakers
+### speakers (artistas invitados)
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
 | id | UUID | Primary key |
 | name | TEXT | Nombre completo |
-| role | TEXT | Cargo/rol |
-| company | TEXT | Empresa |
+| role | TEXT | Rol (solista, director, etc.) |
+| company | TEXT | Agrupación/banda |
 | bio | TEXT | Biografía |
 | photo_url | TEXT | Foto |
 | linkedin_url | TEXT | LinkedIn |
@@ -102,7 +93,7 @@ src/features/events/
 | event_id | UUID | FK a events |
 | speaker_id | UUID | FK a speakers |
 | role_in_event | TEXT | speaker/host/panelist |
-| talk_title | TEXT | Título de la charla |
+| talk_title | TEXT | Título de la actuación |
 | talk_description | TEXT | Descripción |
 | order_index | INT | Orden de aparición |
 
@@ -184,20 +175,9 @@ CREATE POLICY "Admins can manage events"
 ## Decisiones de Arquitectura
 
 1. **Slug auto-generado**: Si no se proporciona, se genera desde el título
-2. **Source tracking**: Cada evento indica si es `manual` o `fourvenues`
+2. **Source tracking**: Cada evento indica si es `manual` o importado
 3. **Speakers/Sponsors globales**: Se gestionan por separado y se relacionan con eventos
 4. **Tier override**: Los sponsors pueden tener tier diferente por evento
-
-## Integración Fourvenues (Pendiente)
-
-Requiere:
-- [ ] `FOURVENUES_API_KEY` en `.env.local`
-- [ ] `FOURVENUES_ORGANIZATION_ID` en `.env.local`
-
-Cliente a implementar en `lib/fourvenues.client.ts`:
-- `FourvenuesClient.getEvents()` - Obtener todos los eventos
-- `FourvenuesClient.getEventById(id)` - Obtener evento específico
-- `mapFourvenuesEvent(fvEvent)` - Mapear a nuestro formato
 
 ## Testing
 

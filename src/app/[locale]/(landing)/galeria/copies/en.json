@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "title": "Gallery | Valencia Gospel Singers",
+    "description": "Discover unique moments from Valencia Gospel Singers: concerts, weddings, corporate events, and more."
+  },
+  "hero": {
+    "title": "Our Gallery",
+    "description": "Unforgettable moments we've shared together"
+  },
+  "filters": {
+    "all": "All",
+    "conciertos": "Concerts",
+    "bodas": "Weddings",
+    "eventos": "Events",
+    "ensayos": "Rehearsals",
+    "otros": "Other"
+  },
+  "empty": {
+    "title": "Coming Soon",
+    "description": "We're preparing our photo gallery. Come back soon!"
+  },
+  "cta": {
+    "title": "Would you like us at your event?",
+    "description": "Contact us and make your moment special",
+    "button": "Contact Us"
+  }
+}

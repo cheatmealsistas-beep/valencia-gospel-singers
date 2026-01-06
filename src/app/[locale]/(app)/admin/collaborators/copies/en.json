@@ -1,19 +1,19 @@
 {
   "meta": {
-    "title": "Collaborators - Admin",
+    "title": "Clients - Admin",
     "description": "Manage sponsors and hosters"
   },
-  "title": "Collaborators",
-  "description": "Manage sponsors and hosters that appear on the public site",
+  "title": "Clients",
+  "description": "Manage sponsors and hosters: companies and venues that trust us",
   "tabs": {
     "all": "All",
     "sponsors": "Sponsors",
     "hosters": "Hosters"
   },
-  "addNew": "Add collaborator",
+  "addNew": "Add client",
   "empty": {
-    "title": "No collaborators yet",
-    "description": "Add your first sponsor or hoster to display them on the public site."
+    "title": "No clients yet",
+    "description": "Add your first sponsor or hoster to keep a record."
   },
   "table": {
     "logo": "Logo",
@@ -33,8 +33,8 @@
   },
   "form": {
     "title": {
-      "create": "Add collaborator",
-      "edit": "Edit collaborator"
+      "create": "Add client",
+      "edit": "Edit client"
     },
     "name": {
       "label": "Name",
@@ -76,7 +76,7 @@
     },
     "notes": {
       "label": "Notes",
-      "placeholder": "Internal notes about this collaborator..."
+      "placeholder": "Internal notes about this client..."
     },
     "cancel": "Cancel",
     "save": "Save",
@@ -89,16 +89,16 @@
     "deactivate": "Deactivate"
   },
   "messages": {
-    "created": "Collaborator created successfully",
-    "updated": "Collaborator updated successfully",
-    "deleted": "Collaborator deleted successfully",
-    "activated": "Collaborator activated",
-    "deactivated": "Collaborator deactivated",
+    "created": "Client created successfully",
+    "updated": "Client updated successfully",
+    "deleted": "Client deleted successfully",
+    "activated": "Client activated",
+    "deactivated": "Client deactivated",
     "error": "Something went wrong. Please try again."
   },
   "confirmDelete": {
-    "title": "Delete collaborator?",
-    "description": "This action cannot be undone. The collaborator will be permanently removed.",
+    "title": "Delete client?",
+    "description": "This action cannot be undone. The client will be permanently removed.",
     "cancel": "Cancel",
     "confirm": "Delete"
   }

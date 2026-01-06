@@ -89,25 +89,18 @@ describe('auth.handler', () => {
           email: 'new@example.com',
           password: 'password123',
         },
-        undefined,
         undefined
       );
     });
 
-    it('should pass attribution data when provided', async () => {
+    it('should pass locale when provided', async () => {
       mockSignUp.mockResolvedValue({ error: null });
 
-      const attributionData = {
-        utm_source: 'google',
-        utm_medium: 'cpc',
-      };
-
-      await handleRegister('new@example.com', 'password123', attributionData);
+      await handleRegister('new@example.com', 'password123', 'es');
 
       expect(mockSignUp).toHaveBeenCalledWith(
         expect.any(Object),
-        attributionData,
-        undefined
+        'es'
       );
     });
 
@@ -158,27 +151,21 @@ describe('auth.handler', () => {
       expect(result.messageKey).toBe('checkEmail');
       expect(mockSignInWithMagicLink).toHaveBeenCalledWith(
         { email: 'test@example.com' },
-        undefined,
         undefined
       );
     });
 
-    it('should pass attribution data when provided', async () => {
+    it('should pass locale when provided', async () => {
       mockSignInWithMagicLink.mockResolvedValue({
         success: true,
         error: null,
       });
 
-      const attributionData = {
-        utm_source: 'newsletter',
-      };
-
-      await handleMagicLink('test@example.com', attributionData);
+      await handleMagicLink('test@example.com', 'en');
 
       expect(mockSignInWithMagicLink).toHaveBeenCalledWith(
         expect.any(Object),
-        attributionData,
-        undefined
+        'en'
       );
     });
 

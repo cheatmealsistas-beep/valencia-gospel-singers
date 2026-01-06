@@ -35,9 +35,9 @@ export function EventCard({ event, isPast = false }: EventCardProps) {
   const speakerCount = event.speakers?.length || 0;
 
   return (
-    <div className={`group relative rounded-3xl bg-[#141414] border border-[#2a2a2a] hover:border-primary/50 transition-all duration-500 overflow-hidden hover:shadow-xl hover:shadow-primary/10 ${isPast ? 'opacity-75' : ''}`}>
+    <div className={`group relative rounded-3xl bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all duration-500 overflow-hidden ${isPast ? 'opacity-75' : ''}`}>
       {/* Gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       {/* Event Image */}
       {event.imageUrl && (
@@ -49,7 +49,7 @@ export function EventCard({ event, isPast = false }: EventCardProps) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           {event.featured && !isPast && (
-            <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
+            <Badge className="absolute top-3 right-3 bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white border-0">
               Destacado
             </Badge>
           )}
@@ -58,29 +58,29 @@ export function EventCard({ event, isPast = false }: EventCardProps) {
 
       <div className={`relative p-5 ${!event.imageUrl ? 'pt-5' : ''}`}>
         {/* Date Badge */}
-        <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
-          <CalendarDays className="h-4 w-4 text-primary" />
+        <div className="flex items-center gap-2 text-sm text-white/40 mb-3">
+          <CalendarDays className="h-4 w-4 text-purple-400" />
           <span>{formatDate(event.date)}</span>
-          <span className="text-primary">•</span>
+          <span className="text-purple-400">•</span>
           <span>{formatTime(event.date)}</span>
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-semibold mb-2 line-clamp-2 text-white group-hover:text-primary transition-colors">
+        <h3 className="text-lg font-semibold mb-2 line-clamp-2 text-white group-hover:text-purple-300 transition-colors">
           {event.title}
         </h3>
 
         {/* Short Description */}
         {event.shortDescription && (
-          <p className="text-sm text-gray-400 mb-4 line-clamp-2">
+          <p className="text-sm text-white/40 mb-4 line-clamp-2">
             {event.shortDescription}
           </p>
         )}
 
         {/* Location */}
         {event.locationName && (
-          <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
-            <MapPin className="h-4 w-4 flex-shrink-0 text-primary/70" />
+          <div className="flex items-center gap-2 text-sm text-white/40 mb-3">
+            <MapPin className="h-4 w-4 flex-shrink-0 text-purple-400/70" />
             <span className="truncate">
               {event.locationName}
               {event.locationCity && `, ${event.locationCity}`}
@@ -90,8 +90,8 @@ export function EventCard({ event, isPast = false }: EventCardProps) {
 
         {/* Speakers */}
         {speakerCount > 0 && (
-          <div className="flex items-center gap-2 text-sm text-gray-400 mb-4">
-            <Users className="h-4 w-4 text-primary/70" />
+          <div className="flex items-center gap-2 text-sm text-white/40 mb-4">
+            <Users className="h-4 w-4 text-purple-400/70" />
             <span>
               {speakerCount} {speakerCount === 1 ? t('speaker') : t('speakers')}
             </span>
@@ -100,14 +100,14 @@ export function EventCard({ event, isPast = false }: EventCardProps) {
 
         {/* Actions */}
         <div className="flex items-center gap-3 mt-4">
-          <Button variant="outline" className="flex-1 border-[#2a2a2a] text-white hover:bg-white/10 hover:text-white hover:border-primary/50" asChild>
+          <Button variant="outline" className="flex-1 border-purple-500/30 bg-purple-500/10 text-white hover:bg-purple-500/20 hover:text-white hover:border-purple-500/50" asChild>
             <Link href={`/eventos/${event.slug}`}>
               {t('viewDetails')}
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
           {!isPast && event.registrationUrl && (
-            <Button className="flex-1" asChild>
+            <Button className="flex-1 bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500" asChild>
               <a
                 href={event.registrationUrl}
                 target="_blank"

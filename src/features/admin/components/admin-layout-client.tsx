@@ -70,12 +70,12 @@ export function AdminLayoutClient({
   return (
     <div className="flex min-h-screen bg-muted/30">
       {/* Sidebar */}
-      <aside className="w-64 border-r bg-primary/5 backdrop-blur-sm">
+      <aside className="w-64 border-r bg-purple-500/5 backdrop-blur-sm">
         <div className="flex h-full flex-col">
           {/* Header */}
-          <div className="border-b border-primary/10 p-6">
+          <div className="border-b border-purple-500/10 p-6">
             <div className="flex items-center gap-2 mb-2">
-              <Shield className="h-5 w-5 text-primary" />
+              <Shield className="h-5 w-5 text-purple-600" />
               <h2 className="text-lg font-bold">{title}</h2>
             </div>
             <Badge variant="secondary" className="text-xs">
@@ -96,8 +96,8 @@ export function AdminLayoutClient({
                   className={cn(
                     'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all',
                     isActive
-                      ? 'bg-primary text-primary-foreground shadow-sm'
-                      : 'hover:bg-primary/10'
+                      ? 'bg-purple-600 text-white shadow-sm'
+                      : 'hover:bg-purple-500/10 hover:text-purple-700 dark:hover:text-purple-400'
                   )}
                 >
                   {Icon && <Icon className="h-4 w-4" />}
@@ -109,7 +109,7 @@ export function AdminLayoutClient({
                       variant="destructive"
                       className={cn(
                         "h-5 min-w-5 px-1.5 text-xs font-bold",
-                        isActive && "bg-white text-primary"
+                        isActive && "bg-white text-purple-600"
                       )}
                     >
                       {item.badge > 99 ? '99+' : item.badge}
@@ -121,8 +121,8 @@ export function AdminLayoutClient({
           </nav>
 
           {/* Back to Dashboard */}
-          <div className="border-t border-primary/10 p-4">
-            <Button variant="ghost" asChild className="w-full justify-start hover:bg-primary/10">
+          <div className="border-t border-purple-500/10 p-4">
+            <Button variant="ghost" asChild className="w-full justify-start hover:bg-purple-500/10 hover:text-purple-700 dark:hover:text-purple-400">
               <Link href="/dashboard">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 {backLabel}

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Sobre Nosotros - Valencia Gospel Singers",
+    "description": "Conoce al coro Valencia Gospel Singers. Gospel profesional para bodas, eventos y celebraciones en Valencia."
+  },
+  "hero": {
+    "label": "Nuestra historia",
+    "titleStart": "La emoción del",
+    "titleHighlight": "gospel",
+    "description": "Somos un coro de gospel formado por voces apasionadas que aman la música y disfrutan compartiendo su energía en cada actuación."
+  },
+  "mission": {
+    "mission": {
+      "title": "Nuestra misión",
+      "description": "Llevar la alegría y la emoción del gospel a cada evento, creando momentos inolvidables."
+    },
+    "vision": {
+      "title": "Lo que hacemos",
+      "description": "Bodas, eventos corporativos, conciertos, celebraciones... Donde hay música gospel, estamos nosotros."
+    },
+    "values": {
+      "title": "Cómo trabajamos",
+      "description": "Con profesionalidad, pasión y un profundo respeto por la tradición del gospel."
+    }
+  },
+  "team": {
+    "label": "El coro",
+    "title": "Quiénes somos",
+    "description": "Un grupo de voces unidas por la pasión del gospel y las ganas de emocionar."
+  },
+  "cta": {
+    "title": "¿Tienes un evento?",
+    "description": "Cuéntanos qué necesitas y te preparamos una propuesta a medida.",
+    "primaryButton": "Contactar",
+    "secondaryButton": "Ver eventos"
+  }
+}

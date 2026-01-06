@@ -1,5 +1,4 @@
 import { createClientServer } from '@/shared/database/supabase';
-import type { AttributionData } from '@/features/attribution';
 import type { LoginInput, RegisterInput, MagicLinkInput, ResetPasswordInput, UpdatePasswordInput } from './types';
 import type { OAuthProvider } from '@/shared/auth';
 
@@ -26,7 +25,6 @@ export async function signInWithPassword(input: LoginInput) {
  */
 export async function signUp(
   input: RegisterInput,
-  attributionData?: AttributionData,
   locale?: string
 ) {
   const supabase = await createClientServer();
@@ -37,8 +35,7 @@ export async function signUp(
     options: {
       emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
       data: {
-        attribution_data: attributionData || {},
-        locale: locale || 'en',
+        locale: locale || 'es',
       },
     },
   });
@@ -55,7 +52,6 @@ export async function signUp(
  */
 export async function signInWithMagicLink(
   input: MagicLinkInput,
-  attributionData?: AttributionData,
   locale?: string
 ) {
   const supabase = await createClientServer();
@@ -65,8 +61,7 @@ export async function signInWithMagicLink(
     options: {
       emailRedirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
       data: {
-        attribution_data: attributionData || {},
-        locale: locale || 'en',
+        locale: locale || 'es',
       },
     },
   });
@@ -120,7 +115,7 @@ export async function signInWithOAuth(provider: OAuthProvider) {
 export async function requestPasswordReset(input: ResetPasswordInput, locale?: string) {
   const supabase = await createClientServer();
 
-  const userLocale = locale || 'en';
+  const userLocale = locale || 'es';
   const { error } = await supabase.auth.resetPasswordForEmail(input.email, {
     redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/${userLocale}/update-password`,
   });

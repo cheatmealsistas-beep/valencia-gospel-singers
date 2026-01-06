@@ -1,0 +1,138 @@
+{
+  "title": "Events",
+  "description": "Manage Valencia Gospel Singers concerts and events.",
+  "add": "New event",
+  "filters": {
+    "all": "All",
+    "published": "Published",
+    "draft": "Drafts",
+    "cancelled": "Cancelled"
+  },
+  "empty": {
+    "title": "No events",
+    "description": "You haven't created any events yet."
+  },
+  "form": {
+    "title": {
+      "create": "New event",
+      "edit": "Edit event"
+    },
+    "eventTitle": {
+      "label": "Title",
+      "placeholder": "Event name"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Full event description..."
+    },
+    "shortDescription": {
+      "label": "Short description",
+      "placeholder": "Brief summary (max 300 chars)"
+    },
+    "englishSection": "English texts",
+    "titleEn": {
+      "label": "Title (EN)",
+      "placeholder": "Event name in English"
+    },
+    "descriptionEn": {
+      "label": "Description (EN)",
+      "placeholder": "Full description in English..."
+    },
+    "shortDescriptionEn": {
+      "label": "Short description (EN)",
+      "placeholder": "Short summary in English"
+    },
+    "locationNameEn": {
+      "label": "Venue (EN)",
+      "placeholder": "Venue name in English"
+    },
+    "locationAddressEn": {
+      "label": "Address (EN)",
+      "placeholder": "Address in English"
+    },
+    "date": {
+      "label": "Date and time",
+      "placeholder": "Select date and time"
+    },
+    "endDate": {
+      "label": "End date (optional)",
+      "placeholder": "Select date and time"
+    },
+    "locationName": {
+      "label": "Venue",
+      "placeholder": "Venue name"
+    },
+    "locationAddress": {
+      "label": "Address",
+      "placeholder": "Street, number..."
+    },
+    "locationCity": {
+      "label": "City",
+      "placeholder": "Valencia"
+    },
+    "locationMapsUrl": {
+      "label": "Google Maps URL",
+      "placeholder": "https://maps.google.com/..."
+    },
+    "imageUrl": {
+      "label": "Event image",
+      "placeholder": "https://..."
+    },
+    "registrationUrl": {
+      "label": "Registration/tickets URL",
+      "placeholder": "https://..."
+    },
+    "maxAttendees": {
+      "label": "Max attendees",
+      "placeholder": "Number of spots"
+    },
+    "featured": {
+      "label": "Featured event",
+      "description": "Show on homepage"
+    },
+    "status": {
+      "label": "Status",
+      "options": {
+        "draft": "Draft",
+        "published": "Published",
+        "cancelled": "Cancelled"
+      }
+    },
+    "submit": {
+      "create": "Create event",
+      "edit": "Save changes"
+    },
+    "cancel": "Cancel"
+  },
+  "card": {
+    "date": "Date",
+    "location": "Venue",
+    "attendees": "Capacity"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "publish": "Publish",
+    "unpublish": "Unpublish",
+    "viewPublic": "View on site"
+  },
+  "status": {
+    "draft": "Draft",
+    "published": "Published",
+    "cancelled": "Cancelled"
+  },
+  "toast": {
+    "created": "Event created",
+    "updated": "Event updated",
+    "deleted": "Event deleted",
+    "published": "Event published",
+    "unpublished": "Event unpublished",
+    "error": "Error saving"
+  },
+  "confirmDelete": {
+    "title": "Delete event?",
+    "description": "This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  }
+}

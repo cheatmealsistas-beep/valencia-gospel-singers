@@ -1,8 +1,7 @@
 /**
- * Brand Configuration
+ * Brand Configuration - Valencia Gospel Singers
  *
  * Centralizes all brand-related settings including SEO and GEO optimization.
- * Modify this file to customize your SaaS identity.
  *
  * This is the single source of truth for:
  * - Brand identity (name, logo, colors)
@@ -17,141 +16,192 @@ export const brand = {
   // ═══════════════════════════════════════════════════════════════════
 
   /** Your product/company name */
-  name: 'Product Beers',
+  name: 'Valencia Gospel Singers',
+
+  /** Short name for compact displays */
+  shortName: 'VGS',
 
   /** Short tagline (appears in hero, metadata) */
-  tagline: 'La comunidad de producto de Valencia',
+  tagline: 'La banda sonora de tus momentos especiales',
+
+  /** Full description for about/meta */
+  description:
+    'Coro de gospel en Valencia especializado en bodas, eventos corporativos y conciertos. Música que emociona y conecta.',
 
   // ═══════════════════════════════════════════════════════════════════
   // CONTACT & URLS
   // ═══════════════════════════════════════════════════════════════════
 
   /** Production website URL (used for canonical URLs, sitemap, schemas) */
-  website: 'https://productbeers.com',
+  website: 'https://valenciagospelsingers.com',
 
-  /** Support email address */
-  support: 'hola@productbeers.com',
+  /** Contact email address */
+  email: 'info@valenciagospelsingers.com',
+
+  /** Support email (alias for email, for compatibility) */
+  support: 'info@valenciagospelsingers.com',
+
+  /** WhatsApp number (country code + number, no + or spaces) */
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '34600000000',
+
+  /** Get WhatsApp URL */
+  getWhatsAppUrl: (message?: string) => {
+    const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '34600000000';
+    const baseUrl = `https://wa.me/${phone}`;
+    return message ? `${baseUrl}?text=${encodeURIComponent(message)}` : baseUrl;
+  },
 
   // ═══════════════════════════════════════════════════════════════════
   // ASSETS (place files in /public/)
   // ═══════════════════════════════════════════════════════════════════
 
   /** Logo for header/navigation */
-  logo: '/beer.png',
+  logo: '/logo.png',
 
   /** Small icon for favicon context */
-  icon: '/beer.png',
+  icon: '/icon.png',
 
   /** Browser favicon */
-  favicon: '/beer.png',
+  favicon: '/favicon.ico',
 
   // ═══════════════════════════════════════════════════════════════════
   // TYPOGRAPHY
-  // To change font: see README.md in this folder for instructions
   // ═══════════════════════════════════════════════════════════════════
 
   font: {
     family: 'Poppins',
     package: '@fontsource/poppins',
-    weights: [400, 500, 600, 700],
+    weights: [400, 500, 600, 700, 800],
   },
 
   // ═══════════════════════════════════════════════════════════════════
-  // UI THEME
+  // UI THEME - Moderno y Vibrante
   // ═══════════════════════════════════════════════════════════════════
 
   theme: {
     /**
      * Theme Variant
-     *
-     * Choose the visual style for your entire SaaS.
-     * This affects colors, typography spacing, and overall feel.
-     *
-     * Available variants:
-     * - 'standard': Modern, friendly, approachable
-     * - 'luxury': Premium, exclusive, prestigious
-     * - 'corporate': Professional, enterprise-ready
-     * - 'productbeers': Custom theme for Product Beers (dark + yellow/gold)
+     * 'gospel': Custom theme - púrpura vibrante + naranja energético
      */
-    variant: 'productbeers' as const,
+    variant: 'gospel' as const,
 
     /** Enable glassmorphism effect (backdrop-blur, transparency) */
-    glass: false,
+    glass: true,
+
+    /** Custom colors for gospel theme */
+    colors: {
+      // Primary - Púrpura vibrante
+      primary: '#7C3AED',
+      primaryDark: '#5B21B6',
+      primaryLight: '#A78BFA',
+
+      // Secondary - Naranja energético
+      secondary: '#F97316',
+      secondaryDark: '#EA580C',
+      secondaryLight: '#FB923C',
+
+      // Accent - Dorado
+      accent: '#FBBF24',
+      accentDark: '#F59E0B',
+
+      // Neutrals
+      dark: '#1F2937',
+      gray: '#6B7280',
+      light: '#F9FAFB',
+      white: '#FFFFFF',
+
+      // States
+      success: '#10B981',
+      error: '#EF4444',
+      warning: '#F59E0B',
+    },
   },
 
   // ═══════════════════════════════════════════════════════════════════
   // SEO & GEO CONFIGURATION
-  // This section controls metadata, Open Graph, and AI optimization
   // ═══════════════════════════════════════════════════════════════════
 
   seo: {
     /** Title template for pages. %s is replaced with page title */
-    titleTemplate: '%s | Product Beers',
+    titleTemplate: '%s | Valencia Gospel Singers',
 
     /** Default title when no page title is set */
-    defaultTitle: 'Product Beers - La comunidad de producto de Valencia',
+    defaultTitle: 'Valencia Gospel Singers - Coro Gospel para Bodas y Eventos en Valencia',
 
     /** Default meta description (max 160 characters recommended) */
     defaultDescription:
-      'Comunidad de Product Managers, Product Designers y entusiastas del producto en Valencia. Eventos, networking y aprendizaje compartido.',
+      'Coro de gospel profesional en Valencia. Servicios para bodas, eventos corporativos y conciertos. Música emotiva que transforma tus momentos especiales.',
 
-    /** Keywords for meta tags (comma-separated) */
-    keywords: ['product management', 'comunidad producto', 'valencia', 'product beers', 'eventos producto', 'networking'],
+    /** Keywords for meta tags */
+    keywords: [
+      'coro gospel valencia',
+      'gospel para bodas',
+      'coro para bodas valencia',
+      'música gospel eventos',
+      'conciertos gospel valencia',
+      'coro profesional valencia',
+      'música para bodas',
+      'eventos corporativos música',
+    ],
 
     /** Default Open Graph image (1200x630 recommended) */
-    ogImage: '/og-image.png',
+    ogImage: '/og-image.jpg',
 
     /** Twitter/X handle for Twitter Cards (include @) */
-    twitterHandle: '@productbeers',
+    twitterHandle: '@vlosgospel',
 
     /** Site verification codes (leave empty if not using) */
     verification: {
-      google: '', // Google Search Console
-      bing: '', // Bing Webmaster
+      google: '',
+      bing: '',
     },
   },
 
   // ═══════════════════════════════════════════════════════════════════
   // SOCIAL LINKS
-  // Used in footer, schemas, and social proof
   // ═══════════════════════════════════════════════════════════════════
 
   social: {
-    /** Twitter/X profile URL */
-    twitter: '',
+    /** Instagram profile URL */
+    instagram: 'https://www.instagram.com/valenciagospelsingers',
 
-    /** GitHub repository or organization URL */
-    github: 'https://github.com/productbeersvalencia-ops/website',
-
-    /** LinkedIn company page URL */
-    linkedin: 'https://www.linkedin.com/company/valencia-product-beers/',
+    /** Facebook page URL */
+    facebook: 'https://www.facebook.com/valenciagospelsingers',
 
     /** YouTube channel URL */
     youtube: '',
 
-    /** Discord server invite URL */
-    discord: '',
+    /** Spotify artist URL */
+    spotify: '',
 
-    /** Telegram group URL */
-    telegram: 'https://t.me/valenciaproductbeers',
+    /** TikTok profile URL */
+    tiktok: '',
+
+    /** LinkedIn (not used, for compatibility) */
+    linkedin: '',
+
+    /** Telegram (not used, for compatibility) */
+    telegram: '',
+
+    /** Twitter/X (not used, for compatibility) */
+    twitter: '',
   },
 
   // ═══════════════════════════════════════════════════════════════════
   // ORGANIZATION INFO (for Schema.org markup)
-  // Helps search engines and AI understand your company
   // ═══════════════════════════════════════════════════════════════════
 
   organization: {
     /** Organization type for schema.org */
-    type: 'Organization' as const,
+    type: 'PerformingGroup' as const,
 
-    /** Year company was founded */
-    foundingDate: '2024',
+    /** Year founded */
+    foundingDate: '2020',
 
     /** Founder names (for schema) */
-    founders: ['Carlos Miguel Corada'] as string[],
+    founders: [] as string[],
 
-    /** Physical address (optional, for LocalBusiness) */
+    /** Physical address */
     address: {
       street: '',
       city: 'Valencia',
@@ -163,26 +213,16 @@ export const brand = {
 
   // ═══════════════════════════════════════════════════════════════════
   // CRAWLER & AI BOT CONFIGURATION
-  // Controls robots.txt generation and AI search optimization (GEO)
   // ═══════════════════════════════════════════════════════════════════
 
   crawlers: {
-    /**
-     * Allow AI bots to crawl your site (recommended for GEO)
-     * Includes: GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, etc.
-     */
+    /** Allow AI bots to crawl your site (recommended for GEO) */
     allowAIBots: true,
 
-    /**
-     * Paths to disallow in robots.txt
-     * Protected routes are automatically excluded
-     */
-    disallowPaths: ['/app/', '/auth/', '/api/', '/checkout/'],
+    /** Paths to disallow in robots.txt */
+    disallowPaths: ['/admin/', '/auth/', '/api/'],
 
-    /**
-     * Additional paths to allow (overrides disallow)
-     * Example: ['/api/public/']
-     */
+    /** Additional paths to allow (overrides disallow) */
     allowPaths: [] as string[],
   },
 
@@ -191,13 +231,12 @@ export const brand = {
   // ═══════════════════════════════════════════════════════════════════
 
   legal: {
-    terms: '/terms',
-    privacy: '/privacy',
+    terms: '/terminos',
+    privacy: '/privacidad',
   },
 
   // ═══════════════════════════════════════════════════════════════════
-  // AUTH PAGES CONFIGURATION
-  // Customize the appearance of login, register, and other auth pages
+  // AUTH PAGES CONFIGURATION (Admin Login)
   // ═══════════════════════════════════════════════════════════════════
 
   auth: {
@@ -205,7 +244,7 @@ export const brand = {
     showBrandingPanel: true,
 
     /** Gradient for branding panel background */
-    gradient: 'from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a]',
+    gradient: 'from-[#7C3AED] via-[#5B21B6] to-[#1F2937]',
 
     /** Show animated background pattern */
     showPattern: true,
@@ -215,25 +254,55 @@ export const brand = {
 
     /** Testimonial content (if showTestimonial is true) */
     testimonial: {
-      quote: 'Product Beers ha sido clave para conectar con la comunidad de producto en Valencia.',
-      author: 'Miembro de la comunidad',
-      role: 'Product Manager',
+      quote: '',
+      author: '',
+      role: '',
     },
 
     /** Features to highlight in branding panel */
     features: [
-      'Eventos únicos de producto',
-      'Networking con profesionales',
-      'Conocimiento compartido',
+      'Gestiona eventos y conciertos',
+      'Administra el contenido de la web',
+      'Responde solicitudes de clientes',
     ],
   },
+
+  // ═══════════════════════════════════════════════════════════════════
+  // SERVICES (Types of events)
+  // ═══════════════════════════════════════════════════════════════════
+
+  services: {
+    wedding: {
+      key: 'boda',
+      icon: 'heart',
+    },
+    corporate: {
+      key: 'corporativo',
+      icon: 'building',
+    },
+    private: {
+      key: 'privado',
+      icon: 'users',
+    },
+    concert: {
+      key: 'concierto',
+      icon: 'music',
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════════════
+  // VOICE TYPES (for choir members)
+  // ═══════════════════════════════════════════════════════════════════
+
+  voiceTypes: ['soprano', 'alto', 'tenor', 'bajo'] as const,
 
   // ═══════════════════════════════════════════════════════════════════
   // FOOTER
   // ═══════════════════════════════════════════════════════════════════
 
   /** Copyright notice in footer */
-  copyright: `© ${new Date().getFullYear()} Product Beers. Hecho con 🍺 en Valencia.`,
+  copyright: `© ${new Date().getFullYear()} Valencia Gospel Singers. Hecho con amor en Valencia.`,
 };
 
 export type Brand = typeof brand;
+export type VoiceType = (typeof brand.voiceTypes)[number];

@@ -8,11 +8,9 @@ import type { HeroContent } from '../../types/sections';
 import * as Icons from 'lucide-react';
 import {
   AnimatedShinyText,
-  BorderBeam,
   AnimatedGradientText,
   DotPattern,
   FadeIn,
-  BeerBubbles,
 } from '@/shared/components/magic-ui';
 import { cn } from '@/shared/lib/utils';
 
@@ -65,10 +63,7 @@ export function HeroSection({
         return <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />;
       case 'bubbles':
         return (
-          <>
-            <BeerBubbles quantity={30} minSize={4} maxSize={14} className="z-0" />
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
-          </>
+          <div className="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-background to-background" />
         );
       default:
         return null;
@@ -135,21 +130,18 @@ export function HeroSection({
       {/* CTA Buttons */}
       <FadeIn delay={0.3}>
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div className="relative">
-            <Button
-              size="lg"
-              className="px-8"
-              variant={content.ctaPrimary.style || 'default'}
-              asChild
-              data-editable-field="ctaPrimary"
-            >
-              <Link href={content.ctaPrimary.href}>
-                {primaryText}
-                {getIcon(content.ctaPrimary.icon) || <Icons.ArrowRight className="ml-2 size-4" />}
-              </Link>
-            </Button>
-            <BorderBeam size={60} duration={12} delay={0} />
-          </div>
+          <Button
+            size="lg"
+            className="px-8 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold hover:from-amber-400 hover:to-amber-500"
+            variant={content.ctaPrimary.style || 'default'}
+            asChild
+            data-editable-field="ctaPrimary"
+          >
+            <Link href={content.ctaPrimary.href}>
+              {primaryText}
+              {getIcon(content.ctaPrimary.icon) || <Icons.ArrowRight className="ml-2 size-4" />}
+            </Link>
+          </Button>
 
           {secondaryText && (
             <Button

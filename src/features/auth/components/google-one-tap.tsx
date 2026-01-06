@@ -70,7 +70,7 @@ export function GoogleOneTap() {
         if (data.user) {
           // Save the last login method
           setLastMethod('google');
-          router.push(`/${locale}/dashboard`);
+          router.push(`/${locale}/admin`);
           router.refresh();
         }
       } catch (err) {

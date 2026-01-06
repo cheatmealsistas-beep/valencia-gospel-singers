@@ -34,15 +34,15 @@ export function EventsList({ upcomingEvents, pastEvents }: EventsListProps) {
           </div>
         ) : (
           <FadeIn>
-            <div className="text-center py-16 px-4 rounded-3xl bg-[#141414] border border-[#2a2a2a] mb-16">
+            <div className="text-center py-16 px-4 rounded-3xl bg-white/[0.02] border border-white/5 mb-16">
               <div className="text-5xl mb-4">📅</div>
               <h3 className="text-xl font-semibold mb-2 text-white">
                 {t('upcoming.empty.title')}
               </h3>
-              <p className="text-gray-400 mb-6 max-w-md mx-auto">
+              <p className="text-white/40 mb-6 max-w-md mx-auto">
                 {t('upcoming.empty.description')}
               </p>
-              <Button className="rounded-xl" asChild>
+              <Button className="rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500" asChild>
                 <a
                   href={brand.social.telegram}
                   target="_blank"
@@ -73,7 +73,7 @@ export function EventsList({ upcomingEvents, pastEvents }: EventsListProps) {
             {pastEvents.length >= 6 && (
               <FadeIn delay={0.3}>
                 <div className="text-center mt-8">
-                  <Button variant="outline" className="rounded-xl" asChild>
+                  <Button variant="outline" className="rounded-full border-white/10 hover:border-purple-500/50 hover:bg-white/5" asChild>
                     <Link href="/eventos?filter=past">
                       {t('past.showMore')}
                     </Link>

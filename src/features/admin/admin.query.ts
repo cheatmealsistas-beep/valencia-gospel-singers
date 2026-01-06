@@ -12,6 +12,8 @@ import type {
   Collaborator,
   Speaker,
   TeamMember,
+  GalleryImage,
+  GalleryCategory,
 } from './types';
 
 /**
@@ -131,7 +133,7 @@ export async function getAffiliateProgramSettings(): Promise<AffiliateProgramSet
  */
 
 /**
- * Get admin dashboard statistics for Product Beers
+ * Get admin dashboard statistics for Valencia Gospel Singers
  */
 export async function getAdminStats(): Promise<AdminStats> {
   const supabase = await createClientServer();
@@ -182,9 +184,9 @@ export async function getAdminStats(): Promise<AdminStats> {
     .select('*', { count: 'exact', head: true })
     .eq('is_active', true);
 
-  // Total active team members
+  // Total active members (choir members)
   const { count: totalTeamMembers } = await supabase
-    .from('team_members')
+    .from('members')
     .select('*', { count: 'exact', head: true })
     .eq('is_active', true);
 
@@ -731,23 +733,23 @@ export async function getSpeakerById(id: string): Promise<Speaker | null> {
 
 /**
  * ==============================================
- * TEAM MEMBER QUERIES
+ * MEMBER QUERIES (Choir Members)
  * ==============================================
  */
 
 /**
- * Get all team members (admin view)
+ * Get all members (admin view)
  */
 export async function getAllTeamMembers(): Promise<TeamMember[]> {
   const supabase = await createClientServer();
 
   const { data, error } = await supabase
-    .from('team_members')
+    .from('members')
     .select('*')
     .order('display_order', { ascending: true });
 
   if (error) {
-    console.error('Error fetching team members:', error);
+    console.error('Error fetching members:', error);
     return [];
   }
 
@@ -755,19 +757,19 @@ export async function getAllTeamMembers(): Promise<TeamMember[]> {
 }
 
 /**
- * Get active team members (public view for landing)
+ * Get active members (public view for landing)
  */
 export async function getActiveTeamMembers(): Promise<TeamMember[]> {
   const supabase = await createClientServer();
 
   const { data, error } = await supabase
-    .from('team_members')
+    .from('members')
     .select('*')
     .eq('is_active', true)
     .order('display_order', { ascending: true });
 
   if (error) {
-    console.error('Error fetching active team members:', error);
+    console.error('Error fetching active members:', error);
     return [];
   }
 
@@ -775,21 +777,137 @@ export async function getActiveTeamMembers(): Promise<TeamMember[]> {
 }
 
 /**
- * Get a specific team member by ID
+ * Get a specific member by ID
  */
 export async function getTeamMemberById(id: string): Promise<TeamMember | null> {
   const supabase = await createClientServer();
 
   const { data, error } = await supabase
-    .from('team_members')
+    .from('members')
     .select('*')
     .eq('id', id)
     .single();
 
   if (error || !data) {
-    console.error(`Error fetching team member ${id}:`, error);
+    console.error(`Error fetching member ${id}:`, error);
     return null;
   }
 
   return data as TeamMember;
+}
+
+/**
+ * ==============================================
+ * GALLERY QUERIES
+ * ==============================================
+ */
+
+/**
+ * Get all gallery images (admin view)
+ */
+export async function getAllGalleryImages(): Promise<GalleryImage[]> {
+  const supabase = await createClientServer();
+
+  const { data, error } = await supabase
+    .from('gallery_images')
+    .select('*')
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching gallery images:', error);
+    return [];
+  }
+
+  return data as GalleryImage[];
+}
+
+/**
+ * Get active gallery images (public view)
+ */
+export async function getActiveGalleryImages(
+  category?: GalleryCategory
+): Promise<GalleryImage[]> {
+  const supabase = await createClientServer();
+
+  let query = supabase
+    .from('gallery_images')
+    .select('*')
+    .eq('is_active', true)
+    .order('display_order', { ascending: true });
+
+  if (category) {
+    query = query.eq('category', category);
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error('Error fetching active gallery images:', error);
+    return [];
+  }
+
+  return data as GalleryImage[];
+}
+
+/**
+ * Get featured gallery images (for homepage or highlights)
+ */
+export async function getFeaturedGalleryImages(): Promise<GalleryImage[]> {
+  const supabase = await createClientServer();
+
+  const { data, error } = await supabase
+    .from('gallery_images')
+    .select('*')
+    .eq('is_active', true)
+    .eq('is_featured', true)
+    .order('display_order', { ascending: true })
+    .limit(12);
+
+  if (error) {
+    console.error('Error fetching featured gallery images:', error);
+    return [];
+  }
+
+  return data as GalleryImage[];
+}
+
+/**
+ * Get a specific gallery image by ID
+ */
+export async function getGalleryImageById(id: string): Promise<GalleryImage | null> {
+  const supabase = await createClientServer();
+
+  const { data, error } = await supabase
+    .from('gallery_images')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error || !data) {
+    console.error(`Error fetching gallery image ${id}:`, error);
+    return null;
+  }
+
+  return data as GalleryImage;
+}
+
+/**
+ * Get gallery images by event ID
+ */
+export async function getGalleryImagesByEvent(eventId: string): Promise<GalleryImage[]> {
+  const supabase = await createClientServer();
+
+  const { data, error } = await supabase
+    .from('gallery_images')
+    .select('*')
+    .eq('event_id', eventId)
+    .eq('is_active', true)
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    console.error(`Error fetching gallery images for event ${eventId}:`, error);
+    return [];
+  }
+
+  return data as GalleryImage[];
 }

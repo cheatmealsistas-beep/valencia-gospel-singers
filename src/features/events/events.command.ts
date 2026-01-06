@@ -9,7 +9,6 @@ import type { EventInput, SpeakerInput, SponsorInput } from './types';
  * Crear un nuevo evento
  */
 export async function createEvent(
-  userId: string,
   input: EventInput
 ): Promise<{ data: { id: string } | null; error: string | null }> {
   const supabase = await createClientServer();
@@ -33,7 +32,6 @@ export async function createEvent(
       status: input.status,
       featured: input.featured,
       source: 'manual',
-      created_by: userId,
     })
     .select('id')
     .single();

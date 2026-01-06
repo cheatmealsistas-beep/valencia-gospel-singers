@@ -3,17 +3,13 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { brand } from '@/shared/config';
-import { useConsent } from '@/features/consent/hooks/use-consent';
 
 interface MarketingFooterClientProps {
   locale: string;
-  showAffiliateLink?: boolean;
-  affiliateLinkText?: string;
 }
 
-export function MarketingFooterClient({ locale, showAffiliateLink, affiliateLinkText }: MarketingFooterClientProps) {
-  const tConsent = useTranslations('consent');
-  const { openPreferences, isEnabled } = useConsent();
+export function MarketingFooterClient({ locale }: MarketingFooterClientProps) {
+  const t = useTranslations('layouts');
 
   return (
     <footer className="border-t py-6 md:py-0">
@@ -23,27 +19,11 @@ export function MarketingFooterClient({ locale, showAffiliateLink, affiliateLink
         </p>
         <div className="flex items-center gap-4">
           <Link
-            href={`/${locale}/privacy`}
+            href={`/${locale}/privacidad`}
             className="text-sm text-muted-foreground hover:text-foreground"
           >
-            {tConsent('footer.privacy')}
+            {t('privacy')}
           </Link>
-          {showAffiliateLink && (
-            <Link
-              href={`/${locale}/affiliates`}
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              {affiliateLinkText}
-            </Link>
-          )}
-          {isEnabled && (
-            <button
-              onClick={openPreferences}
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              {tConsent('footer.manageCookies')}
-            </button>
-          )}
         </div>
       </div>
     </footer>
