@@ -24,18 +24,20 @@ export function CollaboratorsMarqueeClient({ collaborators }: CollaboratorsMarqu
         {collaborators.map((collaborator) => (
           <a
             key={collaborator.id}
-            href={collaborator.website_url}
+            href={collaborator.website_url ?? '#'}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center px-4 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
           >
-            <Image
-              src={collaborator.logo_url}
-              alt={collaborator.name}
-              width={120}
-              height={40}
-              className="h-8 md:h-10 w-auto object-contain"
-            />
+            {collaborator.logo_url && (
+              <Image
+                src={collaborator.logo_url}
+                alt={collaborator.name}
+                width={120}
+                height={40}
+                className="h-8 md:h-10 w-auto object-contain"
+              />
+            )}
           </a>
         ))}
       </Marquee>

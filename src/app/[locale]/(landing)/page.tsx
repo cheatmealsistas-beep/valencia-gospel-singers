@@ -622,18 +622,20 @@ export default async function HomePage({ params }: HomePageProps) {
               {collaborators.map((collaborator) => (
                 <a
                   key={collaborator.id}
-                  href={collaborator.website_url}
+                  href={collaborator.website_url ?? '#'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center px-8 opacity-30 hover:opacity-80 transition-opacity duration-300"
                 >
-                  <Image
-                    src={collaborator.logo_url}
-                    alt={collaborator.name}
-                    width={140}
-                    height={50}
-                    className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
-                  />
+                  {collaborator.logo_url && (
+                    <Image
+                      src={collaborator.logo_url}
+                      alt={collaborator.name}
+                      width={140}
+                      height={50}
+                      className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
+                    />
+                  )}
                 </a>
               ))}
             </Marquee>
