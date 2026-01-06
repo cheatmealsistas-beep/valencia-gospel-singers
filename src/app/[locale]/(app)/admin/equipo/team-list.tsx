@@ -278,7 +278,7 @@ export function TeamList({ members }: TeamListProps) {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-2 mt-4 pt-4 border-t">
+                <div className="flex items-center flex-wrap gap-2 mt-4 pt-4 border-t">
                   <Button
                     size="sm"
                     variant="outline"
@@ -294,15 +294,9 @@ export function TeamList({ members }: TeamListProps) {
                     disabled={isPending}
                   >
                     {member.is_active ? (
-                      <>
-                        <EyeOff className="w-4 h-4 mr-1" />
-                        {t('actions.deactivate')}
-                      </>
+                      <EyeOff className="w-4 h-4" />
                     ) : (
-                      <>
-                        <Eye className="w-4 h-4 mr-1" />
-                        {t('actions.activate')}
-                      </>
+                      <Eye className="w-4 h-4" />
                     )}
                   </Button>
 
@@ -312,7 +306,7 @@ export function TeamList({ members }: TeamListProps) {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="text-red-600 dark:text-red-400 border-red-500/30 hover:bg-red-500/10 ml-auto"
+                        className="text-red-600 dark:text-red-400 border-red-500/30 hover:bg-red-500/10"
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>

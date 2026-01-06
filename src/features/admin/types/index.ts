@@ -242,8 +242,8 @@ export type ActionResult<T = void> = ActionSuccess<T> | ActionError;
 
 export const collaboratorSchema = z.object({
   name: z.string().min(1, 'Name is required'),
-  logo_url: z.string().min(1, 'Logo URL is required'),
-  website_url: z.string().url('Website URL must be a valid URL'),
+  logo_url: z.string().url('Invalid logo URL').optional().nullable().or(z.literal('')),
+  website_url: z.string().url('Invalid website URL').optional().nullable().or(z.literal('')),
   type: z.enum(['sponsor', 'hoster']),
   is_active: z.boolean().default(true),
   display_order: z.number().int().default(0),
