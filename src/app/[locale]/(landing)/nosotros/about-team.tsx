@@ -10,7 +10,7 @@ interface AboutTeamProps {
 }
 
 export function AboutTeam({ teamMembers }: AboutTeamProps) {
-  const t = useTranslations('about.team');
+  const t = useTranslations('nosotros.team');
 
   return (
     <section className="py-24 bg-[#0a0a0a] relative overflow-hidden">

@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { FadeIn } from '@/shared/components/magic-ui';
 
 export function AboutHero() {
-  const t = useTranslations('about');
+  const t = useTranslations('nosotros');
 
   return (
     <section className="relative min-h-[50vh] flex flex-col items-center justify-center px-4 py-20 md:py-28 text-center overflow-hidden bg-[#0a0a0a]">

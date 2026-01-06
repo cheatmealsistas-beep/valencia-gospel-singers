@@ -20,7 +20,7 @@ const values = [
 ];
 
 export function AboutMission() {
-  const t = useTranslations('about.mission');
+  const t = useTranslations('nosotros.mission');
 
   return (
     <section className="py-24 bg-[#0a0a0a]">

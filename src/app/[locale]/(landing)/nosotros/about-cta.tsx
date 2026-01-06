@@ -8,7 +8,7 @@ import { FadeIn } from '@/shared/components/magic-ui';
 import { brand } from '@/shared/config';
 
 export function AboutCTA() {
-  const t = useTranslations('about.cta');
+  const t = useTranslations('nosotros.cta');
   const locale = useLocale();
 
   return (
