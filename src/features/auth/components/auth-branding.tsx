@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Check } from 'lucide-react';
 
 import { brand } from '@/shared/config/brand';
@@ -26,16 +25,10 @@ export function AuthBranding() {
         />
       )}
 
-      {/* Logo and brand name */}
+      {/* Brand name */}
       <BlurFade delay={0.1}>
-        <div className="relative z-10 flex items-center gap-3">
-          <Image
-            src={brand.logo}
-            alt={brand.name}
-            width={32}
-            height={32}
-          />
-          <span className="text-xl font-semibold">{brand.name}</span>
+        <div className="relative z-10">
+          <span className="text-xl font-bold">{brand.name}</span>
         </div>
       </BlurFade>
 

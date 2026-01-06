@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
@@ -27,17 +26,10 @@ export default async function AuthLayout({
 
       {/* Form panel */}
       <div className="flex flex-col min-h-screen">
-        {/* Mobile header with logo - hidden on desktop when branding panel is shown */}
+        {/* Mobile header with brand name - hidden on desktop when branding panel is shown */}
         <header className={`p-6 ${showBranding ? 'lg:hidden' : ''}`}>
-          <Link href={`/${locale}`} className="flex items-center gap-2">
-            <Image
-              src={brand.logo}
-              alt={brand.name}
-              width={28}
-              height={28}
-              className="dark:invert"
-            />
-            <span className="font-semibold">{brand.name}</span>
+          <Link href={`/${locale}`} className="font-bold text-lg">
+            {brand.name}
           </Link>
         </header>
 

@@ -32,9 +32,9 @@
     --secondary: 25 95% 53%; /* #F97316 */
     --secondary-foreground: 0 0% 100%;
 
-    /* Accent - Dorado */
-    --accent: 43 96% 56%; /* #FBBF24 */
-    --accent-foreground: 240 10% 15%;
+    /* Accent - Púrpura claro */
+    --accent: 263 70% 95%; /* Púrpura muy claro para hover */
+    --accent-foreground: 263 70% 45%;
 
     --muted: 240 5% 96%;
     --muted-foreground: 240 4% 46%;

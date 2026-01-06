@@ -49,9 +49,27 @@
 **Estética general**:
 - Energía y movimiento (animaciones sutiles)
 - Fotos del grupo en acción (conciertos, bodas)
-- Gradientes púrpura-naranja para fondos hero
+- Gradientes púrpura-rosa para fondos hero y acentos
 - Iconografía relacionada con música (notas, micrófonos, ondas de sonido)
 - Sensación de comunidad y alegría
+- **Elemento visual distintivo**: Vinilo con centro esférico púrpura-rosa (usado en logo, favicon, y decoración en home/nosotros)
+
+### Logo y Favicon
+
+**Logo**: Disco de vinilo minimalista con:
+- Borde fino con glow púrpura-rosa
+- Centro esférico 3D con gradiente púrpura→rosa
+- Surcos sutiles en el disco
+- Texto "Valencia Gospel Singers" en arco (estilo handwriting)
+
+**Archivos**:
+- `/public/logo.svg` - Logo completo
+- `/src/app/icon.svg` - Favicon (Next.js lo usa automáticamente)
+
+**Uso del vinilo en la web**:
+- Home: Avatares del equipo en formato vinilo con hover púrpura
+- Nosotros: Misma estética de vinilo para fotos del equipo
+- El efecto hover añade tinte púrpura con `mix-blend-color`
 
 ### Tono de Comunicación
 

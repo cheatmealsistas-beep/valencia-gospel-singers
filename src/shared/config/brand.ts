@@ -55,8 +55,8 @@ export const brand = {
   // ASSETS (place files in /public/)
   // ═══════════════════════════════════════════════════════════════════
 
-  /** Logo for header/navigation */
-  logo: '/logo.png',
+  /** Logo for header/navigation (empty = use brand name text instead) */
+  logo: '',
 
   /** Small icon for favicon context */
   icon: '/icon.png',

@@ -5,13 +5,7 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { Menu, X, LayoutDashboard, LogOut, Calendar, Users, Handshake, MessageSquare } from 'lucide-react';
 import { Button } from './button';
-import { brand } from '@/shared/config';
 import { logoutAction } from '@/features/auth/auth.actions';
-
-// Helper to get glass classes based on config
-const glassClasses = brand.theme.glass
-  ? 'glass border-white/10'
-  : 'bg-background border-border';
 
 /**
  * MobileMenu - Hamburger menu for mobile app navigation
@@ -43,7 +37,14 @@ export function MobileMenu() {
       </Button>
 
       {isOpen && (
-        <div className={`absolute left-0 right-0 top-14 z-50 border-b p-4 shadow-lg ${glassClasses}`}>
+        <>
+          {/* Overlay to close menu when clicking outside */}
+          <div
+            className="fixed inset-0 top-14 z-40 bg-black/50"
+            onClick={() => setIsOpen(false)}
+          />
+          {/* Menu panel */}
+          <div className="absolute left-0 right-0 top-14 z-50 border-b bg-background p-4 shadow-lg">
           <nav className="flex flex-col space-y-2">
             <Link
               href={`/${locale}/admin`}
@@ -99,7 +100,8 @@ export function MobileMenu() {
               </form>
             </div>
           </nav>
-        </div>
+          </div>
+        </>
       )}
     </div>
   );
