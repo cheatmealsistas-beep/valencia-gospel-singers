@@ -14,11 +14,11 @@ interface HomePageProps {
 
 export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'metadata' });
+  const t = await getTranslations({ locale, namespace: 'landing' });
 
   return {
-    title: t('home.title'),
-    description: t('home.description'),
+    title: t('meta.title'),
+    description: t('meta.description'),
   };
 }
 
