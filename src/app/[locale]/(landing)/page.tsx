@@ -198,10 +198,10 @@ export default async function HomePage({ params }: HomePageProps) {
         <div className="absolute top-1/2 right-0 translate-x-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-purple-600/20 via-fuchsia-900/10 to-transparent blur-[100px]" />
 
         {/* Contenido - Alineado a la izquierda */}
-        <div className="container relative z-10 py-20">
-          <div className="max-w-2xl">
+        <div className="container relative z-10 py-24 md:py-32 lg:py-40">
+          <div className="max-w-3xl">
             <FadeIn delay={0.1}>
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 mb-8">
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 mb-10">
                 {/* Mini ecualizador en el badge */}
                 <div className="flex items-end gap-0.5 h-4">
                   {[0.4, 0.7, 1, 0.6, 0.8].map((h, i) => (
@@ -224,13 +224,13 @@ export default async function HomePage({ params }: HomePageProps) {
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <p className="text-xl md:text-2xl text-white/50 mb-14 leading-relaxed">
+              <p className="text-xl md:text-2xl lg:text-3xl text-white/40 mb-16 leading-relaxed max-w-2xl">
                 {t('hero.description')}
               </p>
             </FadeIn>
 
             <FadeIn delay={0.4}>
-              <div className="flex flex-col sm:flex-row items-start gap-5">
+              <div className="flex flex-col sm:flex-row items-start gap-6">
               <Button
                 size="lg"
                 className="group text-lg px-10 py-7 rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-600 to-purple-600 bg-[length:200%_auto] text-white font-semibold hover:bg-right shadow-2xl shadow-purple-600/30 transition-all duration-500"
