@@ -393,12 +393,24 @@ export interface TeamMember {
  * ==============================================
  */
 
+export const mediaTypeEnum = z.enum(['image', 'video']);
+export type MediaType = z.infer<typeof mediaTypeEnum>;
+
 export const galleryImageSchema = z.object({
-  title: z.string().max(200).optional().nullable(),
-  description: z.string().max(500).optional().nullable(),
+  // Media type and URLs
+  media_type: mediaTypeEnum.default('image'),
   image_url: z.string().min(1, 'Image URL is required'),
   thumbnail_url: z.string().optional().nullable(),
+  youtube_url: z.string().url('Invalid YouTube URL').optional().nullable().or(z.literal('')),
+  // Spanish (default)
+  title: z.string().max(200).optional().nullable(),
+  description: z.string().max(500).optional().nullable(),
   alt_text: z.string().max(200).optional().nullable(),
+  // English translations
+  title_en: z.string().max(200).optional().nullable(),
+  description_en: z.string().max(500).optional().nullable(),
+  alt_text_en: z.string().max(200).optional().nullable(),
+  // Common fields
   category: z.enum(['conciertos', 'bodas', 'eventos', 'ensayos', 'otros']).default('otros'),
   event_id: z.string().uuid().optional().nullable(),
   display_order: z.number().int().default(0),
@@ -410,11 +422,20 @@ export type GalleryImageInput = z.infer<typeof galleryImageSchema>;
 
 export interface GalleryImage {
   id: string;
-  title: string | null;
-  description: string | null;
+  // Media type and URLs
+  media_type: MediaType;
   image_url: string;
   thumbnail_url: string | null;
+  youtube_url: string | null;
+  // Spanish (default)
+  title: string | null;
+  description: string | null;
   alt_text: string | null;
+  // English translations
+  title_en: string | null;
+  description_en: string | null;
+  alt_text_en: string | null;
+  // Common fields
   category: 'conciertos' | 'bodas' | 'eventos' | 'ensayos' | 'otros';
   event_id: string | null;
   display_order: number;

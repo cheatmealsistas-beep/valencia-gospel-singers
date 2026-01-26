@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { Menu, X, LayoutDashboard, LogOut, Calendar, Users, Handshake, MessageSquare, Briefcase } from 'lucide-react';
+import { Menu, X, LayoutDashboard, LogOut, Calendar, Users, Handshake, MessageSquare, Briefcase, Image } from 'lucide-react';
 import { Button } from './button';
 import { logoutAction } from '@/features/auth/auth.actions';
 
@@ -85,6 +85,14 @@ export function MobileMenu() {
             >
               <Handshake className="h-4 w-4" />
               <span>Clientes</span>
+            </Link>
+            <Link
+              href={`/${locale}/admin/galeria`}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+            >
+              <Image className="h-4 w-4" />
+              <span>Galería</span>
             </Link>
             <Link
               href={`/${locale}/admin/mensajes`}

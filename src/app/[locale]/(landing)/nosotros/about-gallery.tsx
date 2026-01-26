@@ -4,16 +4,11 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
-import { Tabs, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
-import type { GalleryImage, GalleryCategory } from '@/features/admin/types';
+import type { GalleryImage } from '@/features/admin/types';
 
-interface GalleryGridProps {
+interface AboutGalleryProps {
   images: GalleryImage[];
 }
-
-type FilterCategory = 'all' | GalleryCategory;
-
-const CATEGORIES: GalleryCategory[] = ['conciertos', 'bodas', 'eventos', 'ensayos', 'otros'];
 
 // Extract YouTube video ID from URL
 function getYouTubeVideoId(url: string): string | null {
@@ -22,16 +17,13 @@ function getYouTubeVideoId(url: string): string | null {
   return match && match[2].length === 11 ? match[2] : null;
 }
 
-export function GalleryGrid({ images }: GalleryGridProps) {
-  const t = useTranslations('galeria');
+export function AboutGallery({ images }: AboutGalleryProps) {
+  const t = useTranslations('nosotros');
   const locale = useLocale();
-  const [filter, setFilter] = useState<FilterCategory>('all');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const filteredImages = filter === 'all'
-    ? images
-    : images.filter((img) => img.category === filter);
+  if (images.length === 0) return null;
 
   // Get localized text
   const getLocalizedText = (item: GalleryImage, field: 'title' | 'description' | 'alt_text') => {
@@ -54,89 +46,70 @@ export function GalleryGrid({ images }: GalleryGridProps) {
   };
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? filteredImages.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev === filteredImages.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
-  // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') goToPrevious();
     if (e.key === 'ArrowRight') goToNext();
   };
 
-  // Only show categories that have images
-  const availableCategories = CATEGORIES.filter((cat) =>
-    images.some((img) => img.category === cat)
-  );
-
-  const currentItem = filteredImages[currentIndex];
+  const currentItem = images[currentIndex];
 
   return (
-    <>
-      {/* Filters */}
-      {availableCategories.length > 1 && (
-        <div className="flex justify-center mb-8">
-          <Tabs value={filter} onValueChange={(v) => setFilter(v as FilterCategory)}>
-            <TabsList className="flex-wrap h-auto bg-white/5 border border-white/10">
-              <TabsTrigger
-                value="all"
-                className="data-[state=active]:bg-purple-600 data-[state=active]:text-white text-white/60"
-              >
-                {t('filters.all')}
-              </TabsTrigger>
-              {availableCategories.map((cat) => (
-                <TabsTrigger
-                  key={cat}
-                  value={cat}
-                  className="data-[state=active]:bg-purple-600 data-[state=active]:text-white text-white/60"
-                >
-                  {t(`filters.${cat}`)}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
+    <section className="py-20 md:py-28 bg-[#0a0a0a]">
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            {t('gallery.title')}
+          </h2>
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            {t('gallery.description')}
+          </p>
         </div>
-      )}
 
-      {/* Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredImages.map((image, index) => (
-          <button
-            key={image.id}
-            onClick={() => openLightbox(index)}
-            className="group relative aspect-square overflow-hidden rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={image.thumbnail_url || image.image_url}
-              alt={getLocalizedText(image, 'alt_text') || getLocalizedText(image, 'title') || 'Gallery image'}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-            />
-            {/* Video play icon */}
-            {image.media_type === 'video' && (
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:bg-purple-600/80 group-hover:scale-110 transition-all duration-300">
-                  <Play className="w-7 h-7 text-white fill-white ml-1" />
+        {/* Gallery Grid - Masonry style */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {images.map((image, index) => (
+            <button
+              key={image.id}
+              onClick={() => openLightbox(index)}
+              className="group relative aspect-square overflow-hidden rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={image.thumbnail_url || image.image_url}
+                alt={getLocalizedText(image, 'alt_text') || getLocalizedText(image, 'title') || 'Gallery image'}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              {/* Video play icon */}
+              {image.media_type === 'video' && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-14 h-14 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:bg-purple-600/80 group-hover:scale-110 transition-all duration-300">
+                    <Play className="w-6 h-6 text-white fill-white ml-1" />
+                  </div>
                 </div>
-              </div>
-            )}
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            {/* Title on hover */}
-            {getLocalizedText(image, 'title') && (
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-white text-sm font-medium truncate">
-                  {getLocalizedText(image, 'title')}
-                </p>
-              </div>
-            )}
-          </button>
-        ))}
+              )}
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Title on hover */}
+              {getLocalizedText(image, 'title') && (
+                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <p className="text-white text-sm font-medium truncate">
+                    {getLocalizedText(image, 'title')}
+                  </p>
+                </div>
+              )}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Lightbox */}
@@ -161,7 +134,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
           </Button>
 
           {/* Previous button */}
-          {filteredImages.length > 1 && (
+          {images.length > 1 && (
             <Button
               variant="ghost"
               size="icon"
@@ -217,12 +190,12 @@ export function GalleryGrid({ images }: GalleryGridProps) {
             )}
             {/* Counter */}
             <p className="mt-4 text-white/50 text-sm">
-              {currentIndex + 1} / {filteredImages.length}
+              {currentIndex + 1} / {images.length}
             </p>
           </div>
 
           {/* Next button */}
-          {filteredImages.length > 1 && (
+          {images.length > 1 && (
             <Button
               variant="ghost"
               size="icon"
@@ -237,6 +210,6 @@ export function GalleryGrid({ images }: GalleryGridProps) {
           )}
         </div>
       )}
-    </>
+    </section>
   );
 }

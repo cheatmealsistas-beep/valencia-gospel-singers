@@ -8,11 +8,13 @@ import {
   Pencil,
   Trash2,
   Image as ImageIcon,
+  Video,
   Eye,
   EyeOff,
   Star,
   StarOff,
   Loader2,
+  Play,
 } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
@@ -54,7 +56,7 @@ import {
   toggleGalleryImageFeaturedAction,
   deleteGalleryImageAction,
 } from '@/features/admin/admin.actions';
-import type { GalleryImage, GalleryImageInput, GalleryCategory } from '@/features/admin/types';
+import type { GalleryImage, GalleryImageInput, GalleryCategory, MediaType } from '@/features/admin/types';
 
 interface GalleryAdminProps {
   images: GalleryImage[];
@@ -63,6 +65,7 @@ interface GalleryAdminProps {
 type FilterCategory = 'all' | GalleryCategory;
 
 const CATEGORIES: GalleryCategory[] = ['conciertos', 'bodas', 'eventos', 'ensayos', 'otros'];
+const MEDIA_TYPES: MediaType[] = ['image', 'video'];
 
 export function GalleryAdmin({ images }: GalleryAdminProps) {
   const t = useTranslations('admin-galeria');
@@ -70,6 +73,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
   const [filter, setFilter] = useState<FilterCategory>('all');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingImage, setEditingImage] = useState<GalleryImage | null>(null);
+  const [mediaType, setMediaType] = useState<MediaType>('image');
 
   const filteredImages = filter === 'all'
     ? images
@@ -77,11 +81,19 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
 
   const handleCreate = async (formData: FormData) => {
     const input: GalleryImageInput = {
+      media_type: formData.get('media_type') as MediaType || 'image',
       image_url: formData.get('image_url') as string,
       thumbnail_url: (formData.get('thumbnail_url') as string) || null,
+      youtube_url: (formData.get('youtube_url') as string) || null,
+      // Spanish
       title: (formData.get('title') as string) || null,
       description: (formData.get('description') as string) || null,
       alt_text: (formData.get('alt_text') as string) || null,
+      // English
+      title_en: (formData.get('title_en') as string) || null,
+      description_en: (formData.get('description_en') as string) || null,
+      alt_text_en: (formData.get('alt_text_en') as string) || null,
+      // Common
       category: (formData.get('category') as GalleryCategory) || 'otros',
       display_order: parseInt(formData.get('display_order') as string) || 0,
       is_featured: formData.get('is_featured') === 'on',
@@ -93,6 +105,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
       if (result.success) {
         toast.success(t('toast.created'));
         setDialogOpen(false);
+        setMediaType('image');
       } else {
         toast.error(result.error || t('toast.error'));
       }
@@ -103,11 +116,19 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
     if (!editingImage) return;
 
     const input: Partial<GalleryImageInput> = {
+      media_type: formData.get('media_type') as MediaType || 'image',
       image_url: formData.get('image_url') as string,
       thumbnail_url: (formData.get('thumbnail_url') as string) || null,
+      youtube_url: (formData.get('youtube_url') as string) || null,
+      // Spanish
       title: (formData.get('title') as string) || null,
       description: (formData.get('description') as string) || null,
       alt_text: (formData.get('alt_text') as string) || null,
+      // English
+      title_en: (formData.get('title_en') as string) || null,
+      description_en: (formData.get('description_en') as string) || null,
+      alt_text_en: (formData.get('alt_text_en') as string) || null,
+      // Common
       category: (formData.get('category') as GalleryCategory) || 'otros',
       display_order: parseInt(formData.get('display_order') as string) || 0,
       is_featured: formData.get('is_featured') === 'on',
@@ -120,6 +141,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
         toast.success(t('toast.updated'));
         setEditingImage(null);
         setDialogOpen(false);
+        setMediaType('image');
       } else {
         toast.error(result.error || t('toast.error'));
       }
@@ -161,13 +183,17 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
 
   const openEditDialog = (image: GalleryImage) => {
     setEditingImage(image);
+    setMediaType(image.media_type || 'image');
     setDialogOpen(true);
   };
 
   const closeDialog = () => {
     setEditingImage(null);
+    setMediaType('image');
     setDialogOpen(false);
   };
+
+  const currentMediaType = editingImage ? (editingImage.media_type || 'image') : mediaType;
 
   return (
     <div className="space-y-6">
@@ -196,16 +222,53 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
               {t('addNew')}
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>
                 {editingImage ? t('form.title.edit') : t('form.title.create')}
               </DialogTitle>
             </DialogHeader>
-            <form action={editingImage ? handleUpdate : handleCreate} className="space-y-4">
-              {/* Image URL */}
+            <form action={editingImage ? handleUpdate : handleCreate} className="space-y-6">
+              {/* Media Type Selection */}
               <div className="space-y-2">
-                <Label htmlFor="image_url">{t('form.imageUrl.label')}</Label>
+                <Label>{t('form.mediaType.label')}</Label>
+                <div className="flex gap-2">
+                  {MEDIA_TYPES.map((type) => (
+                    <Button
+                      key={type}
+                      type="button"
+                      variant={currentMediaType === type ? 'default' : 'outline'}
+                      onClick={() => setMediaType(type)}
+                      className={currentMediaType === type ? 'bg-purple-600 hover:bg-purple-500' : ''}
+                    >
+                      {type === 'image' ? <ImageIcon className="w-4 h-4 mr-2" /> : <Video className="w-4 h-4 mr-2" />}
+                      {type === 'image' ? 'Imagen' : 'Vídeo YouTube'}
+                    </Button>
+                  ))}
+                </div>
+                <input type="hidden" name="media_type" value={currentMediaType} />
+              </div>
+
+              {/* YouTube URL (only for video) */}
+              {currentMediaType === 'video' && (
+                <div className="space-y-2">
+                  <Label htmlFor="youtube_url">{t('form.youtubeUrl.label')}</Label>
+                  <Input
+                    id="youtube_url"
+                    name="youtube_url"
+                    type="url"
+                    defaultValue={editingImage?.youtube_url || ''}
+                    placeholder="https://www.youtube.com/watch?v=..."
+                  />
+                  <p className="text-xs text-muted-foreground">{t('form.youtubeUrl.help')}</p>
+                </div>
+              )}
+
+              {/* Image/Thumbnail URL */}
+              <div className="space-y-2">
+                <Label htmlFor="image_url">
+                  {currentMediaType === 'video' ? t('form.thumbnailUrl.label') : t('form.imageUrl.label')}
+                </Label>
                 <Input
                   id="image_url"
                   name="image_url"
@@ -214,53 +277,85 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                   defaultValue={editingImage?.image_url || ''}
                   placeholder={t('form.imageUrl.placeholder')}
                 />
-                <p className="text-xs text-muted-foreground">{t('form.imageUrl.help')}</p>
+                <p className="text-xs text-muted-foreground">
+                  {currentMediaType === 'video' ? t('form.thumbnailUrl.help') : t('form.imageUrl.help')}
+                </p>
               </div>
 
-              {/* Thumbnail URL */}
-              <div className="space-y-2">
-                <Label htmlFor="thumbnail_url">{t('form.thumbnailUrl.label')}</Label>
-                <Input
-                  id="thumbnail_url"
-                  name="thumbnail_url"
-                  type="url"
-                  defaultValue={editingImage?.thumbnail_url || ''}
-                  placeholder={t('form.thumbnailUrl.placeholder')}
-                />
+              {/* Spanish Fields */}
+              <div className="space-y-4 p-4 border rounded-lg">
+                <h3 className="font-medium flex items-center gap-2">
+                  🇪🇸 Español
+                </h3>
+
+                <div className="space-y-2">
+                  <Label htmlFor="title">{t('form.imageTitle.label')}</Label>
+                  <Input
+                    id="title"
+                    name="title"
+                    defaultValue={editingImage?.title || ''}
+                    placeholder={t('form.imageTitle.placeholder')}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="description">{t('form.description.label')}</Label>
+                  <Textarea
+                    id="description"
+                    name="description"
+                    rows={2}
+                    defaultValue={editingImage?.description || ''}
+                    placeholder={t('form.description.placeholder')}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="alt_text">{t('form.altText.label')}</Label>
+                  <Input
+                    id="alt_text"
+                    name="alt_text"
+                    defaultValue={editingImage?.alt_text || ''}
+                    placeholder={t('form.altText.placeholder')}
+                  />
+                </div>
               </div>
 
-              {/* Title */}
-              <div className="space-y-2">
-                <Label htmlFor="title">{t('form.imageTitle.label')}</Label>
-                <Input
-                  id="title"
-                  name="title"
-                  defaultValue={editingImage?.title || ''}
-                  placeholder={t('form.imageTitle.placeholder')}
-                />
-              </div>
+              {/* English Fields */}
+              <div className="space-y-4 p-4 border rounded-lg border-dashed">
+                <h3 className="font-medium flex items-center gap-2 text-muted-foreground">
+                  🇬🇧 English (opcional)
+                </h3>
 
-              {/* Description */}
-              <div className="space-y-2">
-                <Label htmlFor="description">{t('form.description.label')}</Label>
-                <Textarea
-                  id="description"
-                  name="description"
-                  rows={2}
-                  defaultValue={editingImage?.description || ''}
-                  placeholder={t('form.description.placeholder')}
-                />
-              </div>
+                <div className="space-y-2">
+                  <Label htmlFor="title_en">Title</Label>
+                  <Input
+                    id="title_en"
+                    name="title_en"
+                    defaultValue={editingImage?.title_en || ''}
+                    placeholder="Title in English"
+                  />
+                </div>
 
-              {/* Alt Text */}
-              <div className="space-y-2">
-                <Label htmlFor="alt_text">{t('form.altText.label')}</Label>
-                <Input
-                  id="alt_text"
-                  name="alt_text"
-                  defaultValue={editingImage?.alt_text || ''}
-                  placeholder={t('form.altText.placeholder')}
-                />
+                <div className="space-y-2">
+                  <Label htmlFor="description_en">Description</Label>
+                  <Textarea
+                    id="description_en"
+                    name="description_en"
+                    rows={2}
+                    defaultValue={editingImage?.description_en || ''}
+                    placeholder="Description in English"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="alt_text_en">Alt text</Label>
+                  <Input
+                    id="alt_text_en"
+                    name="alt_text_en"
+                    defaultValue={editingImage?.alt_text_en || ''}
+                    placeholder="Alt text in English"
+                  />
+                </div>
               </div>
 
               {/* Category & Order */}
@@ -323,7 +418,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                 <Button type="button" variant="outline" onClick={closeDialog}>
                   {t('form.cancel')}
                 </Button>
-                <Button type="submit" disabled={isPending}>
+                <Button type="submit" disabled={isPending} className="bg-purple-600 hover:bg-purple-500">
                   {isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                   {editingImage ? t('form.save') : t('form.save')}
                 </Button>
@@ -358,6 +453,14 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                   alt={image.alt_text || image.title || 'Gallery image'}
                   className="w-full h-full object-cover"
                 />
+                {/* Video play icon overlay */}
+                {image.media_type === 'video' && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center">
+                      <Play className="w-6 h-6 text-white fill-white" />
+                    </div>
+                  </div>
+                )}
                 {/* Overlay with actions on hover */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                   <Button
@@ -415,6 +518,12 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                 </div>
                 {/* Badges */}
                 <div className="absolute top-2 left-2 flex gap-1">
+                  {image.media_type === 'video' && (
+                    <Badge className="bg-red-500/90 text-white border-0">
+                      <Video className="w-3 h-3 mr-1" />
+                      Video
+                    </Badge>
+                  )}
                   {image.is_featured && (
                     <Badge className="bg-purple-500/90 text-white border-0">
                       <Star className="w-3 h-3 mr-1 fill-current" />

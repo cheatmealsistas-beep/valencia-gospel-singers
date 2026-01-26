@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "Galería - Admin",
-    "description": "Gestiona las fotos de la galería"
+    "description": "Gestiona las fotos y vídeos de la galería"
   },
   "title": "Galería",
-  "description": "Gestiona las fotos que aparecen en la galería pública",
+  "description": "Gestiona las fotos y vídeos que aparecen en la galería pública",
   "tabs": {
     "all": "Todas",
     "conciertos": "Conciertos",
@@ -13,10 +13,10 @@
     "ensayos": "Ensayos",
     "otros": "Otros"
   },
-  "addNew": "Añadir foto",
+  "addNew": "Añadir",
   "empty": {
-    "title": "No hay fotos",
-    "description": "Añade tu primera foto para mostrarla en la galería pública."
+    "title": "No hay contenido",
+    "description": "Añade tu primera foto o vídeo para mostrar en la galería pública."
   },
   "card": {
     "featured": "Destacada",
@@ -29,8 +29,15 @@
   },
   "form": {
     "title": {
-      "create": "Añadir foto",
-      "edit": "Editar foto"
+      "create": "Añadir a galería",
+      "edit": "Editar"
+    },
+    "mediaType": {
+      "label": "Tipo de contenido"
+    },
+    "youtubeUrl": {
+      "label": "URL de YouTube",
+      "help": "Pega el enlace del vídeo de YouTube"
     },
     "imageUrl": {
       "label": "URL de la imagen",
@@ -38,9 +45,9 @@
       "help": "Enlace directo a la imagen (JPG, PNG o WebP)"
     },
     "thumbnailUrl": {
-      "label": "URL del thumbnail (opcional)",
+      "label": "Imagen de portada",
       "placeholder": "https://ejemplo.com/foto-thumb.jpg",
-      "help": "Versión pequeña para carga rápida"
+      "help": "Imagen que se mostrará como miniatura del vídeo"
     },
     "imageTitle": {
       "label": "Título (opcional)",

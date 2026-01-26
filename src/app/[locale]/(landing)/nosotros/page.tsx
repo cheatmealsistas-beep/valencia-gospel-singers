@@ -2,8 +2,9 @@ import { getTranslations } from 'next-intl/server';
 import { AboutHero } from './about-hero';
 import { AboutMission } from './about-mission';
 import { AboutTeam } from './about-team';
+import { AboutGallery } from './about-gallery';
 import { AboutCTA } from './about-cta';
-import { getActiveTeamMembers } from '@/features/admin/admin.query';
+import { getActiveTeamMembers, getActiveGalleryImages } from '@/features/admin/admin.query';
 
 export async function generateMetadata({
   params,
@@ -11,7 +12,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'about' });
+  const t = await getTranslations({ locale, namespace: 'nosotros' });
 
   return {
     title: t('meta.title'),
@@ -20,13 +21,17 @@ export async function generateMetadata({
 }
 
 export default async function AboutPage() {
-  const teamMembers = await getActiveTeamMembers();
+  const [teamMembers, galleryImages] = await Promise.all([
+    getActiveTeamMembers(),
+    getActiveGalleryImages(),
+  ]);
 
   return (
     <>
       <AboutHero />
       <AboutMission />
       <AboutTeam teamMembers={teamMembers} />
+      <AboutGallery images={galleryImages} />
       <AboutCTA />
     </>
   );
