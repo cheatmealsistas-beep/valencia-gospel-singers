@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "title": "Servicios - Valencia Gospel Singers",
+    "description": "Descubre nuestros servicios de coro gospel para bodas, eventos corporativos, celebraciones privadas y conciertos en Valencia."
+  },
+  "hero": {
+    "label": "Servicios",
+    "titleStart": "Nuestros",
+    "titleHighlight": "servicios",
+    "description": "Hacemos de cada evento una experiencia inolvidable. Descubre cómo podemos poner la banda sonora a tus momentos más especiales."
+  },
+  "list": {
+    "title": "Lo que ofrecemos",
+    "empty": {
+      "title": "Próximamente",
+      "description": "Estamos preparando nuestro catálogo de servicios. Contáctanos para más información.",
+      "cta": "Contactar"
+    }
+  },
+  "card": {
+    "priceFrom": "Desde",
+    "viewDetails": "Ver detalles",
+    "contact": "Solicitar información"
+  },
+  "cta": {
+    "title": "¿Tienes algo especial en mente?",
+    "description": "Cuéntanos tu idea y te preparamos una propuesta personalizada.",
+    "button": "Hablemos"
+  }
+}

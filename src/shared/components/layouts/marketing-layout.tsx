@@ -19,6 +19,7 @@ export function MarketingLayout({ children }: MarketingLayoutProps) {
 
   const navLinks = [
     { href: `/${locale}`, label: t('home') },
+    { href: `/${locale}/servicios`, label: t('services') },
     { href: `/${locale}/eventos`, label: t('events') },
     { href: `/${locale}/nosotros`, label: t('about') },
     { href: `/${locale}/contacto`, label: t('contact') },

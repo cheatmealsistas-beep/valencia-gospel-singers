@@ -1,0 +1,99 @@
+{
+  "title": "Services",
+  "description": "Manage the services offered by Valencia Gospel Singers.",
+  "add": "New service",
+  "filters": {
+    "all": "All",
+    "published": "Published",
+    "draft": "Drafts"
+  },
+  "empty": {
+    "title": "No services",
+    "description": "You haven't created any services yet."
+  },
+  "form": {
+    "title": {
+      "create": "New service",
+      "edit": "Edit service"
+    },
+    "serviceTitle": {
+      "label": "Title",
+      "placeholder": "Service name"
+    },
+    "subtitle": {
+      "label": "Subtitle",
+      "placeholder": "Brief description of the service"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Full service description..."
+    },
+    "englishSection": "English texts",
+    "titleEn": {
+      "label": "Title (EN)",
+      "placeholder": "Service name in English"
+    },
+    "subtitleEn": {
+      "label": "Subtitle (EN)",
+      "placeholder": "Brief description in English"
+    },
+    "descriptionEn": {
+      "label": "Description (EN)",
+      "placeholder": "Full description in English..."
+    },
+    "imageUrl": {
+      "label": "Service image",
+      "placeholder": "https://..."
+    },
+    "priceFrom": {
+      "label": "Price from (€)",
+      "placeholder": "0.00"
+    },
+    "displayOrder": {
+      "label": "Display order",
+      "placeholder": "0"
+    },
+    "isPublished": {
+      "label": "Published",
+      "description": "Show on public website"
+    },
+    "isFeatured": {
+      "label": "Featured",
+      "description": "Show on homepage"
+    },
+    "submit": {
+      "create": "Create service",
+      "edit": "Save changes"
+    },
+    "cancel": "Cancel"
+  },
+  "card": {
+    "priceFrom": "From",
+    "order": "Order"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "publish": "Publish",
+    "unpublish": "Unpublish",
+    "viewPublic": "View on site"
+  },
+  "status": {
+    "draft": "Draft",
+    "published": "Published"
+  },
+  "toast": {
+    "created": "Service created",
+    "updated": "Service updated",
+    "deleted": "Service deleted",
+    "published": "Service published",
+    "unpublished": "Service unpublished",
+    "error": "Error saving"
+  },
+  "confirmDelete": {
+    "title": "Delete service?",
+    "description": "This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  }
+}

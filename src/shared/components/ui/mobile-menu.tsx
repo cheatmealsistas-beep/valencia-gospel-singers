@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import { Menu, X, LayoutDashboard, LogOut, Calendar, Users, Handshake, MessageSquare } from 'lucide-react';
+import { Menu, X, LayoutDashboard, LogOut, Calendar, Users, Handshake, MessageSquare, Briefcase } from 'lucide-react';
 import { Button } from './button';
 import { logoutAction } from '@/features/auth/auth.actions';
 
@@ -53,6 +53,14 @@ export function MobileMenu() {
             >
               <LayoutDashboard className="h-4 w-4" />
               <span>{t('dashboard')}</span>
+            </Link>
+            <Link
+              href={`/${locale}/admin/servicios`}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+            >
+              <Briefcase className="h-4 w-4" />
+              <span>Servicios</span>
             </Link>
             <Link
               href={`/${locale}/admin/eventos`}

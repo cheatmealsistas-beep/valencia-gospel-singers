@@ -6,7 +6,7 @@ import { Button } from '@/shared/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
 import { MobileMenu } from '@/shared/components/ui/mobile-menu';
 import { SkipLink } from '@/shared/components/ui/skip-link';
-import { LayoutDashboard, LogOut, Calendar, Handshake, MessageSquare, Users } from 'lucide-react';
+import { LayoutDashboard, LogOut, Calendar, Handshake, MessageSquare, Users, Briefcase } from 'lucide-react';
 import { brand } from '@/shared/config';
 import { logoutAction } from '@/features/auth/auth.actions';
 
@@ -48,6 +48,13 @@ export function AppLayout({ children, user, unreadMessagesCount = 0 }: AppLayout
           >
             <LayoutDashboard className="h-4 w-4" />
             <span>{t('dashboard')}</span>
+          </Link>
+          <Link
+            href={`/${locale}/admin/servicios`}
+            className="flex items-center space-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-accent"
+          >
+            <Briefcase className="h-4 w-4" />
+            <span>Servicios</span>
           </Link>
           <Link
             href={`/${locale}/admin/eventos`}

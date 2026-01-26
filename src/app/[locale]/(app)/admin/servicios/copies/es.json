@@ -1,0 +1,99 @@
+{
+  "title": "Servicios",
+  "description": "Gestiona los servicios que ofrece Valencia Gospel Singers.",
+  "add": "Nuevo servicio",
+  "filters": {
+    "all": "Todos",
+    "published": "Publicados",
+    "draft": "Borradores"
+  },
+  "empty": {
+    "title": "Sin servicios",
+    "description": "Aún no has creado ningún servicio."
+  },
+  "form": {
+    "title": {
+      "create": "Nuevo servicio",
+      "edit": "Editar servicio"
+    },
+    "serviceTitle": {
+      "label": "Título",
+      "placeholder": "Nombre del servicio"
+    },
+    "subtitle": {
+      "label": "Subtítulo",
+      "placeholder": "Breve descripción del servicio"
+    },
+    "description": {
+      "label": "Descripción",
+      "placeholder": "Descripción completa del servicio..."
+    },
+    "englishSection": "Textos en inglés",
+    "titleEn": {
+      "label": "Título (EN)",
+      "placeholder": "Service name in English"
+    },
+    "subtitleEn": {
+      "label": "Subtítulo (EN)",
+      "placeholder": "Brief description in English"
+    },
+    "descriptionEn": {
+      "label": "Descripción (EN)",
+      "placeholder": "Full description in English..."
+    },
+    "imageUrl": {
+      "label": "Imagen del servicio",
+      "placeholder": "https://..."
+    },
+    "priceFrom": {
+      "label": "Precio desde (€)",
+      "placeholder": "0.00"
+    },
+    "displayOrder": {
+      "label": "Orden de visualización",
+      "placeholder": "0"
+    },
+    "isPublished": {
+      "label": "Publicado",
+      "description": "Mostrar en la web pública"
+    },
+    "isFeatured": {
+      "label": "Destacado",
+      "description": "Mostrar en la página principal"
+    },
+    "submit": {
+      "create": "Crear servicio",
+      "edit": "Guardar cambios"
+    },
+    "cancel": "Cancelar"
+  },
+  "card": {
+    "priceFrom": "Desde",
+    "order": "Orden"
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "publish": "Publicar",
+    "unpublish": "Despublicar",
+    "viewPublic": "Ver en web"
+  },
+  "status": {
+    "draft": "Borrador",
+    "published": "Publicado"
+  },
+  "toast": {
+    "created": "Servicio creado",
+    "updated": "Servicio actualizado",
+    "deleted": "Servicio eliminado",
+    "published": "Servicio publicado",
+    "unpublished": "Servicio despublicado",
+    "error": "Error al guardar"
+  },
+  "confirmDelete": {
+    "title": "¿Eliminar servicio?",
+    "description": "Esta acción no se puede deshacer.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "titleSuffix": " - Valencia Gospel Singers"
+  },
+  "back": "Volver a servicios",
+  "priceFrom": "Desde",
+  "description": {
+    "label": "Sobre este servicio"
+  },
+  "cta": {
+    "title": "¿Interesado en este servicio?",
+    "description": "Cuéntanos los detalles de tu evento y te preparamos una propuesta personalizada.",
+    "button": "Solicitar información"
+  },
+  "share": {
+    "label": "Compartir",
+    "twitter": "Compartir en Twitter",
+    "linkedin": "Compartir en LinkedIn",
+    "copy": "Copiar enlace",
+    "copied": "Enlace copiado"
+  },
+  "notFound": {
+    "title": "Servicio no encontrado",
+    "description": "El servicio que buscas no existe o ya no está disponible.",
+    "cta": "Ver todos los servicios"
+  }
+}

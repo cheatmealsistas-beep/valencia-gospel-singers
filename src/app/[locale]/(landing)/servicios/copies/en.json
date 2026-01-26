@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "title": "Services - Valencia Gospel Singers",
+    "description": "Discover our gospel choir services for weddings, corporate events, private celebrations, and concerts in Valencia."
+  },
+  "hero": {
+    "label": "Services",
+    "titleStart": "Our",
+    "titleHighlight": "services",
+    "description": "We make every event an unforgettable experience. Discover how we can provide the soundtrack to your most special moments."
+  },
+  "list": {
+    "title": "What we offer",
+    "empty": {
+      "title": "Coming soon",
+      "description": "We are preparing our service catalog. Contact us for more information.",
+      "cta": "Contact us"
+    }
+  },
+  "card": {
+    "priceFrom": "From",
+    "viewDetails": "View details",
+    "contact": "Request info"
+  },
+  "cta": {
+    "title": "Have something special in mind?",
+    "description": "Tell us your idea and we'll prepare a personalized proposal.",
+    "button": "Let's talk"
+  }
+}
