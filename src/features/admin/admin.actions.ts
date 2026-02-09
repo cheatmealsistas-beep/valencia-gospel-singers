@@ -504,35 +504,40 @@ export async function deleteSpeakerAction(
 export async function createTeamMemberAction(
   input: TeamMemberInput
 ): Promise<ActionResult<{ id: string }>> {
-  await requireAdmin();
+  try {
+    await requireAdmin();
 
-  // Validate input
-  const validation = teamMemberSchema.safeParse(input);
-  if (!validation.success) {
+    // Validate input
+    const validation = teamMemberSchema.safeParse(input);
+    if (!validation.success) {
+      return {
+        success: false,
+        data: null,
+        error: validation.error.issues[0].message,
+      };
+    }
+
+    const result = await createTeamMember(validation.data);
+
+    if (result.success && result.id) {
+      revalidatePath('/[locale]/admin/equipo');
+      revalidatePath('/[locale]', 'layout'); // Revalidate public pages (nosotros)
+      return {
+        success: true,
+        data: { id: result.id },
+        error: null,
+      };
+    }
+
     return {
       success: false,
       data: null,
-      error: validation.error.issues[0].message,
+      error: result.error || 'Failed to create team member',
     };
+  } catch (err) {
+    console.error('Create team member error:', err);
+    return { success: false, data: null, error: 'Error creating member' };
   }
-
-  const result = await createTeamMember(validation.data);
-
-  if (result.success && result.id) {
-    revalidatePath('/[locale]/admin/equipo');
-    revalidatePath('/[locale]', 'layout'); // Revalidate public pages (nosotros)
-    return {
-      success: true,
-      data: { id: result.id },
-      error: null,
-    };
-  }
-
-  return {
-    success: false,
-    data: null,
-    error: result.error || 'Failed to create team member',
-  };
 }
 
 /**
@@ -542,17 +547,22 @@ export async function updateTeamMemberAction(
   id: string,
   input: Partial<TeamMemberInput>
 ): Promise<ActionResult> {
-  await requireAdmin();
+  try {
+    await requireAdmin();
 
-  const result = await updateTeamMember(id, input);
+    const result = await updateTeamMember(id, input);
 
-  if (result.success) {
-    revalidatePath('/[locale]/admin/equipo');
-    revalidatePath('/[locale]', 'layout'); // Revalidate public pages (nosotros)
-    return { success: true, data: undefined, error: null };
+    if (result.success) {
+      revalidatePath('/[locale]/admin/equipo');
+      revalidatePath('/[locale]', 'layout'); // Revalidate public pages (nosotros)
+      return { success: true, data: undefined, error: null };
+    }
+
+    return { success: false, data: null, error: result.error || 'Failed to update team member' };
+  } catch (err) {
+    console.error('Update team member error:', err);
+    return { success: false, data: null, error: 'Error updating member' };
   }
-
-  return { success: false, data: null, error: result.error || 'Failed to update team member' };
 }
 
 /**
@@ -607,33 +617,38 @@ export async function deleteTeamMemberAction(
 export async function uploadPhotoAction(
   formData: FormData
 ): Promise<ActionResult<{ url: string }>> {
-  await requireAdmin();
+  try {
+    await requireAdmin();
 
-  const file = formData.get('file') as File | null;
-  const folder = (formData.get('folder') as string) || 'general';
+    const file = formData.get('file') as File | null;
+    const folder = (formData.get('folder') as string) || 'general';
 
-  if (!file || file.size === 0) {
-    return { success: false, data: null, error: 'No file provided' };
+    if (!file || file.size === 0) {
+      return { success: false, data: null, error: 'No file provided' };
+    }
+
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    if (!allowedTypes.includes(file.type)) {
+      return { success: false, data: null, error: 'File type not allowed. Use JPG, PNG, WebP or GIF.' };
+    }
+
+    // Validate file size (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      return { success: false, data: null, error: 'File too large. Maximum 5MB.' };
+    }
+
+    const result = await uploadFile(file, folder);
+
+    if (result.url === null) {
+      return { success: false, data: null, error: result.error };
+    }
+
+    return { success: true, data: { url: result.url }, error: null };
+  } catch (err) {
+    console.error('Upload photo error:', err);
+    return { success: false, data: null, error: 'Error uploading photo. Check storage configuration.' };
   }
-
-  // Validate file type
-  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-  if (!allowedTypes.includes(file.type)) {
-    return { success: false, data: null, error: 'File type not allowed. Use JPG, PNG, WebP or GIF.' };
-  }
-
-  // Validate file size (5MB)
-  if (file.size > 5 * 1024 * 1024) {
-    return { success: false, data: null, error: 'File too large. Maximum 5MB.' };
-  }
-
-  const result = await uploadFile(file, folder);
-
-  if (result.url === null) {
-    return { success: false, data: null, error: result.error };
-  }
-
-  return { success: true, data: { url: result.url }, error: null };
 }
 
 /**
