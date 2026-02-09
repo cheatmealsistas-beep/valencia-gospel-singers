@@ -47,13 +47,7 @@ import {
   deleteTeamMemberAction,
   uploadPhotoAction,
 } from '@/features/admin/admin.actions';
-import type { TeamMember, TeamMemberInput, PhotoPosition } from '@/features/admin/types';
-
-const POSITION_MAP: Record<string, string> = {
-  top: 'center 20%',
-  center: 'center center',
-  bottom: 'center 80%',
-};
+import type { TeamMember, TeamMemberInput } from '@/features/admin/types';
 
 interface TeamListProps {
   members: TeamMember[];
@@ -66,7 +60,7 @@ export function TeamList({ members }: TeamListProps) {
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
-  const [photoPosition, setPhotoPosition] = useState<PhotoPosition>('center');
+  const [photoPosition, setPhotoPosition] = useState(50);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -74,7 +68,6 @@ export function TeamList({ members }: TeamListProps) {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Client-side validation
     const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
     if (!allowedTypes.includes(file.type)) {
       toast.error(t('toast.invalidFileType'));
@@ -86,7 +79,6 @@ export function TeamList({ members }: TeamListProps) {
     }
 
     setPhotoFile(file);
-    // Generate preview
     const reader = new FileReader();
     reader.onload = (ev) => setPhotoPreview(ev.target?.result as string);
     reader.readAsDataURL(file);
@@ -121,12 +113,11 @@ export function TeamList({ members }: TeamListProps) {
 
   const handleCreate = async (formData: FormData) => {
     startTransition(async () => {
-      // Upload photo first if selected
       let photoUrl: string | undefined;
       if (photoFile) {
         const url = await uploadPhoto();
         if (url) photoUrl = url;
-        else return; // Upload failed
+        else return;
       }
 
       const input: TeamMemberInput = {
@@ -152,12 +143,11 @@ export function TeamList({ members }: TeamListProps) {
     if (!editingMember) return;
 
     startTransition(async () => {
-      // Upload new photo if selected
       let photoUrl: string | undefined;
       if (photoFile) {
         const url = await uploadPhoto();
         if (url) photoUrl = url;
-        else return; // Upload failed
+        else return;
       }
 
       const input: Partial<TeamMemberInput> = {
@@ -168,7 +158,6 @@ export function TeamList({ members }: TeamListProps) {
         is_active: formData.get('is_active') === 'on',
       };
 
-      // Only update photo_url if a new photo was uploaded
       if (photoUrl) {
         input.photo_url = photoUrl;
       }
@@ -209,7 +198,7 @@ export function TeamList({ members }: TeamListProps) {
     setEditingMember(member);
     setPhotoPreview(member.photo_url);
     setPhotoFile(null);
-    setPhotoPosition(member.photo_position || 'center');
+    setPhotoPosition(member.photo_position ?? 50);
     setDialogOpen(true);
   };
 
@@ -217,12 +206,11 @@ export function TeamList({ members }: TeamListProps) {
     setEditingMember(null);
     setPhotoPreview(null);
     setPhotoFile(null);
-    setPhotoPosition('center');
+    setPhotoPosition(50);
     if (fileInputRef.current) fileInputRef.current.value = '';
     setDialogOpen(false);
   };
 
-  // Current photo to show: new preview > editing member's photo > nothing
   const currentPhoto = photoPreview || (editingMember?.photo_url ?? null);
 
   return (
@@ -270,12 +258,12 @@ export function TeamList({ members }: TeamListProps) {
                 />
               </div>
 
-              {/* Photo Upload */}
-              <div className="space-y-2">
+              {/* Photo Upload + Circular Preview + Slider */}
+              <div className="space-y-3">
                 <Label>{t('form.photo.label')}</Label>
                 <div className="flex items-start gap-4">
-                  {/* Preview */}
-                  <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-muted border-2 border-dashed border-muted-foreground/25">
+                  {/* Circular preview - matches vinyl look */}
+                  <div className="flex-shrink-0 w-24 h-24 rounded-full overflow-hidden bg-muted border-2 border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
                     {currentPhoto ? (
                       <div className="relative w-full h-full group">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -283,12 +271,12 @@ export function TeamList({ members }: TeamListProps) {
                           src={currentPhoto}
                           alt="Preview"
                           className="w-full h-full object-cover"
-                          style={{ objectPosition: POSITION_MAP[photoPosition] }}
+                          style={{ objectPosition: `center ${photoPosition}%` }}
                         />
                         <button
                           type="button"
                           onClick={clearPhoto}
-                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-full"
                         >
                           <X className="w-5 h-5 text-white" />
                         </button>
@@ -325,31 +313,29 @@ export function TeamList({ members }: TeamListProps) {
                     </p>
                   </div>
                 </div>
-              </div>
 
-              {/* Photo Position - only show when there's a photo */}
-              {currentPhoto && (
-                <div className="space-y-2">
-                  <Label>{t('form.photoPosition.label')}</Label>
-                  <div className="flex gap-2">
-                    {(['top', 'center', 'bottom'] as const).map((pos) => (
-                      <Button
-                        key={pos}
-                        type="button"
-                        size="sm"
-                        variant={photoPosition === pos ? 'default' : 'outline'}
-                        className={photoPosition === pos ? 'bg-purple-600 hover:bg-purple-500' : ''}
-                        onClick={() => setPhotoPosition(pos)}
-                      >
-                        {t(`form.photoPosition.${pos}`)}
-                      </Button>
-                    ))}
+                {/* Position Slider - only show when there's a photo */}
+                {currentPhoto && (
+                  <div className="space-y-2 pt-1">
+                    <div className="flex items-center justify-between">
+                      <Label className="text-sm">{t('form.photoPosition.label')}</Label>
+                      <span className="text-xs text-muted-foreground tabular-nums">{photoPosition}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      value={photoPosition}
+                      onChange={(e) => setPhotoPosition(parseInt(e.target.value))}
+                      className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-purple-600"
+                    />
+                    <div className="flex justify-between text-[10px] text-muted-foreground/60">
+                      <span>{t('form.photoPosition.top')}</span>
+                      <span>{t('form.photoPosition.bottom')}</span>
+                    </div>
                   </div>
-                  <p className="text-xs text-muted-foreground">
-                    {t('form.photoPosition.hint')}
-                  </p>
-                </div>
-              )}
+                )}
+              </div>
 
               {/* Display Order */}
               <div className="space-y-2">
@@ -413,14 +399,14 @@ export function TeamList({ members }: TeamListProps) {
               <CardContent className="p-4">
                 <div className="flex items-start gap-4">
                   {/* Photo */}
-                  <div className="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-muted">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full overflow-hidden bg-muted">
                     {member.photo_url ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={member.photo_url}
                         alt={member.name}
                         className="w-full h-full object-cover"
-                        style={{ objectPosition: POSITION_MAP[member.photo_position] || 'center center' }}
+                        style={{ objectPosition: `center ${member.photo_position ?? 50}%` }}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">

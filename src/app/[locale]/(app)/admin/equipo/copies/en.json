@@ -27,9 +27,7 @@
     "photoPosition": {
       "label": "Photo focus",
       "top": "Top",
-      "center": "Center",
-      "bottom": "Bottom",
-      "hint": "Choose where to focus the photo in the circular crop."
+      "bottom": "Bottom"
     },
     "displayOrder": {
       "label": "Display order",
