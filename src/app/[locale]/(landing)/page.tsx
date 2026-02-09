@@ -500,6 +500,7 @@ export default async function HomePage({ params }: HomePageProps) {
                               src={member.photo_url}
                               alt={member.name}
                               className="w-full h-full object-cover grayscale group-hover:scale-110 transition-all duration-500"
+                              style={{ objectPosition: `center ${member.photo_position ?? 50}%` }}
                             />
                             {/* Overlay púrpura en hover */}
                             <div className="absolute inset-0 bg-purple-500/30 opacity-0 group-hover:opacity-100 mix-blend-color transition-opacity duration-500" />
