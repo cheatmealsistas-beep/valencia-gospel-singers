@@ -7,6 +7,13 @@ const nextConfig: NextConfig = {
   // TODO: Re-enable after fixing all route references
   // typedRoutes: true,
 
+  // Allow photo uploads up to 5MB via Server Actions
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
+  },
+
   // Allow external images from any HTTPS source (for collaborator logos, etc.)
   images: {
     remotePatterns: [
