@@ -24,6 +24,13 @@
       "upload": "Upload photo",
       "hint": "JPG, PNG, WebP or GIF. Max 5MB."
     },
+    "photoPosition": {
+      "label": "Photo focus",
+      "top": "Top",
+      "center": "Center",
+      "bottom": "Bottom",
+      "hint": "Choose where to focus the photo in the circular crop."
+    },
     "displayOrder": {
       "label": "Display order",
       "placeholder": "0"

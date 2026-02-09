@@ -362,12 +362,16 @@ export interface EventSponsor {
  * ==============================================
  */
 
+export const photoPositionEnum = z.enum(['top', 'center', 'bottom']);
+export type PhotoPosition = z.infer<typeof photoPositionEnum>;
+
 export const teamMemberSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   role: z.string().min(1, 'Role is required'),
   company: z.string().optional().nullable(),
   linkedin_url: z.string().url('Invalid LinkedIn URL').optional().nullable().or(z.literal('')),
   photo_url: z.string().url('Invalid photo URL').optional().nullable().or(z.literal('')),
+  photo_position: photoPositionEnum.default('center'),
   display_order: z.number().int().default(0),
   is_active: z.boolean().default(true),
 });
@@ -381,6 +385,7 @@ export interface TeamMember {
   company: string | null;
   linkedin_url: string | null;
   photo_url: string | null;
+  photo_position: PhotoPosition;
   display_order: number;
   is_active: boolean;
   created_at: string;

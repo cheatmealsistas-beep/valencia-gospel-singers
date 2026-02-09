@@ -24,6 +24,13 @@
       "upload": "Subir foto",
       "hint": "JPG, PNG, WebP o GIF. Máx. 5MB."
     },
+    "photoPosition": {
+      "label": "Enfoque de la foto",
+      "top": "Arriba",
+      "center": "Centro",
+      "bottom": "Abajo",
+      "hint": "Elige dónde centrar la foto en el recorte circular."
+    },
     "displayOrder": {
       "label": "Orden de visualización",
       "placeholder": "0"

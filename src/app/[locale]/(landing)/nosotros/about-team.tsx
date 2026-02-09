@@ -118,6 +118,7 @@ export function AboutTeam({ teamMembers }: AboutTeamProps) {
                           src={member.photo_url}
                           alt={member.name}
                           className="w-full h-full object-cover grayscale group-hover:scale-110 transition-all duration-500"
+                          style={{ objectPosition: member.photo_position || 'center' }}
                         />
                         {/* Overlay púrpura en hover */}
                         <div className="absolute inset-0 bg-purple-500/30 opacity-0 group-hover:opacity-100 mix-blend-color transition-opacity duration-500" />

@@ -47,7 +47,7 @@ import {
   deleteTeamMemberAction,
   uploadPhotoAction,
 } from '@/features/admin/admin.actions';
-import type { TeamMember, TeamMemberInput } from '@/features/admin/types';
+import type { TeamMember, TeamMemberInput, PhotoPosition } from '@/features/admin/types';
 
 interface TeamListProps {
   members: TeamMember[];
@@ -60,6 +60,7 @@ export function TeamList({ members }: TeamListProps) {
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPosition, setPhotoPosition] = useState<PhotoPosition>('center');
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -126,6 +127,7 @@ export function TeamList({ members }: TeamListProps) {
         name: formData.get('name') as string,
         role: formData.get('role') as string,
         photo_url: photoUrl || undefined,
+        photo_position: photoPosition,
         display_order: parseInt(formData.get('display_order') as string) || 0,
         is_active: formData.get('is_active') === 'on',
       };
@@ -155,6 +157,7 @@ export function TeamList({ members }: TeamListProps) {
       const input: Partial<TeamMemberInput> = {
         name: formData.get('name') as string,
         role: formData.get('role') as string,
+        photo_position: photoPosition,
         display_order: parseInt(formData.get('display_order') as string) || 0,
         is_active: formData.get('is_active') === 'on',
       };
@@ -200,6 +203,7 @@ export function TeamList({ members }: TeamListProps) {
     setEditingMember(member);
     setPhotoPreview(member.photo_url);
     setPhotoFile(null);
+    setPhotoPosition(member.photo_position || 'center');
     setDialogOpen(true);
   };
 
@@ -207,6 +211,7 @@ export function TeamList({ members }: TeamListProps) {
     setEditingMember(null);
     setPhotoPreview(null);
     setPhotoFile(null);
+    setPhotoPosition('center');
     if (fileInputRef.current) fileInputRef.current.value = '';
     setDialogOpen(false);
   };
@@ -272,6 +277,7 @@ export function TeamList({ members }: TeamListProps) {
                           src={currentPhoto}
                           alt="Preview"
                           className="w-full h-full object-cover"
+                          style={{ objectPosition: photoPosition }}
                         />
                         <button
                           type="button"
@@ -314,6 +320,30 @@ export function TeamList({ members }: TeamListProps) {
                   </div>
                 </div>
               </div>
+
+              {/* Photo Position - only show when there's a photo */}
+              {currentPhoto && (
+                <div className="space-y-2">
+                  <Label>{t('form.photoPosition.label')}</Label>
+                  <div className="flex gap-2">
+                    {(['top', 'center', 'bottom'] as const).map((pos) => (
+                      <Button
+                        key={pos}
+                        type="button"
+                        size="sm"
+                        variant={photoPosition === pos ? 'default' : 'outline'}
+                        className={photoPosition === pos ? 'bg-purple-600 hover:bg-purple-500' : ''}
+                        onClick={() => setPhotoPosition(pos)}
+                      >
+                        {t(`form.photoPosition.${pos}`)}
+                      </Button>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    {t('form.photoPosition.hint')}
+                  </p>
+                </div>
+              )}
 
               {/* Display Order */}
               <div className="space-y-2">
@@ -384,6 +414,7 @@ export function TeamList({ members }: TeamListProps) {
                         src={member.photo_url}
                         alt={member.name}
                         className="w-full h-full object-cover"
+                        style={{ objectPosition: member.photo_position || 'center' }}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
