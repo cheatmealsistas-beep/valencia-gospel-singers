@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import {
@@ -12,6 +12,9 @@ import {
   EyeOff,
   Music,
   Loader2,
+  Upload,
+  X,
+  ImageIcon,
 } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
@@ -42,6 +45,7 @@ import {
   updateTeamMemberAction,
   toggleTeamMemberAction,
   deleteTeamMemberAction,
+  uploadPhotoAction,
 } from '@/features/admin/admin.actions';
 import type { TeamMember, TeamMemberInput } from '@/features/admin/types';
 
@@ -54,21 +58,82 @@ export function TeamList({ members }: TeamListProps) {
   const [isPending, startTransition] = useTransition();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handlePhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Client-side validation
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error(t('toast.invalidFileType'));
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error(t('toast.fileTooLarge'));
+      return;
+    }
+
+    setPhotoFile(file);
+    // Generate preview
+    const reader = new FileReader();
+    reader.onload = (ev) => setPhotoPreview(ev.target?.result as string);
+    reader.readAsDataURL(file);
+  };
+
+  const clearPhoto = () => {
+    setPhotoFile(null);
+    setPhotoPreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  const uploadPhoto = async (): Promise<string | null> => {
+    if (!photoFile) return null;
+
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', photoFile);
+      formData.append('folder', 'team');
+
+      const result = await uploadPhotoAction(formData);
+      if (result.success && result.data) {
+        return result.data.url;
+      } else {
+        toast.error(result.error || t('toast.uploadError'));
+        return null;
+      }
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const handleCreate = async (formData: FormData) => {
-    const input: TeamMemberInput = {
-      name: formData.get('name') as string,
-      role: formData.get('role') as string,
-      photo_url: (formData.get('photo_url') as string) || undefined,
-      display_order: parseInt(formData.get('display_order') as string) || 0,
-      is_active: formData.get('is_active') === 'on',
-    };
-
     startTransition(async () => {
+      // Upload photo first if selected
+      let photoUrl: string | undefined;
+      if (photoFile) {
+        const url = await uploadPhoto();
+        if (url) photoUrl = url;
+        else return; // Upload failed
+      }
+
+      const input: TeamMemberInput = {
+        name: formData.get('name') as string,
+        role: formData.get('role') as string,
+        photo_url: photoUrl || undefined,
+        display_order: parseInt(formData.get('display_order') as string) || 0,
+        is_active: formData.get('is_active') === 'on',
+      };
+
       const result = await createTeamMemberAction(input);
       if (result.success) {
         toast.success(t('toast.created'));
-        setDialogOpen(false);
+        closeDialog();
       } else {
         toast.error(result.error || t('toast.error'));
       }
@@ -78,20 +143,31 @@ export function TeamList({ members }: TeamListProps) {
   const handleUpdate = async (formData: FormData) => {
     if (!editingMember) return;
 
-    const input: Partial<TeamMemberInput> = {
-      name: formData.get('name') as string,
-      role: formData.get('role') as string,
-      photo_url: (formData.get('photo_url') as string) || undefined,
-      display_order: parseInt(formData.get('display_order') as string) || 0,
-      is_active: formData.get('is_active') === 'on',
-    };
-
     startTransition(async () => {
+      // Upload new photo if selected
+      let photoUrl: string | undefined;
+      if (photoFile) {
+        const url = await uploadPhoto();
+        if (url) photoUrl = url;
+        else return; // Upload failed
+      }
+
+      const input: Partial<TeamMemberInput> = {
+        name: formData.get('name') as string,
+        role: formData.get('role') as string,
+        display_order: parseInt(formData.get('display_order') as string) || 0,
+        is_active: formData.get('is_active') === 'on',
+      };
+
+      // Only update photo_url if a new photo was uploaded
+      if (photoUrl) {
+        input.photo_url = photoUrl;
+      }
+
       const result = await updateTeamMemberAction(editingMember.id, input);
       if (result.success) {
         toast.success(t('toast.updated'));
-        setEditingMember(null);
-        setDialogOpen(false);
+        closeDialog();
       } else {
         toast.error(result.error || t('toast.error'));
       }
@@ -122,13 +198,21 @@ export function TeamList({ members }: TeamListProps) {
 
   const openEditDialog = (member: TeamMember) => {
     setEditingMember(member);
+    setPhotoPreview(member.photo_url);
+    setPhotoFile(null);
     setDialogOpen(true);
   };
 
   const closeDialog = () => {
     setEditingMember(null);
+    setPhotoPreview(null);
+    setPhotoFile(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
     setDialogOpen(false);
   };
+
+  // Current photo to show: new preview > editing member's photo > nothing
+  const currentPhoto = photoPreview || (editingMember?.photo_url ?? null);
 
   return (
     <div className="space-y-6">
@@ -175,16 +259,60 @@ export function TeamList({ members }: TeamListProps) {
                 />
               </div>
 
-              {/* Photo URL */}
+              {/* Photo Upload */}
               <div className="space-y-2">
-                <Label htmlFor="photo_url">{t('form.photoUrl.label')}</Label>
-                <Input
-                  id="photo_url"
-                  name="photo_url"
-                  type="url"
-                  defaultValue={editingMember?.photo_url || ''}
-                  placeholder={t('form.photoUrl.placeholder')}
-                />
+                <Label>{t('form.photo.label')}</Label>
+                <div className="flex items-start gap-4">
+                  {/* Preview */}
+                  <div className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-muted border-2 border-dashed border-muted-foreground/25">
+                    {currentPhoto ? (
+                      <div className="relative w-full h-full group">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={currentPhoto}
+                          alt="Preview"
+                          className="w-full h-full object-cover"
+                        />
+                        <button
+                          type="button"
+                          onClick={clearPhoto}
+                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                        >
+                          <X className="w-5 h-5 text-white" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <ImageIcon className="w-8 h-8 text-muted-foreground/40" />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Upload Button */}
+                  <div className="flex-1 space-y-2">
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif"
+                      onChange={handlePhotoSelect}
+                      className="hidden"
+                      id="photo-upload"
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="w-full"
+                    >
+                      <Upload className="w-4 h-4 mr-2" />
+                      {t('form.photo.upload')}
+                    </Button>
+                    <p className="text-xs text-muted-foreground">
+                      {t('form.photo.hint')}
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Display Order */}
@@ -218,8 +346,8 @@ export function TeamList({ members }: TeamListProps) {
                 <Button type="button" variant="outline" onClick={closeDialog}>
                   {t('form.cancel')}
                 </Button>
-                <Button type="submit" disabled={isPending}>
-                  {isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                <Button type="submit" disabled={isPending || isUploading}>
+                  {(isPending || isUploading) && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                   {editingMember ? t('form.submit.edit') : t('form.submit.create')}
                 </Button>
               </div>

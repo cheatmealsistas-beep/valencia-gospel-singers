@@ -19,9 +19,10 @@
       "label": "Rol / Cuerda",
       "placeholder": "Ej: Soprano, Alto, Tenor, Bajo, Director..."
     },
-    "photoUrl": {
-      "label": "URL de la foto",
-      "placeholder": "https://..."
+    "photo": {
+      "label": "Foto",
+      "upload": "Subir foto",
+      "hint": "JPG, PNG, WebP o GIF. Máx. 5MB."
     },
     "displayOrder": {
       "label": "Orden de visualización",
@@ -56,7 +57,10 @@
     "updated": "Miembro actualizado",
     "deleted": "Miembro eliminado",
     "toggled": "Estado actualizado",
-    "error": "Error al guardar"
+    "error": "Error al guardar",
+    "invalidFileType": "Formato no permitido. Usa JPG, PNG, WebP o GIF.",
+    "fileTooLarge": "El archivo es demasiado grande. Máximo 5MB.",
+    "uploadError": "Error al subir la foto"
   },
   "confirmDelete": {
     "title": "¿Eliminar miembro?",

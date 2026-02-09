@@ -19,9 +19,10 @@
       "label": "Role / Voice part",
       "placeholder": "E.g.: Soprano, Alto, Tenor, Bass, Director..."
     },
-    "photoUrl": {
-      "label": "Photo URL",
-      "placeholder": "https://..."
+    "photo": {
+      "label": "Photo",
+      "upload": "Upload photo",
+      "hint": "JPG, PNG, WebP or GIF. Max 5MB."
     },
     "displayOrder": {
       "label": "Display order",
@@ -56,7 +57,10 @@
     "updated": "Member updated",
     "deleted": "Member deleted",
     "toggled": "Status updated",
-    "error": "Error saving"
+    "error": "Error saving",
+    "invalidFileType": "File type not allowed. Use JPG, PNG, WebP or GIF.",
+    "fileTooLarge": "File too large. Maximum 5MB.",
+    "uploadError": "Error uploading photo"
   },
   "confirmDelete": {
     "title": "Delete member?",
