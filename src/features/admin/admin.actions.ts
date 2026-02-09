@@ -519,8 +519,8 @@ export async function createTeamMemberAction(
   const result = await createTeamMember(validation.data);
 
   if (result.success && result.id) {
-    revalidatePath('/[locale]/dashboard/equipo');
-    revalidatePath('/[locale]/nosotros'); // Revalidate about page
+    revalidatePath('/[locale]/admin/equipo');
+    revalidatePath('/[locale]', 'layout'); // Revalidate public pages (nosotros)
     return {
       success: true,
       data: { id: result.id },
@@ -547,8 +547,8 @@ export async function updateTeamMemberAction(
   const result = await updateTeamMember(id, input);
 
   if (result.success) {
-    revalidatePath('/[locale]/dashboard/equipo');
-    revalidatePath('/[locale]/nosotros');
+    revalidatePath('/[locale]/admin/equipo');
+    revalidatePath('/[locale]', 'layout'); // Revalidate public pages (nosotros)
     return { success: true, data: undefined, error: null };
   }
 
@@ -567,8 +567,8 @@ export async function toggleTeamMemberAction(
   const result = await toggleTeamMemberActive(id, isActive);
 
   if (result.success) {
-    revalidatePath('/[locale]/dashboard/equipo');
-    revalidatePath('/[locale]/nosotros');
+    revalidatePath('/[locale]/admin/equipo');
+    revalidatePath('/[locale]', 'layout'); // Revalidate public pages (nosotros)
     return { success: true, data: undefined, error: null };
   }
 
@@ -586,8 +586,8 @@ export async function deleteTeamMemberAction(
   const result = await deleteTeamMember(id);
 
   if (result.success) {
-    revalidatePath('/[locale]/dashboard/equipo');
-    revalidatePath('/[locale]/nosotros');
+    revalidatePath('/[locale]/admin/equipo');
+    revalidatePath('/[locale]', 'layout'); // Revalidate public pages (nosotros)
     return { success: true, data: undefined, error: null };
   }
 
