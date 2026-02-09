@@ -49,6 +49,12 @@ import {
 } from '@/features/admin/admin.actions';
 import type { TeamMember, TeamMemberInput, PhotoPosition } from '@/features/admin/types';
 
+const POSITION_MAP: Record<string, string> = {
+  top: 'center 20%',
+  center: 'center center',
+  bottom: 'center 80%',
+};
+
 interface TeamListProps {
   members: TeamMember[];
 }
@@ -277,7 +283,7 @@ export function TeamList({ members }: TeamListProps) {
                           src={currentPhoto}
                           alt="Preview"
                           className="w-full h-full object-cover"
-                          style={{ objectPosition: photoPosition }}
+                          style={{ objectPosition: POSITION_MAP[photoPosition] }}
                         />
                         <button
                           type="button"
@@ -414,7 +420,7 @@ export function TeamList({ members }: TeamListProps) {
                         src={member.photo_url}
                         alt={member.name}
                         className="w-full h-full object-cover"
-                        style={{ objectPosition: member.photo_position || 'center' }}
+                        style={{ objectPosition: POSITION_MAP[member.photo_position] || 'center center' }}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
