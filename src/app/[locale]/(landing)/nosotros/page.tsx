@@ -6,6 +6,8 @@ import { AboutGallery } from './about-gallery';
 import { AboutCTA } from './about-cta';
 import { getActiveTeamMembers, getActiveGalleryImages } from '@/features/admin/admin.query';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params,
 }: {
