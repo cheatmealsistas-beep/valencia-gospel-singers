@@ -1,10 +1,9 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { FadeIn } from '@/shared/components/magic-ui';
 import { Button } from '@/shared/components/ui/button';
-import { brand } from '@/shared/config/brand';
 import type { Event } from '@/features/events/types';
 import { EventCard } from './event-card';
 
@@ -15,6 +14,7 @@ interface EventsListProps {
 
 export function EventsList({ upcomingEvents, pastEvents }: EventsListProps) {
   const t = useTranslations('eventos');
+  const locale = useLocale();
 
   return (
     <section className="py-12 bg-[#0a0a0a]">
@@ -43,13 +43,9 @@ export function EventsList({ upcomingEvents, pastEvents }: EventsListProps) {
                 {t('upcoming.empty.description')}
               </p>
               <Button className="rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500" asChild>
-                <a
-                  href={brand.social.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link href={`/${locale}/contacto`}>
                   {t('upcoming.empty.cta')}
-                </a>
+                </Link>
               </Button>
             </div>
           </FadeIn>

@@ -36,17 +36,17 @@ export const brand = {
   website: 'https://valenciagospelsingers.com',
 
   /** Contact email address */
-  email: 'info@valenciagospelsingers.com',
+  email: 'drgodoy@gmail.com',
 
   /** Support email (alias for email, for compatibility) */
-  support: 'info@valenciagospelsingers.com',
+  support: 'drgodoy@gmail.com',
 
   /** WhatsApp number (country code + number, no + or spaces) */
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '34600000000',
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '34603493592',
 
   /** Get WhatsApp URL */
   getWhatsAppUrl: (message?: string) => {
-    const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '34600000000';
+    const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '34603493592';
     const baseUrl = `https://wa.me/${phone}`;
     return message ? `${baseUrl}?text=${encodeURIComponent(message)}` : baseUrl;
   },
@@ -163,10 +163,10 @@ export const brand = {
 
   social: {
     /** Instagram profile URL */
-    instagram: 'https://www.instagram.com/valenciagospelsingers',
+    instagram: '',
 
     /** Facebook page URL */
-    facebook: 'https://www.facebook.com/valenciagospelsingers',
+    facebook: '',
 
     /** YouTube channel URL */
     youtube: '',

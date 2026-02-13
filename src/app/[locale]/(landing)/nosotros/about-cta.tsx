@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { ArrowRight, Mail } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import { FadeIn } from '@/shared/components/magic-ui';
-import { brand } from '@/shared/config';
 
 export function AboutCTA() {
   const t = useTranslations('nosotros.cta');
@@ -44,10 +43,10 @@ export function AboutCTA() {
                 className="px-8 rounded-full border border-white/10 text-white hover:bg-white/5 hover:border-purple-500/50"
                 asChild
               >
-                <a href={brand.social.instagram} target="_blank" rel="noopener noreferrer">
+                <Link href={`/${locale}/galeria`}>
                   {t('secondaryButton')}
                   <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
