@@ -45,8 +45,8 @@ import {
   updateTeamMemberAction,
   toggleTeamMemberAction,
   deleteTeamMemberAction,
-  uploadPhotoAction,
 } from '@/features/admin/admin.actions';
+import { uploadFileClient } from '@/shared/database/supabase/storage-client';
 import type { TeamMember, TeamMemberInput } from '@/features/admin/types';
 
 interface TeamListProps {
@@ -95,13 +95,9 @@ export function TeamList({ members }: TeamListProps) {
 
     setIsUploading(true);
     try {
-      const formData = new FormData();
-      formData.append('file', photoFile);
-      formData.append('folder', 'team');
-
-      const result = await uploadPhotoAction(formData);
-      if (result.success && result.data) {
-        return result.data.url;
+      const result = await uploadFileClient(photoFile, 'team');
+      if (result.url) {
+        return result.url;
       } else {
         toast.error(result.error || t('toast.uploadError'));
         return null;

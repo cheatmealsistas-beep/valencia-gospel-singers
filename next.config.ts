@@ -7,10 +7,10 @@ const nextConfig: NextConfig = {
   // TODO: Re-enable after fixing all route references
   // typedRoutes: true,
 
-  // Allow media uploads up to 100MB via Server Actions (videos up to 100MB, images up to 5MB)
+  // File uploads go directly to Supabase Storage (client-side), not through Server Actions
   experimental: {
     serverActions: {
-      bodySizeLimit: '100mb',
+      bodySizeLimit: '2mb',
     },
   },
 

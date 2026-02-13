@@ -58,8 +58,8 @@ import {
   toggleGalleryImageAction,
   toggleGalleryImageFeaturedAction,
   deleteGalleryImageAction,
-  uploadMediaAction,
 } from '@/features/admin/admin.actions';
+import { uploadFileClient } from '@/shared/database/supabase/storage-client';
 import type { GalleryImage, GalleryImageInput, GalleryCategory, MediaType } from '@/features/admin/types';
 
 interface GalleryAdminProps {
@@ -102,17 +102,14 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
     ? images
     : images.filter((img) => img.category === filter);
 
-  // Upload a file and return its URL
+  // Upload a file directly to Supabase Storage (client-side, bypasses Vercel 4.5MB limit)
   const uploadFile = async (file: File, folder: string): Promise<string | null> => {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('folder', folder);
-    const result = await uploadMediaAction(formData);
-    if (!result.success) {
+    const result = await uploadFileClient(file, folder);
+    if (result.error) {
       toast.error(result.error || t('toast.uploadError'));
       return null;
     }
-    return result.data!.url;
+    return result.url;
   };
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
