@@ -363,7 +363,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
               {t('addNew')}
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="!max-w-2xl w-[95vw] max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>
                 {editingImage ? t('form.title.edit') : t('form.title.create')}
@@ -373,7 +373,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
               {/* Content Mode Selection - 3 options */}
               <div className="space-y-2">
                 <Label>{t('form.mediaType.label')}</Label>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <Button
                     type="button"
                     variant={contentMode === 'image' ? 'default' : 'outline'}
@@ -381,7 +381,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                     className={contentMode === 'image' ? 'bg-purple-600 hover:bg-purple-500' : ''}
                     size="sm"
                   >
-                    <ImageIcon className="w-4 h-4 mr-2" />
+                    <ImageIcon className="w-4 h-4 mr-1.5" />
                     {t('form.mediaType.image')}
                   </Button>
                   <Button
@@ -391,7 +391,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                     className={contentMode === 'video_upload' ? 'bg-purple-600 hover:bg-purple-500' : ''}
                     size="sm"
                   >
-                    <Upload className="w-4 h-4 mr-2" />
+                    <Upload className="w-4 h-4 mr-1.5" />
                     {t('form.mediaType.videoUpload')}
                   </Button>
                   <Button
@@ -401,7 +401,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                     className={contentMode === 'video_youtube' ? 'bg-purple-600 hover:bg-purple-500' : ''}
                     size="sm"
                   >
-                    <Video className="w-4 h-4 mr-2" />
+                    <Video className="w-4 h-4 mr-1.5" />
                     {t('form.mediaType.videoYoutube')}
                   </Button>
                 </div>
