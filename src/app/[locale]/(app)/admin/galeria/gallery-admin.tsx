@@ -142,8 +142,8 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
       toast.error('MP4, WebM or MOV only');
       return;
     }
-    if (file.size > 50 * 1024 * 1024) {
-      toast.error('Max 50MB');
+    if (file.size > 100 * 1024 * 1024) {
+      toast.error('Max 100MB');
       return;
     }
 

@@ -45,7 +45,7 @@
       "changeFile": "Cambiar",
       "removeFile": "Quitar",
       "imageHint": "JPG, PNG o WebP. Máximo 5MB.",
-      "videoHint": "MP4, WebM o MOV. Máximo 50MB.",
+      "videoHint": "MP4, WebM o MOV. Máximo 100MB.",
       "thumbnailHint": "Imagen de miniatura para el vídeo (opcional).",
       "uploading": "Subiendo...",
       "currentFile": "Archivo actual"

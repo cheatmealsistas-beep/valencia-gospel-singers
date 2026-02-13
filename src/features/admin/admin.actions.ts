@@ -698,8 +698,8 @@ export async function uploadMediaAction(
     }
 
     const isVideo = allowedVideoTypes.includes(file.type);
-    const maxSize = isVideo ? 50 * 1024 * 1024 : 5 * 1024 * 1024;
-    const maxLabel = isVideo ? '50MB' : '5MB';
+    const maxSize = isVideo ? 100 * 1024 * 1024 : 5 * 1024 * 1024;
+    const maxLabel = isVideo ? '100MB' : '5MB';
 
     if (file.size > maxSize) {
       return { success: false, data: null, error: `File too large. Maximum ${maxLabel}.` };
