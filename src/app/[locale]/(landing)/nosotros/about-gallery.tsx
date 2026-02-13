@@ -82,13 +82,23 @@ export function AboutGallery({ images }: AboutGalleryProps) {
               onClick={() => openLightbox(index)}
               className="group relative aspect-square overflow-hidden rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={image.thumbnail_url || image.image_url}
-                alt={getLocalizedText(image, 'alt_text') || getLocalizedText(image, 'title') || 'Gallery image'}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
-              />
+              {(() => {
+                const isUploadedVideo = image.media_type === 'video' && !image.youtube_url;
+                const thumbnailSrc = image.thumbnail_url || (!isUploadedVideo ? image.image_url : null);
+                return thumbnailSrc ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={thumbnailSrc}
+                    alt={getLocalizedText(image, 'alt_text') || getLocalizedText(image, 'title') || 'Gallery image'}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gray-900">
+                    <Play className="w-12 h-12 text-white/30" />
+                  </div>
+                );
+              })()}
               {/* Video play icon */}
               {image.media_type === 'video' && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -154,16 +164,30 @@ export function AboutGallery({ images }: AboutGalleryProps) {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Video or Image */}
-            {currentItem.media_type === 'video' && currentItem.youtube_url ? (
-              <div className="w-full aspect-video max-w-4xl">
-                <iframe
-                  src={`https://www.youtube.com/embed/${getYouTubeVideoId(currentItem.youtube_url)}?autoplay=1`}
-                  title={getLocalizedText(currentItem, 'title') || 'Video'}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full rounded-lg"
-                />
-              </div>
+            {currentItem.media_type === 'video' ? (
+              currentItem.youtube_url ? (
+                <div className="w-full aspect-video max-w-4xl">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${getYouTubeVideoId(currentItem.youtube_url)}?autoplay=1`}
+                    title={getLocalizedText(currentItem, 'title') || 'Video'}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full rounded-lg"
+                  />
+                </div>
+              ) : (
+                <div className="w-full aspect-video max-w-4xl">
+                  {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                  <video
+                    src={currentItem.image_url}
+                    poster={currentItem.thumbnail_url || undefined}
+                    controls
+                    autoPlay
+                    playsInline
+                    className="w-full h-full rounded-lg bg-black"
+                  />
+                </div>
+              )
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
               <img

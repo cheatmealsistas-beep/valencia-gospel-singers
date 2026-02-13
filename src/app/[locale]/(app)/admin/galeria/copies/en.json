@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "Gallery - Admin",
-    "description": "Manage gallery photos"
+    "description": "Manage gallery photos and videos"
   },
   "title": "Gallery",
-  "description": "Manage photos displayed in the public gallery",
+  "description": "Manage photos and videos displayed in the public gallery",
   "tabs": {
     "all": "All",
     "conciertos": "Concerts",
@@ -13,10 +13,10 @@
     "ensayos": "Rehearsals",
     "otros": "Other"
   },
-  "addNew": "Add photo",
+  "addNew": "Add",
   "empty": {
-    "title": "No photos yet",
-    "description": "Add your first photo to display it in the public gallery."
+    "title": "No content yet",
+    "description": "Add your first photo or video to display it in the public gallery."
   },
   "card": {
     "featured": "Featured",
@@ -29,8 +29,30 @@
   },
   "form": {
     "title": {
-      "create": "Add photo",
-      "edit": "Edit photo"
+      "create": "Add to gallery",
+      "edit": "Edit"
+    },
+    "mediaType": {
+      "label": "Content type",
+      "image": "Image",
+      "videoUpload": "Video (upload)",
+      "videoYoutube": "YouTube Video"
+    },
+    "upload": {
+      "selectImage": "Select image",
+      "selectVideo": "Select video",
+      "selectThumbnail": "Select thumbnail",
+      "changeFile": "Change",
+      "removeFile": "Remove",
+      "imageHint": "JPG, PNG or WebP. Max 5MB.",
+      "videoHint": "MP4, WebM or MOV. Max 50MB.",
+      "thumbnailHint": "Thumbnail image for the video (optional).",
+      "uploading": "Uploading...",
+      "currentFile": "Current file"
+    },
+    "youtubeUrl": {
+      "label": "YouTube URL",
+      "help": "Paste the YouTube video link"
     },
     "imageUrl": {
       "label": "Image URL",
@@ -38,9 +60,9 @@
       "help": "Direct link to the image (JPG, PNG, or WebP)"
     },
     "thumbnailUrl": {
-      "label": "Thumbnail URL (optional)",
+      "label": "Cover image",
       "placeholder": "https://example.com/photo-thumb.jpg",
-      "help": "Small version for fast loading"
+      "help": "Image shown as the video thumbnail"
     },
     "imageTitle": {
       "label": "Title (optional)",
@@ -83,16 +105,17 @@
     "unfeature": "Unfeature"
   },
   "toast": {
-    "created": "Photo added successfully",
-    "updated": "Photo updated successfully",
-    "deleted": "Photo deleted successfully",
+    "created": "Content added successfully",
+    "updated": "Content updated successfully",
+    "deleted": "Content deleted successfully",
     "toggled": "Status updated",
     "featured": "Featured status updated",
-    "error": "Something went wrong. Please try again."
+    "error": "Something went wrong. Please try again.",
+    "uploadError": "Error uploading file"
   },
   "confirmDelete": {
-    "title": "Delete photo?",
-    "description": "This action cannot be undone. The photo will be permanently removed.",
+    "title": "Delete content?",
+    "description": "This action cannot be undone. The content will be permanently removed.",
     "cancel": "Cancel",
     "confirm": "Delete"
   }

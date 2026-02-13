@@ -7,10 +7,10 @@ const nextConfig: NextConfig = {
   // TODO: Re-enable after fixing all route references
   // typedRoutes: true,
 
-  // Allow photo uploads up to 5MB via Server Actions
+  // Allow media uploads up to 50MB via Server Actions (videos up to 50MB, images up to 5MB)
   experimental: {
     serverActions: {
-      bodySizeLimit: '5mb',
+      bodySizeLimit: '50mb',
     },
   },
 

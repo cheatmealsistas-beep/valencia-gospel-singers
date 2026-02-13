@@ -33,7 +33,22 @@
       "edit": "Editar"
     },
     "mediaType": {
-      "label": "Tipo de contenido"
+      "label": "Tipo de contenido",
+      "image": "Imagen",
+      "videoUpload": "Vídeo (subir)",
+      "videoYoutube": "Vídeo YouTube"
+    },
+    "upload": {
+      "selectImage": "Seleccionar imagen",
+      "selectVideo": "Seleccionar vídeo",
+      "selectThumbnail": "Seleccionar miniatura",
+      "changeFile": "Cambiar",
+      "removeFile": "Quitar",
+      "imageHint": "JPG, PNG o WebP. Máximo 5MB.",
+      "videoHint": "MP4, WebM o MOV. Máximo 50MB.",
+      "thumbnailHint": "Imagen de miniatura para el vídeo (opcional).",
+      "uploading": "Subiendo...",
+      "currentFile": "Archivo actual"
     },
     "youtubeUrl": {
       "label": "URL de YouTube",
@@ -90,16 +105,17 @@
     "unfeature": "Quitar destacado"
   },
   "toast": {
-    "created": "Foto añadida correctamente",
-    "updated": "Foto actualizada correctamente",
-    "deleted": "Foto eliminada correctamente",
+    "created": "Contenido añadido correctamente",
+    "updated": "Contenido actualizado correctamente",
+    "deleted": "Contenido eliminado correctamente",
     "toggled": "Estado actualizado",
     "featured": "Destacado actualizado",
-    "error": "Algo salió mal. Por favor, inténtalo de nuevo."
+    "error": "Algo salió mal. Por favor, inténtalo de nuevo.",
+    "uploadError": "Error al subir el archivo"
   },
   "confirmDelete": {
-    "title": "¿Eliminar foto?",
-    "description": "Esta acción no se puede deshacer. La foto se eliminará permanentemente.",
+    "title": "¿Eliminar contenido?",
+    "description": "Esta acción no se puede deshacer. El contenido se eliminará permanentemente.",
     "cancel": "Cancelar",
     "confirm": "Eliminar"
   }

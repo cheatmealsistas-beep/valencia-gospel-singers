@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState, useRef, useTransition } from 'react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import {
@@ -15,6 +15,9 @@ import {
   StarOff,
   Loader2,
   Play,
+  Upload,
+  X,
+  FileVideo,
 } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
@@ -55,6 +58,7 @@ import {
   toggleGalleryImageAction,
   toggleGalleryImageFeaturedAction,
   deleteGalleryImageAction,
+  uploadMediaAction,
 } from '@/features/admin/admin.actions';
 import type { GalleryImage, GalleryImageInput, GalleryCategory, MediaType } from '@/features/admin/types';
 
@@ -63,9 +67,15 @@ interface GalleryAdminProps {
 }
 
 type FilterCategory = 'all' | GalleryCategory;
+type ContentMode = 'image' | 'video_upload' | 'video_youtube';
 
 const CATEGORIES: GalleryCategory[] = ['conciertos', 'bodas', 'eventos', 'ensayos', 'otros'];
-const MEDIA_TYPES: MediaType[] = ['image', 'video'];
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
 
 export function GalleryAdmin({ images }: GalleryAdminProps) {
   const t = useTranslations('admin-galeria');
@@ -73,77 +83,192 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
   const [filter, setFilter] = useState<FilterCategory>('all');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingImage, setEditingImage] = useState<GalleryImage | null>(null);
-  const [mediaType, setMediaType] = useState<MediaType>('image');
+  const [contentMode, setContentMode] = useState<ContentMode>('image');
+  const [isUploading, setIsUploading] = useState(false);
+
+  // File upload state
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null);
+
+  // Refs for hidden file inputs
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const videoInputRef = useRef<HTMLInputElement>(null);
+  const thumbnailInputRef = useRef<HTMLInputElement>(null);
 
   const filteredImages = filter === 'all'
     ? images
     : images.filter((img) => img.category === filter);
 
-  const handleCreate = async (formData: FormData) => {
-    const input: GalleryImageInput = {
-      media_type: formData.get('media_type') as MediaType || 'image',
-      image_url: formData.get('image_url') as string,
-      thumbnail_url: (formData.get('thumbnail_url') as string) || null,
-      youtube_url: (formData.get('youtube_url') as string) || null,
-      // Spanish
-      title: (formData.get('title') as string) || null,
-      description: (formData.get('description') as string) || null,
-      alt_text: (formData.get('alt_text') as string) || null,
-      // English
-      title_en: (formData.get('title_en') as string) || null,
-      description_en: (formData.get('description_en') as string) || null,
-      alt_text_en: (formData.get('alt_text_en') as string) || null,
-      // Common
-      category: (formData.get('category') as GalleryCategory) || 'otros',
-      display_order: parseInt(formData.get('display_order') as string) || 0,
-      is_featured: formData.get('is_featured') === 'on',
-      is_active: formData.get('is_active') === 'on',
-    };
-
-    startTransition(async () => {
-      const result = await createGalleryImageAction(input);
-      if (result.success) {
-        toast.success(t('toast.created'));
-        setDialogOpen(false);
-        setMediaType('image');
-      } else {
-        toast.error(result.error || t('toast.error'));
-      }
-    });
+  // Upload a file and return its URL
+  const uploadFile = async (file: File, folder: string): Promise<string | null> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('folder', folder);
+    const result = await uploadMediaAction(formData);
+    if (!result.success) {
+      toast.error(result.error || t('toast.uploadError'));
+      return null;
+    }
+    return result.data!.url;
   };
 
-  const handleUpdate = async (formData: FormData) => {
-    if (!editingImage) return;
+  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
 
-    const input: Partial<GalleryImageInput> = {
-      media_type: formData.get('media_type') as MediaType || 'image',
-      image_url: formData.get('image_url') as string,
-      thumbnail_url: (formData.get('thumbnail_url') as string) || null,
-      youtube_url: (formData.get('youtube_url') as string) || null,
-      // Spanish
-      title: (formData.get('title') as string) || null,
-      description: (formData.get('description') as string) || null,
-      alt_text: (formData.get('alt_text') as string) || null,
-      // English
-      title_en: (formData.get('title_en') as string) || null,
-      description_en: (formData.get('description_en') as string) || null,
-      alt_text_en: (formData.get('alt_text_en') as string) || null,
-      // Common
-      category: (formData.get('category') as GalleryCategory) || 'otros',
-      display_order: parseInt(formData.get('display_order') as string) || 0,
-      is_featured: formData.get('is_featured') === 'on',
-      is_active: formData.get('is_active') === 'on',
-    };
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error('JPG, PNG, WebP or GIF only');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Max 5MB');
+      return;
+    }
 
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
+
+  const handleVideoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const allowedTypes = ['video/mp4', 'video/webm', 'video/quicktime'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error('MP4, WebM or MOV only');
+      return;
+    }
+    if (file.size > 50 * 1024 * 1024) {
+      toast.error('Max 50MB');
+      return;
+    }
+
+    setVideoFile(file);
+  };
+
+  const handleThumbnailSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error('JPG, PNG, WebP or GIF only');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Max 5MB');
+      return;
+    }
+
+    setThumbnailFile(file);
+    setThumbnailPreview(URL.createObjectURL(file));
+  };
+
+  const clearImageFile = () => {
+    setImageFile(null);
+    if (imagePreview) URL.revokeObjectURL(imagePreview);
+    setImagePreview(null);
+    if (imageInputRef.current) imageInputRef.current.value = '';
+  };
+
+  const clearVideoFile = () => {
+    setVideoFile(null);
+    if (videoInputRef.current) videoInputRef.current.value = '';
+  };
+
+  const clearThumbnailFile = () => {
+    setThumbnailFile(null);
+    if (thumbnailPreview) URL.revokeObjectURL(thumbnailPreview);
+    setThumbnailPreview(null);
+    if (thumbnailInputRef.current) thumbnailInputRef.current.value = '';
+  };
+
+  const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
-      const result = await updateGalleryImageAction(editingImage.id, input);
-      if (result.success) {
-        toast.success(t('toast.updated'));
-        setEditingImage(null);
-        setDialogOpen(false);
-        setMediaType('image');
-      } else {
-        toast.error(result.error || t('toast.error'));
+      setIsUploading(true);
+      try {
+        let imageUrl: string | null = null;
+        let thumbnailUrl: string | null = null;
+
+        // Upload files based on content mode
+        if (contentMode === 'image') {
+          if (imageFile) {
+            const url = await uploadFile(imageFile, 'gallery');
+            if (!url) return;
+            imageUrl = url;
+          } else if (editingImage) {
+            imageUrl = editingImage.image_url;
+          }
+          if (!imageUrl) {
+            toast.error(t('toast.error'));
+            return;
+          }
+        } else if (contentMode === 'video_upload') {
+          if (videoFile) {
+            const url = await uploadFile(videoFile, 'gallery/videos');
+            if (!url) return;
+            imageUrl = url;
+          } else if (editingImage) {
+            imageUrl = editingImage.image_url;
+          }
+          if (!imageUrl) {
+            toast.error(t('toast.error'));
+            return;
+          }
+        } else {
+          // video_youtube - image_url comes from the thumbnail URL input or existing
+          imageUrl = (formData.get('image_url') as string) || editingImage?.image_url || '';
+        }
+
+        // Upload thumbnail if provided
+        if (thumbnailFile) {
+          const url = await uploadFile(thumbnailFile, 'gallery/thumbnails');
+          if (!url) return;
+          thumbnailUrl = url;
+        } else if (contentMode === 'video_youtube') {
+          thumbnailUrl = (formData.get('thumbnail_url') as string) || null;
+        } else if (editingImage?.thumbnail_url) {
+          thumbnailUrl = editingImage.thumbnail_url;
+        }
+
+        const mediaType: MediaType = contentMode === 'image' ? 'image' : 'video';
+        const youtubeUrl = contentMode === 'video_youtube'
+          ? (formData.get('youtube_url') as string) || null
+          : null;
+
+        const input: GalleryImageInput = {
+          media_type: mediaType,
+          image_url: imageUrl,
+          thumbnail_url: thumbnailUrl,
+          youtube_url: youtubeUrl,
+          title: (formData.get('title') as string) || null,
+          description: (formData.get('description') as string) || null,
+          alt_text: (formData.get('alt_text') as string) || null,
+          title_en: (formData.get('title_en') as string) || null,
+          description_en: (formData.get('description_en') as string) || null,
+          alt_text_en: (formData.get('alt_text_en') as string) || null,
+          category: (formData.get('category') as GalleryCategory) || 'otros',
+          display_order: parseInt(formData.get('display_order') as string) || 0,
+          is_featured: formData.get('is_featured') === 'on',
+          is_active: formData.get('is_active') === 'on',
+        };
+
+        const result = editingImage
+          ? await updateGalleryImageAction(editingImage.id, input)
+          : await createGalleryImageAction(input);
+
+        if (result.success) {
+          toast.success(editingImage ? t('toast.updated') : t('toast.created'));
+          closeDialog();
+        } else {
+          toast.error(result.error || t('toast.error'));
+        }
+      } finally {
+        setIsUploading(false);
       }
     });
   };
@@ -183,17 +308,33 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
 
   const openEditDialog = (image: GalleryImage) => {
     setEditingImage(image);
-    setMediaType(image.media_type || 'image');
+    if (image.media_type === 'image') {
+      setContentMode('image');
+      setImagePreview(image.image_url);
+    } else if (image.youtube_url) {
+      setContentMode('video_youtube');
+    } else {
+      setContentMode('video_upload');
+    }
+    if (image.thumbnail_url) {
+      setThumbnailPreview(image.thumbnail_url);
+    }
     setDialogOpen(true);
   };
 
   const closeDialog = () => {
     setEditingImage(null);
-    setMediaType('image');
+    setContentMode('image');
+    clearImageFile();
+    clearVideoFile();
+    clearThumbnailFile();
+    // Clear previews from editing existing items
+    setImagePreview(null);
+    setThumbnailPreview(null);
     setDialogOpen(false);
   };
 
-  const currentMediaType = editingImage ? (editingImage.media_type || 'image') : mediaType;
+  const isBusy = isPending || isUploading;
 
   return (
     <div className="space-y-6">
@@ -228,59 +369,267 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                 {editingImage ? t('form.title.edit') : t('form.title.create')}
               </DialogTitle>
             </DialogHeader>
-            <form action={editingImage ? handleUpdate : handleCreate} className="space-y-6">
-              {/* Media Type Selection */}
+            <form action={handleSubmit} className="space-y-6">
+              {/* Content Mode Selection - 3 options */}
               <div className="space-y-2">
                 <Label>{t('form.mediaType.label')}</Label>
                 <div className="flex gap-2">
-                  {MEDIA_TYPES.map((type) => (
-                    <Button
-                      key={type}
-                      type="button"
-                      variant={currentMediaType === type ? 'default' : 'outline'}
-                      onClick={() => setMediaType(type)}
-                      className={currentMediaType === type ? 'bg-purple-600 hover:bg-purple-500' : ''}
-                    >
-                      {type === 'image' ? <ImageIcon className="w-4 h-4 mr-2" /> : <Video className="w-4 h-4 mr-2" />}
-                      {type === 'image' ? 'Imagen' : 'Vídeo YouTube'}
-                    </Button>
-                  ))}
+                  <Button
+                    type="button"
+                    variant={contentMode === 'image' ? 'default' : 'outline'}
+                    onClick={() => setContentMode('image')}
+                    className={contentMode === 'image' ? 'bg-purple-600 hover:bg-purple-500' : ''}
+                    size="sm"
+                  >
+                    <ImageIcon className="w-4 h-4 mr-2" />
+                    {t('form.mediaType.image')}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={contentMode === 'video_upload' ? 'default' : 'outline'}
+                    onClick={() => setContentMode('video_upload')}
+                    className={contentMode === 'video_upload' ? 'bg-purple-600 hover:bg-purple-500' : ''}
+                    size="sm"
+                  >
+                    <Upload className="w-4 h-4 mr-2" />
+                    {t('form.mediaType.videoUpload')}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={contentMode === 'video_youtube' ? 'default' : 'outline'}
+                    onClick={() => setContentMode('video_youtube')}
+                    className={contentMode === 'video_youtube' ? 'bg-purple-600 hover:bg-purple-500' : ''}
+                    size="sm"
+                  >
+                    <Video className="w-4 h-4 mr-2" />
+                    {t('form.mediaType.videoYoutube')}
+                  </Button>
                 </div>
-                <input type="hidden" name="media_type" value={currentMediaType} />
               </div>
 
-              {/* YouTube URL (only for video) */}
-              {currentMediaType === 'video' && (
-                <div className="space-y-2">
-                  <Label htmlFor="youtube_url">{t('form.youtubeUrl.label')}</Label>
-                  <Input
-                    id="youtube_url"
-                    name="youtube_url"
-                    type="url"
-                    defaultValue={editingImage?.youtube_url || ''}
-                    placeholder="https://www.youtube.com/watch?v=..."
+              {/* === IMAGE UPLOAD === */}
+              {contentMode === 'image' && (
+                <div className="space-y-3">
+                  <Label>{t('form.imageUrl.label')}</Label>
+                  <input
+                    ref={imageInputRef}
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif"
+                    onChange={handleImageSelect}
+                    className="hidden"
                   />
-                  <p className="text-xs text-muted-foreground">{t('form.youtubeUrl.help')}</p>
+                  {imagePreview ? (
+                    <div className="relative w-full max-w-xs">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={imagePreview}
+                        alt="Preview"
+                        className="w-full aspect-square object-cover rounded-lg border"
+                      />
+                      <div className="flex gap-2 mt-2">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => imageInputRef.current?.click()}
+                        >
+                          {t('form.upload.changeFile')}
+                        </Button>
+                        {imageFile && (
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={clearImageFile}
+                          >
+                            <X className="w-4 h-4 mr-1" />
+                            {t('form.upload.removeFile')}
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => imageInputRef.current?.click()}
+                      className="w-full border-2 border-dashed rounded-lg p-8 text-center hover:border-purple-500/50 hover:bg-purple-500/5 transition-colors"
+                    >
+                      <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+                      <p className="text-sm font-medium">{t('form.upload.selectImage')}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{t('form.upload.imageHint')}</p>
+                    </button>
+                  )}
+                  {imageFile && (
+                    <p className="text-xs text-muted-foreground">
+                      {imageFile.name} ({formatFileSize(imageFile.size)})
+                    </p>
+                  )}
                 </div>
               )}
 
-              {/* Image/Thumbnail URL */}
-              <div className="space-y-2">
-                <Label htmlFor="image_url">
-                  {currentMediaType === 'video' ? t('form.thumbnailUrl.label') : t('form.imageUrl.label')}
-                </Label>
-                <Input
-                  id="image_url"
-                  name="image_url"
-                  type="url"
-                  required
-                  defaultValue={editingImage?.image_url || ''}
-                  placeholder={t('form.imageUrl.placeholder')}
-                />
-                <p className="text-xs text-muted-foreground">
-                  {currentMediaType === 'video' ? t('form.thumbnailUrl.help') : t('form.imageUrl.help')}
-                </p>
-              </div>
+              {/* === VIDEO UPLOAD === */}
+              {contentMode === 'video_upload' && (
+                <div className="space-y-4">
+                  {/* Video file */}
+                  <div className="space-y-3">
+                    <Label>{t('form.upload.selectVideo')}</Label>
+                    <input
+                      ref={videoInputRef}
+                      type="file"
+                      accept="video/mp4,video/webm,video/quicktime"
+                      onChange={handleVideoSelect}
+                      className="hidden"
+                    />
+                    {videoFile ? (
+                      <div className="flex items-center gap-3 p-3 border rounded-lg bg-muted/30">
+                        <FileVideo className="w-8 h-8 text-purple-500 shrink-0" />
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-medium truncate">{videoFile.name}</p>
+                          <p className="text-xs text-muted-foreground">{formatFileSize(videoFile.size)}</p>
+                        </div>
+                        <div className="flex gap-1 shrink-0">
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => videoInputRef.current?.click()}
+                          >
+                            {t('form.upload.changeFile')}
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={clearVideoFile}
+                          >
+                            <X className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    ) : editingImage && editingImage.media_type === 'video' && !editingImage.youtube_url ? (
+                      <div className="flex items-center gap-3 p-3 border rounded-lg bg-muted/30">
+                        <FileVideo className="w-8 h-8 text-purple-500 shrink-0" />
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-medium">{t('form.upload.currentFile')}</p>
+                          <p className="text-xs text-muted-foreground truncate">{editingImage.image_url}</p>
+                        </div>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => videoInputRef.current?.click()}
+                        >
+                          {t('form.upload.changeFile')}
+                        </Button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => videoInputRef.current?.click()}
+                        className="w-full border-2 border-dashed rounded-lg p-8 text-center hover:border-purple-500/50 hover:bg-purple-500/5 transition-colors"
+                      >
+                        <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+                        <p className="text-sm font-medium">{t('form.upload.selectVideo')}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{t('form.upload.videoHint')}</p>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Thumbnail for uploaded video */}
+                  <div className="space-y-3">
+                    <Label>{t('form.upload.selectThumbnail')}</Label>
+                    <input
+                      ref={thumbnailInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif"
+                      onChange={handleThumbnailSelect}
+                      className="hidden"
+                    />
+                    {thumbnailPreview ? (
+                      <div className="relative w-full max-w-xs">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={thumbnailPreview}
+                          alt="Thumbnail preview"
+                          className="w-full aspect-video object-cover rounded-lg border"
+                        />
+                        <div className="flex gap-2 mt-2">
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => thumbnailInputRef.current?.click()}
+                          >
+                            {t('form.upload.changeFile')}
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={clearThumbnailFile}
+                          >
+                            <X className="w-4 h-4 mr-1" />
+                            {t('form.upload.removeFile')}
+                          </Button>
+                        </div>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => thumbnailInputRef.current?.click()}
+                        className="w-full border-2 border-dashed rounded-lg p-4 text-center hover:border-purple-500/50 hover:bg-purple-500/5 transition-colors"
+                      >
+                        <ImageIcon className="w-6 h-6 mx-auto mb-1 text-muted-foreground" />
+                        <p className="text-sm font-medium">{t('form.upload.selectThumbnail')}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{t('form.upload.thumbnailHint')}</p>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* === VIDEO YOUTUBE === */}
+              {contentMode === 'video_youtube' && (
+                <>
+                  <div className="space-y-2">
+                    <Label htmlFor="youtube_url">{t('form.youtubeUrl.label')}</Label>
+                    <Input
+                      id="youtube_url"
+                      name="youtube_url"
+                      type="url"
+                      defaultValue={editingImage?.youtube_url || ''}
+                      placeholder="https://www.youtube.com/watch?v=..."
+                    />
+                    <p className="text-xs text-muted-foreground">{t('form.youtubeUrl.help')}</p>
+                  </div>
+
+                  {/* Thumbnail URL for YouTube */}
+                  <div className="space-y-2">
+                    <Label htmlFor="image_url">{t('form.thumbnailUrl.label')}</Label>
+                    <Input
+                      id="image_url"
+                      name="image_url"
+                      type="url"
+                      required
+                      defaultValue={editingImage?.image_url || ''}
+                      placeholder={t('form.imageUrl.placeholder')}
+                    />
+                    <p className="text-xs text-muted-foreground">{t('form.thumbnailUrl.help')}</p>
+                  </div>
+
+                  {/* Optional additional thumbnail */}
+                  <div className="space-y-2">
+                    <Label htmlFor="thumbnail_url">{t('form.thumbnailUrl.label')}</Label>
+                    <Input
+                      id="thumbnail_url"
+                      name="thumbnail_url"
+                      type="url"
+                      defaultValue={editingImage?.thumbnail_url || ''}
+                      placeholder={t('form.thumbnailUrl.placeholder')}
+                    />
+                  </div>
+                </>
+              )}
 
               {/* Spanish Fields */}
               <div className="space-y-4 p-4 border rounded-lg">
@@ -418,9 +767,9 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                 <Button type="button" variant="outline" onClick={closeDialog}>
                   {t('form.cancel')}
                 </Button>
-                <Button type="submit" disabled={isPending} className="bg-purple-600 hover:bg-purple-500">
-                  {isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                  {editingImage ? t('form.save') : t('form.save')}
+                <Button type="submit" disabled={isBusy} className="bg-purple-600 hover:bg-purple-500">
+                  {isBusy && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                  {isUploading ? t('form.upload.uploading') : t('form.save')}
                 </Button>
               </div>
             </form>
@@ -439,114 +788,125 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
         </Card>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredImages.map((image) => (
-            <Card
-              key={image.id}
-              className={`group overflow-hidden hover:border-purple-500/50 transition-all ${
-                !image.is_active ? 'opacity-60' : ''
-              }`}
-            >
-              <div className="relative aspect-square bg-muted">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={image.thumbnail_url || image.image_url}
-                  alt={image.alt_text || image.title || 'Gallery image'}
-                  className="w-full h-full object-cover"
-                />
-                {/* Video play icon overlay */}
-                {image.media_type === 'video' && (
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center">
-                      <Play className="w-6 h-6 text-white fill-white" />
+          {filteredImages.map((image) => {
+            const isUploadedVideo = image.media_type === 'video' && !image.youtube_url;
+            const thumbnailSrc = image.thumbnail_url || (!isUploadedVideo ? image.image_url : null);
+
+            return (
+              <Card
+                key={image.id}
+                className={`group overflow-hidden hover:border-purple-500/50 transition-all ${
+                  !image.is_active ? 'opacity-60' : ''
+                }`}
+              >
+                <div className="relative aspect-square bg-muted">
+                  {thumbnailSrc ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={thumbnailSrc}
+                      alt={image.alt_text || image.title || 'Gallery image'}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-900">
+                      <Play className="w-12 h-12 text-white/30" />
                     </div>
-                  </div>
-                )}
-                {/* Overlay with actions on hover */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    onClick={() => openEditDialog(image)}
-                  >
-                    <Pencil className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    onClick={() => handleToggle(image.id, image.is_active)}
-                    disabled={isPending}
-                  >
-                    {image.is_active ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    onClick={() => handleToggleFeatured(image.id, image.is_featured)}
-                    disabled={isPending}
-                  >
-                    {image.is_featured ? <StarOff className="w-4 h-4" /> : <Star className="w-4 h-4" />}
-                  </Button>
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button
-                        size="sm"
-                        variant="destructive"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>{t('confirmDelete.title')}</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          {t('confirmDelete.description')}
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>
-                          {t('confirmDelete.cancel')}
-                        </AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={() => handleDelete(image.id)}
-                          className="bg-red-600 hover:bg-red-500 text-white"
+                  )}
+                  {/* Video play icon overlay */}
+                  {image.media_type === 'video' && thumbnailSrc && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <div className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center">
+                        <Play className="w-6 h-6 text-white fill-white" />
+                      </div>
+                    </div>
+                  )}
+                  {/* Overlay with actions on hover */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      onClick={() => openEditDialog(image)}
+                    >
+                      <Pencil className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      onClick={() => handleToggle(image.id, image.is_active)}
+                      disabled={isPending}
+                    >
+                      {image.is_active ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      onClick={() => handleToggleFeatured(image.id, image.is_featured)}
+                      disabled={isPending}
+                    >
+                      {image.is_featured ? <StarOff className="w-4 h-4" /> : <Star className="w-4 h-4" />}
+                    </Button>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          size="sm"
+                          variant="destructive"
                         >
-                          {t('confirmDelete.confirm')}
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
-                {/* Badges */}
-                <div className="absolute top-2 left-2 flex gap-1">
-                  {image.media_type === 'video' && (
-                    <Badge className="bg-red-500/90 text-white border-0">
-                      <Video className="w-3 h-3 mr-1" />
-                      Video
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>{t('confirmDelete.title')}</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            {t('confirmDelete.description')}
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>
+                            {t('confirmDelete.cancel')}
+                          </AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => handleDelete(image.id)}
+                            className="bg-red-600 hover:bg-red-500 text-white"
+                          >
+                            {t('confirmDelete.confirm')}
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+                  {/* Badges */}
+                  <div className="absolute top-2 left-2 flex gap-1">
+                    {image.media_type === 'video' && (
+                      <Badge className="bg-red-500/90 text-white border-0">
+                        <Video className="w-3 h-3 mr-1" />
+                        Video
+                      </Badge>
+                    )}
+                    {image.is_featured && (
+                      <Badge className="bg-purple-500/90 text-white border-0">
+                        <Star className="w-3 h-3 mr-1 fill-current" />
+                        {t('card.featured')}
+                      </Badge>
+                    )}
+                  </div>
+                  {!image.is_active && (
+                    <Badge className="absolute top-2 right-2 bg-gray-500/90 text-white border-0">
+                      {t('status.inactive')}
                     </Badge>
                   )}
-                  {image.is_featured && (
-                    <Badge className="bg-purple-500/90 text-white border-0">
-                      <Star className="w-3 h-3 mr-1 fill-current" />
-                      {t('card.featured')}
-                    </Badge>
-                  )}
                 </div>
-                {!image.is_active && (
-                  <Badge className="absolute top-2 right-2 bg-gray-500/90 text-white border-0">
-                    {t('status.inactive')}
-                  </Badge>
-                )}
-              </div>
-              <CardContent className="p-3">
-                <p className="text-sm font-medium truncate text-foreground">
-                  {image.title || 'Sin título'}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  {t(`tabs.${image.category}`)} · {t('card.order')}: {image.display_order}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+                <CardContent className="p-3">
+                  <p className="text-sm font-medium truncate text-foreground">
+                    {image.title || 'Sin título'}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    {t(`tabs.${image.category}`)} · {t('card.order')}: {image.display_order}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       )}
     </div>

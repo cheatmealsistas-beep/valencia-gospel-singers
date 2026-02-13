@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { requireAdmin } from '@/shared/auth';
 import { uploadFile, deleteFile } from '@/shared/database/supabase/storage';
+import { createClientServer } from '@/shared/database/supabase';
 import {
   handleUpdateInfoBarSettings,
   handleUpdateEmailJourneysSettings,
@@ -669,6 +670,55 @@ export async function deletePhotoAction(
 }
 
 /**
+ * Upload a media file (image or video) to Supabase Storage
+ */
+export async function uploadMediaAction(
+  formData: FormData
+): Promise<ActionResult<{ url: string }>> {
+  try {
+    await requireAdmin();
+
+    const file = formData.get('file') as File | null;
+    const folder = (formData.get('folder') as string) || 'gallery';
+
+    if (!file || file.size === 0) {
+      return { success: false, data: null, error: 'No file provided' };
+    }
+
+    const allowedImageTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    const allowedVideoTypes = ['video/mp4', 'video/webm', 'video/quicktime'];
+    const allAllowed = [...allowedImageTypes, ...allowedVideoTypes];
+
+    if (!allAllowed.includes(file.type)) {
+      return {
+        success: false,
+        data: null,
+        error: 'File type not allowed. Use JPG, PNG, WebP, GIF, MP4, WebM or MOV.',
+      };
+    }
+
+    const isVideo = allowedVideoTypes.includes(file.type);
+    const maxSize = isVideo ? 50 * 1024 * 1024 : 5 * 1024 * 1024;
+    const maxLabel = isVideo ? '50MB' : '5MB';
+
+    if (file.size > maxSize) {
+      return { success: false, data: null, error: `File too large. Maximum ${maxLabel}.` };
+    }
+
+    const result = await uploadFile(file, folder);
+
+    if (result.url === null) {
+      return { success: false, data: null, error: result.error };
+    }
+
+    return { success: true, data: { url: result.url }, error: null };
+  } catch (err) {
+    console.error('Upload media error:', err);
+    return { success: false, data: null, error: 'Error uploading media. Check storage configuration.' };
+  }
+}
+
+/**
  * ==============================================
  * GALLERY ACTIONS
  * ==============================================
@@ -772,16 +822,35 @@ export async function toggleGalleryImageFeaturedAction(
 }
 
 /**
- * Delete a gallery image
+ * Delete a gallery image and clean up associated Storage files
  */
 export async function deleteGalleryImageAction(
   id: string
 ): Promise<ActionResult> {
   await requireAdmin();
 
+  // Fetch the image to get file URLs before deleting
+  const supabase = await createClientServer();
+  const { data: image } = await supabase
+    .from('gallery_images')
+    .select('image_url, thumbnail_url')
+    .eq('id', id)
+    .single();
+
   const result = await deleteGalleryImage(id);
 
   if (result.success) {
+    // Best-effort cleanup of Storage files (don't fail if these error)
+    if (image) {
+      const storageMarker = '/storage/v1/object/public/media/';
+      if (image.image_url?.includes(storageMarker)) {
+        await deleteFile(image.image_url).catch(() => {});
+      }
+      if (image.thumbnail_url?.includes(storageMarker)) {
+        await deleteFile(image.thumbnail_url).catch(() => {});
+      }
+    }
+
     revalidatePath('/[locale]/admin/galeria');
     revalidatePath('/[locale]/galeria');
     return { success: true, data: undefined, error: null };
