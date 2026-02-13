@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { requireAdmin } from '@/shared/auth';
-import { uploadFile, deleteFile } from '@/shared/database/supabase/storage';
+import { deleteFile } from '@/shared/database/supabase/storage';
 import { createClientServer } from '@/shared/database/supabase';
 import {
   handleUpdateInfoBarSettings,
@@ -603,119 +603,6 @@ export async function deleteTeamMemberAction(
   }
 
   return { success: false, data: null, error: result.error || 'Failed to delete team member' };
-}
-
-/**
- * ==============================================
- * MEDIA UPLOAD ACTIONS
- * ==============================================
- */
-
-/**
- * Upload a photo to Supabase Storage
- * Used by team members, gallery, etc.
- */
-export async function uploadPhotoAction(
-  formData: FormData
-): Promise<ActionResult<{ url: string }>> {
-  try {
-    await requireAdmin();
-
-    const file = formData.get('file') as File | null;
-    const folder = (formData.get('folder') as string) || 'general';
-
-    if (!file || file.size === 0) {
-      return { success: false, data: null, error: 'No file provided' };
-    }
-
-    // Validate file type
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-    if (!allowedTypes.includes(file.type)) {
-      return { success: false, data: null, error: 'File type not allowed. Use JPG, PNG, WebP or GIF.' };
-    }
-
-    // Validate file size (5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      return { success: false, data: null, error: 'File too large. Maximum 5MB.' };
-    }
-
-    const result = await uploadFile(file, folder);
-
-    if (result.url === null) {
-      return { success: false, data: null, error: result.error };
-    }
-
-    return { success: true, data: { url: result.url }, error: null };
-  } catch (err) {
-    console.error('Upload photo error:', err);
-    return { success: false, data: null, error: 'Error uploading photo. Check storage configuration.' };
-  }
-}
-
-/**
- * Delete a photo from Supabase Storage
- */
-export async function deletePhotoAction(
-  publicUrl: string
-): Promise<ActionResult> {
-  await requireAdmin();
-
-  const result = await deleteFile(publicUrl);
-
-  if (!result.success) {
-    return { success: false, data: null, error: result.error || 'Failed to delete file' };
-  }
-
-  return { success: true, data: undefined, error: null };
-}
-
-/**
- * Upload a media file (image or video) to Supabase Storage
- */
-export async function uploadMediaAction(
-  formData: FormData
-): Promise<ActionResult<{ url: string }>> {
-  try {
-    await requireAdmin();
-
-    const file = formData.get('file') as File | null;
-    const folder = (formData.get('folder') as string) || 'gallery';
-
-    if (!file || file.size === 0) {
-      return { success: false, data: null, error: 'No file provided' };
-    }
-
-    const allowedImageTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-    const allowedVideoTypes = ['video/mp4', 'video/webm', 'video/quicktime'];
-    const allAllowed = [...allowedImageTypes, ...allowedVideoTypes];
-
-    if (!allAllowed.includes(file.type)) {
-      return {
-        success: false,
-        data: null,
-        error: 'File type not allowed. Use JPG, PNG, WebP, GIF, MP4, WebM or MOV.',
-      };
-    }
-
-    const isVideo = allowedVideoTypes.includes(file.type);
-    const maxSize = isVideo ? 100 * 1024 * 1024 : 5 * 1024 * 1024;
-    const maxLabel = isVideo ? '100MB' : '5MB';
-
-    if (file.size > maxSize) {
-      return { success: false, data: null, error: `File too large. Maximum ${maxLabel}.` };
-    }
-
-    const result = await uploadFile(file, folder);
-
-    if (result.url === null) {
-      return { success: false, data: null, error: result.error };
-    }
-
-    return { success: true, data: { url: result.url }, error: null };
-  } catch (err) {
-    console.error('Upload media error:', err);
-    return { success: false, data: null, error: 'Error uploading media. Check storage configuration.' };
-  }
 }
 
 /**
