@@ -33,14 +33,17 @@ export function MiniVinyl({ size = 'md', className, index = 0 }: MiniVinylProps)
   return (
     <motion.div
       className={cn('group/mini relative flex-shrink-0 cursor-pointer', sizeClasses[size], className)}
-      initial={{ rotate: 0 }}
-      whileInView={{ rotate: 360 }}
+      initial={{ rotate: 0, scale: 1 }}
+      whileInView={
+        prefersReducedMotion
+          ? { rotate: 360 }
+          : { rotate: 360, scale: [1, 1.15, 1] }
+      }
       viewport={{ once: true, amount: 0.8 }}
       whileHover={prefersReducedMotion ? undefined : { scale: 1.12, rotate: 396 }}
       transition={{
-        duration: 1.2,
-        delay: index * 0.15,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        rotate: { duration: 1.2, delay: index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] },
+        scale: { duration: 0.9, delay: index * 0.15 + 0.4, ease: 'easeOut' },
       }}
       style={prefersReducedMotion ? {} : undefined}
     >
@@ -85,9 +88,34 @@ export function MiniVinyl({ size = 'md', className, index = 0 }: MiniVinylProps)
           }}
         />
 
-        {/* Destello intenso al hover */}
+        {/* Destello iridiscente — flash en la ENTRADA (visible en móvil, sin hover) */}
+        <motion.div
+          className="absolute inset-0 rounded-full pointer-events-none"
+          initial={{ opacity: 0 }}
+          whileInView={
+            prefersReducedMotion ? { opacity: 0 } : { opacity: [0, 1, 0] }
+          }
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 1, delay: index * 0.15 + 0.5, ease: 'easeOut' }}
+          style={{
+            background: `conic-gradient(from 90deg,
+              transparent 0deg,
+              hsl(var(--neon) / 0.55) 25deg,
+              hsl(var(--neon-secondary) / 0.4) 55deg,
+              hsl(var(--neon-tertiary) / 0.3) 85deg,
+              transparent 130deg,
+              transparent 220deg,
+              hsl(var(--neon) / 0.45) 250deg,
+              hsl(var(--neon-secondary) / 0.3) 290deg,
+              transparent 330deg,
+              transparent 360deg
+            )`,
+          }}
+        />
+
+        {/* Destello intenso al hover (extra en desktop) */}
         <div
-          className="absolute inset-0 rounded-full opacity-0 group-hover/mini:opacity-100 transition-opacity duration-500"
+          className="absolute inset-0 rounded-full opacity-0 group-hover/mini:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{
             background: `conic-gradient(from 90deg,
               transparent 0deg,
