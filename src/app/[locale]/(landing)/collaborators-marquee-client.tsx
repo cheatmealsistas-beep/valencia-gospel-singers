@@ -13,9 +13,9 @@ export function CollaboratorsMarqueeClient({ collaborators }: CollaboratorsMarqu
   const t = useTranslations('landing');
 
   return (
-    <section className="py-12 bg-[#0a0a0a] border-y border-[#1a1a1a]">
+    <section className="py-12 bg-surface border-y border-hairline">
       <div className="container mb-6">
-        <p className="text-center text-sm text-gray-500 uppercase tracking-wider">
+        <p className="text-center text-sm text-on-surface-muted uppercase tracking-wider">
           {t('collaborators.title')}
         </p>
       </div>

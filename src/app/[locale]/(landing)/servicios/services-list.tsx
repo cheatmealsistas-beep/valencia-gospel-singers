@@ -17,17 +17,17 @@ export function ServicesList({ services }: ServicesListProps) {
   const locale = useLocale();
 
   return (
-    <section className="relative px-4 py-16 md:py-24 bg-[#0a0a0a]">
+    <section className="relative px-4 py-16 md:py-24 bg-surface">
       {/* Background subtle glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-600/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-fuchsia-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-neon/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-neon-secondary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-6xl mx-auto">
         {/* Section Title */}
         <FadeIn>
-          <h2 className="text-2xl font-bold text-white mb-8 md:mb-12">
+          <h2 className="text-2xl font-bold text-on-surface mb-8 md:mb-12">
             {t('title')}
           </h2>
         </FadeIn>
@@ -36,15 +36,15 @@ export function ServicesList({ services }: ServicesListProps) {
           /* Empty State */
           <FadeIn>
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <Briefcase className="w-16 h-16 text-white/20 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-2">
+              <Briefcase className="w-16 h-16 text-on-surface-muted mb-6" />
+              <h3 className="text-xl font-semibold text-on-surface mb-2">
                 {t('empty.title')}
               </h3>
-              <p className="text-white/50 mb-6 max-w-md">
+              <p className="text-on-surface-muted mb-6 max-w-md">
                 {t('empty.description')}
               </p>
               <Button
-                className="bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500"
+                className="bg-gradient-to-r from-neon to-neon-secondary hover:from-neon hover:to-neon-secondary"
                 asChild
               >
                 <Link href={`/${locale}/contacto`}>{t('empty.cta')}</Link>

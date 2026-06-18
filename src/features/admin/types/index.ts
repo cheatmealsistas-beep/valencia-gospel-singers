@@ -139,7 +139,7 @@ export interface AppSetting {
 export interface AdminStats {
   totalUsers: number;
   newUsersThisMonth: number;
-  // Valencia Gospel Singers specific
+  // Mediterránea Gospel Singers specific
   totalEvents: number;
   upcomingEvents: number;
   pastEvents: number;

@@ -94,10 +94,10 @@ export function MessageList({ messages }: MessageListProps) {
 
   const getStatusBadge = (status: ContactRequest['status']) => {
     const variants: Record<string, string> = {
-      pending: 'bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30',
+      pending: 'bg-neon/20 text-neon-foreground border-neon/30',
       read: 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30',
       replied: 'bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30',
-      archived: 'bg-gray-500/20 text-gray-600 dark:text-gray-400 border-gray-500/30',
+      archived: 'bg-gray-500/20 text-gray-600 dark:text-on-surface-muted border-gray-500/30',
     };
     return (
       <Badge className={`${variants[status]} border`}>
@@ -155,8 +155,8 @@ export function MessageList({ messages }: MessageListProps) {
           {filteredMessages.map((message) => (
             <Card
               key={message.id}
-              className={`hover:border-purple-500/50 transition-all ${
-                message.status === 'pending' ? 'border-l-4 border-l-purple-500' : ''
+              className={`hover:border-neon/50 transition-all ${
+                message.status === 'pending' ? 'border-l-4 border-l-neon' : ''
               }`}
             >
               <CardHeader className="pb-2">
@@ -167,12 +167,12 @@ export function MessageList({ messages }: MessageListProps) {
                       {getStatusBadge(message.status)}
                     </div>
                     <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                      <a href={`mailto:${message.email}`} className="flex items-center gap-1 hover:text-purple-500 transition-colors">
+                      <a href={`mailto:${message.email}`} className="flex items-center gap-1 hover:text-neon-foreground transition-colors">
                         <Mail className="w-4 h-4" />
                         {message.email || 'Sin email'}
                       </a>
                       {message.phone && (
-                        <a href={`tel:${message.phone}`} className="flex items-center gap-1 hover:text-purple-500 transition-colors">
+                        <a href={`tel:${message.phone}`} className="flex items-center gap-1 hover:text-neon-foreground transition-colors">
                           <Phone className="w-4 h-4" />
                           {message.phone}
                         </a>
@@ -191,14 +191,14 @@ export function MessageList({ messages }: MessageListProps) {
                   <div className="flex flex-wrap gap-4 text-sm">
                     {message.event_type && (
                       <span className="flex items-center gap-2 text-foreground">
-                        <Calendar className="w-4 h-4 text-purple-500" />
+                        <Calendar className="w-4 h-4 text-neon-foreground" />
                         <span className="text-muted-foreground">{t('card.eventType')}:</span>
                         {t(`eventTypes.${message.event_type}`)}
                       </span>
                     )}
                     {message.event_date && (
                       <span className="flex items-center gap-2 text-foreground">
-                        <Calendar className="w-4 h-4 text-purple-500" />
+                        <Calendar className="w-4 h-4 text-neon-foreground" />
                         <span className="text-muted-foreground">{t('card.eventDate')}:</span>
                         {new Date(message.event_date).toLocaleDateString('es-ES')}
                       </span>
@@ -282,7 +282,7 @@ export function MessageList({ messages }: MessageListProps) {
                     variant="outline"
                     asChild
                   >
-                    <a href={`mailto:${message.email}?subject=Re: Valencia Gospel Singers - Tu consulta`}>
+                    <a href={`mailto:${message.email}?subject=Re: Mediterránea Gospel Singers - Tu consulta`}>
                       <Mail className="w-4 h-4 mr-1" />
                       {t('actions.reply')}
                       <ExternalLink className="w-3 h-3 ml-1" />
@@ -296,7 +296,7 @@ export function MessageList({ messages }: MessageListProps) {
                       asChild
                     >
                       <a
-                        href={`https://wa.me/${message.phone.replace(/\D/g, '')}?text=Hola ${message.name}, gracias por contactar con Valencia Gospel Singers.`}
+                        href={`https://wa.me/${message.phone.replace(/\D/g, '')}?text=Hola ${message.name}, gracias por contactar con Mediterránea Gospel Singers.`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >

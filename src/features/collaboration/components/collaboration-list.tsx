@@ -33,7 +33,7 @@ interface CollaborationListProps {
 }
 
 const statusConfig: Record<CollaborationStatus, { color: string; icon: React.ReactNode }> = {
-  pending: { color: 'bg-purple-500/10 text-purple-500 border-purple-500/20', icon: <Clock className="w-3 h-3" /> },
+  pending: { color: 'bg-neon/10 text-neon-foreground border-neon/20', icon: <Clock className="w-3 h-3" /> },
   contacted: { color: 'bg-blue-500/10 text-blue-500 border-blue-500/20', icon: <Mail className="w-3 h-3" /> },
   accepted: { color: 'bg-green-500/10 text-green-500 border-green-500/20', icon: <CheckCircle2 className="w-3 h-3" /> },
   rejected: { color: 'bg-red-500/10 text-red-500 border-red-500/20', icon: <XCircle className="w-3 h-3" /> },

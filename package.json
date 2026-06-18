@@ -1,8 +1,8 @@
 {
-  "name": "valencia-gospel-singers",
+  "name": "mediterranea-gospel-singers",
   "version": "1.0.0",
   "private": true,
-  "description": "Valencia Gospel Singers - Coro gospel para eventos y celebraciones",
+  "description": "Mediterránea Gospel Singers - Coro gospel para eventos y celebraciones",
   "scripts": {
     "dev": "npm run i18n:generate-static && next dev",
     "build": "npm run i18n:generate-static && next build",
@@ -60,7 +60,7 @@
     "bodas",
     "música"
   ],
-  "author": "Valencia Gospel Singers",
+  "author": "Mediterránea Gospel Singers",
   "license": "UNLICENSED",
   "dependencies": {
     "@fontsource/inter": "^5.2.8",

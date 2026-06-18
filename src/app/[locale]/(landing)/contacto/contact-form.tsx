@@ -48,15 +48,15 @@ export function ContactForm() {
   if (showSuccess) {
     return (
       <div className="text-center py-12">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500 mb-6">
-          <CheckCircle className="w-8 h-8 text-white" />
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-neon to-neon-secondary mb-6">
+          <CheckCircle className="w-8 h-8 text-on-surface" />
         </div>
-        <h3 className="text-2xl font-bold text-white mb-2">{tSuccess('title')}</h3>
-        <p className="text-white/60 mb-6">{tSuccess('description')}</p>
+        <h3 className="text-2xl font-bold text-on-surface mb-2">{tSuccess('title')}</h3>
+        <p className="text-on-surface-muted mb-6">{tSuccess('description')}</p>
         <Button
           variant="outline"
           onClick={() => setShowSuccess(false)}
-          className="border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10"
+          className="border-hairline hover:border-neon/50 hover:bg-neon/10"
         >
           {tSuccess('cta')}
         </Button>
@@ -68,22 +68,22 @@ export function ContactForm() {
     <form action={action} className="space-y-6">
       {/* Name */}
       <div className="space-y-2">
-        <Label htmlFor="name" className="text-white/80">
-          {t('name.label')} <span className="text-purple-400">*</span>
+        <Label htmlFor="name" className="text-on-surface-muted">
+          {t('name.label')} <span className="text-neon-foreground">*</span>
         </Label>
         <Input
           id="name"
           name="name"
           required
           placeholder={t('name.placeholder')}
-          className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20"
+          className="h-12 bg-surface-elevated border-hairline text-on-surface placeholder:text-on-surface-muted focus:border-neon/50 focus:ring-neon/20"
         />
       </div>
 
       {/* Email */}
       <div className="space-y-2">
-        <Label htmlFor="email" className="text-white/80">
-          {t('email.label')} <span className="text-purple-400">*</span>
+        <Label htmlFor="email" className="text-on-surface-muted">
+          {t('email.label')} <span className="text-neon-foreground">*</span>
         </Label>
         <Input
           id="email"
@@ -91,13 +91,13 @@ export function ContactForm() {
           type="email"
           required
           placeholder={t('email.placeholder')}
-          className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20"
+          className="h-12 bg-surface-elevated border-hairline text-on-surface placeholder:text-on-surface-muted focus:border-neon/50 focus:ring-neon/20"
         />
       </div>
 
       {/* Phone */}
       <div className="space-y-2">
-        <Label htmlFor="phone" className="text-white/80">
+        <Label htmlFor="phone" className="text-on-surface-muted">
           {t('phone.label')}
         </Label>
         <Input
@@ -105,7 +105,7 @@ export function ContactForm() {
           name="phone"
           type="tel"
           placeholder={t('phone.placeholder')}
-          className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20"
+          className="h-12 bg-surface-elevated border-hairline text-on-surface placeholder:text-on-surface-muted focus:border-neon/50 focus:ring-neon/20"
         />
       </div>
 
@@ -113,26 +113,26 @@ export function ContactForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Event Type */}
         <div className="space-y-2">
-          <Label htmlFor="event_type" className="text-white/80">
+          <Label htmlFor="event_type" className="text-on-surface-muted">
             {t('eventType.label')}
           </Label>
           <Select name="event_type">
-            <SelectTrigger className="h-12 bg-white/5 border-white/10 text-white focus:border-purple-500/50 focus:ring-purple-500/20 [&>span]:text-white/50">
+            <SelectTrigger className="h-12 bg-surface-elevated border-hairline text-on-surface focus:border-neon/50 focus:ring-neon/20 [&>span]:text-on-surface-muted">
               <SelectValue placeholder={t('eventType.placeholder')} />
             </SelectTrigger>
-            <SelectContent className="bg-[#1a1a1a] border-white/10">
-              <SelectItem value="boda" className="text-white hover:bg-purple-500/20 focus:bg-purple-500/20">{t('eventType.options.boda')}</SelectItem>
-              <SelectItem value="corporativo" className="text-white hover:bg-purple-500/20 focus:bg-purple-500/20">{t('eventType.options.corporativo')}</SelectItem>
-              <SelectItem value="concierto" className="text-white hover:bg-purple-500/20 focus:bg-purple-500/20">{t('eventType.options.concierto')}</SelectItem>
-              <SelectItem value="privado" className="text-white hover:bg-purple-500/20 focus:bg-purple-500/20">{t('eventType.options.privado')}</SelectItem>
-              <SelectItem value="otro" className="text-white hover:bg-purple-500/20 focus:bg-purple-500/20">{t('eventType.options.otro')}</SelectItem>
+            <SelectContent className="bg-surface-elevated border-hairline">
+              <SelectItem value="boda" className="text-on-neon hover:bg-neon/20 focus:bg-neon/20">{t('eventType.options.boda')}</SelectItem>
+              <SelectItem value="corporativo" className="text-on-neon hover:bg-neon/20 focus:bg-neon/20">{t('eventType.options.corporativo')}</SelectItem>
+              <SelectItem value="concierto" className="text-on-neon hover:bg-neon/20 focus:bg-neon/20">{t('eventType.options.concierto')}</SelectItem>
+              <SelectItem value="privado" className="text-on-neon hover:bg-neon/20 focus:bg-neon/20">{t('eventType.options.privado')}</SelectItem>
+              <SelectItem value="otro" className="text-on-neon hover:bg-neon/20 focus:bg-neon/20">{t('eventType.options.otro')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         {/* Event Date */}
         <div className="space-y-2">
-          <Label htmlFor="event_date" className="text-white/80">
+          <Label htmlFor="event_date" className="text-on-surface-muted">
             {t('eventDate.label')}
           </Label>
           <input type="hidden" name="event_date" value={selectedDate ? format(selectedDate, 'yyyy-MM-dd') : ''} />
@@ -141,18 +141,18 @@ export function ContactForm() {
               <Button
                 type="button"
                 variant="outline"
-                className="h-12 w-full justify-start text-left font-normal bg-white/5 border-white/10 text-white hover:bg-white/10 hover:text-white focus:border-purple-500/50 focus:ring-purple-500/20"
+                className="h-12 w-full justify-start text-left font-normal bg-surface-elevated border-hairline text-on-surface hover:bg-surface-elevated hover:text-on-surface focus:border-neon/50 focus:ring-neon/20"
               >
-                <CalendarIcon className="mr-2 h-4 w-4 text-white/50" />
+                <CalendarIcon className="mr-2 h-4 w-4 text-on-surface-muted" />
                 {selectedDate ? (
                   format(selectedDate, 'PPP', { locale: locale === 'es' ? es : enUS })
                 ) : (
-                  <span className="text-white/50">{t('eventDate.placeholder')}</span>
+                  <span className="text-on-surface-muted">{t('eventDate.placeholder')}</span>
                 )}
               </Button>
             </PopoverTrigger>
             <PopoverContent
-              className="w-auto p-0 bg-[#1a1a1a] border-white/10"
+              className="w-auto p-0 bg-surface-elevated border-hairline"
               align="start"
             >
               <Calendar
@@ -164,7 +164,7 @@ export function ContactForm() {
                 }}
                 disabled={(date) => date < new Date()}
                 locale={locale === 'es' ? es : enUS}
-                className="rounded-md text-white [&_.rdp-day]:text-white [&_.rdp-day_button]:text-white [&_.rdp-head_cell]:text-white/60 [&_.rdp-caption]:text-white [&_.rdp-nav_button]:text-white [&_.rdp-nav_button:hover]:bg-purple-500/20 [&_.rdp-day_button:hover]:bg-purple-500/20 [&_.rdp-day_button[aria-selected=true]]:bg-purple-600 [&_.rdp-day_button[aria-selected=true]]:text-white"
+                className="rounded-md text-on-neon [&_.rdp-day]:text-on-neon [&_.rdp-day_button]:text-on-neon [&_.rdp-head_cell]:text-on-neon/60 [&_.rdp-caption]:text-on-neon [&_.rdp-nav_button]:text-on-neon [&_.rdp-nav_button:hover]:bg-neon/20 [&_.rdp-day_button:hover]:bg-neon/20 [&_.rdp-day_button[aria-selected=true]]:bg-neon [&_.rdp-day_button[aria-selected=true]]:text-on-neon"
               />
             </PopoverContent>
           </Popover>
@@ -173,8 +173,8 @@ export function ContactForm() {
 
       {/* Message */}
       <div className="space-y-2">
-        <Label htmlFor="message" className="text-white/80">
-          {t('message.label')} <span className="text-purple-400">*</span>
+        <Label htmlFor="message" className="text-on-surface/80">
+          {t('message.label')} <span className="text-neon-foreground">*</span>
         </Label>
         <Textarea
           id="message"
@@ -182,7 +182,7 @@ export function ContactForm() {
           required
           rows={5}
           placeholder={t('message.placeholder')}
-          className="bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 resize-none min-h-[120px]"
+          className="bg-on-surface/5 border-hairline text-on-surface placeholder:text-on-surface-muted focus:border-neon/50 focus:ring-neon/20 resize-none min-h-[120px]"
         />
       </div>
 
@@ -191,7 +191,7 @@ export function ContactForm() {
         type="submit"
         disabled={pending}
         size="lg"
-        className="w-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 text-white font-semibold shadow-lg shadow-purple-600/25"
+        className="w-full bg-gradient-to-r from-neon to-neon-secondary hover:from-neon hover:to-neon-secondary text-on-neon font-semibold shadow-lg shadow-[0_10px_40px_-10px_hsl(var(--glow)/0.4)]"
       >
         {pending ? (
           <>

@@ -14,7 +14,7 @@ export default async function AdminDashboardPage() {
         <div>
           <h1 className="text-3xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground mt-1">
-            Panel de administración de Valencia Gospel Singers
+            Panel de administración de Mediterránea Gospel Singers
           </p>
         </div>
 
@@ -57,28 +57,28 @@ export default async function AdminDashboardPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/admin/eventos"
-              className="inline-flex items-center rounded-md bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-400 hover:bg-purple-500/20 transition-colors border border-purple-500/20"
+              className="inline-flex items-center rounded-md bg-neon/10 px-4 py-2.5 text-sm font-medium text-neon-foreground hover:bg-neon/20 transition-colors border border-neon/20"
             >
               <Plus className="w-4 h-4 mr-2" />
               Nuevo evento
             </Link>
             <Link
               href="/admin/equipo"
-              className="inline-flex items-center rounded-md bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-400 hover:bg-purple-500/20 transition-colors border border-purple-500/20"
+              className="inline-flex items-center rounded-md bg-neon/10 px-4 py-2.5 text-sm font-medium text-neon-foreground hover:bg-neon/20 transition-colors border border-neon/20"
             >
               <Plus className="w-4 h-4 mr-2" />
               Añadir miembro
             </Link>
             <Link
               href="/admin/mensajes"
-              className="inline-flex items-center rounded-md bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-400 hover:bg-purple-500/20 transition-colors border border-purple-500/20"
+              className="inline-flex items-center rounded-md bg-neon/10 px-4 py-2.5 text-sm font-medium text-neon-foreground hover:bg-neon/20 transition-colors border border-neon/20"
             >
               <MessageSquare className="w-4 h-4 mr-2" />
               Ver mensajes {unreadMessages > 0 && `(${unreadMessages})`}
             </Link>
             <Link
               href="/admin/collaborators"
-              className="inline-flex items-center rounded-md bg-purple-500/10 px-4 py-2.5 text-sm font-medium text-purple-400 hover:bg-purple-500/20 transition-colors border border-purple-500/20"
+              className="inline-flex items-center rounded-md bg-neon/10 px-4 py-2.5 text-sm font-medium text-neon-foreground hover:bg-neon/20 transition-colors border border-neon/20"
             >
               <Handshake className="w-4 h-4 mr-2" />
               Gestionar clientes
@@ -105,10 +105,10 @@ function StatCard({
   highlight?: boolean;
 }) {
   const content = (
-    <div className={`rounded-lg border bg-card p-6 transition-all ${href ? 'hover:border-purple-500/50 cursor-pointer' : ''} ${highlight ? 'border-purple-500/50 bg-purple-500/5' : ''}`}>
+    <div className={`rounded-lg border bg-card p-6 transition-all ${href ? 'hover:border-neon/50 cursor-pointer' : ''} ${highlight ? 'border-neon/50 bg-neon/5' : ''}`}>
       <div className="flex items-center justify-between mb-2">
         <p className="text-sm font-medium text-muted-foreground">{title}</p>
-        {icon && <span className="text-purple-400">{icon}</span>}
+        {icon && <span className="text-neon-foreground">{icon}</span>}
       </div>
       <p className="text-3xl font-bold">{value}</p>
       <p className="text-xs text-muted-foreground mt-1">{description}</p>

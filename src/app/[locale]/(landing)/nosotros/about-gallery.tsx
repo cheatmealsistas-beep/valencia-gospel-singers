@@ -62,14 +62,14 @@ export function AboutGallery({ images }: AboutGalleryProps) {
   const currentItem = images[currentIndex];
 
   return (
-    <section className="py-20 md:py-28 bg-[#0a0a0a]">
+    <section className="py-20 md:py-28 bg-surface">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-on-surface mb-4">
             {t('gallery.title')}
           </h2>
-          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+          <p className="text-lg text-on-surface-muted max-w-2xl mx-auto">
             {t('gallery.description')}
           </p>
         </div>
@@ -80,7 +80,7 @@ export function AboutGallery({ images }: AboutGalleryProps) {
             <button
               key={image.id}
               onClick={() => openLightbox(index)}
-              className="group relative aspect-square overflow-hidden rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
+              className="group relative aspect-square overflow-hidden rounded-xl bg-on-surface/5 border border-hairline focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-surface"
             >
               {(() => {
                 const isUploadedVideo = image.media_type === 'video' && !image.youtube_url;
@@ -94,16 +94,16 @@ export function AboutGallery({ images }: AboutGalleryProps) {
                     loading="lazy"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-900">
-                    <Play className="w-12 h-12 text-white/30" />
+                  <div className="w-full h-full flex items-center justify-center bg-surface-elevated">
+                    <Play className="w-12 h-12 text-on-surface-muted" />
                   </div>
                 );
               })()}
               {/* Video play icon */}
               {image.media_type === 'video' && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-14 h-14 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:bg-purple-600/80 group-hover:scale-110 transition-all duration-300">
-                    <Play className="w-6 h-6 text-white fill-white ml-1" />
+                  <div className="w-14 h-14 rounded-full bg-surface/60 backdrop-blur-sm flex items-center justify-center border border-hairline group-hover:bg-neon/80 group-hover:scale-110 transition-all duration-300">
+                    <Play className="w-6 h-6 text-on-surface fill-white ml-1" />
                   </div>
                 </div>
               )}
@@ -112,7 +112,7 @@ export function AboutGallery({ images }: AboutGalleryProps) {
               {/* Title on hover */}
               {getLocalizedText(image, 'title') && (
                 <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-white text-sm font-medium truncate">
+                  <p className="text-on-surface text-sm font-medium truncate">
                     {getLocalizedText(image, 'title')}
                   </p>
                 </div>
@@ -125,7 +125,7 @@ export function AboutGallery({ images }: AboutGalleryProps) {
       {/* Lightbox */}
       {lightboxOpen && currentItem && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-surface/95 backdrop-blur-sm flex items-center justify-center"
           onClick={closeLightbox}
           onKeyDown={handleKeyDown}
           tabIndex={0}
@@ -137,7 +137,7 @@ export function AboutGallery({ images }: AboutGalleryProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-4 right-4 text-white hover:bg-white/20 z-10"
+            className="absolute top-4 right-4 text-on-surface hover:bg-white/20 z-10"
             onClick={closeLightbox}
           >
             <X className="w-6 h-6" />
@@ -148,7 +148,7 @@ export function AboutGallery({ images }: AboutGalleryProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-4 text-white hover:bg-white/20 z-10"
+              className="absolute left-4 text-on-surface hover:bg-white/20 z-10"
               onClick={(e) => {
                 e.stopPropagation();
                 goToPrevious();
@@ -184,7 +184,7 @@ export function AboutGallery({ images }: AboutGalleryProps) {
                     controls
                     autoPlay
                     playsInline
-                    className="w-full h-full rounded-lg bg-black"
+                    className="w-full h-full rounded-lg bg-surface"
                   />
                 </div>
               )
@@ -199,21 +199,21 @@ export function AboutGallery({ images }: AboutGalleryProps) {
 
             {/* Caption */}
             {(getLocalizedText(currentItem, 'title') || getLocalizedText(currentItem, 'description')) && (
-              <div className="mt-4 text-center text-white max-w-2xl">
+              <div className="mt-4 text-center text-on-surface max-w-2xl">
                 {getLocalizedText(currentItem, 'title') && (
                   <h3 className="text-lg font-semibold">
                     {getLocalizedText(currentItem, 'title')}
                   </h3>
                 )}
                 {getLocalizedText(currentItem, 'description') && (
-                  <p className="text-sm text-white/70 mt-1">
+                  <p className="text-sm text-on-surface-muted mt-1">
                     {getLocalizedText(currentItem, 'description')}
                   </p>
                 )}
               </div>
             )}
             {/* Counter */}
-            <p className="mt-4 text-white/50 text-sm">
+            <p className="mt-4 text-on-surface-muted text-sm">
               {currentIndex + 1} / {images.length}
             </p>
           </div>
@@ -223,7 +223,7 @@ export function AboutGallery({ images }: AboutGalleryProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-4 text-white hover:bg-white/20 z-10"
+              className="absolute right-4 text-on-surface hover:bg-white/20 z-10"
               onClick={(e) => {
                 e.stopPropagation();
                 goToNext();

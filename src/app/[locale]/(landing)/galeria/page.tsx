@@ -22,19 +22,19 @@ export default async function GaleriaPage() {
   const imageCount = images.length - videoCount;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-surface">
       {/* Hero */}
       <section className="relative py-20 md:py-28 overflow-hidden">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-950/30 via-purple-950/10 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-600/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-neon/30 via-neon/10 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neon/10 via-transparent to-transparent" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-on-surface mb-6">
               {t('hero.title')}
             </h1>
-            <p className="text-lg md:text-xl text-white/60 leading-relaxed">
+            <p className="text-lg md:text-xl text-on-surface-muted leading-relaxed">
               {t('hero.description')}
             </p>
 
@@ -42,13 +42,13 @@ export default async function GaleriaPage() {
             {images.length > 0 && (
               <div className="flex items-center justify-center gap-8 mt-8">
                 {imageCount > 0 && (
-                  <div className="flex items-center gap-2 text-white/40">
+                  <div className="flex items-center gap-2 text-on-surface-muted">
                     <Camera className="w-5 h-5" />
                     <span className="text-sm">{imageCount} {imageCount === 1 ? 'foto' : 'fotos'}</span>
                   </div>
                 )}
                 {videoCount > 0 && (
-                  <div className="flex items-center gap-2 text-white/40">
+                  <div className="flex items-center gap-2 text-on-surface-muted">
                     <Video className="w-5 h-5" />
                     <span className="text-sm">{videoCount} {videoCount === 1 ? 'vídeo' : 'vídeos'}</span>
                   </div>
@@ -64,13 +64,13 @@ export default async function GaleriaPage() {
         <div className="container mx-auto px-4">
           {images.length === 0 ? (
             <div className="text-center py-20">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                <Camera className="w-10 h-10 text-white/20" />
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-on-surface/5 border border-hairline flex items-center justify-center">
+                <Camera className="w-10 h-10 text-on-surface-muted" />
               </div>
-              <h2 className="text-2xl font-semibold text-white/60 mb-2">
+              <h2 className="text-2xl font-semibold text-on-surface-muted mb-2">
                 {t('empty.title')}
               </h2>
-              <p className="text-white/40 max-w-md mx-auto">
+              <p className="text-on-surface-muted max-w-md mx-auto">
                 {t('empty.description')}
               </p>
             </div>
@@ -83,20 +83,20 @@ export default async function GaleriaPage() {
       {/* CTA */}
       <section className="py-20 md:py-28 relative overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-t from-purple-950/30 via-purple-950/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-neon/30 via-neon/10 to-transparent" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-on-surface mb-4">
               {t('cta.title')}
             </h2>
-            <p className="text-lg text-white/50 mb-8">
+            <p className="text-lg text-on-surface-muted mb-8">
               {t('cta.description')}
             </p>
             <Button
               asChild
               size="lg"
-              className="rounded-full px-8 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-medium hover:from-purple-500 hover:to-fuchsia-500 shadow-lg shadow-purple-500/20"
+              className="rounded-full px-8 bg-gradient-to-r from-neon to-neon-secondary text-on-neon font-medium hover:from-neon hover:to-neon-secondary shadow-lg shadow-[0_10px_40px_-10px_hsl(var(--glow)/0.4)]"
             >
               <Link href="/contacto">
                 {t('cta.button')}

@@ -49,7 +49,7 @@
   <!-- Texto en arco con fuente handwriting/script -->
   <text fill="#888" font-family="'Brush Script MT', 'Segoe Script', 'Bradley Hand', cursive" font-size="3.5" letter-spacing="0.1">
     <textPath href="#text-arc" startOffset="10%">
-      Valencia Gospel Singers
+      Mediterránea Gospel Singers
     </textPath>
   </text>
 

@@ -62,13 +62,13 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-surface">
       <div className="container mx-auto px-4 py-8">
         {/* Back button */}
         <FadeIn>
           <Link
             href="/servicios"
-            className="inline-flex items-center text-sm text-white/50 hover:text-purple-400 transition-colors mb-8"
+            className="inline-flex items-center text-sm text-on-surface-muted hover:text-neon-foreground transition-colors mb-8"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             {t('back')}
@@ -84,16 +84,16 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
                 {/* Featured badge */}
                 {service.isFeatured && (
                   <div className="flex items-center gap-3 mb-4">
-                    <Badge className="bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white border-0">
+                    <Badge className="bg-gradient-to-r from-neon to-neon-secondary text-on-neon border-0">
                       <Star className="w-3 h-3 mr-1 fill-current" />
                       Destacado
                     </Badge>
                   </div>
                 )}
 
-                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">{title}</h1>
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-on-surface">{title}</h1>
 
-                {subtitle && <p className="text-lg text-white/50">{subtitle}</p>}
+                {subtitle && <p className="text-lg text-on-surface-muted">{subtitle}</p>}
               </div>
             </FadeIn>
 
@@ -114,11 +114,11 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
             {/* Description */}
             {description && (
               <FadeIn delay={0.2}>
-                <Card className="bg-white/[0.02] border-white/5">
+                <Card className="bg-on-surface/[0.02] border-hairline">
                   <CardContent className="p-6">
-                    <h2 className="text-lg font-semibold mb-4 text-white">{t('description.label')}</h2>
+                    <h2 className="text-lg font-semibold mb-4 text-on-surface">{t('description.label')}</h2>
                     <div className="prose prose-invert max-w-none">
-                      <p className="whitespace-pre-wrap text-white/60">{description}</p>
+                      <p className="whitespace-pre-wrap text-on-surface-muted">{description}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -130,14 +130,14 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
           <div className="space-y-6">
             {/* Service Info Card */}
             <FadeIn delay={0.2}>
-              <Card className="sticky top-24 bg-white/[0.02] border-white/5">
+              <Card className="sticky top-24 bg-on-surface/[0.02] border-hairline">
                 <CardContent className="p-6 space-y-6">
                   {/* Price */}
                   {service.priceFrom !== null && (
                     <div>
-                      <h3 className="text-sm font-medium text-white/50 mb-2">{t('priceFrom')}</h3>
-                      <div className="flex items-center gap-3 text-white">
-                        <Euro className="h-5 w-5 text-purple-400" />
+                      <h3 className="text-sm font-medium text-on-surface-muted mb-2">{t('priceFrom')}</h3>
+                      <div className="flex items-center gap-3 text-on-surface">
+                        <Euro className="h-5 w-5 text-neon-foreground" />
                         <span className="text-2xl font-bold">{formatPrice(service.priceFrom)}</span>
                       </div>
                     </div>
@@ -145,10 +145,10 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
 
                   {/* CTA */}
                   <div className="space-y-3">
-                    <h3 className="text-sm font-medium text-white">{t('cta.title')}</h3>
-                    <p className="text-sm text-white/50">{t('cta.description')}</p>
+                    <h3 className="text-sm font-medium text-on-surface">{t('cta.title')}</h3>
+                    <p className="text-sm text-on-surface-muted">{t('cta.description')}</p>
                     <Button
-                      className="w-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500"
+                      className="w-full bg-gradient-to-r from-neon to-neon-secondary hover:from-neon hover:to-neon-secondary"
                       size="lg"
                       asChild
                     >
@@ -158,14 +158,14 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
 
                   {/* Share */}
                   <div>
-                    <h3 className="text-sm font-medium text-white/50 mb-3">{t('share.label')}</h3>
+                    <h3 className="text-sm font-medium text-on-surface-muted mb-3">{t('share.label')}</h3>
                     <div className="flex gap-2">
                       <Button
                         variant="outline"
                         size="icon"
                         onClick={shareOnTwitter}
                         title={t('share.twitter')}
-                        className="border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10"
+                        className="border-hairline hover:border-neon/50 hover:bg-neon/10"
                       >
                         <Twitter className="h-4 w-4" />
                       </Button>
@@ -174,7 +174,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
                         size="icon"
                         onClick={shareOnLinkedIn}
                         title={t('share.linkedin')}
-                        className="border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10"
+                        className="border-hairline hover:border-neon/50 hover:bg-neon/10"
                       >
                         <Linkedin className="h-4 w-4" />
                       </Button>
@@ -183,7 +183,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
                         size="icon"
                         onClick={handleCopyLink}
                         title={copied ? t('share.copied') : t('share.copy')}
-                        className="border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10"
+                        className="border-hairline hover:border-neon/50 hover:bg-neon/10"
                       >
                         {copied ? (
                           <Check className="h-4 w-4 text-green-500" />

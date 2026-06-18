@@ -49,11 +49,11 @@ export interface ProjectConfig {
   };
 }
 
-// Valencia Gospel Singers - Coro Gospel de Valencia
+// Mediterránea Gospel Singers - Coro Gospel de Valencia
 export const projectConfig: ProjectConfig = {
   business: {
-    name: 'Valencia Gospel Singers',
-    domain: 'valenciagospelsingers.com',
+    name: 'Mediterránea Gospel Singers',
+    domain: 'mediterraneagospelsingers.com',
     type: 'other', // Service / Entertainment
     industry: 'music entertainment',
 

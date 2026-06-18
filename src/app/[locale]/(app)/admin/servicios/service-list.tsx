@@ -166,7 +166,7 @@ export function ServiceList({ services }: ServiceListProps) {
       );
     }
     return (
-      <Badge className="bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30 border">
+      <Badge className="bg-neon/20 text-neon-foreground border-neon/30 border">
         {t('status.draft')}
       </Badge>
     );
@@ -375,7 +375,7 @@ export function ServiceList({ services }: ServiceListProps) {
       ) : (
         <div className="space-y-4">
           {filteredServices.map((service) => (
-            <Card key={service.id} className="hover:border-purple-500/50 transition-all">
+            <Card key={service.id} className="hover:border-neon/50 transition-all">
               <CardContent className="p-4">
                 <div className="flex flex-col md:flex-row md:items-center gap-4">
                   {/* Image */}
@@ -396,7 +396,7 @@ export function ServiceList({ services }: ServiceListProps) {
                       <h3 className="font-semibold truncate">{service.title}</h3>
                       {getStatusBadge(service.isPublished)}
                       {service.isFeatured && (
-                        <Star className="w-4 h-4 text-purple-500 fill-purple-500" />
+                        <Star className="w-4 h-4 text-neon-foreground fill-neon" />
                       )}
                     </div>
                     <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -444,7 +444,7 @@ export function ServiceList({ services }: ServiceListProps) {
                           variant="outline"
                           onClick={() => handleUnpublish(service.id)}
                           disabled={isPending}
-                          className="text-purple-600 dark:text-purple-400 border-purple-500/30 hover:bg-purple-500/10"
+                          className="text-neon-foreground border-neon/30 hover:bg-neon/10"
                         >
                           <EyeOff className="w-4 h-4 mr-1" />
                           {t('actions.unpublish')}

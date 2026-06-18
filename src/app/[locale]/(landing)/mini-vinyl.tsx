@@ -50,7 +50,7 @@ export function MiniVinyl({ size = 'md', className, index = 0 }: MiniVinylProps)
           background: '#111',
           boxShadow: `
             inset 0 0 ${size === 'sm' ? '15px' : '20px'} rgba(0,0,0,0.8),
-            0 0 ${size === 'sm' ? '10px' : '15px'} rgba(168,85,247,0.15)
+            0 0 ${size === 'sm' ? '10px' : '15px'} hsl(var(--neon) / 0.15)
           `,
         }}
       >
@@ -76,8 +76,8 @@ export function MiniVinyl({ size = 'md', className, index = 0 }: MiniVinylProps)
           style={{
             background: `conic-gradient(from 0deg,
               transparent 0deg,
-              rgba(168,85,247,0.25) 40deg,
-              rgba(236,72,153,0.15) 80deg,
+              hsl(var(--neon) / 0.25) 40deg,
+              hsl(var(--neon-secondary) / 0.15) 80deg,
               transparent 120deg,
               transparent 360deg
             )`,
@@ -89,12 +89,12 @@ export function MiniVinyl({ size = 'md', className, index = 0 }: MiniVinylProps)
           className="absolute rounded-full"
           style={{
             inset: centerInset[size],
-            background: `radial-gradient(circle at 30% 30%, #fff 0%, #e879f9 15%, #a855f7 50%, #7c3aed 100%)`,
-            boxShadow: '0 0 12px rgba(168,85,247,0.5)',
+            background: `radial-gradient(circle at 30% 30%, #fff 0%, hsl(var(--neon-secondary)) 15%, hsl(var(--neon)) 50%, hsl(var(--neon-tertiary)) 100%)`,
+            boxShadow: '0 0 12px hsl(var(--neon) / 0.5)',
           }}
         >
           {/* Center hole */}
-          <div className="absolute inset-[35%] rounded-full bg-[#0a0a0a]" />
+          <div className="absolute inset-[35%] rounded-full bg-surface" />
         </div>
       </div>
     </motion.div>

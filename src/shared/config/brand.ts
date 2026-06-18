@@ -1,5 +1,5 @@
 /**
- * Brand Configuration - Valencia Gospel Singers
+ * Brand Configuration - Mediterránea Gospel Singers
  *
  * Centralizes all brand-related settings including SEO and GEO optimization.
  *
@@ -16,7 +16,7 @@ export const brand = {
   // ═══════════════════════════════════════════════════════════════════
 
   /** Your product/company name */
-  name: 'Valencia Gospel Singers',
+  name: 'Mediterránea Gospel Singers',
 
   /** Short name for compact displays */
   shortName: 'VGS',
@@ -33,7 +33,7 @@ export const brand = {
   // ═══════════════════════════════════════════════════════════════════
 
   /** Production website URL (used for canonical URLs, sitemap, schemas) */
-  website: 'https://valenciagospelsingers.com',
+  website: 'https://mediterraneagospelsingers.com',
 
   /** Contact email address */
   email: 'drgodoy@gmail.com',
@@ -123,10 +123,10 @@ export const brand = {
 
   seo: {
     /** Title template for pages. %s is replaced with page title */
-    titleTemplate: '%s | Valencia Gospel Singers',
+    titleTemplate: '%s | Mediterránea Gospel Singers',
 
     /** Default title when no page title is set */
-    defaultTitle: 'Valencia Gospel Singers - Coro Gospel para Bodas y Eventos en Valencia',
+    defaultTitle: 'Mediterránea Gospel Singers - Coro Gospel para Bodas y Eventos en Valencia',
 
     /** Default meta description (max 160 characters recommended) */
     defaultDescription:
@@ -301,7 +301,7 @@ export const brand = {
   // ═══════════════════════════════════════════════════════════════════
 
   /** Copyright notice in footer */
-  copyright: `© ${new Date().getFullYear()} Valencia Gospel Singers. Hecho con amor en Valencia.`,
+  copyright: `© ${new Date().getFullYear()} Mediterránea Gospel Singers. Hecho con amor en Valencia.`,
 };
 
 export type Brand = typeof brand;

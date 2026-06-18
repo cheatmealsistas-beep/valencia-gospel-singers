@@ -1,8 +1,8 @@
-# Valencia Gospel Singers - Claude Code Context
+# Mediterránea Gospel Singers - Claude Code Context
 
 ## Sobre el Proyecto
 
-**Valencia Gospel Singers** es la web oficial de un coro de gospel valenciano que ofrece servicios musicales para eventos, bodas, celebraciones corporativas y conciertos propios.
+**Mediterránea Gospel Singers** es la web oficial de un coro de gospel valenciano que ofrece servicios musicales para eventos, bodas, celebraciones corporativas y conciertos propios.
 
 ### Propuesta de Valor
 - Coro profesional de gospel en Valencia
@@ -60,7 +60,7 @@
 - Borde fino con glow púrpura-rosa
 - Centro esférico 3D con gradiente púrpura→rosa
 - Surcos sutiles en el disco
-- Texto "Valencia Gospel Singers" en arco (estilo handwriting)
+- Texto "Mediterránea Gospel Singers" en arco (estilo handwriting)
 
 **Archivos**:
 - `/public/logo.svg` - Logo completo
@@ -398,18 +398,18 @@ CREATE TABLE app_settings (
 
 **1. Confirmación al usuario** (`contact_confirmation`):
 ```
-Asunto: ¡Hemos recibido tu mensaje! - Valencia Gospel Singers
+Asunto: ¡Hemos recibido tu mensaje! - Mediterránea Gospel Singers
 
 Hola {nombre},
 
-Gracias por contactar con Valencia Gospel Singers. Hemos recibido tu
+Gracias por contactar con Mediterránea Gospel Singers. Hemos recibido tu
 solicitud para {tipo_evento} y te responderemos lo antes posible.
 
 Si tienes alguna pregunta urgente, puedes contactarnos por WhatsApp: {whatsapp}
 
 ¡Nos encantará ser parte de tu evento!
 
-Valencia Gospel Singers
+Mediterránea Gospel Singers
 ```
 
 **2. Notificación al admin** (`contact_notification`):
@@ -433,7 +433,7 @@ Gestionar en: {admin_url}/solicitudes
 
 **3. Anuncio de evento** (`event_announcement`):
 ```
-Asunto: ¡Nuevo concierto! {titulo} - Valencia Gospel Singers
+Asunto: ¡Nuevo concierto! {titulo} - Mediterránea Gospel Singers
 
 ¡Hola!
 
@@ -449,7 +449,7 @@ Tenemos un nuevo evento que no te puedes perder:
 
 ¡Te esperamos!
 
-Valencia Gospel Singers
+Mediterránea Gospel Singers
 
 ---
 [Darse de baja de estos emails]
@@ -647,7 +647,7 @@ Colabora → Info sobre unirse → Formulario de contacto (event_type: 'otro')
 
 **Idiomas**: Español (es) + Inglés (en)
 
-### Principios de Copy para Valencia Gospel Singers
+### Principios de Copy para Mediterránea Gospel Singers
 
 **Beneficio > Función**:
 ```json
@@ -945,11 +945,11 @@ NEXT_PUBLIC_APP_URL=
 ### Opcionales
 ```bash
 # Admin emails (whitelist)
-ADMIN_EMAILS=director@valenciagospelsingers.com
+ADMIN_EMAILS=director@mediterraneagospelsingers.com
 
 # Email (para notificaciones y anuncios)
 RESEND_API_KEY=
-RESEND_FROM_EMAIL=hola@valenciagospelsingers.com
+RESEND_FROM_EMAIL=hola@mediterraneagospelsingers.com
 
 # WhatsApp (para CTAs de eventos)
 NEXT_PUBLIC_WHATSAPP_NUMBER=+34600000000

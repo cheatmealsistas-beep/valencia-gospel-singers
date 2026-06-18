@@ -218,7 +218,7 @@ export function TeamList({ members }: TeamListProps) {
           else setDialogOpen(true);
         }}>
           <DialogTrigger asChild>
-            <Button className="bg-purple-600 hover:bg-purple-500">
+            <Button className="bg-neon hover:bg-neon/90 text-neon-foreground">
               <Plus className="w-4 h-4 mr-2" />
               {t('add')}
             </Button>
@@ -259,7 +259,7 @@ export function TeamList({ members }: TeamListProps) {
                 <Label>{t('form.photo.label')}</Label>
                 <div className="flex items-start gap-4">
                   {/* Circular preview - matches vinyl look */}
-                  <div className="flex-shrink-0 w-24 h-24 rounded-full overflow-hidden bg-muted border-2 border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+                  <div className="flex-shrink-0 w-24 h-24 rounded-full overflow-hidden bg-muted border-2 border-neon/30 shadow-[0_0_15px_hsl(var(--glow)/0.2)]">
                     {currentPhoto ? (
                       <div className="relative w-full h-full group">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -272,9 +272,9 @@ export function TeamList({ members }: TeamListProps) {
                         <button
                           type="button"
                           onClick={clearPhoto}
-                          className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-full"
+                          className="absolute inset-0 bg-surface/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-full"
                         >
-                          <X className="w-5 h-5 text-white" />
+                          <X className="w-5 h-5 text-on-surface" />
                         </button>
                       </div>
                     ) : (
@@ -323,7 +323,7 @@ export function TeamList({ members }: TeamListProps) {
                       max={100}
                       value={photoPosition}
                       onChange={(e) => setPhotoPosition(parseInt(e.target.value))}
-                      className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-purple-600"
+                      className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-neon"
                     />
                     <div className="flex justify-between text-[10px] text-muted-foreground/60">
                       <span>{t('form.photoPosition.top')}</span>
@@ -388,7 +388,7 @@ export function TeamList({ members }: TeamListProps) {
           {members.map((member) => (
             <Card
               key={member.id}
-              className={`hover:border-purple-500/50 transition-all ${
+              className={`hover:border-neon/50 transition-all ${
                 !member.is_active ? 'opacity-60' : ''
               }`}
             >
@@ -415,12 +415,12 @@ export function TeamList({ members }: TeamListProps) {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-semibold text-foreground truncate">{member.name}</h3>
-                      <Badge className={member.is_active ? 'bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30' : 'bg-gray-500/20 text-gray-600 dark:text-gray-400 border-gray-500/30'}>
+                      <Badge className={member.is_active ? 'bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30' : 'bg-gray-500/20 text-gray-600 dark:text-on-surface-muted border-gray-500/30'}>
                         {member.is_active ? t('status.active') : t('status.inactive')}
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{member.role}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{t('card.order')}: {member.display_order}</p>
+                    <p className="text-sm text-gray-600 dark:text-on-surface-muted">{member.role}</p>
+                    <p className="text-xs text-on-surface-muted dark:text-on-surface-muted mt-1">{t('card.order')}: {member.display_order}</p>
                   </div>
                 </div>
 

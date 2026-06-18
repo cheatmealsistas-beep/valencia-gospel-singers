@@ -11,7 +11,7 @@ export function AuthBranding() {
   return (
     <div
       className={cn(
-        'relative hidden lg:flex flex-col justify-between p-10 h-full text-white',
+        'relative hidden lg:flex flex-col justify-between p-10 h-full text-on-surface',
         `bg-gradient-to-br ${auth.gradient}`
       )}
     >
@@ -43,7 +43,7 @@ export function AuthBranding() {
         <ul className="space-y-3">
           {auth.features.map((feature, index) => (
             <BlurFade key={feature} delay={0.3 + index * 0.1}>
-              <li className="flex items-center gap-3 text-white/80">
+              <li className="flex items-center gap-3 text-on-surface/80">
                 <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
                   <Check className="h-3 w-3 text-primary" />
                 </div>
@@ -59,19 +59,19 @@ export function AuthBranding() {
         <div className="relative z-10">
           {auth.showTestimonial ? (
             <blockquote className="space-y-2">
-              <p className="text-sm text-white/70 italic">
+              <p className="text-sm text-on-surface-muted italic">
                 &ldquo;{auth.testimonial.quote}&rdquo;
               </p>
               <footer className="text-sm font-medium">
                 {auth.testimonial.author}
-                <span className="text-white/60 font-normal">
+                <span className="text-on-surface-muted font-normal">
                   {' '}
                   - {auth.testimonial.role}
                 </span>
               </footer>
             </blockquote>
           ) : (
-            <p className="text-xs text-white/50">{brand.copyright}</p>
+            <p className="text-xs text-on-surface-muted">{brand.copyright}</p>
           )}
         </div>
       </BlurFade>

@@ -48,7 +48,7 @@ export function InfoBarClient({
   const modeStyles = {
     info: 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800 text-blue-900 dark:text-blue-100',
     warning:
-      'bg-purple-50 dark:bg-purple-950 border-purple-200 dark:border-purple-800 text-purple-900 dark:text-purple-100',
+      'bg-neon dark:bg-neon border-neon dark:border-neon text-neon-foreground dark:text-neon-foreground',
     error:
       'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800 text-red-900 dark:text-red-100',
   };
@@ -70,7 +70,7 @@ export function InfoBarClient({
             variant="ghost"
             size="sm"
             onClick={handleDismiss}
-            className="h-6 w-6 p-0 hover:bg-black/10 dark:hover:bg-white/10"
+            className="h-6 w-6 p-0 hover:bg-surface/10 dark:hover:bg-on-surface/10"
             aria-label="Dismiss notification"
           >
             <X className="h-4 w-4" />

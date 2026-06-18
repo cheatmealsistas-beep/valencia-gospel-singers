@@ -32,7 +32,7 @@ export default async function HomePage({ params }: HomePageProps) {
   ]);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
+    <main className="min-h-screen bg-surface text-on-surface overflow-x-hidden">
       {/* ═══════════════════════════════════════════════════════════════════
           ESTILO "VIBRANTE MODERNO" - Púrpura + Ondas de sonido + Dinámico
       ═══════════════════════════════════════════════════════════════════ */}
@@ -40,7 +40,7 @@ export default async function HomePage({ params }: HomePageProps) {
       {/* HERO - Layout asimétrico con vinilo a la derecha */}
       <section className="relative min-h-[100vh] flex items-center">
         {/* Fondo base oscuro */}
-        <div className="absolute inset-0 bg-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-surface" />
 
         {/* VINILO - Posicionado a la derecha, parcialmente visible */}
         <div className="absolute inset-0 overflow-hidden">
@@ -54,7 +54,7 @@ export default async function HomePage({ params }: HomePageProps) {
             {[1, 2, 3, 4].map((i) => (
               <div
                 key={`wave-${i}`}
-                className="absolute inset-0 rounded-full border border-purple-500/30"
+                className="absolute inset-0 rounded-full border border-neon/30"
                 style={{
                   animation: `vinyl-wave 5s ease-out infinite`,
                   animationDelay: `${i * 1}s`,
@@ -64,13 +64,13 @@ export default async function HomePage({ params }: HomePageProps) {
 
             {/* Vinilo principal - Base negra sólida como un disco real */}
             <div
-              className="absolute inset-[5%] rounded-full transition-shadow duration-700 group-hover/vinyl:shadow-[inset_0_0_100px_rgba(0,0,0,0.8),0_0_100px_rgba(168,85,247,0.5),0_0_180px_rgba(147,51,234,0.4)]"
+              className="absolute inset-[5%] rounded-full transition-shadow duration-700 group-hover/vinyl:shadow-[inset_0_0_100px_rgba(0,0,0,0.8),0_0_100px_hsl(var(--neon) / 0.5),0_0_180px_hsl(var(--neon) / 0.4)]"
               style={{
                 background: '#111',
                 boxShadow: `
                   inset 0 0 100px rgba(0,0,0,0.8),
-                  0 0 60px rgba(168,85,247,0.25),
-                  0 0 120px rgba(147,51,234,0.15)
+                  0 0 60px hsl(var(--neon) / 0.25),
+                  0 0 120px hsl(var(--neon) / 0.15)
                 `,
                 animation: 'vinyl-spin 20s linear infinite',
               }}
@@ -83,7 +83,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   style={{
                     inset: `${(100 - size) / 2}%`,
                     border: '1px solid rgba(255,255,255,0.08)',
-                    boxShadow: 'inset 0 0 2px rgba(168,85,247,0.15)',
+                    boxShadow: 'inset 0 0 2px hsl(var(--neon) / 0.15)',
                   }}
                 />
               ))}
@@ -95,14 +95,14 @@ export default async function HomePage({ params }: HomePageProps) {
                   background: `
                     conic-gradient(from 0deg,
                       transparent 0deg,
-                      rgba(168,85,247,0.35) 15deg,
-                      rgba(236,72,153,0.25) 40deg,
-                      rgba(139,92,246,0.2) 65deg,
+                      hsl(var(--neon) / 0.35) 15deg,
+                      hsl(var(--neon-secondary) / 0.25) 40deg,
+                      hsl(var(--neon-tertiary) / 0.2) 65deg,
                       transparent 100deg,
                       transparent 180deg,
-                      rgba(168,85,247,0.25) 195deg,
-                      rgba(236,72,153,0.18) 220deg,
-                      rgba(139,92,246,0.12) 250deg,
+                      hsl(var(--neon) / 0.25) 195deg,
+                      hsl(var(--neon-secondary) / 0.18) 220deg,
+                      hsl(var(--neon-tertiary) / 0.12) 250deg,
                       transparent 290deg,
                       transparent 360deg
                     )
@@ -117,8 +117,8 @@ export default async function HomePage({ params }: HomePageProps) {
                   background: `
                     conic-gradient(from 120deg,
                       transparent 0deg,
-                      rgba(236,72,153,0.15) 30deg,
-                      rgba(168,85,247,0.1) 60deg,
+                      hsl(var(--neon-secondary) / 0.15) 30deg,
+                      hsl(var(--neon) / 0.1) 60deg,
                       transparent 90deg,
                       transparent 360deg
                     )
@@ -133,13 +133,13 @@ export default async function HomePage({ params }: HomePageProps) {
                   background: `
                     conic-gradient(from 0deg,
                       transparent 0deg,
-                      rgba(168,85,247,0.5) 15deg,
-                      rgba(236,72,153,0.4) 40deg,
-                      rgba(139,92,246,0.35) 70deg,
+                      hsl(var(--neon) / 0.5) 15deg,
+                      hsl(var(--neon-secondary) / 0.4) 40deg,
+                      hsl(var(--neon-tertiary) / 0.35) 70deg,
                       transparent 110deg,
                       transparent 180deg,
-                      rgba(168,85,247,0.4) 195deg,
-                      rgba(236,72,153,0.3) 225deg,
+                      hsl(var(--neon) / 0.4) 195deg,
+                      hsl(var(--neon-secondary) / 0.3) 225deg,
                       transparent 270deg,
                       transparent 360deg
                     )
@@ -156,22 +156,22 @@ export default async function HomePage({ params }: HomePageProps) {
                   background: `
                     radial-gradient(circle at 30% 30%,
                       #fff 0%,
-                      #e879f9 10%,
-                      #a855f7 40%,
-                      #7c3aed 70%,
+                      hsl(var(--neon-secondary)) 10%,
+                      hsl(var(--neon)) 40%,
+                      hsl(var(--neon-tertiary)) 70%,
                       #6d28d9 100%
                     )
                   `,
                   boxShadow: `
                     inset 0 0 20px rgba(0,0,0,0.3),
-                    0 0 30px rgba(168,85,247,0.6),
-                    0 0 60px rgba(236,72,153,0.4)
+                    0 0 30px hsl(var(--neon) / 0.6),
+                    0 0 60px hsl(var(--neon-secondary) / 0.4)
                   `,
                 }}
               >
                 {/* Agujero central del vinilo */}
                 <div
-                  className="absolute rounded-full bg-[#0a0a0a]"
+                  className="absolute rounded-full bg-surface"
                   style={{
                     inset: '42%',
                     boxShadow: 'inset 0 0 10px rgba(0,0,0,0.9)',
@@ -233,22 +233,22 @@ export default async function HomePage({ params }: HomePageProps) {
         `}} />
 
         {/* Glow ambiental desde la derecha */}
-        <div className="absolute top-1/2 right-0 translate-x-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-purple-600/20 via-fuchsia-900/10 to-transparent blur-[100px]" />
+        <div className="absolute top-1/2 right-0 translate-x-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-neon/20 via-neon-secondary/10 to-transparent blur-[100px]" />
 
         {/* Overlay para contraste del texto en móvil */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/95 to-transparent md:via-[#0a0a0a]/80 md:to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--surface))] via-[hsl(var(--surface))]/95 to-transparent md:via-[hsl(var(--surface))]/80 md:to-transparent pointer-events-none" />
 
         {/* Contenido - Alineado a la izquierda */}
         <div className="container relative z-10 py-24 md:py-32 lg:py-40">
           <div className="max-w-3xl">
             <FadeIn delay={0.1}>
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 mb-10">
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-neon/10 backdrop-blur-sm border border-neon/20 mb-10">
                 {/* Mini ecualizador en el badge */}
                 <div className="flex items-end gap-0.5 h-4">
                   {[0.4, 0.7, 1, 0.6, 0.8].map((h, i) => (
                     <div
                       key={i}
-                      className="w-0.5 bg-purple-400 rounded-full animate-pulse"
+                      className="w-0.5 bg-neon rounded-full animate-pulse"
                       style={{
                         height: `${h * 100}%`,
                         animationDelay: `${i * 0.1}s`,
@@ -256,7 +256,7 @@ export default async function HomePage({ params }: HomePageProps) {
                     />
                   ))}
                 </div>
-                <span className="text-purple-300 text-sm font-medium">{t('hero.location')}</span>
+                <span className="text-neon-foreground text-sm font-medium">{t('hero.location')}</span>
               </div>
             </FadeIn>
 
@@ -265,7 +265,7 @@ export default async function HomePage({ params }: HomePageProps) {
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <p className="text-xl md:text-2xl lg:text-3xl text-white/40 mb-16 leading-relaxed max-w-2xl">
+              <p className="text-xl md:text-2xl lg:text-3xl text-on-surface-muted mb-16 leading-relaxed max-w-2xl">
                 {t('hero.description')}
               </p>
             </FadeIn>
@@ -274,7 +274,7 @@ export default async function HomePage({ params }: HomePageProps) {
               <div className="flex flex-col sm:flex-row items-start gap-6">
               <Button
                 size="lg"
-                className="group text-lg px-10 py-7 rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-600 to-purple-600 bg-[length:200%_auto] text-white font-semibold hover:bg-right shadow-2xl shadow-purple-600/30 transition-all duration-500"
+                className="group text-lg px-10 py-7 rounded-full bg-gradient-to-r from-neon via-neon-secondary to-neon bg-[length:200%_auto] text-on-neon font-semibold hover:bg-right shadow-2xl shadow-[0_10px_40px_-10px_hsl(var(--glow)/0.4)] transition-all duration-500"
                 asChild
               >
                 <Link href={`/${locale}/contacto`}>
@@ -285,7 +285,7 @@ export default async function HomePage({ params }: HomePageProps) {
               <Button
                 size="lg"
                 variant="ghost"
-                className="text-lg px-10 py-7 rounded-full text-white/70 hover:text-white hover:bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all"
+                className="text-lg px-10 py-7 rounded-full text-on-surface-muted hover:text-on-surface hover:bg-on-surface/5 border border-hairline hover:border-neon/30 transition-all"
                 asChild
               >
                 <Link href={`/${locale}/eventos`}>
@@ -301,32 +301,32 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* PRÓXIMO EVENTO */}
       <section className="py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-950/30 via-[#0a0a0a] to-purple-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-neon/30 via-[hsl(var(--surface))] to-neon/30" />
 
         <div className="container relative">
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
               {/* Indicador de "en vivo" */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-8">
-                <div className="w-2 h-2 rounded-full bg-fuchsia-500 animate-pulse" />
-                <span className="text-purple-300 text-sm font-medium tracking-wider uppercase">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon/10 border border-neon/20 mb-8">
+                <div className="w-2 h-2 rounded-full bg-neon-secondary animate-pulse" />
+                <span className="text-neon-foreground text-sm font-medium tracking-wider uppercase">
                   {t('nextEvent.badge')}
                 </span>
               </div>
 
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
                 {t('nextEvent.titleStart')}{' '}
-                <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
+                <span className="bg-gradient-to-r from-neon via-neon-secondary to-neon-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
                   {t('nextEvent.titleHighlight')}
                 </span>
               </h2>
-              <p className="text-xl text-white/40 mb-12 max-w-xl mx-auto">
+              <p className="text-xl text-on-surface-muted mb-12 max-w-xl mx-auto">
                 {t('nextEvent.description')}
               </p>
 
               <Button
                 size="lg"
-                className="rounded-full px-12 py-7 text-lg bg-white text-black font-semibold hover:bg-purple-100 transition-all shadow-2xl shadow-white/10"
+                className="rounded-full px-12 py-7 text-lg bg-neon text-on-neon font-semibold hover:bg-neon/90 transition-all shadow-2xl shadow-[0_10px_40px_-10px_hsl(var(--glow)/0.4)]"
                 asChild
               >
                 <Link href={`/${locale}/eventos`}>
@@ -339,13 +339,13 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* NUESTRA ESENCIA - Minimalista con acentos */}
-      <section className="py-32 bg-[#0a0a0a] relative overflow-hidden">
+      <section className="py-32 bg-surface relative overflow-hidden">
         <div className="container max-w-5xl relative">
           <FadeIn>
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-bold">
                 {t('mission.title')}{' '}
-                <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
+                <span className="bg-gradient-to-r from-neon via-neon-secondary to-neon-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
                   {t('mission.titleHighlight')}
                 </span>
               </h2>
@@ -359,10 +359,10 @@ export default async function HomePage({ params }: HomePageProps) {
                   <div className="flex justify-center mb-6">
                     <MiniVinyl size="md" index={index} />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">
+                  <h3 className="text-2xl font-bold mb-4 text-on-surface">
                     {t(`mission.${key}.title`)}
                   </h3>
-                  <p className="text-white/40 leading-relaxed">
+                  <p className="text-on-surface-muted leading-relaxed">
                     {t(`mission.${key}.description`)}
                   </p>
                 </div>
@@ -374,7 +374,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* VALORES */}
       <section className="py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-950/10 via-transparent to-fuchsia-950/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-neon/10 via-transparent to-neon-secondary/10" />
 
         <div className="container relative max-w-4xl">
           <FadeIn>
@@ -386,14 +386,14 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="grid sm:grid-cols-2 gap-6">
             {['community', 'learning', 'fun', 'authenticity'].map((key, index) => (
               <FadeIn key={key} delay={0.1 + index * 0.1}>
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-purple-500/20 transition-all">
+                <div className="p-6 rounded-2xl bg-on-surface/[0.02] border border-hairline hover:border-neon/20 transition-all">
                   <div className="flex items-start gap-4">
                     <MiniVinyl size="sm" index={index} />
                     <div>
-                      <h3 className="text-lg font-semibold mb-2 text-white">
+                      <h3 className="text-lg font-semibold mb-2 text-on-surface">
                         {t(`values.${key}.title`)}
                       </h3>
-                      <p className="text-white/40 text-sm leading-relaxed">
+                      <p className="text-on-surface-muted text-sm leading-relaxed">
                         {t(`values.${key}.description`)}
                       </p>
                     </div>
@@ -407,13 +407,13 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* EL CORO */}
       {teamMembers.length > 0 && (
-        <section className="py-32 bg-[#0a0a0a] relative overflow-hidden">
+        <section className="py-32 bg-surface relative overflow-hidden">
           {/* Surcos de vinilo como fondo decorativo */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] opacity-[0.02] pointer-events-none">
             {[15, 25, 35, 45, 55, 65, 75, 85, 95].map((size) => (
               <div
                 key={`team-groove-${size}`}
-                className="absolute rounded-full border border-white"
+                className="absolute rounded-full border border-hairline"
                 style={{ inset: `${(100 - size) / 2}%` }}
               />
             ))}
@@ -423,7 +423,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <FadeIn>
               <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('team.title')}</h2>
-                <p className="text-xl text-white/40 max-w-2xl mx-auto">
+                <p className="text-xl text-on-surface-muted max-w-2xl mx-auto">
                   {t('team.subtitle')}
                 </p>
               </div>
@@ -442,8 +442,8 @@ export default async function HomePage({ params }: HomePageProps) {
                           background: '#111',
                           boxShadow: `
                             inset 0 0 30px rgba(0,0,0,0.8),
-                            0 0 20px rgba(168,85,247,0.2),
-                            0 0 40px rgba(147,51,234,0.15)
+                            0 0 20px hsl(var(--neon) / 0.2),
+                            0 0 40px hsl(var(--neon) / 0.15)
                           `,
                         }}
                       >
@@ -455,7 +455,7 @@ export default async function HomePage({ params }: HomePageProps) {
                             style={{
                               inset: `${(100 - size) / 2}%`,
                               border: '1px solid rgba(255,255,255,0.06)',
-                              boxShadow: 'inset 0 0 1px rgba(168,85,247,0.1)',
+                              boxShadow: 'inset 0 0 1px hsl(var(--neon) / 0.1)',
                             }}
                           />
                         ))}
@@ -467,12 +467,12 @@ export default async function HomePage({ params }: HomePageProps) {
                             background: `
                               conic-gradient(from 0deg,
                                 transparent 0deg,
-                                rgba(168,85,247,0.2) 30deg,
-                                rgba(236,72,153,0.15) 60deg,
+                                hsl(var(--neon) / 0.2) 30deg,
+                                hsl(var(--neon-secondary) / 0.15) 60deg,
                                 transparent 90deg,
                                 transparent 180deg,
-                                rgba(139,92,246,0.15) 210deg,
-                                rgba(168,85,247,0.12) 240deg,
+                                hsl(var(--neon-tertiary) / 0.15) 210deg,
+                                hsl(var(--neon) / 0.12) 240deg,
                                 transparent 270deg,
                                 transparent 360deg
                               )
@@ -488,8 +488,8 @@ export default async function HomePage({ params }: HomePageProps) {
                           inset: '22%',
                           boxShadow: `
                             inset 0 0 10px rgba(0,0,0,0.5),
-                            0 0 15px rgba(168,85,247,0.4),
-                            0 0 30px rgba(236,72,153,0.2)
+                            0 0 15px hsl(var(--neon) / 0.4),
+                            0 0 30px hsl(var(--neon-secondary) / 0.2)
                           `,
                         }}
                       >
@@ -503,7 +503,7 @@ export default async function HomePage({ params }: HomePageProps) {
                               style={{ objectPosition: `center ${member.photo_position ?? 50}%` }}
                             />
                             {/* Overlay púrpura en hover */}
-                            <div className="absolute inset-0 bg-purple-500/30 opacity-0 group-hover:opacity-100 mix-blend-color transition-opacity duration-500" />
+                            <div className="absolute inset-0 bg-neon/30 opacity-0 group-hover:opacity-100 mix-blend-color transition-opacity duration-500" />
                           </div>
                         ) : (
                           <div
@@ -511,15 +511,15 @@ export default async function HomePage({ params }: HomePageProps) {
                             style={{
                               background: `
                                 radial-gradient(circle at 30% 30%,
-                                  #e879f9 0%,
-                                  #a855f7 40%,
-                                  #7c3aed 70%,
+                                  hsl(var(--neon-secondary)) 0%,
+                                  hsl(var(--neon)) 40%,
+                                  hsl(var(--neon-tertiary)) 70%,
                                   #6d28d9 100%
                                 )
                               `,
                             }}
                           >
-                            <Music className="w-6 h-6 text-white/70" />
+                            <Music className="w-6 h-6 text-on-surface-muted" />
                           </div>
                         )}
 
@@ -528,7 +528,7 @@ export default async function HomePage({ params }: HomePageProps) {
                           className="absolute inset-0 rounded-full pointer-events-none"
                           style={{
                             border: '2px solid transparent',
-                            background: 'linear-gradient(135deg, rgba(168,85,247,0.3), rgba(236,72,153,0.3)) border-box',
+                            background: 'linear-gradient(135deg, hsl(var(--neon) / 0.3), hsl(var(--neon-secondary) / 0.3)) border-box',
                             WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
                             WebkitMaskComposite: 'xor',
                             maskComposite: 'exclude',
@@ -538,10 +538,10 @@ export default async function HomePage({ params }: HomePageProps) {
 
                     </div>
 
-                    <h3 className="font-semibold text-sm text-white group-hover:text-purple-300 transition-colors">
+                    <h3 className="font-semibold text-sm text-on-surface group-hover:text-neon-foreground transition-colors">
                       {member.name.split(' ').slice(0, 2).join(' ')}
                     </h3>
-                    <p className="text-xs text-white/40 mt-1">{member.role}</p>
+                    <p className="text-xs text-on-surface-muted mt-1">{member.role}</p>
                   </div>
                 </FadeIn>
               ))}
@@ -552,11 +552,11 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* COLABORADORES */}
       {collaborators.length > 0 && (
-        <section className="py-20 border-y border-white/5 bg-[#0a0a0a]">
+        <section className="py-20 border-y border-hairline bg-surface">
           <div className="container mb-12">
             <FadeIn>
               <div className="text-center">
-                <p className="text-sm text-white/30 uppercase tracking-widest font-medium">
+                <p className="text-sm text-on-surface-muted uppercase tracking-widest font-medium">
                   {t('collaborators.title')}
                 </p>
               </div>
@@ -590,17 +590,17 @@ export default async function HomePage({ params }: HomePageProps) {
       )}
 
       {/* SERVICIOS - Qué ofrecemos (antes del CTA) */}
-      <section className="py-32 relative bg-[#0a0a0a]">
+      <section className="py-32 relative bg-surface">
         <div className="container relative max-w-5xl">
           <FadeIn>
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
                 {t('features.title')}{' '}
-                <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
+                <span className="bg-gradient-to-r from-neon via-neon-secondary to-neon-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
                   {t('features.titleHighlight')}
                 </span>
               </h2>
-              <p className="text-xl text-white/40 max-w-2xl mx-auto">
+              <p className="text-xl text-on-surface-muted max-w-2xl mx-auto">
                 {t('features.subtitle')}
               </p>
             </div>
@@ -610,22 +610,22 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="grid md:grid-cols-2 gap-6">
             {['concerts', 'weddings', 'events', 'celebrations'].map((key, index) => (
               <FadeIn key={key} delay={0.1 + index * 0.1}>
-                <div className="group relative p-8 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/5 hover:border-purple-500/30 transition-all duration-500 overflow-hidden">
+                <div className="group relative p-8 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent border border-hairline hover:border-neon/30 transition-all duration-500 overflow-hidden">
                   {/* Onda en hover */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-neon via-neon-secondary to-neon transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
                   {/* Glow sutil */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-neon/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="relative">
                     <div className="mb-6">
                       <MiniVinyl size="sm" index={index} />
                     </div>
 
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                    <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover:text-neon-foreground transition-colors">
                       {t(`features.${key}.title`)}
                     </h3>
-                    <p className="text-white/40 leading-relaxed">
+                    <p className="text-on-surface-muted leading-relaxed">
                       {t(`features.${key}.description`)}
                     </p>
                   </div>
@@ -637,9 +637,9 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       {/* CTA FINAL */}
-      <section className="py-32 bg-[#0a0a0a] relative overflow-hidden">
+      <section className="py-32 bg-surface relative overflow-hidden">
         {/* Glow de fondo sutil */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-purple-600/15 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-neon/15 to-transparent rounded-full blur-3xl" />
 
         {/* Partículas musicales sutiles - eco del hero */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -661,8 +661,8 @@ export default async function HomePage({ params }: HomePageProps) {
                 top: `${particle.y}%`,
                 width: `${particle.size}px`,
                 height: `${particle.size}px`,
-                background: `radial-gradient(circle, rgba(168,85,247,0.8) 0%, rgba(168,85,247,0.3) 40%, transparent 70%)`,
-                boxShadow: `0 0 ${particle.size * 3}px rgba(168,85,247,0.5)`,
+                background: `radial-gradient(circle, hsl(var(--neon) / 0.8) 0%, hsl(var(--neon) / 0.3) 40%, transparent 70%)`,
+                boxShadow: `0 0 ${particle.size * 3}px hsl(var(--neon) / 0.5)`,
                 animation: `particle-beat-ambient 16s ease-in-out infinite`,
                 animationDelay: `${particle.delay}s`,
               }}
@@ -675,17 +675,17 @@ export default async function HomePage({ params }: HomePageProps) {
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
                 {t('cta.title')}{' '}
-                <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
+                <span className="bg-gradient-to-r from-neon via-neon-secondary to-neon-secondary bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]" style={{ WebkitBackgroundClip: 'text' }}>
                   {t('cta.titleHighlight')}
                 </span>?
               </h2>
-              <p className="text-xl text-white/40 mb-14 max-w-xl mx-auto">
+              <p className="text-xl text-on-surface-muted mb-14 max-w-xl mx-auto">
                 {t('cta.subtitle')}
               </p>
 
               <Button
                 size="lg"
-                className="text-lg px-14 py-8 rounded-full bg-gradient-to-r from-purple-600 via-fuchsia-600 to-purple-600 bg-[length:200%_auto] text-white font-semibold hover:bg-right shadow-2xl shadow-purple-600/30 transition-all duration-500"
+                className="text-lg px-14 py-8 rounded-full bg-gradient-to-r from-neon via-neon-secondary to-neon bg-[length:200%_auto] text-on-neon font-semibold hover:bg-right shadow-2xl shadow-[0_10px_40px_-10px_hsl(var(--glow)/0.4)] transition-all duration-500"
                 asChild
               >
                 <Link href={`/${locale}/contacto`}>

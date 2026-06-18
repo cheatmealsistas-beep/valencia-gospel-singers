@@ -81,10 +81,10 @@ export function GalleryGrid({ images }: GalleryGridProps) {
       {availableCategories.length > 1 && (
         <div className="flex justify-center mb-8">
           <Tabs value={filter} onValueChange={(v) => setFilter(v as FilterCategory)}>
-            <TabsList className="flex-wrap h-auto bg-white/5 border border-white/10">
+            <TabsList className="flex-wrap h-auto bg-surface-elevated border border-hairline">
               <TabsTrigger
                 value="all"
-                className="data-[state=active]:bg-purple-600 data-[state=active]:text-white text-white/60"
+                className="data-[state=active]:bg-neon data-[state=active]:text-on-neon text-on-surface-muted"
               >
                 {t('filters.all')}
               </TabsTrigger>
@@ -92,7 +92,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
                 <TabsTrigger
                   key={cat}
                   value={cat}
-                  className="data-[state=active]:bg-purple-600 data-[state=active]:text-white text-white/60"
+                  className="data-[state=active]:bg-neon data-[state=active]:text-on-neon text-on-surface-muted"
                 >
                   {t(`filters.${cat}`)}
                 </TabsTrigger>
@@ -108,7 +108,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
           <button
             key={image.id}
             onClick={() => openLightbox(index)}
-            className="group relative aspect-square overflow-hidden rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[#0a0a0a]"
+            className="group relative aspect-square overflow-hidden rounded-xl bg-on-surface/5 border border-hairline focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-surface"
           >
             {(() => {
               const isUploadedVideo = image.media_type === 'video' && !image.youtube_url;
@@ -122,16 +122,16 @@ export function GalleryGrid({ images }: GalleryGridProps) {
                   loading="lazy"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gray-900">
-                  <Play className="w-12 h-12 text-white/30" />
+                <div className="w-full h-full flex items-center justify-center bg-surface-elevated">
+                  <Play className="w-12 h-12 text-on-surface-muted" />
                 </div>
               );
             })()}
             {/* Video play icon */}
             {image.media_type === 'video' && (
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:bg-purple-600/80 group-hover:scale-110 transition-all duration-300">
-                  <Play className="w-7 h-7 text-white fill-white ml-1" />
+                <div className="w-16 h-16 rounded-full bg-surface/60 backdrop-blur-sm flex items-center justify-center border border-hairline group-hover:bg-neon/80 group-hover:scale-110 transition-all duration-300">
+                  <Play className="w-7 h-7 text-on-surface fill-white ml-1" />
                 </div>
               </div>
             )}
@@ -140,7 +140,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
             {/* Title on hover */}
             {getLocalizedText(image, 'title') && (
               <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-white text-sm font-medium truncate">
+                <p className="text-on-surface text-sm font-medium truncate">
                   {getLocalizedText(image, 'title')}
                 </p>
               </div>
@@ -152,7 +152,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
       {/* Lightbox */}
       {lightboxOpen && currentItem && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-surface/95 backdrop-blur-sm flex items-center justify-center"
           onClick={closeLightbox}
           onKeyDown={handleKeyDown}
           tabIndex={0}
@@ -164,7 +164,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-4 right-4 text-white hover:bg-white/20 z-10"
+            className="absolute top-4 right-4 text-on-surface hover:bg-white/20 z-10"
             onClick={closeLightbox}
           >
             <X className="w-6 h-6" />
@@ -175,7 +175,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-4 text-white hover:bg-white/20 z-10"
+              className="absolute left-4 text-on-surface hover:bg-white/20 z-10"
               onClick={(e) => {
                 e.stopPropagation();
                 goToPrevious();
@@ -211,7 +211,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
                     controls
                     autoPlay
                     playsInline
-                    className="w-full h-full rounded-lg bg-black"
+                    className="w-full h-full rounded-lg bg-surface"
                   />
                 </div>
               )
@@ -226,21 +226,21 @@ export function GalleryGrid({ images }: GalleryGridProps) {
 
             {/* Caption */}
             {(getLocalizedText(currentItem, 'title') || getLocalizedText(currentItem, 'description')) && (
-              <div className="mt-4 text-center text-white max-w-2xl">
+              <div className="mt-4 text-center text-on-surface max-w-2xl">
                 {getLocalizedText(currentItem, 'title') && (
                   <h3 className="text-lg font-semibold">
                     {getLocalizedText(currentItem, 'title')}
                   </h3>
                 )}
                 {getLocalizedText(currentItem, 'description') && (
-                  <p className="text-sm text-white/70 mt-1">
+                  <p className="text-sm text-on-surface-muted mt-1">
                     {getLocalizedText(currentItem, 'description')}
                   </p>
                 )}
               </div>
             )}
             {/* Counter */}
-            <p className="mt-4 text-white/50 text-sm">
+            <p className="mt-4 text-on-surface-muted text-sm">
               {currentIndex + 1} / {filteredImages.length}
             </p>
           </div>
@@ -250,7 +250,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-4 text-white hover:bg-white/20 z-10"
+              className="absolute right-4 text-on-surface hover:bg-white/20 z-10"
               onClick={(e) => {
                 e.stopPropagation();
                 goToNext();

@@ -133,7 +133,7 @@ export async function getAffiliateProgramSettings(): Promise<AffiliateProgramSet
  */
 
 /**
- * Get admin dashboard statistics for Valencia Gospel Singers
+ * Get admin dashboard statistics for Mediterránea Gospel Singers
  */
 export async function getAdminStats(): Promise<AdminStats> {
   const supabase = await createClientServer();

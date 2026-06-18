@@ -70,13 +70,13 @@ export function EventDetail({ event }: EventDetailProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-surface">
       <div className="container mx-auto px-4 py-8">
       {/* Back button */}
       <FadeIn>
         <Link
           href="/eventos"
-          className="inline-flex items-center text-sm text-white/50 hover:text-purple-400 transition-colors mb-8"
+          className="inline-flex items-center text-sm text-on-surface-muted hover:text-neon-foreground transition-colors mb-8"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           {t('back')}
@@ -92,25 +92,25 @@ export function EventDetail({ event }: EventDetailProps) {
               {/* Status badge */}
               <div className="flex items-center gap-3 mb-4">
                 {upcoming && (
-                  <Badge className="bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white border-0">{t('status.upcoming')}</Badge>
+                  <Badge className="bg-gradient-to-r from-neon to-neon-secondary text-on-neon border-0">{t('status.upcoming')}</Badge>
                 )}
                 {past && (
-                  <Badge className="bg-white/10 text-white/60 border-0">{t('status.past')}</Badge>
+                  <Badge className="bg-surface-elevated/10 text-on-surface-muted border-0">{t('status.past')}</Badge>
                 )}
                 {event.status === 'cancelled' && (
                   <Badge variant="destructive">{t('status.cancelled')}</Badge>
                 )}
                 {event.featured && upcoming && (
-                  <Badge className="bg-purple-500/20 text-purple-300 border border-purple-500/30">Destacado</Badge>
+                  <Badge className="bg-neon/20 text-neon-foreground border border-neon/30">Destacado</Badge>
                 )}
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4 text-on-surface">
                 {event.title}
               </h1>
 
               {event.shortDescription && (
-                <p className="text-lg text-white/50">
+                <p className="text-lg text-on-surface-muted">
                   {event.shortDescription}
                 </p>
               )}
@@ -134,13 +134,13 @@ export function EventDetail({ event }: EventDetailProps) {
           {/* Description */}
           {event.description && (
             <FadeIn delay={0.2}>
-              <Card className="bg-white/[0.02] border-white/5">
+              <Card className="bg-surface-elevated/[0.02] border-hairline">
                 <CardContent className="p-6">
-                  <h2 className="text-lg font-semibold mb-4 text-white">
+                  <h2 className="text-lg font-semibold mb-4 text-on-surface">
                     {t('description.label')}
                   </h2>
                   <div className="prose prose-invert max-w-none">
-                    <p className="whitespace-pre-wrap text-white/60">{event.description}</p>
+                    <p className="whitespace-pre-wrap text-on-surface-muted">{event.description}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -150,9 +150,9 @@ export function EventDetail({ event }: EventDetailProps) {
           {/* Speakers */}
           {event.speakers && event.speakers.length > 0 && (
             <FadeIn delay={0.3}>
-              <Card className="bg-white/[0.02] border-white/5">
+              <Card className="bg-surface-elevated/[0.02] border-hairline">
                 <CardContent className="p-6">
-                  <h2 className="text-lg font-semibold mb-6 text-white">
+                  <h2 className="text-lg font-semibold mb-6 text-on-surface">
                     {t('speakers.label')}
                   </h2>
                   <div className="space-y-6">
@@ -167,23 +167,23 @@ export function EventDetail({ event }: EventDetailProps) {
                             <img
                               src={eventSpeaker.speaker.photoUrl}
                               alt={eventSpeaker.speaker.name}
-                              className="w-16 h-16 rounded-full object-cover border border-white/10"
+                              className="w-16 h-16 rounded-full object-cover border border-hairline"
                             />
                           </div>
                         )}
                         <div>
-                          <h3 className="font-semibold text-white">
+                          <h3 className="font-semibold text-on-surface">
                             {eventSpeaker.speaker?.name}
                           </h3>
                           {eventSpeaker.speaker?.role && (
-                            <p className="text-sm text-white/50">
+                            <p className="text-sm text-on-surface-muted">
                               {eventSpeaker.speaker.role}
                               {eventSpeaker.speaker.company &&
                                 ` @ ${eventSpeaker.speaker.company}`}
                             </p>
                           )}
                           {eventSpeaker.talkTitle && (
-                            <p className="text-sm text-purple-400 mt-1">
+                            <p className="text-sm text-neon-foreground mt-1">
                               {t('speakers.talkTitle')}: {eventSpeaker.talkTitle}
                             </p>
                           )}
@@ -192,7 +192,7 @@ export function EventDetail({ event }: EventDetailProps) {
                               href={eventSpeaker.speaker.linkedinUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center text-xs text-white/40 hover:text-purple-400 mt-2 transition-colors"
+                              className="inline-flex items-center text-xs text-on-surface-muted hover:text-neon-foreground mt-2 transition-colors"
                             >
                               <Linkedin className="h-3 w-3 mr-1" />
                               LinkedIn
@@ -210,9 +210,9 @@ export function EventDetail({ event }: EventDetailProps) {
           {/* Sponsors */}
           {event.sponsors && event.sponsors.length > 0 && (
             <FadeIn delay={0.4}>
-              <Card className="bg-white/[0.02] border-white/5">
+              <Card className="bg-on-surface/[0.02] border-hairline">
                 <CardContent className="p-6">
-                  <h2 className="text-lg font-semibold mb-6 text-white">
+                  <h2 className="text-lg font-semibold mb-6 text-on-surface">
                     {t('sponsors.label')}
                   </h2>
                   <div className="flex flex-wrap gap-6">
@@ -222,7 +222,7 @@ export function EventDetail({ event }: EventDetailProps) {
                         href={eventSponsor.sponsor?.websiteUrl || '#'}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 transition-all"
+                        className="flex items-center gap-3 p-3 rounded-lg bg-on-surface/5 hover:bg-neon/10 border border-hairline hover:border-neon/30 transition-all"
                       >
                         {eventSponsor.sponsor?.logoUrl && (
                           /* eslint-disable-next-line @next/next/no-img-element */
@@ -232,7 +232,7 @@ export function EventDetail({ event }: EventDetailProps) {
                             className="h-8 w-auto object-contain"
                           />
                         )}
-                        <span className="font-medium text-white">
+                        <span className="font-medium text-on-surface">
                           {eventSponsor.sponsor?.name}
                         </span>
                       </a>
@@ -248,20 +248,20 @@ export function EventDetail({ event }: EventDetailProps) {
         <div className="space-y-6">
           {/* Event Info Card */}
           <FadeIn delay={0.2}>
-            <Card className="sticky top-24 bg-white/[0.02] border-white/5">
+            <Card className="sticky top-24 bg-on-surface/[0.02] border-hairline">
               <CardContent className="p-6 space-y-6">
                 {/* Date & Time */}
                 <div>
-                  <h3 className="text-sm font-medium text-white/50 mb-2">
+                  <h3 className="text-sm font-medium text-on-surface-muted mb-2">
                     {t('date.label')}
                   </h3>
                   <div className="space-y-2">
-                    <div className="flex items-center gap-3 text-white">
-                      <CalendarDays className="h-5 w-5 text-purple-400" />
+                    <div className="flex items-center gap-3 text-on-surface">
+                      <CalendarDays className="h-5 w-5 text-neon-foreground" />
                       <span className="capitalize">{formatDate(event.date)}</span>
                     </div>
-                    <div className="flex items-center gap-3 text-white">
-                      <Clock className="h-5 w-5 text-purple-400" />
+                    <div className="flex items-center gap-3 text-on-surface">
+                      <Clock className="h-5 w-5 text-neon-foreground" />
                       <span>
                         {formatTime(event.date)}
                         {event.endDate && ` - ${formatTime(event.endDate)}`}
@@ -273,21 +273,21 @@ export function EventDetail({ event }: EventDetailProps) {
                 {/* Location */}
                 {event.locationName && (
                   <div>
-                    <h3 className="text-sm font-medium text-white/50 mb-2">
+                    <h3 className="text-sm font-medium text-on-surface-muted mb-2">
                       {t('location.label')}
                     </h3>
                     <div className="space-y-2">
                       <div className="flex items-start gap-3">
-                        <MapPin className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                        <MapPin className="h-5 w-5 text-neon-foreground flex-shrink-0 mt-0.5" />
                         <div>
-                          <p className="font-medium text-white">{event.locationName}</p>
+                          <p className="font-medium text-on-surface">{event.locationName}</p>
                           {event.locationAddress && (
-                            <p className="text-sm text-white/50">
+                            <p className="text-sm text-on-surface-muted">
                               {event.locationAddress}
                             </p>
                           )}
                           {event.locationCity && (
-                            <p className="text-sm text-white/50">
+                            <p className="text-sm text-on-surface-muted">
                               {event.locationCity}
                             </p>
                           )}
@@ -298,7 +298,7 @@ export function EventDetail({ event }: EventDetailProps) {
                           href={event.locationMapsUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-sm text-purple-400 hover:text-purple-300 transition-colors"
+                          className="inline-flex items-center text-sm text-neon-foreground hover:text-neon-foreground transition-colors"
                         >
                           <ExternalLink className="h-4 w-4 mr-1" />
                           {t('location.viewMap')}
@@ -310,7 +310,7 @@ export function EventDetail({ event }: EventDetailProps) {
 
                 {/* Attendees info */}
                 {event.maxAttendees && (
-                  <div className="flex items-center gap-3 text-sm text-white/50">
+                  <div className="flex items-center gap-3 text-sm text-on-surface-muted">
                     <Users className="h-5 w-5" />
                     <span>
                       {event.maxAttendees} {t('registration.spotsLeft')}
@@ -320,7 +320,7 @@ export function EventDetail({ event }: EventDetailProps) {
 
                 {/* Register button */}
                 {upcoming && event.registrationUrl && (
-                  <Button className="w-full bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500" size="lg" asChild>
+                  <Button className="w-full bg-gradient-to-r from-neon to-neon-secondary hover:from-neon hover:to-neon-secondary" size="lg" asChild>
                     <a
                       href={event.registrationUrl}
                       target="_blank"
@@ -334,7 +334,7 @@ export function EventDetail({ event }: EventDetailProps) {
 
                 {/* Share */}
                 <div>
-                  <h3 className="text-sm font-medium text-white/50 mb-3">
+                  <h3 className="text-sm font-medium text-on-surface-muted mb-3">
                     {t('share.label')}
                   </h3>
                   <div className="flex gap-2">
@@ -343,7 +343,7 @@ export function EventDetail({ event }: EventDetailProps) {
                       size="icon"
                       onClick={shareOnTwitter}
                       title={t('share.twitter')}
-                      className="border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10"
+                      className="border-hairline hover:border-neon/50 hover:bg-neon/10"
                     >
                       <Twitter className="h-4 w-4" />
                     </Button>
@@ -352,7 +352,7 @@ export function EventDetail({ event }: EventDetailProps) {
                       size="icon"
                       onClick={shareOnLinkedIn}
                       title={t('share.linkedin')}
-                      className="border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10"
+                      className="border-hairline hover:border-neon/50 hover:bg-neon/10"
                     >
                       <Linkedin className="h-4 w-4" />
                     </Button>
@@ -361,7 +361,7 @@ export function EventDetail({ event }: EventDetailProps) {
                       size="icon"
                       onClick={handleCopyLink}
                       title={copied ? t('share.copied') : t('share.copy')}
-                      className="border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10"
+                      className="border-hairline hover:border-neon/50 hover:bg-neon/10"
                     >
                       {copied ? (
                         <Check className="h-4 w-4 text-green-500" />

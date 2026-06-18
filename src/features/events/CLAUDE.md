@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Sistema de gestión de eventos para Valencia Gospel Singers. Permite:
+Sistema de gestión de eventos para Mediterránea Gospel Singers. Permite:
 - Mostrar eventos públicamente (próximos y pasados)
 - Gestionar eventos desde el panel de admin
 - Gestionar artistas invitados y sponsors por evento

@@ -11,24 +11,24 @@ export function EventsCTA() {
   const locale = useLocale();
 
   return (
-    <section className="py-24 relative overflow-hidden bg-[#0a0a0a]">
+    <section className="py-24 relative overflow-hidden bg-surface">
       {/* Fondo con glow púrpura */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neon/15 rounded-full blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/5 hover:border-purple-500/30 transition-all duration-500 p-10 md:p-16 text-center max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-4xl font-bold mb-4 text-white">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-surface-elevated/[0.03] to-transparent border border-hairline hover:border-neon/30 transition-all duration-500 p-10 md:p-16 text-center max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 text-on-surface">
               {t('title')}
             </h2>
-            <p className="text-white/40 mb-8 max-w-xl mx-auto text-lg">
+            <p className="text-on-surface-muted mb-8 max-w-xl mx-auto text-lg">
               {t('description')}
             </p>
             <Button
               size="lg"
-              className="rounded-full px-10 py-7 text-lg bg-gradient-to-r from-purple-600 via-fuchsia-600 to-purple-600 bg-[length:200%_auto] text-white font-semibold hover:bg-right shadow-2xl shadow-purple-600/30 transition-all duration-500"
+              className="rounded-full px-10 py-7 text-lg bg-gradient-to-r from-neon via-neon-secondary to-neon bg-[length:200%_auto] text-on-neon font-semibold hover:bg-right shadow-[0_0_40px_-10px_hsl(var(--glow)/0.4)] transition-all duration-500"
               asChild
             >
               <Link href={`/${locale}/contacto`}>

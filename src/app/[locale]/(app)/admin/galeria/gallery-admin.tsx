@@ -355,7 +355,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
           else setDialogOpen(true);
         }}>
           <DialogTrigger asChild>
-            <Button className="bg-purple-600 hover:bg-purple-500">
+            <Button className="bg-neon hover:bg-neon/90">
               <Plus className="w-4 h-4 mr-2" />
               {t('addNew')}
             </Button>
@@ -375,7 +375,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                     type="button"
                     variant={contentMode === 'image' ? 'default' : 'outline'}
                     onClick={() => setContentMode('image')}
-                    className={contentMode === 'image' ? 'bg-purple-600 hover:bg-purple-500' : ''}
+                    className={contentMode === 'image' ? 'bg-neon hover:bg-neon/90' : ''}
                     size="sm"
                   >
                     <ImageIcon className="w-4 h-4 mr-1.5" />
@@ -385,7 +385,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                     type="button"
                     variant={contentMode === 'video_upload' ? 'default' : 'outline'}
                     onClick={() => setContentMode('video_upload')}
-                    className={contentMode === 'video_upload' ? 'bg-purple-600 hover:bg-purple-500' : ''}
+                    className={contentMode === 'video_upload' ? 'bg-neon hover:bg-neon/90' : ''}
                     size="sm"
                   >
                     <Upload className="w-4 h-4 mr-1.5" />
@@ -395,7 +395,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                     type="button"
                     variant={contentMode === 'video_youtube' ? 'default' : 'outline'}
                     onClick={() => setContentMode('video_youtube')}
-                    className={contentMode === 'video_youtube' ? 'bg-purple-600 hover:bg-purple-500' : ''}
+                    className={contentMode === 'video_youtube' ? 'bg-neon hover:bg-neon/90' : ''}
                     size="sm"
                   >
                     <Video className="w-4 h-4 mr-1.5" />
@@ -449,7 +449,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                     <button
                       type="button"
                       onClick={() => imageInputRef.current?.click()}
-                      className="w-full border-2 border-dashed rounded-lg p-8 text-center hover:border-purple-500/50 hover:bg-purple-500/5 transition-colors"
+                      className="w-full border-2 border-dashed rounded-lg p-8 text-center hover:border-neon/50 hover:bg-neon/5 transition-colors"
                     >
                       <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
                       <p className="text-sm font-medium">{t('form.upload.selectImage')}</p>
@@ -479,7 +479,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                     />
                     {videoFile ? (
                       <div className="flex items-center gap-3 p-3 border rounded-lg bg-muted/30">
-                        <FileVideo className="w-8 h-8 text-purple-500 shrink-0" />
+                        <FileVideo className="w-8 h-8 text-neon-foreground shrink-0" />
                         <div className="min-w-0 flex-1">
                           <p className="text-sm font-medium truncate">{videoFile.name}</p>
                           <p className="text-xs text-muted-foreground">{formatFileSize(videoFile.size)}</p>
@@ -505,7 +505,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                       </div>
                     ) : editingImage && editingImage.media_type === 'video' && !editingImage.youtube_url ? (
                       <div className="flex items-center gap-3 p-3 border rounded-lg bg-muted/30">
-                        <FileVideo className="w-8 h-8 text-purple-500 shrink-0" />
+                        <FileVideo className="w-8 h-8 text-neon-foreground shrink-0" />
                         <div className="min-w-0 flex-1">
                           <p className="text-sm font-medium">{t('form.upload.currentFile')}</p>
                           <p className="text-xs text-muted-foreground truncate">{editingImage.image_url}</p>
@@ -523,7 +523,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                       <button
                         type="button"
                         onClick={() => videoInputRef.current?.click()}
-                        className="w-full border-2 border-dashed rounded-lg p-8 text-center hover:border-purple-500/50 hover:bg-purple-500/5 transition-colors"
+                        className="w-full border-2 border-dashed rounded-lg p-8 text-center hover:border-neon/50 hover:bg-neon/5 transition-colors"
                       >
                         <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
                         <p className="text-sm font-medium">{t('form.upload.selectVideo')}</p>
@@ -574,7 +574,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                       <button
                         type="button"
                         onClick={() => thumbnailInputRef.current?.click()}
-                        className="w-full border-2 border-dashed rounded-lg p-4 text-center hover:border-purple-500/50 hover:bg-purple-500/5 transition-colors"
+                        className="w-full border-2 border-dashed rounded-lg p-4 text-center hover:border-neon/50 hover:bg-neon/5 transition-colors"
                       >
                         <ImageIcon className="w-6 h-6 mx-auto mb-1 text-muted-foreground" />
                         <p className="text-sm font-medium">{t('form.upload.selectThumbnail')}</p>
@@ -764,7 +764,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                 <Button type="button" variant="outline" onClick={closeDialog}>
                   {t('form.cancel')}
                 </Button>
-                <Button type="submit" disabled={isBusy} className="bg-purple-600 hover:bg-purple-500">
+                <Button type="submit" disabled={isBusy} className="bg-neon hover:bg-neon/90">
                   {isBusy && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                   {isUploading ? t('form.upload.uploading') : t('form.save')}
                 </Button>
@@ -792,7 +792,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
             return (
               <Card
                 key={image.id}
-                className={`group overflow-hidden hover:border-purple-500/50 transition-all ${
+                className={`group overflow-hidden hover:border-neon/50 transition-all ${
                   !image.is_active ? 'opacity-60' : ''
                 }`}
               >
@@ -805,20 +805,20 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-900">
-                      <Play className="w-12 h-12 text-white/30" />
+                    <div className="w-full h-full flex items-center justify-center bg-surface-elevated">
+                      <Play className="w-12 h-12 text-on-surface-muted" />
                     </div>
                   )}
                   {/* Video play icon overlay */}
                   {image.media_type === 'video' && thumbnailSrc && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center">
-                        <Play className="w-6 h-6 text-white fill-white" />
+                      <div className="w-12 h-12 rounded-full bg-surface/60 flex items-center justify-center">
+                        <Play className="w-6 h-6 text-on-surface fill-white" />
                       </div>
                     </div>
                   )}
                   {/* Overlay with actions on hover */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                  <div className="absolute inset-0 bg-surface/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                     <Button
                       size="sm"
                       variant="secondary"
@@ -875,20 +875,20 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                   {/* Badges */}
                   <div className="absolute top-2 left-2 flex gap-1">
                     {image.media_type === 'video' && (
-                      <Badge className="bg-red-500/90 text-white border-0">
+                      <Badge className="bg-red-500/90 text-on-surface border-0">
                         <Video className="w-3 h-3 mr-1" />
                         Video
                       </Badge>
                     )}
                     {image.is_featured && (
-                      <Badge className="bg-purple-500/90 text-white border-0">
+                      <Badge className="bg-neon/90 text-on-neon border-0">
                         <Star className="w-3 h-3 mr-1 fill-current" />
                         {t('card.featured')}
                       </Badge>
                     )}
                   </div>
                   {!image.is_active && (
-                    <Badge className="absolute top-2 right-2 bg-gray-500/90 text-white border-0">
+                    <Badge className="absolute top-2 right-2 bg-gray-500/90 text-on-surface border-0">
                       {t('status.inactive')}
                     </Badge>
                   )}
@@ -897,7 +897,7 @@ export function GalleryAdmin({ images }: GalleryAdminProps) {
                   <p className="text-sm font-medium truncate text-foreground">
                     {image.title || 'Sin título'}
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-on-surface-muted dark:text-on-surface-muted">
                     {t(`tabs.${image.category}`)} · {t('card.order')}: {image.display_order}
                   </p>
                 </CardContent>

@@ -39,10 +39,10 @@ export function CollaborationForm({ defaultType = 'sponsor' }: CollaborationForm
   }, [state, t]);
 
   return (
-    <Card className="max-w-lg mx-auto bg-[#141414] border-[#2a2a2a]">
+    <Card className="max-w-lg mx-auto bg-[#141414] border-hairline">
       <CardHeader>
-        <CardTitle className="text-white">{t('form.title')}</CardTitle>
-        <CardDescription className="text-gray-400">{t('form.description')}</CardDescription>
+        <CardTitle className="text-on-surface">{t('form.title')}</CardTitle>
+        <CardDescription className="text-on-surface-muted">{t('form.description')}</CardDescription>
       </CardHeader>
       <CardContent>
         <form id="collaboration-form" action={formAction} className="space-y-6">
@@ -56,11 +56,11 @@ export function CollaborationForm({ defaultType = 'sponsor' }: CollaborationForm
                 className={`flex flex-col items-center gap-2 p-4 rounded-lg border-2 transition-all ${
                   selectedType === 'sponsor'
                     ? 'border-primary bg-primary/10'
-                    : 'border-[#2a2a2a] hover:border-primary/50 bg-[#1a1a1a]'
+                    : 'border-hairline hover:border-primary/50 bg-surface-elevated'
                 }`}
               >
-                <Building2 className={`h-6 w-6 ${selectedType === 'sponsor' ? 'text-primary' : 'text-gray-500'}`} />
-                <span className={`text-sm font-medium ${selectedType === 'sponsor' ? 'text-primary' : 'text-gray-400'}`}>
+                <Building2 className={`h-6 w-6 ${selectedType === 'sponsor' ? 'text-primary' : 'text-on-surface-muted'}`} />
+                <span className={`text-sm font-medium ${selectedType === 'sponsor' ? 'text-primary' : 'text-on-surface-muted'}`}>
                   {t('form.typeSponsor')}
                 </span>
               </button>
@@ -70,11 +70,11 @@ export function CollaborationForm({ defaultType = 'sponsor' }: CollaborationForm
                 className={`flex flex-col items-center gap-2 p-4 rounded-lg border-2 transition-all ${
                   selectedType === 'hoster'
                     ? 'border-primary bg-primary/10'
-                    : 'border-[#2a2a2a] hover:border-primary/50 bg-[#1a1a1a]'
+                    : 'border-hairline hover:border-primary/50 bg-surface-elevated'
                 }`}
               >
-                <MapPin className={`h-6 w-6 ${selectedType === 'hoster' ? 'text-primary' : 'text-gray-500'}`} />
-                <span className={`text-sm font-medium ${selectedType === 'hoster' ? 'text-primary' : 'text-gray-400'}`}>
+                <MapPin className={`h-6 w-6 ${selectedType === 'hoster' ? 'text-primary' : 'text-on-surface-muted'}`} />
+                <span className={`text-sm font-medium ${selectedType === 'hoster' ? 'text-primary' : 'text-on-surface-muted'}`}>
                   {t('form.typeHoster')}
                 </span>
               </button>
@@ -90,7 +90,7 @@ export function CollaborationForm({ defaultType = 'sponsor' }: CollaborationForm
               name="name"
               required
               placeholder={t('form.namePlaceholder')}
-              className="bg-[#1a1a1a] border-[#2a2a2a] text-white placeholder:text-gray-500"
+              className="bg-surface-elevated border-hairline text-on-surface placeholder:text-on-surface-muted"
             />
           </div>
 
@@ -103,20 +103,20 @@ export function CollaborationForm({ defaultType = 'sponsor' }: CollaborationForm
               type="email"
               required
               placeholder={t('form.emailPlaceholder')}
-              className="bg-[#1a1a1a] border-[#2a2a2a] text-white placeholder:text-gray-500"
+              className="bg-surface-elevated border-hairline text-on-surface placeholder:text-on-surface-muted"
             />
           </div>
 
           {/* Company (optional) */}
           <div className="space-y-2">
             <Label htmlFor="company" className="text-gray-300">
-              {t('form.company')} <span className="text-gray-500 text-xs">({t('form.optional')})</span>
+              {t('form.company')} <span className="text-on-surface-muted text-xs">({t('form.optional')})</span>
             </Label>
             <Input
               id="company"
               name="company"
               placeholder={t('form.companyPlaceholder')}
-              className="bg-[#1a1a1a] border-[#2a2a2a] text-white placeholder:text-gray-500"
+              className="bg-surface-elevated border-hairline text-on-surface placeholder:text-on-surface-muted"
             />
           </div>
 
@@ -129,7 +129,7 @@ export function CollaborationForm({ defaultType = 'sponsor' }: CollaborationForm
               required
               rows={4}
               placeholder={selectedType === 'sponsor' ? t('form.messagePlaceholderSponsor') : t('form.messagePlaceholderHoster')}
-              className="bg-[#1a1a1a] border-[#2a2a2a] text-white placeholder:text-gray-500"
+              className="bg-surface-elevated border-hairline text-on-surface placeholder:text-on-surface-muted"
             />
           </div>
 

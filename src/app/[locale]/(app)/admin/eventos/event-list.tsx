@@ -179,7 +179,7 @@ export function EventList({ events }: EventListProps) {
 
   const getStatusBadge = (status: EventStatus) => {
     const variants: Record<string, string> = {
-      draft: 'bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30',
+      draft: 'bg-neon/20 text-neon-foreground border-neon/30',
       published: 'bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30',
       cancelled: 'bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30',
     };
@@ -486,7 +486,7 @@ export function EventList({ events }: EventListProps) {
           {filteredEvents.map((event) => (
             <Card
               key={event.id}
-              className={`hover:border-purple-500/50 transition-all ${
+              className={`hover:border-neon/50 transition-all ${
                 !isUpcoming(event.date) && event.status === 'published' ? 'opacity-60' : ''
               }`}
             >
@@ -510,7 +510,7 @@ export function EventList({ events }: EventListProps) {
                       <h3 className="font-semibold truncate">{event.title}</h3>
                       {getStatusBadge(event.status)}
                       {event.featured && (
-                        <Star className="w-4 h-4 text-purple-500 fill-purple-500" />
+                        <Star className="w-4 h-4 text-neon-foreground fill-neon" />
                       )}
                     </div>
                     <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -569,7 +569,7 @@ export function EventList({ events }: EventListProps) {
                           variant="outline"
                           onClick={() => handleUnpublish(event.id)}
                           disabled={isPending}
-                          className="text-purple-600 dark:text-purple-400 border-purple-500/30 hover:bg-purple-500/10"
+                          className="text-neon-foreground border-neon/30 hover:bg-neon/10"
                         >
                           <EyeOff className="w-4 h-4 mr-1" />
                           {t('actions.unpublish')}

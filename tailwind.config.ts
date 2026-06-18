@@ -47,6 +47,25 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        // ── Tokens extendidos (light/dark aware) ──
+        surface: {
+          DEFAULT: 'hsl(var(--surface))',
+          elevated: 'hsl(var(--surface-elevated))',
+          sunken: 'hsl(var(--surface-sunken))',
+        },
+        hairline: 'hsl(var(--hairline))',
+        neon: {
+          DEFAULT: 'hsl(var(--neon))',
+          foreground: 'hsl(var(--neon-foreground))',
+          secondary: 'hsl(var(--neon-secondary))',
+          tertiary: 'hsl(var(--neon-tertiary))',
+        },
+        glow: 'hsl(var(--glow))',
+        'on-surface': {
+          DEFAULT: 'hsl(var(--on-surface))',
+          muted: 'hsl(var(--on-surface-muted))',
+        },
+        'on-neon': 'hsl(var(--on-neon))',
       },
       borderRadius: {
         lg: 'var(--radius)',

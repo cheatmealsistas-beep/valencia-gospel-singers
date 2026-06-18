@@ -50,7 +50,7 @@ export function SectionWrapper({
       {/* Future: Admin edit button overlay */}
       {process.env.NODE_ENV === 'development' && (
         <div className="absolute top-2 right-2 z-10 opacity-0 hover:opacity-100 transition-opacity">
-          <div className="bg-black/80 text-white text-xs px-2 py-1 rounded">
+          <div className="bg-surface/80 text-on-surface text-xs px-2 py-1 rounded">
             {sectionKey} ({variant})
           </div>
         </div>

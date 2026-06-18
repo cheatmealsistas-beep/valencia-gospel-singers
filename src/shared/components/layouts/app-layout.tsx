@@ -21,7 +21,7 @@ interface AppLayoutProps {
 
 // Helper to get glass classes based on config
 const glassClasses = brand.theme.glass
-  ? 'glass border-white/10'
+  ? 'glass border-on-surface/10'
   : 'bg-background border-border';
 
 export function AppLayout({ children, user, unreadMessagesCount = 0 }: AppLayoutProps) {

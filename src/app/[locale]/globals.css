@@ -13,59 +13,99 @@
 @tailwind utilities;
 
 @layer base {
+  /* ════════════════════════════════════════════════════════════════
+   * LIGHT MODE — Blanco + Teal brillante y vibrante
+   * Token semánticos: usar SIEMPRE estos en componentes, nunca hex crudos.
+   * ════════════════════════════════════════════════════════════════ */
   :root {
-    /* Valencia Gospel Singers - Elegant & Warm Theme */
-    /* Purple primary + Orange/Gold accents */
-
     --background: 0 0% 100%;
-    --foreground: 240 10% 15%;
+    --foreground: 200 30% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 15%;
+    --card-foreground: 200 30% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 15%;
+    --popover-foreground: 200 30% 12%;
 
-    /* Primary - Púrpura vibrante */
-    --primary: 263 70% 58%; /* #7C3AED */
+    /* Primary - Teal brillante */
+    --primary: 174 84% 38%; /* #0FBFA8 aprox */
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Naranja cálido */
-    --secondary: 25 95% 53%; /* #F97316 */
+    /* Secondary - Teal profundo */
+    --secondary: 186 80% 30%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Accent - Púrpura claro */
-    --accent: 263 70% 95%; /* Púrpura muy claro para hover */
-    --accent-foreground: 263 70% 45%;
+    /* Accent - Teal muy claro para hover/superficies */
+    --accent: 174 70% 94%;
+    --accent-foreground: 186 80% 26%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    --muted: 200 20% 96%;
+    --muted-foreground: 200 12% 42%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 263 70% 58%;
+    --border: 200 16% 90%;
+    --input: 200 16% 90%;
+    --ring: 174 84% 38%;
     --radius: 0.75rem;
+
+    /* ── Tokens extendidos (antes hardcodeados) ── */
+    /* Superficie base de página y superficies elevadas */
+    --surface: 0 0% 100%;            /* página (era bg-[#0a0a0a]) */
+    --surface-elevated: 200 25% 98%; /* secciones/cards elevadas */
+    --surface-sunken: 200 20% 96%;   /* zonas hundidas */
+    --hairline: 200 16% 90%;         /* bordes sutiles (era border-white/5) */
+
+    /* Neón / acento vibrante para gradientes y glows */
+    --neon: 174 90% 42%;             /* teal neón (era purple) */
+    --neon-foreground: 174 90% 30%;  /* texto teal sobre claro (era text-purple-400) */
+    --neon-secondary: 190 95% 45%;   /* cian (era fuchsia/rosa) */
+    --neon-tertiary: 160 84% 42%;    /* esmeralda-teal (era violeta) */
+    --on-neon: 0 0% 100%;            /* texto SOBRE relleno neón: blanco en ambos modos (contraste AA) */
+    --glow: 174 90% 42%;             /* color de sombras/glow */
+    --on-surface: 200 30% 12%;       /* texto principal sobre surface (era text-white) */
+    --on-surface-muted: 200 12% 42%; /* texto secundario (era text-white/60) */
   }
 
+  /* ════════════════════════════════════════════════════════════════
+   * DARK MODE — Negro + Púrpura/Fucsia neón (look actual, sin cambios)
+   * Los tokens apuntan a los valores que hoy están hardcodeados en los
+   * componentes, para que el dark se vea EXACTAMENTE igual que antes.
+   * ════════════════════════════════════════════════════════════════ */
   .dark {
-    --background: 240 10% 8%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 10%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 10%;
-    --popover-foreground: 0 0% 98%;
+    --background: 0 0% 4%;           /* #0a0a0a */
+    --foreground: 0 0% 100%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 100%;
+
     --primary: 263 70% 65%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 25 95% 60%;
+    --secondary: 290 85% 60%;        /* fuchsia */
     --secondary-foreground: 0 0% 100%;
-    --accent: 43 96% 60%;
-    --accent-foreground: 240 10% 10%;
-    --muted: 240 5% 18%;
-    --muted-foreground: 240 5% 65%;
+    --accent: 263 70% 18%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 64%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 5% 20%;
-    --input: 240 5% 20%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
     --ring: 263 70% 65%;
+
+    /* ── Tokens extendidos (= valores hardcodeados actuales) ── */
+    --surface: 0 0% 4%;              /* #0a0a0a */
+    --surface-elevated: 0 0% 7%;
+    --surface-sunken: 0 0% 3%;
+    --hairline: 0 0% 10%;            /* #1a1a1a / white/5 */
+
+    --neon: 271 91% 65%;             /* rgba(168,85,247) = #A855F7 purple */
+    --neon-foreground: 271 91% 74%;  /* text-purple-400 */
+    --neon-secondary: 330 81% 60%;   /* rgba(236,72,153) = #EC4899 rosa/fuchsia */
+    --neon-tertiary: 258 90% 66%;    /* rgba(139,92,246) = #8B5CF6 violeta */
+    --on-neon: 0 0% 100%;            /* texto SOBRE relleno neón: blanco en ambos modos */
+    --glow: 271 91% 65%;             /* glow púrpura */
+    --on-surface: 0 0% 100%;         /* text-white */
+    --on-surface-muted: 0 0% 64%;    /* text-white/60 */
   }
 }
 
@@ -154,9 +194,9 @@
     @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
   }
 
-  /* Gradient text utility */
+  /* Gradient text utility — usa tonos neón con suficiente contraste en ambos modos */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-neon via-neon-secondary to-neon-tertiary;
   }
 
   /* Card with subtle hover effect */

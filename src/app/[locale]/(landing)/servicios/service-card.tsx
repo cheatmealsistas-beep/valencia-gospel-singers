@@ -30,9 +30,9 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const subtitle = locale === 'en' && service.subtitleEn ? service.subtitleEn : service.subtitle;
 
   return (
-    <div className="group relative rounded-3xl bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all duration-500 overflow-hidden">
+    <div className="group relative rounded-3xl bg-on-surface/[0.02] border border-hairline hover:border-neon/30 transition-all duration-500 overflow-hidden">
       {/* Gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-neon/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       {/* Service Image */}
       {service.imageUrl && (
@@ -44,7 +44,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           {service.isFeatured && (
-            <Badge className="absolute top-3 right-3 bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white border-0">
+            <Badge className="absolute top-3 right-3 bg-gradient-to-r from-neon to-neon-secondary text-on-neon border-0">
               <Star className="w-3 h-3 mr-1 fill-current" />
               Destacado
             </Badge>
@@ -55,20 +55,20 @@ export function ServiceCard({ service }: ServiceCardProps) {
       <div className={`relative p-5 ${!service.imageUrl ? 'pt-5' : ''}`}>
         {/* Price Badge */}
         {service.priceFrom !== null && (
-          <div className="flex items-center gap-2 text-sm text-white/40 mb-3">
-            <Euro className="h-4 w-4 text-purple-400" />
+          <div className="flex items-center gap-2 text-sm text-on-surface-muted mb-3">
+            <Euro className="h-4 w-4 text-neon-foreground" />
             <span>{t('priceFrom')} {formatPrice(service.priceFrom)}</span>
           </div>
         )}
 
         {/* Title */}
-        <h3 className="text-lg font-semibold mb-2 line-clamp-2 text-white group-hover:text-purple-300 transition-colors">
+        <h3 className="text-lg font-semibold mb-2 line-clamp-2 text-on-surface group-hover:text-neon-foreground transition-colors">
           {title}
         </h3>
 
         {/* Subtitle */}
         {subtitle && (
-          <p className="text-sm text-white/40 mb-4 line-clamp-3">
+          <p className="text-sm text-on-surface-muted mb-4 line-clamp-3">
             {subtitle}
           </p>
         )}
@@ -77,7 +77,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         <div className="flex items-center gap-3 mt-4">
           <Button
             variant="outline"
-            className="flex-1 border-purple-500/30 bg-purple-500/10 text-white hover:bg-purple-500/20 hover:text-white hover:border-purple-500/50"
+            className="flex-1 border-neon/30 bg-neon/10 text-on-neon hover:bg-neon/20 hover:text-on-neon hover:border-neon/50"
             asChild
           >
             <Link href={`/servicios/${service.slug}`}>
