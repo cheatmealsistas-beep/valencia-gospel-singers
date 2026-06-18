@@ -32,10 +32,11 @@ export function MiniVinyl({ size = 'md', className, index = 0 }: MiniVinylProps)
 
   return (
     <motion.div
-      className={cn('relative flex-shrink-0', sizeClasses[size], className)}
+      className={cn('group/mini relative flex-shrink-0 cursor-pointer', sizeClasses[size], className)}
       initial={{ rotate: 0 }}
       whileInView={{ rotate: 360 }}
       viewport={{ once: true, amount: 0.8 }}
+      whileHover={prefersReducedMotion ? undefined : { scale: 1.12, rotate: 396 }}
       transition={{
         duration: 1.2,
         delay: index * 0.15,
@@ -45,7 +46,7 @@ export function MiniVinyl({ size = 'md', className, index = 0 }: MiniVinylProps)
     >
       {/* Vinyl base */}
       <div
-        className="absolute inset-0 rounded-full"
+        className="absolute inset-0 rounded-full transition-shadow duration-500 group-hover/mini:shadow-[0_0_25px_hsl(var(--neon)/0.6),0_0_45px_hsl(var(--neon-secondary)/0.35)]"
         style={{
           background: '#111',
           boxShadow: `
@@ -79,6 +80,25 @@ export function MiniVinyl({ size = 'md', className, index = 0 }: MiniVinylProps)
               hsl(var(--neon) / 0.25) 40deg,
               hsl(var(--neon-secondary) / 0.15) 80deg,
               transparent 120deg,
+              transparent 360deg
+            )`,
+          }}
+        />
+
+        {/* Destello intenso al hover */}
+        <div
+          className="absolute inset-0 rounded-full opacity-0 group-hover/mini:opacity-100 transition-opacity duration-500"
+          style={{
+            background: `conic-gradient(from 90deg,
+              transparent 0deg,
+              hsl(var(--neon) / 0.55) 25deg,
+              hsl(var(--neon-secondary) / 0.4) 55deg,
+              hsl(var(--neon-tertiary) / 0.3) 85deg,
+              transparent 130deg,
+              transparent 220deg,
+              hsl(var(--neon) / 0.45) 250deg,
+              hsl(var(--neon-secondary) / 0.3) 290deg,
+              transparent 330deg,
               transparent 360deg
             )`,
           }}
