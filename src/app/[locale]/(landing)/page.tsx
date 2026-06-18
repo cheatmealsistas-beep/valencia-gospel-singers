@@ -54,7 +54,7 @@ export default async function HomePage({ params }: HomePageProps) {
             {[1, 2, 3, 4].map((i) => (
               <div
                 key={`wave-${i}`}
-                className="absolute inset-0 rounded-full border border-neon/30"
+                className="absolute inset-0 rounded-full border-2 border-neon/60 dark:border dark:border-neon/30"
                 style={{
                   animation: `vinyl-wave 5s ease-out infinite`,
                   animationDelay: `${i * 1}s`,
